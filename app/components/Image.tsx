@@ -32,8 +32,8 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({ src, alt }) => {
             alt={alt}
             layout="responsive"
             className="max-w-full h-auto"
-            width={containerWidth}
-            height={containerWidth}  // Adjust height according to your aspect ratio needs
+            width={800}
+            height={800}  // Adjust height according to your aspect ratio needs
         />
     );
 };
