@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  margin: 0px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: mont;
+}
+
+.hero-filters {
+  gap: 0px;
+  border-radius: 8px 8px 0px 0px;
+  border: 0.6px 0px 0px 0px;
+  opacity: 0px;
+  position:relative;
+  top: 0px;
+  left: 6.5px;
+  width: 79.8%;
+  height: 77px;
+  background-color: #ffffff;
+  border: 0.6px solid #464646
+}
+.style-card {
+  clip-path: polygon(5.2% 19%, 94.8% 7.2%, 94.8% 52.2%, 94.6% 100%, 5.4% 100%);
+  position: relative;
+  bottom: 74px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+              0 6px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.service-text{
+font-weight: 700;
+line-height: 58.14px;
+font-size: 54px;
+text-align: center;
+text-transform: uppercase;
+}
+@media (min-width: 1600px) {
+  .hero-filters {
+    height: 100px;
+    left: 7.5px;
+  }
+}
+
+.footer-image {
+  background-image: url("../public/UPDONE (1).png");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.trusted-text{
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 34.13px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #2C2240;
+  padding-bottom: 40px 40px 0px 40px;
+}
+/* security */
+.security-bg {
+  position: relative;
+  height: 95vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.security-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%; /* Left half */
+  z-index: 1;
+}
+
+.security-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 243%;
+  height: 95vh;
+  background-color: #2C2240;
+  z-index: 1;
+  transform: rotate(-3deg);
+  overflow: hidden;
+}
+.why-choose{
+font-size: 75px;
+font-weight: 700;
+line-height: 96px;
+letter-spacing: -0.02em;
+text-align: left;
+color: white;
+}
+.security-head{
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24.38px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #F3F0FF;
+}
+.security-body{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  color: #FFFFFF;
+}
+.faq-head{
+font-size: 44px;
+font-weight: 600;
+line-height: 53.64px;
+letter-spacing: -0.02em;
+text-align: left;
+color: #000000;
+}
+.faq-body{
+font-size: 20px;
+font-weight: 700;
+line-height: 24.38px;
+text-align: left;
+color: #6B6B6B;
+}
