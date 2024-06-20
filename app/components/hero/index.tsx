@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ResponsiveImage from '../Image'
 import Image from 'next/image'
 import './hero.modules.css'
 const Hero = () => {
@@ -137,7 +136,7 @@ const Hero = () => {
                             </div>
                         </div>
                     </div>
-                    <ResponsiveImage src="/images/hero/hero.png" alt="Hero Image" />
+                    <Image width={900} height={900} src="/images/hero/hero.png" alt="Hero Image" />
                 </div>
             </main>
         </div>
