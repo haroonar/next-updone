@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import './hero.modules.css'
+import { heroFilters } from './hero';
+
 const Hero = () => {
     const [selectedValue, setSelectedValue] = useState('Bartenders');
 
@@ -23,7 +24,7 @@ const Hero = () => {
                         <strong className="text-[#350abc]">STAFF</strong> IN A SNAP!
                     </span>
 
-                    <div className="hero-filters flex space-x-3 w-full p-1 text-black justify-center items-center text-center">
+                    <div style={{...heroFilters}} className="flex space-x-3 w-full p-1 text-black justify-center items-center text-center">
                         <div className="w-1/5">
                             <div className="relative inline-block border-none shadow-none px-[14px]">
                                 <select
