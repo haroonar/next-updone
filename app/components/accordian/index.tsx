@@ -16,7 +16,7 @@ const Accordion: React.FC = () => {
   ), [openAccordion]);
 
   return (
-    <div className='relative bg-[#F9F9F9] py-20'>
+    <div className='relative bg-[#F9F9F9] py-[100px]'>
       <section>
         <div>
           <div className="flex flex-col justify-center mx-72 items-center gap-8 lg:flex-row max-lg:max-w-2xl max-w-full">

@@ -12,7 +12,7 @@ function HowWork() {
     ];
 
     return (
-        <div className="relative h-screen" style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)" }}>
+        <div className="relative h-screen my-[100px]" style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)" }}>
             {/* Background blur */}
             <div className="absolute inset-0 blur-3xl"></div>
 
@@ -24,19 +24,19 @@ function HowWork() {
             </div>
 
             {/* Centered text */}
-            <h1 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[43px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h1>
-            <div className="absolute top-0 left-0 right-0 flex justify-center pt-8 mt-[30px]">
-                <div className="relative h-screen flex flex-col md:flex-row w-full mx-40">
+            <h1 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[100px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h1>
+            <div className="absolute top-0 left-0 right-0 flex justify-center">
+                <div className="relative h-screen flex flex-col md:flex-row w-full mx-40 top-[60px]">
                     <div className="w-full md:w-[54%] flex flex-col items-center justify-center space-y-4">
                         {cards.map((card) => (
                             <div
                                 key={card.id}
-                                className={`px-3 py-2 ${hoveredCard === card.id  ? 'bg-[#e9e5fb] border-[1px] shadow-xl border-[#7152d1]' : ''} rounded-lg w-3/4 text-start cursor-pointer`}
+                                className={`px-3 py-2 transition-all duration-1000 ease-in-out ${hoveredCard === card.id ? 'bg-[#e9e5fb] border-[1px] shadow-xl border-[#7152d1]' : ''} rounded-lg w-3/4 text-start cursor-pointer`}
                                 onMouseEnter={() => setHoveredCard(card.id)}
                                 onMouseLeave={() => setHoveredCard(1)}
                             >
-                                <h1 className={`${hoveredCard === card.id ? 'text-[#3E2392] font-[600] text-[22px]':'text-black font-[600] text-[20px]'}`}>{card.text}</h1>
-                                <p className='text-[14px] ml-[21px]'>{  hoveredCard === card.id ? card.dec:""} </p>
+                                <h1 className={`${hoveredCard === card.id ? 'text-[#3E2392] font-[600] text-[22px]' : 'text-black font-[600] text-[20px]'}`}>{card.text}</h1>
+                                <p className='text-[14px] ml-[21px]'>{hoveredCard === card.id ? card.dec : ""}</p>
                             </div>
                         ))}
                     </div>
@@ -45,10 +45,14 @@ function HowWork() {
                         {cards.map((card) => (
                             <div
                                 key={card.id}
-                                className={`absolute transition-opacity duration-300 ${hoveredCard === card.id ? 'opacity-100' : 'opacity-0'}`}
+                                className={`absolute transition-opacity duration-1000 ease-in-out ${hoveredCard === card.id ? 'opacity-100' : 'opacity-0'}`}
                                 style={{ margin: '1rem' }} // Adjust margin here
                             >
-                                <Image src={card.image} alt={card.text} width={1500} height={1500}
+                                <Image
+                                    src={card.image}
+                                    alt={card.text}
+                                    width={1500}
+                                    height={1500}
                                     className='rounded-lg shadow-stone-300'
                                     layout="responsive"
                                 />

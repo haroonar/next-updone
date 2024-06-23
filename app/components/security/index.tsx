@@ -2,7 +2,7 @@ import React from 'react';
 
 const Security = () => {
   return (
-    <div className='security-bg mb-10'  style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
+    <div className='security-bg my-[100px]'  style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
       {/* You can place your content here */}
       <div className='content relative z-[999] max-w-[1200px] mx-auto'>
         <div className='flex  h-[70vh]'>
@@ -68,7 +68,7 @@ const Security = () => {
                   </div>
                 </div>
               </div>
-             <div className='p-10 flex justify-center items-center mt-10'>
+             <div className='p-6 m-auto flex justify-center items-center'>
              <svg width="1" height="550" viewBox="0 0 1 683" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 1L0.50003 682" stroke="white" stroke-linecap="round" />
               </svg>

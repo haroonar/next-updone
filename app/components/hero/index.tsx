@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { heroFilters } from './hero';
+import ResponsiveImage from '../Image';
 
 const Hero = () => {
     const [selectedValue, setSelectedValue] = useState('Bartenders');
@@ -137,7 +138,7 @@ const Hero = () => {
                             </div>
                         </div>
                     </div>
-                    <Image width={900} height={900} src="/images/hero/hero.png" alt="Hero Image" />
+                    <ResponsiveImage src="/images/hero/hero.png" alt="Hero Image" />
                 </div>
             </main>
         </div>

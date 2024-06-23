@@ -5,7 +5,7 @@ const AccordionItem: React.FC<{ index: number, title: string, content: JSX.Eleme
     <div>
       <h6 className="mb-4">
         <button
-          className={`relative flex items-center w-full py-3 px-4 text-left bg-[#FFFFFF] transition-all ease-in cursor-pointer text-slate-700 group ${isOpen ? 'bg-[#2C2240] text-[#F3F0FF] rounded-md m-0 rounded-0 relative bottom-[-12px]' : 'accordian-style'}`}
+          className={`relative flex items-center w-full py-3 px-4 text-left bg-[#FFFFFF] transition-all ease-in cursor-pointer text-slate-700 group ${isOpen ? 'bg-fuchsia-900 text-white rounded-md m-0 rounded-0 relative bottom-[-12px]' : 'accordian-style'}`}
           onClick={onClick}
         >
           <span className='text-[18px] px-3'>{title}</span>
