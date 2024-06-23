@@ -12,7 +12,7 @@ const Hero = () => {
       event.target.value = '0'; // Reset the dropdown to show "Services"
     };
     return (
-        <div>
+        <div> 
             <main className="h-screen flex flex-col justify-end items-center mt-10">
                 <div className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[55px] 2xl:text-[250px]">Workers</div>
                 <Image layout="intrinsic" src="./background.svg" height={100} width={100} alt="Background" className="w-full h-auto" />
