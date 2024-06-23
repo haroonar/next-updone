@@ -17,7 +17,7 @@ const Hero = () => {
                 <div className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[55px] 2xl:text-[250px]">Workers</div>
                 <Image layout="intrinsic" src="./background.svg" height={100} width={100} alt="Background" className="w-full h-auto" />
                 {/* Add your content here */}
-                <div className="absolute flex flex-col items-center justify-center text-white text-lg">
+                <div className="absolute flex flex-col items-center justify-center text-white text-lg mx-[280px]">
                     <span className="text-black font-bold md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[130px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
                         BOOK <strong className="text-[#350abc]">EVENT</strong>
                     </span>
