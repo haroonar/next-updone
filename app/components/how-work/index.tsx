@@ -12,12 +12,12 @@ function HowWork() {
     ];
 
     return (
-        <div className="relative h-screen my-[100px]" style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)" }}>
+        <div className="relative h-screen pb-[100px]" style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)" }}>
             {/* Background blur */}
-            <div className="absolute inset-0 blur-3xl"></div>
+            <div className="absolute inset-0 blur-5xl"></div>
 
             {/* Random colored circles with blur */}
-            <div className="absolute inset-0 flex justify-end items-center space-x-4 space-y-4 blur-3xl">
+            <div className="absolute inset-0 flex justify-end items-center space-x-4 space-y-4 blur-5xl">
                 <div className="absolute left-[937px] top-[172px] w-32 h-32 bg-[#FFACC5] rounded-full"></div>
                 <div className="absolute right-[238px] top-[404px] w-32 h-32 bg-[#FFFCAC] rounded-full"></div>
                 <div className="absolute right-[614px] bottom-[215px] w-32 h-32 bg-[#FFD4AC] rounded-full"></div>
@@ -35,8 +35,8 @@ function HowWork() {
                                 onMouseEnter={() => setHoveredCard(card.id)}
                                 onMouseLeave={() => setHoveredCard(1)}
                             >
-                                <h1 className={`${hoveredCard === card.id ? 'text-[#3E2392] font-[600] text-[22px]' : 'text-black font-[600] text-[20px]'}`}>{card.text}</h1>
-                                <p className='text-[14px] ml-[21px]'>{hoveredCard === card.id ? card.dec : ""}</p>
+                                <h1 className={`${hoveredCard === card.id ? 'text-[#3E2392] font-[600] text-[22px]' : 'text-[#6B6B6B] font-[600] text-[20px]'}`}>{card.text}</h1>
+                                <p className='text-[14px] ml-[21px] text-[#6B6B6B]'>{hoveredCard === card.id ? card.dec : ""}</p>
                             </div>
                         ))}
                     </div>

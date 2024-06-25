@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { heroFilters } from './hero';
-import ResponsiveImage from '../Image';
+import ResponsiveImage from '../common/responsive-image';
 
 const Hero = () => {
     const [selectedValue, setSelectedValue] = useState('Bartenders');
@@ -13,23 +13,23 @@ const Hero = () => {
     };
     return (
         <div> 
-            <main className="h-screen flex flex-col justify-end items-center mt-10">
+            <main className="h-screen flex flex-col justify-end items-center">
                 <div className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[55px] 2xl:text-[250px]">Workers</div>
                 <Image layout="intrinsic" src="./background.svg" height={100} width={100} alt="Background" className="w-full h-auto" />
                 {/* Add your content here */}
-                <div className="absolute flex flex-col items-center justify-center text-white text-lg mx-[280px]">
+                <div className="absolute flex flex-col items-center justify-center text-white text-lg mx-[300px]">
                     <span className="text-black font-bold md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[130px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
                         BOOK <strong className="text-[#350abc]">EVENT</strong>
                     </span>
-                    <span className="text-black font-bold md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[130px] mb-[75px] 2xl:mb-[55px]">
+                    <span className="text-black font-bold md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[110px] mb-[45px] 2xl:mb-[55px]">
                         <strong className="text-[#350abc]">STAFF</strong> IN A SNAP!
                     </span>
 
                     <div style={{...heroFilters}} className="flex space-x-3 w-full p-1 text-black justify-center items-center text-center">
-                        <div className="w-1/5">
-                            <div className="relative inline-block border-none shadow-none px-[14px]">
+                        <div className="w-1/4">
+                            <div className="relative inline-block border-none shadow-none pr-[14px]">
                                 <select
-                                    className="block appearance-none md:w-[90px] 2xl:w-[100px] 2xl:text-[20px] font-[500] md:text-[15px] bg-white pr-4 rounded focus:outline-none focus:shadow-outline"
+                                    className="block appearance-none md:w-[90px] 2xl:w-[100px] 2xl:text-[20px] font-[500] md:text-[12px] bg-white pr-4 rounded focus:outline-none focus:shadow-outline"
                                     onChange={handleChange}
                                     defaultValue="0"
                                 >
@@ -64,7 +64,7 @@ const Hero = () => {
 
                                 {/* Dropdown */}
                                 <select
-                                    className="font-[500] block appearance-none w-full  md:text-[15px] 2xl:text-[20px] bg-white pl-10 rounded focus:outline-none focus:shadow-outline"
+                                    className="font-[500] block appearance-none w-full  md:text-[12px] 2xl:text-[20px] bg-white pl-10 rounded focus:outline-none focus:shadow-outline"
                                     onChange={handleChange}
                                     defaultValue="0"
                                 >
@@ -93,7 +93,7 @@ const Hero = () => {
 
                                 {/* Dropdown */}
                                 <select
-                                    className="font-[500] block appearance-none w-full 2xl:text-[20px] 2xl:pr-0 text-[15px] bg-white pl-10  rounded focus:outline-none focus:shadow-outline"
+                                    className="font-[500] block appearance-none w-full 2xl:text-[20px] 2xl:pr-0 md:text-[12px] bg-white pl-10  rounded focus:outline-none focus:shadow-outline"
                                     onChange={handleChange}
                                     defaultValue="0"
                                 >
@@ -109,7 +109,7 @@ const Hero = () => {
 
                         </div>
                         <img src="./images/Line 4.png" alt="" />
-                        <div className="w-2/5 space-y-1.5">
+                        <div className="w 2/5 space-y-1.5">
                             <div className='flex justify-center items-center space-x-6'>
                                 <span className='px-[14px] py-[0px] text-white text-[14px] bg-black rounded-lg font-[200]'>All</span>
                                 <div className="flex items-center">

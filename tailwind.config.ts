@@ -20,6 +20,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      blur: {
+        '4xl': '60px',  // Customize this value to increase the blur
+        '5xl': '80px',  // Add even larger values as needed
+      },
     },
   },
   plugins: [],

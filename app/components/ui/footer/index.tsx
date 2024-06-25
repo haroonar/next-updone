@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="bg-[#2c2240]">
             <div style={{ margin: '0 100px' }}>
             <footer className="relative bg-[#2c2240] text-white pt-8 pb-6 footer-image">
-                <div className="container mx-auto px-4">
+                <div className="max-w-screen-xl mx-auto px-4">
                     <div className="flex text-left lg:text-left">
                         <div className="w-full space-y-4 lg:w-6/12 px-4 pl-[90px]">
                             <svg xmlns="http://www.w3.org/2000/svg" width="165" height="48" viewBox="0 0 165 48" fill="none">

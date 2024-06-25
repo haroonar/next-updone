@@ -16,9 +16,7 @@ const Accordion: React.FC = () => {
   ), [openAccordion]);
 
   return (
-    <div className='relative bg-[#F9F9F9] py-[100px]'>
-      <section>
-        <div>
+    <div className='relative bg-[#F9F9F9] py-[100px] flex justify-center items-center h-screen'>
           <div className="flex flex-col justify-center mx-72 items-center gap-8 lg:flex-row max-lg:max-w-2xl max-w-full">
             <div >
               <h1 className='2xl:faq-head md:text-[34px] mb-4 font-[600] md:leading-[33.64px]'>Frequently Asked Questions</h1>
@@ -40,8 +38,6 @@ const Accordion: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
-    </div>
   );
 };
 

@@ -1,26 +1,24 @@
 'use client'
 import Image from 'next/image'
 import React from 'react'
-import FormDecoration from './form-decoration'
+import FormDecoration from '../common/form-decoration'
 
 const Services = () => {
     return (
-        <div className='my-[100px]' style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
-            <h1 className='service-text'>What <strong className='text-[#350ABC]'>services</strong> are <br /> you looking for?</h1>
-
-
+        <div className='py-[100px]' style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
+            <h1 className='service-text mb-6'>What <strong className='text-[#350ABC]'>services</strong> are <br /> you looking for?</h1>
             <div className="relative px-72 pb-4">
-            <div className="absolute top-[-186px]  z-[-1] left-0" style={{ transform: 'rotate(50deg)' }}>
-          <svg width="500" height="500" viewBox="0 0 601 1096" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path opacity="0.1" d="M601 548C601 850.652 355.652 1096 53 1096C-249.652 1096 -495 850.652 -495 548C-495 245.348 -249.652 0 53 0C355.652 0 601 245.348 601 548ZM-491.004 548C-491.004 848.445 -247.445 1092 53 1092C353.445 1092 597.004 848.445 597.004 548C597.004 247.555 353.445 3.99622 53 3.99622C-247.445 3.99622 -491.004 247.555 -491.004 548Z" fill="#350ABC" />
-          </svg>
+                <div className="absolute top-[-186px]  z-[-1] left-0" style={{ transform: 'rotate(50deg)' }}>
+                    <svg width="500" height="500" viewBox="0 0 601 1096" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.1" d="M601 548C601 850.652 355.652 1096 53 1096C-249.652 1096 -495 850.652 -495 548C-495 245.348 -249.652 0 53 0C355.652 0 601 245.348 601 548ZM-491.004 548C-491.004 848.445 -247.445 1092 53 1092C353.445 1092 597.004 848.445 597.004 548C597.004 247.555 353.445 3.99622 53 3.99622C-247.445 3.99622 -491.004 247.555 -491.004 548Z" fill="#350ABC" />
+                    </svg>
 
-        </div>
-        <div className="absolute bottom-[-97px] right-[-9px]">
-          <svg width="180" height="324" viewBox="0 0 280 424" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path opacity="0.03" d="M424 212C424 329.084 329.084 424 212 424C94.9156 424 0 329.084 0 212C0 94.9156 94.9156 0 212 0C329.084 0 424 94.9156 424 212ZM8.52023 212C8.52023 324.379 99.6212 415.48 212 415.48C324.379 415.48 415.48 324.379 415.48 212C415.48 99.6212 324.379 8.52023 212 8.52023C99.6212 8.52023 8.52023 99.6212 8.52023 212Z" fill="#350ABC" />
-          </svg>
-        </div>
+                </div>
+                <div className="absolute bottom-[-97px] right-[-9px]">
+                    <svg width="180" height="324" viewBox="0 0 280 424" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.03" d="M424 212C424 329.084 329.084 424 212 424C94.9156 424 0 329.084 0 212C0 94.9156 94.9156 0 212 0C329.084 0 424 94.9156 424 212ZM8.52023 212C8.52023 324.379 99.6212 415.48 212 415.48C324.379 415.48 415.48 324.379 415.48 212C415.48 99.6212 324.379 8.52023 212 8.52023C99.6212 8.52023 8.52023 99.6212 8.52023 212Z" fill="#350ABC" />
+                    </svg>
+                </div>
                 <div className='relative'>
                     <FormDecoration position={{
                         position: 'absolute', top: "-395px",

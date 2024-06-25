@@ -1,10 +1,13 @@
 'use client'
-import Services from './components/Services';
-import HowWork from './components/HowWork';
+import Services from './components/services';
+import HowWork from './components/how-work';
 import OurSponsors from './components/sponsors';
 import Security from './components/security';
 import Accordion from './components/accordian';
 import Hero from './components/hero';
+import Testimonials from './components/testimonials';
+import HOME_TESTIMONINAL_CONTENT from './components/testimonials/constants';
+import GalleryContent from './components/gallery';
 
 const Home = () => {
 
@@ -17,7 +20,10 @@ const Home = () => {
         <OurSponsors />
         <HowWork />
         <Security />
+        <GalleryContent/>
+        <Testimonials testimonials={HOME_TESTIMONINAL_CONTENT} />
         <Accordion/>
+
       </div>
     </>
 
