@@ -2,10 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { ACCORDIAN_DATA } from './constants';
 import AccordionItem from './components';
 
-
-
-
-
 const Accordion: React.FC = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 

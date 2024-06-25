@@ -18,10 +18,10 @@ const Hero = () => {
                 <Image layout="intrinsic" src="./background.svg" height={100} width={100} alt="Background" className="w-full h-auto" />
                 {/* Add your content here */}
                 <div className="absolute flex flex-col items-center justify-center text-white text-lg mx-[300px]">
-                    <span className="text-black font-[900] md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[130px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
+                    <span className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[130px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
                         BOOK <strong className="text-[#350abc]">EVENT</strong>
                     </span>
-                    <span className="text-black font-bold md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[110px] mb-[60px] 2xl:mb-[55px]">
+                    <span className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[110px] mb-[60px] 2xl:mb-[55px]">
                         <strong className="text-[#350abc]">STAFF</strong> IN A SNAP!
                     </span>
 
