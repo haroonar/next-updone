@@ -2,13 +2,13 @@ import React from 'react';
 
 const Security = () => {
   return (
-    <div className='security-bg my-[100px]'  style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
+    <div className='security-bg'  style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
       {/* You can place your content here */}
-      <div className='content relative z-[999] max-w-[1200px] mx-auto'>
+      <div className='content relative z-[999] mx-60 right-4'>
         <div className='flex  h-[70vh]'>
           <div className='py-28 w-[30%] text-white'>
-            <h1 className='why-choose mb-4'>Why Choose Updone?</h1>
-            <p className='text-[24px] font-[400] leading-[31.25px] text-left'>Plan your event with ease and confidence, we have you covered!</p>
+            <h1 className='why-choose mb-4'>Why <br /> Choose Updone?</h1>
+            <p className='text-[20px] font-[400] leading-[31.25px] text-left'>Plan your event with ease and confidence, we have you covered!</p>
           </div>
           <div className=' w-[70%] text-white'>
             <div className='h-[100%]  ml-20 flex'>
@@ -43,7 +43,7 @@ const Security = () => {
                       </div>
                     </div>
                   </div>
-                  <svg width="380" height="1" viewBox="0 0 394 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="350" height="1" viewBox="0 0 394 1" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0.5L393 0.500034" stroke="white" stroke-linecap="round" />
                   </svg>
 
@@ -68,8 +68,8 @@ const Security = () => {
                   </div>
                 </div>
               </div>
-             <div className='p-6 m-auto flex justify-center items-center'>
-             <svg width="1" height="550" viewBox="0 0 1 683" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <div className='p-6 m-auto flex justify-center items-center h-[115%]'>
+             <svg width="1" height="450" viewBox="0 0 1 683" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 1L0.50003 682" stroke="white" stroke-linecap="round" />
               </svg>
              </div>
@@ -95,7 +95,7 @@ const Security = () => {
                       </div>
                     </div>
                   </div>
-                  <svg width="380" height="1" viewBox="0 0 394 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="350" height="1" viewBox="0 0 394 1" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0.5L393 0.500034" stroke="white" stroke-linecap="round" />
                   </svg>
 

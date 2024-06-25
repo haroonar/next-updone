@@ -4,8 +4,8 @@ import styles from './index.module.css'; // Using CSS Modules
 
 function GalleryContent() {
     return (
-        <>
-            <div className="text-center">
+        <div style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
+            <div className="text-center md:pt-[60px] 2xl:pt-[40px]">
                 <h2 className="text-4xl tracking-tight font-bold text-primary-800 uppercase"><strong className='text-[#4831b6]'>Events</strong> Gallery</h2>
                 <p style={{display:'ruby',color:'#E77307'}} className='relative top-[12px]'><span className='mr-2'><svg width="118" height="2" viewBox="0 0 118 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.5 1H116.5" stroke="#E77307" stroke-width="2" stroke-linecap="round" />
@@ -129,7 +129,7 @@ function GalleryContent() {
                     </div>
                 </div>
             </Marquee>
-        </>
+        </div>
     );
 }
 

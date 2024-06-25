@@ -4,9 +4,8 @@
 
 body{
   margin: 0px;
-  padding: 0;
+  padding: 0px;
   box-sizing: border-box;
-  font-family: mont;
 }
 
 .style-card {
@@ -51,7 +50,7 @@ text-transform: uppercase;
 /* security */
 .security-bg {
   position: relative;
-  height: 95vh;
+  height: 90vh;
   width: 100%;
   overflow: hidden;
 }
@@ -71,16 +70,16 @@ text-transform: uppercase;
   top: 0;
   right: -12px;
   width: 243%;
-  height: 95vh;
+  height: 90vh;
   background-color: #2C2240;
   z-index: 1;
   transform: rotate(-3deg);
   overflow: hidden;
 }
 .why-choose{
-font-size: 75px;
+font-size: 65px;
 font-weight: 700;
-line-height: 96px;
+line-height: 76px;
 letter-spacing: -0.02em;
 text-align: left;
 color: white;
@@ -94,7 +93,7 @@ color: white;
   color: #F3F0FF;
 }
 .security-body{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 26px;
   letter-spacing: -0.02em;
@@ -115,4 +114,7 @@ font-weight: 700;
 line-height: 24.38px;
 text-align: left;
 color: #6B6B6B;
+}
+.shadow-whiteeee {
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 4%), 0 6px 20px 0 rgb(0 0 0 / 0%);
 }

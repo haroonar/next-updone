@@ -14,19 +14,19 @@ const Hero = () => {
     return (
         <div> 
             <main className="h-screen flex flex-col justify-end items-center">
-                <div className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[55px] 2xl:text-[250px]">Workers</div>
+                <div className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[10px] 2xl:text-[250px]">Workers</div>
                 <Image layout="intrinsic" src="./background.svg" height={100} width={100} alt="Background" className="w-full h-auto" />
                 {/* Add your content here */}
                 <div className="absolute flex flex-col items-center justify-center text-white text-lg mx-[300px]">
-                    <span className="text-black font-bold md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[130px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
+                    <span className="text-black font-[900] md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[130px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
                         BOOK <strong className="text-[#350abc]">EVENT</strong>
                     </span>
-                    <span className="text-black font-bold md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[110px] mb-[45px] 2xl:mb-[55px]">
+                    <span className="text-black font-bold md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[110px] mb-[60px] 2xl:mb-[55px]">
                         <strong className="text-[#350abc]">STAFF</strong> IN A SNAP!
                     </span>
 
                     <div style={{...heroFilters}} className="flex space-x-3 w-full p-1 text-black justify-center items-center text-center">
-                        <div className="w-1/4">
+                        <div className="w-1/4 text-start ml-4">
                             <div className="relative inline-block border-none shadow-none pr-[14px]">
                                 <select
                                     className="block appearance-none md:w-[90px] 2xl:w-[100px] 2xl:text-[20px] font-[500] md:text-[12px] bg-white pr-4 rounded focus:outline-none focus:shadow-outline"
@@ -52,7 +52,7 @@ const Hero = () => {
                             <span className='block md:text-[10px] 2xl:text-[15px]  text-[#696969] mr-[30px]'>{selectedValue}</span>
                         </div>
                         <img src="./images/Line 4.png" alt="" />
-                        <div className="w-1/4">
+                        <div className="w-1/4 text-start">
                             <div className="relative inline-flex border-none shadow-none">
                                 {/* SVG icon */}
                                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2 text-gray-700">
@@ -82,7 +82,7 @@ const Hero = () => {
 
 
                         <img src="./images/Line 4.png" alt="" />
-                        <div className="w-1/4">
+                        <div className="w-1/4 text-start">
                             <div className="relative inline-flex border-none shadow-none">
                                 {/* SVG icon */}
                                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2 text-black">
@@ -111,7 +111,7 @@ const Hero = () => {
                         <img src="./images/Line 4.png" alt="" />
                         <div className="w 2/5 space-y-1.5">
                             <div className='flex justify-center items-center space-x-6'>
-                                <span className='px-[14px] py-[0px] text-white text-[14px] bg-black rounded-lg font-[200]'>All</span>
+                                <span className='px-[14px] py-[0px] text-white text-[14px] bg-black rounded-lg font-[400]'>All</span>
                                 <div className="flex items-center">
                                     <svg width="144" height="18" viewBox="0 0 149 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11.4625 1.76758L14.1937 7.30075L20.3014 8.19349L15.8819 12.4981L16.9249 18.5792L11.4625 15.7066L6.00001 18.5792L7.043 12.4981L2.62354 8.19349L8.73124 7.30075L11.4625 1.76758Z" stroke="#2C2240" stroke-width="0.94282" stroke-linecap="round" stroke-linejoin="round" />

@@ -1,13 +1,15 @@
 import React from 'react'
+import styles from './header.module.css'
+import Link from 'next/link';
 // Specify the supported weights you want to include
 
 const Header = () => {
     return (
-        <header>
-            <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
+        <header className={styles.header}>
+            <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 w-full">
 
                 <div className="flex flex-wrap justify-around items-center mx-auto max-w-screen-xl">
-                    <a href="https://flowbite.com" className="flex items-center">
+                <a href="https://flowbite.com" className="flex items-center">
                         <svg width="150" height="44" viewBox="0 0 150 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M37.6347 0L35.4663 10.7385C35.4663 10.7385 35.3229 11.488 35.3102 11.5346C33.5384 20.6259 30.3195 30.2211 23.0338 36.45C17.8026 41.1968 9.01089 42.8609 3.62361 37.4493C1.17255 34.9934 0.0630296 31.7498 -0.000250863 28.4173C-0.0280633 25.3373 0.743999 22.3032 2.23988 19.6139C2.358 19.4106 2.47612 19.1905 2.59847 19.0041C2.72081 18.8178 2.90643 18.5129 3.06674 18.2801C3.22705 18.0472 3.3958 17.81 3.56455 17.5856C4.07682 16.9139 4.64106 16.2839 5.25203 15.7013C5.61905 15.371 5.99452 15.0576 6.38264 14.7655L6.77919 14.4818C7.11669 14.2404 7.45841 14.0075 7.81278 13.7958C7.98574 13.6899 8.16715 13.5841 8.34855 13.4909C8.52995 13.3977 8.70714 13.2961 8.89276 13.203C8.77464 13.3639 8.6523 13.5248 8.53839 13.6857C8.15871 14.1981 7.80012 14.7147 7.47528 15.2397C7.15044 15.7648 6.81294 16.3068 6.5092 16.8615C6.51079 16.8742 6.51079 16.887 6.5092 16.8996C6.40795 17.0817 6.31092 17.2638 6.22233 17.4459C6.13373 17.6279 6.02827 17.8227 5.93546 18.0133C5.84264 18.2038 5.74983 18.3986 5.66124 18.5934C3.23127 23.2513 2.40441 30.4498 6.74966 33.9856C6.82138 34.0406 6.90576 34.0957 7.00279 34.1592C8.61855 35.2262 10.7068 35.4041 12.6769 34.8875C14.6811 34.2893 16.4691 33.1199 17.8237 31.5211L17.9081 31.4322C20.3803 28.6459 22.0087 24.7714 22.9706 21.5025C23.7194 18.7558 24.2581 15.9558 24.5821 13.1267L19.7939 13.0844L37.6347 0Z" fill="#1C0A52" />
                             <path d="M35.6777 43.9995V14.8538H41.8877V17.6147C42.512 15.7727 44.9715 14.477 48.1355 14.477C49.5269 14.4403 50.9098 14.7054 52.1897 15.2542C53.4696 15.8031 54.6165 16.6226 55.552 17.657C56.5373 18.6831 57.3098 19.8953 57.8247 21.2233C58.3396 22.5513 58.5866 23.9687 58.5515 25.3933C58.6146 28.2821 57.5363 31.0786 55.552 33.172C54.6059 34.1932 53.4542 35.0008 52.1733 35.541C50.8925 36.0813 49.5118 36.3419 48.1229 36.3055C44.9589 36.3055 42.4994 35.0098 41.875 33.172V43.9995H35.6777ZM50.8018 29.1789C51.3038 28.688 51.6996 28.0985 51.9646 27.4471C52.2295 26.7958 52.3578 26.0967 52.3416 25.3933C52.3585 24.699 52.2298 24.0088 51.9638 23.3675C51.6978 22.7263 51.3005 22.1484 50.7975 21.6713C50.3049 21.165 49.7133 20.7664 49.06 20.5004C48.4066 20.2345 47.7055 20.1069 47.0007 20.1257C46.2784 20.1075 45.5597 20.235 44.8873 20.5004C44.2148 20.7659 43.6022 21.164 43.0858 21.6713C42.5776 22.1463 42.1743 22.723 41.9018 23.3641C41.6294 24.0051 41.4937 24.6964 41.5038 25.3933C41.4981 26.0959 41.6355 26.7922 41.9076 27.4395C42.1796 28.0868 42.5805 28.6715 43.0858 29.1578C44.1445 30.1605 45.5538 30.705 47.0092 30.6737C47.7102 30.6881 48.4069 30.5614 49.0583 30.301C49.7097 30.0407 50.3025 29.6519 50.8018 29.1578V29.1789Z" fill="#1C0A52" />
@@ -22,25 +24,39 @@ const Header = () => {
                     <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                             <li>
-                                <a href="#" className="block py-2 pr-4 pl-3 text-black bold-[600] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Reviews</a>
+                                <Link href="#">
+                                Reviews
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 pr-4 pl-3 text-black bold-[600] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Listings</a>
+                                <Link href="/staff-list">
+                                Hire a Staff
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 pr-4 pl-3 text-black bold-[600] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">FAQs</a>
+                                <Link href="#">
+                                FAQs
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 pr-4 pl-3 text-black bold-[600] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Comunity</a>
+                                <Link href="#">
+                                Community
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 pr-4 pl-3 text-black bold-[600] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                                <Link href="#">
+                                Contact
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 pr-4 pl-3 text-black bold-[600] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Login</a>
+                                <Link href="#">
+                                Login
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" className="relative bottom-[3px] block rounded-md border-b text-white border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700  dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 bg-black px-[22px] py-[4px]">Register</a>
+                                <Link href="#">
+                                Register
+                                </Link>
                             </li>
                         </ul>
                     </div>

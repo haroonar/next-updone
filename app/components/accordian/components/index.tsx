@@ -1,11 +1,9 @@
-import { FaPlus, FaMinus } from 'react-icons/fa';
-
 const AccordionItem: React.FC<{ index: number, title: string, content: JSX.Element, isOpen: boolean, onClick: () => void }> = ({ title, content, isOpen, onClick }) => {
   return (
     <div>
-      <h6 className="mb-4">
+      <h6 className="mb-4 2xl:mb-6">
         <button
-          className={`relative flex items-center w-full py-3 px-4 text-left bg-[#FFFFFF] transition-all ease-in cursor-pointer text-slate-700 group ${isOpen ? 'bg-fuchsia-950 text-white rounded-md m-0 rounded-0 relative bottom-[-12px]' : 'accordian-style'}`}
+          className={`relative flex items-center w-full py-3 2xl:py-6 rounded-md px-4 text-left bg-[#FFFFFF] transition-all ease-in cursor-pointer text-slate-700 group ${isOpen ? 'bg-fuchsia-950 text-white rounded-md m-0 rounded-0 relative bottom-[-12px]' : 'accordian-style'}`}
           onClick={onClick}
         >
           <span className='text-[18px] px-3'>{title}</span>
