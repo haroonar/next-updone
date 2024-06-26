@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { GoDotFill } from 'react-icons/go';
 
-const StaffDetail = () => {
+const page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [staff, setStaff] = useState<Staff>();
@@ -124,4 +124,4 @@ const StaffDetail = () => {
   );
 }
 
-export default StaffDetail;
+export default page;
