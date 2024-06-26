@@ -21,7 +21,7 @@ const StaffListing = () => {
 
   const handleStaffClick = (staff: Staff) => {
     const query = btoa(JSON.stringify(staff)); // base64 encode the staff object
-    router.push(`/staff-list/detail?staff=${query}`);
+    router.push(`/detail?staff=${query}`);
   };
   
   const [scrollY, setScrollY] = useState(0);

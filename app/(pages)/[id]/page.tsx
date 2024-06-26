@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { GoDotFill } from 'react-icons/go';
 
-const page = () => {
+const page = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [staff, setStaff] = useState<Staff>();
