@@ -5,15 +5,12 @@ export const HERO_FILTER_STAFF: any = {
     borderWidth: '0.6px 0 0 0',
     position: 'relative',
     top: '0px',
-    left: '6.5px',
-    width: '80%',
+    maxWidth: '797px',
     height: '77px',
     margin: 'auto',
     backgroundColor: '#ffffff',
-    borderStyle: 'solid',
-    borderColor: '#464646',
-    border: '0.6px solid #464646',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    border:"none"
   };
   
   export const LOCATION = [

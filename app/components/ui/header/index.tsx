@@ -7,11 +7,11 @@ import Image from 'next/image';
 const Header = () => {
     return (
         <header className={styles.header}>
-            <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 w-full">
+            <nav className="bg-white border-gray-200 py-2.5 w-full max-w-[1279px] mx-auto">
 
-                <div className="flex flex-wrap justify-around items-center mx-auto max-w-screen-xl">
+                <div className="flex flex-wrap justify-between items-center mx-3">
                     <Link href="/" className="flex items-center">
-                        <Image src='./logo.svg' alt='header-logo' width={150} height={44} />
+                        <Image src='/logo.svg' alt='header-logo' width={150} height={44} />
                     </Link>
                     <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">

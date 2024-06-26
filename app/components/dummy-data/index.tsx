@@ -7,7 +7,7 @@ const People = [
         country: "CA",
         city: "Los Angeles",
         totalJobs: 120,
-        services: [ "Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 2,
@@ -18,7 +18,7 @@ const People = [
         country: "Canada",
         city: "Toronto",
         totalJobs: 3,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
 
     {
@@ -30,7 +30,7 @@ const People = [
         country: "Mexico",
         city: "Mexico City",
         totalJobs: 7,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 4,
@@ -41,7 +41,7 @@ const People = [
         country: "China",
         city: "Shanghai",
         totalJobs: 6,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 5,
@@ -52,7 +52,7 @@ const People = [
         country: "Russia",
         city: "Moscow",
         totalJobs: 4,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 6,
@@ -63,7 +63,7 @@ const People = [
         country: "UK",
         city: "London",
         totalJobs: 8,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 7,
@@ -74,7 +74,7 @@ const People = [
         country: "Italy",
         city: "Rome",
         totalJobs: 5,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 8,
@@ -85,7 +85,7 @@ const People = [
         country: "Japan",
         city: "Tokyo",
         totalJobs: 9,
-        services: [ "Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 9,
@@ -96,7 +96,7 @@ const People = [
         country: "Brazil",
         city: "São Paulo",
         totalJobs: 6,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 10,
@@ -107,7 +107,7 @@ const People = [
         country: "Germany",
         city: "Berlin",
         totalJobs: 2,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 11,
@@ -118,7 +118,7 @@ const People = [
         country: "South Korea",
         city: "Seoul",
         totalJobs: 3,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 12,
@@ -129,7 +129,7 @@ const People = [
         country: "Portugal",
         city: "Lisbon",
         totalJobs: 4,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 13,
@@ -140,7 +140,7 @@ const People = [
         country: "Czech Republic",
         city: "Prague",
         totalJobs: 5,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 14,
@@ -151,7 +151,7 @@ const People = [
         country: "Egypt",
         city: "Cairo",
         totalJobs: 7,
-        services: ["Cocktail Server ", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 15,
@@ -162,7 +162,7 @@ const People = [
         country: "Australia",
         city: "Sydney",
         totalJobs: 8,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 16,
@@ -173,7 +173,7 @@ const People = [
         country: "Australia",
         city: "Sydney",
         totalJobs: 8,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
     {
         id: 17,
@@ -184,7 +184,7 @@ const People = [
         country: "Australia",
         city: "Sydney",
         totalJobs: 8,
-        services: ["Cocktail Server", "Promo Model"]
+        services: [ "Cocktail Server", "Promo Model","Waiters","Bartanders"]
     },
 
 ];
