@@ -1,17 +1,19 @@
 //staff-listing route component constants 
-export const HERO_FILTER_STAFF: any = {
-    gap: '0px',
-    borderRadius: '8px',
-    borderWidth: '0.6px 0 0 0',
-    position: 'relative',
-    top: '0px',
-    maxWidth: '797px',
-    height: '77px',
-    margin: 'auto',
-    backgroundColor: '#ffffff',
-    justifyContent: 'space-evenly',
-    border:"none"
-  };
+export const HERO_FILTER_STAFF: { [key: string]: string } = {
+  gap: '0px',
+  borderRadius: '8px',
+  borderWidth: '0.6px 0 0 0',
+  position: 'relative',
+  top: '0px',
+  maxWidth: '797px',
+  height: '77px',
+  margin: 'auto',
+  backgroundColor: '#ffffff',
+  justifyContent: 'space-evenly',
+  border: 'none',
+  padding: '0px 0px 0px 16px'
+};
+
   
   export const LOCATION = [
     { value: '0', label: 'Location' },

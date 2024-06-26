@@ -24,6 +24,9 @@ font-size: 54px;
 text-align: center;
 text-transform: uppercase;
 }
+.no-x-overflow {
+  overflow-x: hidden;
+}
 @media (min-width: 1600px) {
   .hero-filters {
     height: 100px;

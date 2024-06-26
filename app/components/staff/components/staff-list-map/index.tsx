@@ -22,8 +22,8 @@ const StaffMap = ({ staff }: StaffMapProps) => {
                 height={120}
                 alt=''
             />
-            <div key={staff.id} className="p-5 pb-0 h-[430px] max-w-[295px] mx-auto rounded-lg overflow-hidden shadow-whiteeee z-10 bg-white border-2 border-[#f4f4f4]">
-                <div className='text-center relative top-[20px] left-[67px] bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] px-[22px]'>
+            <div key={staff.id} className="p-3 pb-0 h-[430px] max-w-full mx-auto rounded-lg overflow-hidden shadow-whiteeee z-10 bg-white border-2 border-[#f4f4f4]">
+                <div className='text-center relative top-[20px] left-[73px] bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] px-[22px]'>
                     <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_481_590)">
                             <path d="M16.4333 0H0.566667C0.416377 0 0.272243 0.0585317 0.165973 0.162719C0.0597022 0.266905 0 0.408213 0 0.555556L0 9.44444C0 9.59179 0.0597022 9.7331 0.165973 9.83728C0.272243 9.94147 0.416377 10 0.566667 10H16.4333C16.5836 10 16.7278 9.94147 16.834 9.83728C16.9403 9.7331 17 9.59179 17 9.44444V0.555556C17 0.408213 16.9403 0.266905 16.834 0.162719C16.7278 0.0585317 16.5836 0 16.4333 0ZM0.566667 9.44444V0.555556H16.4333V9.44444H0.566667Z" fill="#350ABC" />
@@ -42,7 +42,7 @@ const StaffMap = ({ staff }: StaffMapProps) => {
                     <span className='text-[16px] font-normal'>{staff?.hourRate}$/hr</span>
                 </div>
 
-                <div className='flex flex-col h-[94%] items-start justify-center relative bottom-[22px] mt-[25px]'>
+                <div className='flex flex-col h-[94%] items-start justify-center relative bottom-[22px] mt-[35px]'>
 
                     <div className="flex flex-col mt-4 items-center w-full">
                         <div className="text-center flex justify-between w-full items-center font-bold text-lg mb-2">
@@ -63,8 +63,8 @@ const StaffMap = ({ staff }: StaffMapProps) => {
 
                     </div>
                     <div className="flex justify-center items-center mt-2 w-full">
-                        <div className="flex items-center text-paragraph">
-                            <p className="py-[10px] px-4 text-[11px] font-normal inline-flex items-center rounded-[100px] bg-[#F6F6F6] whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                        <div className="flex items-center ">
+                            <p style={{wordSpacing:'-1px'}} className="py-[10px] px-2 text-[11px] font-normal inline-flex items-center rounded-[100px] bg-[#F6F6F6] whitespace-nowrap overflow-hidden text-ellipsis text-sm">
                                 <span className="mr-2 flex-shrink-0">
                                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clipPath="url(#clip0_464_1076)">
@@ -100,7 +100,7 @@ const StaffMap = ({ staff }: StaffMapProps) => {
                     </div>
                     <div className="flex flex-col items-start mt-2 w-full">
                         <h2 className="text-left text-[14px] font-semibold w-full py-2">Services</h2>
-                        <div className="flex space-x-2 flex-wrap text-[#350abc]">
+                        <div className="flex gap-x-3 flex-wrap text-[#350abc]">
                             {staff.services.slice(0, showAllServices ? staff.services.length : 3).map((service, index) => (
                                 <p key={index} className="text-left text-[14px] font-normal " style={{margin:'0px'}}>
                                     {service}
@@ -113,7 +113,7 @@ const StaffMap = ({ staff }: StaffMapProps) => {
                             )}
                         </div>
                     </div>
-                    <div className="flex justify-between items-center mt-4 w-full space-x-2 border-t pt-4 pb-2 border-[#f3f0ff]">
+                    <div className="flex justify-around items-center mt-4 w-full space-x-2 border-t pt-4 pb-2 border-[#f3f0ff]">
                         <button className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md">View Details</button>
                         <button type="button" className="text-[#dfdbec] bg-[#2c2240]  rounded-lg text-[14px] font-normal px-6 py-2.5 text-center inline-flex items-center  me-2 ">
                             <span className='mr-2'>

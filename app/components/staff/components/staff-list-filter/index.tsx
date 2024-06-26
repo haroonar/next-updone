@@ -5,13 +5,14 @@ import React from 'react'
 type StaffFiltersProps={
     handleTimeChange:(e:React.ChangeEvent<HTMLSelectElement>)=>void
     handleLocationChange:(e:React.ChangeEvent<HTMLSelectElement>)=>void
+    scrollY:number;
 }
-const StaffFilters = ({handleTimeChange,handleLocationChange}:StaffFiltersProps) => {
+const StaffFilters = ({handleTimeChange,handleLocationChange,scrollY}:StaffFiltersProps) => {
     return (
        <div className='w-full h-40 flex justify-center items-start'>
-         <div style={{
-          }} className='mb-[65px] font-normal pt-4 pl-4 pb-0 pr-4 bg-white rounded-[14px] shadow-xl'>
-            <div className="flex justify-center items-center w-full space-x-2 mb-2">
+        <div className={scrollY ? 'w-full h-44 bg-white flex justify-center fixed z-50 items-start bottom-0 top-10 left-0 right-0':'w-full flex justify-center fixed z-50 items-start'}>
+        <div style={{boxShadow:'0px -1px 10px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'}} className='fixed z-50 mb-[65px] font-normal pt-4 pl-4 pb-0 pr-4 bg-white rounded-lg mt-[2%]'>
+            <div className="flex justify-center items-center w-full space-x-3 mb-2">
                 <button className="bg-[#F9F8FF] text-[#413753] px-4 py-[2px] rounded-md">Cocktail Server</button>
                 <button className="bg-[#F9F8FF] text-[#413753] px-4 py-[2px] rounded-md">Promo Model</button>
                 <button className="bg-[#F9F8FF] text-[#413753] px-4 py-[2px] rounded-md">Bar Back</button>
@@ -20,7 +21,7 @@ const StaffFilters = ({handleTimeChange,handleLocationChange}:StaffFiltersProps)
                 <button className="bg-[#F9F8FF] text-[#413753] px-4 py-[2px] rounded-md">Bartender</button>
             </div>
             <div style={{ ...HERO_FILTER_STAFF }} className="flex space-x-3 w-full p-1 text-black justify-center items-center text-center">
-                <div style={{width:'32%'}} className="text-start space-y-2">
+                <div style={{width:'28%'}} className="text-start space-y-2">
                     <CommonSelect
                         options={LOCATION}
                         valueKey="value"
@@ -28,12 +29,12 @@ const StaffFilters = ({handleTimeChange,handleLocationChange}:StaffFiltersProps)
                         defaultValue="0"
                         onChange={handleLocationChange}
                         className="md:text-[16px] font-medium 2xl:text-[20px]"
-                        icon={<Image src='/images/gallery/location.svg' alt='location-svg' width={15} height={15} />}
+                        icon={<Image  src='/images/gallery/location.svg' alt='location-svg' width={15} height={15} />}
                     />
                     <span className='block 2xl:text-[15px] text-start pl-[10px] md:text-[14px] font-normal text-[#696969]'>{'Manhattan, New York'}</span>
                 </div>
-                <Image src="/images/Line 4.png" alt="" width={2.5} height={2.5} />
-                <div style={{width:'32%'}} className=" text-start space-y-2">
+                <Image style={{margin:0}} src="/images/Line 4.png" alt="" width={2.5} height={2.5} />
+                <div style={{width:'36%'}} className=" text-start space-y-2">
                     <CommonSelect
                         options={TIMES_CONST}
                         valueKey="value"
@@ -73,6 +74,7 @@ const StaffFilters = ({handleTimeChange,handleLocationChange}:StaffFiltersProps)
                     </div>
                 </div>
             </div>
+        </div>
         </div>
        </div>
     )
