@@ -15,7 +15,7 @@ export default function Page() {
 //for SEO purpose
 export const metadata: Metadata = {
   robots: 'noindex',
-  title: 'Staff Listings for Hiring Bartenders, Cocktail Waiters, Event Servers, and More',
-  description: 'Discover and hire experienced bartenders, cocktail waiters, event servers, event organizers, and more for your events. Explore our staff listings and find the perfect fit for your needs.',
-  keywords: 'staff listing, hire bartenders, cocktail waiters, event servers, event organizers, staff for hire, event staffing, bartending services, event planning, event staff',
+  title: 'Staff Listings for Hiring Bartanders, Cocktail Waiters, Event Servers, and More',
+  description: 'Discover and hire experienced bartanders, cocktail waiters, event servers, event organizers, and more for your events. Explore our staff listings and find the perfect fit for your needs.',
+  keywords: 'staff listing, hire bartanders, cocktail waiters, event servers, event organizers, staff for hire, event staffing, bartending services, event planning, event staff',
 };

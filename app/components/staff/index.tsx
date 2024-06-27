@@ -73,7 +73,7 @@ const StaffListing = () => {
               labelKey="label"
               defaultValue="0"
               onChange={() => { }}
-              className='w-14 h-8 border-none bg-[#f3f0ff] rounded-md focus:border-none p-1'
+              className='w-14 h-8 border-none bg-white rounded-md focus:border-none p-1 ml-2'
               isLimit
             />
           </div>

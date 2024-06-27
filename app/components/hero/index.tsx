@@ -4,7 +4,7 @@ import { heroFilters } from './hero';
 import ResponsiveImage from '../common/responsive-image';
 
 const Hero = () => {
-    const [selectedValue, setSelectedValue] = useState('Bartenders');
+    const [selectedValue, setSelectedValue] = useState('Bartanders');
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedText = event.target.options[event.target.selectedIndex].text;

@@ -17,7 +17,7 @@ const poppins = Poppins({
 // });
 export const metadata: Metadata = {
   title: "Updone",
-  description: "Updone is platform to hire Bartenders, Waiters, Cocktail Servers, Bar Backs, Promo Models, Event Helper.",
+  description: "Updone is platform to hire Bartanders, Waiters, Cocktail Servers, Bar Backs, Promo Models, Event Helper.",
 };
 
 export default function RootLayout({
