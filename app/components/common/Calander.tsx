@@ -40,7 +40,7 @@ const CalendarWithAvailability: React.FC<CalendarWithAvailabilityProps> = ({ isC
 
   return (
     <div className={!isChange ? "input-border bg-white p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4" : 'bg-white flex flex-col md:flex-row p-0 '}>
-      <div style={{ width: '65%' }}>
+      <div style={{ width: '100%' }}>
         <h2 className="text-[20px] font-semibold tracking-[-1%] mb-4">{availText}</h2>
         <Calendar
           className={'custom-calendar w-full border-none bg-[#faf8ff]'}
