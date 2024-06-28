@@ -5,7 +5,7 @@ import FormDecoration from '../common/form-decoration'
 
 const Services = () => {
     return (
-        <div className='py-[100px]' style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
+        <div className='py-[40px]' style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
             <h1 className='service-text mb-6'>What <strong className='text-[#350ABC]'>services</strong> are <br /> you looking for?</h1>
             <div className="relative px-72 pb-4">
                 <div className="absolute top-[-186px]  z-[-1] left-0" style={{ transform: 'rotate(50deg)' }}>
