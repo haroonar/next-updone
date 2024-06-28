@@ -90,7 +90,7 @@ interface Testimonial {
 
 interface TestimonialsProps {
   testimonials: Testimonial[];
-  isDetailTestonial: boolean;
+  isDetailTestonial?: boolean;
 }
 
 const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, isDetailTestonial }) => {
