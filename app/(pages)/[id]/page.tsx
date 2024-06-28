@@ -122,7 +122,7 @@ const page = ({ params }: { params: { id: string } }) => {
 
 
       <div className="max-w-[1276px] mx-auto h-auto pt-3">
-        <div className="h-[405px] flex gap-10 mt-10 ">
+        <div className="h-[405px] flex gap-10 mt-4 ">
           <div className="w-[65%]">
             <CalendarWithAvailability />
           </div>
@@ -159,7 +159,7 @@ const page = ({ params }: { params: { id: string } }) => {
                             Worker Fee Calculation
                           </p>
                       <td className="flex justify-between items-center gap-1">
-                        <span className="text-[#9B9B9B] text-[10px] font-normal leading-[26px]">5hours x $50</span>
+                        <span className="text-[#9B9B9B] text-[10px] font-normal leading-[26px]">5 hours x $50</span>
                         <span style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$250</span>
                       </td>
                         </div>
@@ -337,7 +337,7 @@ const page = ({ params }: { params: { id: string } }) => {
         <div style={{
           position: "absolute",
           bottom: "-15px",
-          top: "1610px",
+          top: "1580px",
           left: 0,
           right: 0,
           zIndex: -1

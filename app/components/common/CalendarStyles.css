@@ -1,15 +1,14 @@
 .custom-calendar {
   max-height: 100%; /* Ensure the height does not exceed the container */
   width: 100%;
-  border-top-left-radius: 30px;
   background-color: #faf8ff;
   border: none;
 }
 
 .react-calendar__navigation {
   background: #2C2240; /* Apply white background to the navigation */
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
   height: 37px;
 
 }
@@ -17,8 +16,8 @@
 .react-calendar__navigation button {
   background-color: #2C2240; /* Adjust button color */
   color: white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
 .react-calendar__navigation button:enabled:hover {
   background-color: transparent; /* Remove background color on hover */
@@ -57,7 +56,7 @@
   padding: 8px 0px;
   background: #FFFFFF;
   margin: 8px 10px;
-  border-radius: 10px;
+  border-radius: 6px;
   border: 1px solid #f1f1f1;
 font-size: 13.23px;
 font-weight: 600;
@@ -125,5 +124,5 @@ border: 1.295px solid #f3f0ff;
 .selected-style{
   border-radius: 4px;
 background: #350ABC;
-padding: 12px 10px;
+padding: 8px 10px;
 }

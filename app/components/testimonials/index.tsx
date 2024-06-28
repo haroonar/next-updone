@@ -101,7 +101,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, isDetailTesto
       loop: true,
       centeredSlides: true,
       autoplay: {
-        delay: isDetailTestonial ? 5000000 : 2000,
+        delay: 200,
         disableOnInteraction: false,
       },
       pagination: {

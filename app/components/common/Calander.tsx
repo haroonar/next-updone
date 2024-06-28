@@ -12,7 +12,7 @@ interface CalendarWithAvailabilityProps {
 
 type DateValue = Date;
 
-const CalendarWithAvailability: React.FC<CalendarWithAvailabilityProps> = ({ isChange, availText = 'select a date & time' }) => {
+const CalendarWithAvailability: React.FC<CalendarWithAvailabilityProps> = ({ isChange, availText = `Sarah's Availability` }) => {
   const [date, setDate] = useState<DateValue>(new Date());
 
   const handleDateChange = (value: any, _event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -35,11 +35,9 @@ const CalendarWithAvailability: React.FC<CalendarWithAvailabilityProps> = ({ isC
       scrollRef.current.scrollBy({ top: 100, behavior: 'smooth' });
     }
   };
-  // Find the time zone identifier for US Eastern Time
-  const usEasternTimeZone = "America/New_York";
 
   return (
-    <div className={!isChange ? "input-border bg-white p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4" : 'bg-white flex flex-col md:flex-row p-0 '}>
+    <div className={!isChange ? "input-border bg-white pt-4 pr-4 pb-4 flex flex-col md:flex-row space-y-4 md:space-y-0 gap-2 md:space-x-4" : 'bg-white flex flex-col md:flex-row p-0 '}>
       <div style={{ width: '100%' }}>
         <h2 className="text-[20px] font-semibold tracking-[-1%] mb-4">{availText}</h2>
         <Calendar
@@ -72,7 +70,7 @@ const CalendarWithAvailability: React.FC<CalendarWithAvailabilityProps> = ({ isC
         {TIMES_DATA.map((time, index) => (
           <div
             key={index}
-            className={`px-[10px] py-[12px] rounded-lg ${index === 2 ? 'selected-style text-white' : 'text-[#350ABC]'} bg-[#FAF9FF] text-center`}
+            className={`px-[8px] py-[10px] rounded-lg  ${index === 2 ? 'selected-style text-white' : 'text-[#350ABC]'} bg-[#FAF9FF] text-center`}
           >
             {time}
           </div>
