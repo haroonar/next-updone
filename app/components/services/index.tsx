@@ -61,6 +61,14 @@ const Services = () => {
                                             <h1 className='font-bold text-[20px]'>Bartenders</h1>
                                             <p className='text-[#6B6B6B] text-[12px] bold-[400]'>Updone's staffing service streamlines the hiring process for your business. We start by working closely with you to understand your.</p>
                                         </div>
+                                        <button className='text-[14px] font-medium text-[#2C2240] leading-[24px] tracking-[-2%] flex justify-start relative left-9 mb-2 gap-2 items-center w-full'>
+                                            <span>
+                                                <svg width="35" height="8" viewBox="0 0 35 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 3.5C0.723858 3.5 0.5 3.72386 0.5 4C0.5 4.27614 0.723858 4.5 1 4.5V3.5ZM34.3536 4.35355C34.5488 4.15829 34.5488 3.84171 34.3536 3.64645L31.1716 0.464466C30.9763 0.269204 30.6597 0.269204 30.4645 0.464466C30.2692 0.659728 30.2692 0.976311 30.4645 1.17157L33.2929 4L30.4645 6.82843C30.2692 7.02369 30.2692 7.34027 30.4645 7.53553C30.6597 7.7308 30.9763 7.7308 31.1716 7.53553L34.3536 4.35355ZM1 4.5H34V3.5H1V4.5Z" fill="#2C2240" />
+                                                </svg>
+                                            </span>
+                                            Hire Now
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -98,6 +106,14 @@ const Services = () => {
                                             <h1 className='font-bold text-[20px]'>Waiters</h1>
                                             <p className='text-[#6B6B6B] text-[12px] bold-[400]'>Updone's staffing service streamlines the hiring process for your business. We start by working closely with you to understand your.</p>
                                         </div>
+                                        <button className='text-[14px] font-medium text-[#2C2240] leading-[24px] tracking-[-2%] flex justify-start relative left-9 mb-2 gap-2 items-center w-full'>
+                                            <span>
+                                                <svg width="35" height="8" viewBox="0 0 35 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 3.5C0.723858 3.5 0.5 3.72386 0.5 4C0.5 4.27614 0.723858 4.5 1 4.5V3.5ZM34.3536 4.35355C34.5488 4.15829 34.5488 3.84171 34.3536 3.64645L31.1716 0.464466C30.9763 0.269204 30.6597 0.269204 30.4645 0.464466C30.2692 0.659728 30.2692 0.976311 30.4645 1.17157L33.2929 4L30.4645 6.82843C30.2692 7.02369 30.2692 7.34027 30.4645 7.53553C30.6597 7.7308 30.9763 7.7308 31.1716 7.53553L34.3536 4.35355ZM1 4.5H34V3.5H1V4.5Z" fill="#2C2240" />
+                                                </svg>
+                                            </span>
+                                            Hire Now
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -125,6 +141,14 @@ const Services = () => {
                                             <h1 className='font-bold text-[20px]'>Cocktail Servers</h1>
                                             <p className='text-[#6B6B6B] text-[12px] bold-[400]'>Updone's staffing service streamlines the hiring process for your business. We start by working closely with you to understand your.</p>
                                         </div>
+                                        <button className='text-[14px] font-medium text-[#2C2240] leading-[24px] tracking-[-2%] flex justify-start relative left-9 mb-2 gap-2 items-center w-full'>
+                                            <span>
+                                                <svg width="35" height="8" viewBox="0 0 35 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 3.5C0.723858 3.5 0.5 3.72386 0.5 4C0.5 4.27614 0.723858 4.5 1 4.5V3.5ZM34.3536 4.35355C34.5488 4.15829 34.5488 3.84171 34.3536 3.64645L31.1716 0.464466C30.9763 0.269204 30.6597 0.269204 30.4645 0.464466C30.2692 0.659728 30.2692 0.976311 30.4645 1.17157L33.2929 4L30.4645 6.82843C30.2692 7.02369 30.2692 7.34027 30.4645 7.53553C30.6597 7.7308 30.9763 7.7308 31.1716 7.53553L34.3536 4.35355ZM1 4.5H34V3.5H1V4.5Z" fill="#2C2240" />
+                                                </svg>
+                                            </span>
+                                            Hire Now
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -158,6 +182,14 @@ const Services = () => {
                                             <h1 className='font-bold text-[20px]'>Bar Backs</h1>
                                             <p className='text-[#6B6B6B] text-[12px] bold-[400]'>Updone's staffing service streamlines the hiring process for your business. We start by working closely with you to understand your.</p>
                                         </div>
+                                        <button className='text-[14px] font-medium text-[#2C2240] leading-[24px] tracking-[-2%] flex justify-start relative left-9 mb-2 gap-2 items-center w-full'>
+                                            <span>
+                                                <svg width="35" height="8" viewBox="0 0 35 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 3.5C0.723858 3.5 0.5 3.72386 0.5 4C0.5 4.27614 0.723858 4.5 1 4.5V3.5ZM34.3536 4.35355C34.5488 4.15829 34.5488 3.84171 34.3536 3.64645L31.1716 0.464466C30.9763 0.269204 30.6597 0.269204 30.4645 0.464466C30.2692 0.659728 30.2692 0.976311 30.4645 1.17157L33.2929 4L30.4645 6.82843C30.2692 7.02369 30.2692 7.34027 30.4645 7.53553C30.6597 7.7308 30.9763 7.7308 31.1716 7.53553L34.3536 4.35355ZM1 4.5H34V3.5H1V4.5Z" fill="#2C2240" />
+                                                </svg>
+                                            </span>
+                                            Hire Now
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -186,6 +218,14 @@ const Services = () => {
                                             <h1 className='font-bold text-[20px]'>Promo Models</h1>
                                             <p className='text-[#6B6B6B] text-[12px] bold-[400]'>Updone's staffing service streamlines the hiring process for your business. We start by working closely with you to understand your.</p>
                                         </div>
+                                        <button className='text-[14px] font-medium text-[#2C2240] leading-[24px] tracking-[-2%] flex justify-start relative left-9 mb-2 gap-2 items-center w-full'>
+                                            <span>
+                                                <svg width="35" height="8" viewBox="0 0 35 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 3.5C0.723858 3.5 0.5 3.72386 0.5 4C0.5 4.27614 0.723858 4.5 1 4.5V3.5ZM34.3536 4.35355C34.5488 4.15829 34.5488 3.84171 34.3536 3.64645L31.1716 0.464466C30.9763 0.269204 30.6597 0.269204 30.4645 0.464466C30.2692 0.659728 30.2692 0.976311 30.4645 1.17157L33.2929 4L30.4645 6.82843C30.2692 7.02369 30.2692 7.34027 30.4645 7.53553C30.6597 7.7308 30.9763 7.7308 31.1716 7.53553L34.3536 4.35355ZM1 4.5H34V3.5H1V4.5Z" fill="#2C2240" />
+                                                </svg>
+                                            </span>
+                                            Hire Now
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -233,15 +273,24 @@ const Services = () => {
                                             <h1 className='font-bold text-[20px]'>Event Helper</h1>
                                             <p className='text-[#6B6B6B] text-[12px] bold-[400]'>Updone's staffing service streamlines the hiring process for your business. We start by working closely with you to understand your.</p>
                                         </div>
+                                        <button className='text-[14px] font-medium text-[#2C2240] leading-[24px] tracking-[-2%] flex justify-start relative left-9 mb-2 gap-2 items-center w-full'>
+                                            <span>
+                                                <svg width="35" height="8" viewBox="0 0 35 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 3.5C0.723858 3.5 0.5 3.72386 0.5 4C0.5 4.27614 0.723858 4.5 1 4.5V3.5ZM34.3536 4.35355C34.5488 4.15829 34.5488 3.84171 34.3536 3.64645L31.1716 0.464466C30.9763 0.269204 30.6597 0.269204 30.4645 0.464466C30.2692 0.659728 30.2692 0.976311 30.4645 1.17157L33.2929 4L30.4645 6.82843C30.2692 7.02369 30.2692 7.34027 30.4645 7.53553C30.6597 7.7308 30.9763 7.7308 31.1716 7.53553L34.3536 4.35355ZM1 4.5H34V3.5H1V4.5Z" fill="#2C2240" />
+                                                </svg>
+                                            </span>
+                                            Hire Now
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <FormDecoration position={{
-                        position: 'absolute', bottom: "-209px",
-                        right: "-342px", zIndex: '-1'
-                    }} />
+                    <div className='w-full text-center mt-16'>
+                    <button type="button" className=" text-[#F3F0FF] justify-center bg-[#2C2240] rounded-[4px] text-[16px] font-normal px-[100px] py-[8px] text-center inline-flex items-center  me-2 ">
+                  Hire Now
+                </button>
+                    </div>
                 </div>
             </div>
         </div>
