@@ -46,7 +46,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, content, avatar
              </div>
  
              <div className='h-full flex justify-center items-center text-start'>
-               <p className="text-[#0B0B0B] pb-2 text-[16px] font-semibold translate-[-2%] leading-[24px]">{content}</p>
+               <p className="text-[#0B0B0B] pb-2 text-[14px] font-semibold translate-[-2%] leading-[24px]">{content}</p>
              </div>
            </div>
          </div>

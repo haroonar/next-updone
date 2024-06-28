@@ -134,46 +134,46 @@ const page = ({ params }: { params: { id: string } }) => {
                   <tbody>
                     <tr className='border-b-[1px] border-[#f8f8f8]'>
                       <td className="whitespace-nowrap py-2 md:w-[384px]">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center justify-between gap-4">
                           <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
                             Worker Fee Per Hour
                           </p>
+                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$50</td>
                         </div>
                       </td>
-                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$50</td>
                     </tr>
                     <tr className='border-b-[1px] border-[#f8f8f8]'>
                       <td className="whitespace-nowrap py-2 md:w-[384px]">
-                        <div className="flex items-center gap-4">
+                        <div className="flex justify-between items-center gap-4">
                           <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
                             Number of Hours
                           </p>
+                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">5 h</td>
                         </div>
                       </td>
-                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">5 h</td>
                     </tr>
                     <tr className='border-b-[1px] border-[#f8f8f8]'>
                       <td className="whitespace-nowrap py-2 md:w-[384px]">
-                        <div className="flex items-center gap-4">
+                        <div className="flex justify-between items-center gap-4">
                           <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
                             Worker Fee Calculation
                           </p>
-                        </div>
-                      </td>
                       <td className="flex justify-between items-center gap-1">
                         <span className="text-[#9B9B9B] text-[10px] font-normal leading-[26px]">5hours x $50</span>
                         <span style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$250</span>
                       </td>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td className="whitespace-nowrap py-2 md:w-[384px] pb-8">
-                        <div className="flex items-center gap-4">
+                        <div className="flex justify-between items-center gap-4">
                           <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
                             Platform Fee
                           </p>
+                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$10</td>
                         </div>
                       </td>
-                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$10</td>
                     </tr>
                   </tbody>
                 </table>
@@ -182,13 +182,13 @@ const page = ({ params }: { params: { id: string } }) => {
               <div>
                 <div className='my-8 mb-1 border-b-[1px] border-[#f8f8f8] flex justify-between items-center'>
                   <div className="whitespace-nowrap py-2 md:w-[384px]">
-                    <div className="flex items-center gap-4">
+                    <div className="flex justify-between items-center gap-4">
                       <p style={{ letterSpacing: '-2%' }} className=" text-[#2C2240] text-[14px] items-center shrink-0">
                         Total
                       </p>
+                  <h1 style={{ letterSpacing: '-1%' }} className="text-right text-[#000000] text-[24px] font-semibold">$250.00</h1>
                     </div>
                   </div>
-                  <h1 style={{ letterSpacing: '-1%' }} className="text-right text-[#000000] text-[24px] font-semibold">$250.00</h1>
                 </div>
                 <button type="button" className=" text-[#F3F0FF] w-full justify-center bg-[#350ABC] tracking-[-2%]  leading-[26px] rounded-[4px] text-[16px] font-normal px-[30px] py-[10px] text-center inline-flex items-center  me-2 ">
                   <span className='mr-2'>
