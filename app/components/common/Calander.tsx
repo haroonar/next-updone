@@ -37,7 +37,7 @@ const CalendarWithAvailability: React.FC<CalendarWithAvailabilityProps> = ({ isC
   };
 
   return (
-    <div className={!isChange ? "input-border bg-white pt-4 pr-4 pb-4 flex flex-col md:flex-row space-y-4 md:space-y-0 gap-2 md:space-x-4" : 'bg-white flex flex-col md:flex-row p-0 '}>
+    <div className={!isChange ? "input-border bg-white pr-4 pb-4 flex flex-col md:flex-row space-y-4 md:space-y-0 gap-2 md:space-x-[17px]" : 'bg-white flex flex-col md:flex-row p-0 '}>
       <div style={{ width: '100%' }}>
         <h2 className="text-[20px] font-semibold tracking-[-1%] mb-4">{availText}</h2>
         <Calendar
@@ -61,58 +61,104 @@ const CalendarWithAvailability: React.FC<CalendarWithAvailabilityProps> = ({ isC
         </div>
       </div>
       <div style={{ width: '35%', margin: 'auto', position: 'relative' }}>
-      <h2 className="invisible">Sarah's Availability</h2>
-      <div
-        ref={scrollRef}
-        className="space-y-2 p-2"
-        style={{ maxHeight: '300px', overflow: 'hidden' }}
-      >
-        {TIMES_DATA.map((time, index) => (
-          <div
-            key={index}
-            className={`px-[8px] py-[10px] rounded-lg  ${index === 2 ? 'selected-style text-white' : 'text-[#350ABC]'} bg-[#FAF9FF] text-center`}
-          >
-            {time}
+        <h2 className="invisible">Sarah's Availability</h2>
+        <div
+          ref={scrollRef}
+          className="space-y-2 p-2"
+          style={{ maxHeight: '300px', overflow: 'hidden' }}
+        >
+          <div className="shadow-2xl" style={{
+            position: "absolute",
+            width: '100%',
+            height: '20px',
+            top: '20px'
+          }}>
+            <svg width="240" height="100" viewBox="0 0 150 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="150" height="60" transform="matrix(1 0 0 -1 0 60)" fill="url(#paint0_linear_483_1294)" />
+              <rect width="150" height="60" transform="matrix(1 0 0 -1 0 60)" fill="url(#paint1_linear_483_1294)" />
+              <defs>
+                <linearGradient id="paint0_linear_483_1294" x1="75" y1="0" x2="75" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="white" stop-opacity="0" />
+                  <stop offset="1" stop-color="white" />
+                </linearGradient>
+                <linearGradient id="paint1_linear_483_1294" x1="75" y1="0" x2="75" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="white" stop-opacity="0" />
+                  <stop offset="1" stop-color="white" />
+                </linearGradient>
+              </defs>
+            </svg>
+
           </div>
-        ))}
+
+          {TIMES_DATA.map((time, index) => (
+            <>
+              <div
+                key={index}
+                className={`px-[8px] py-[10px] rounded-lg  ${index === 2 ? 'selected-style text-white' : 'text-[#350ABC]'} bg-[#FAF9FF] text-center`}
+              >
+                {time}
+              </div>
+            </>
+          ))}
+          <div className="shadow-2xl" style={{
+            position: "absolute",
+            width: '100%',
+            height: '20px',
+            bottom: '50px'
+          }}>
+            <svg width="240" height="100" viewBox="0 0 150 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="150" height="60" fill="url(#paint0_linear_483_1295)" />
+              <rect width="150" height="60" fill="url(#paint1_linear_483_1295)" />
+              <defs>
+                <linearGradient id="paint0_linear_483_1295" x1="75" y1="0" x2="75" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="white" stop-opacity="0" />
+                  <stop offset="1" stop-color="white" />
+                </linearGradient>
+                <linearGradient id="paint1_linear_483_1295" x1="75" y1="0" x2="75" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="white" stop-opacity="0" />
+                  <stop offset="1" stop-color="white" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+        <button
+          onClick={scrollUp}
+          style={{
+            position: 'absolute',
+            top: '86px',
+            right: '-12px',
+            border: 'none',
+            borderRadius: '50%',
+            cursor: 'pointer',
+          }}
+        >
+          <svg width="12" height="87" viewBox="0 0 8 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.64645 0.146446C3.84171 -0.0488167 4.15829 -0.0488167 4.35356 0.146446L7.53554 3.32843C7.7308 3.52369 7.7308 3.84027 7.53554 4.03553C7.34027 4.23079 7.02369 4.23079 6.82843 4.03553L4 1.2071L1.17157 4.03553C0.976313 4.23079 0.65973 4.23079 0.464468 4.03553C0.269206 3.84027 0.269206 3.52369 0.464468 3.32843L3.64645 0.146446ZM3.5 46.5L3.5 0.5L4.5 0.5L4.5 46.5L3.5 46.5Z" fill="#D6D4D4" />
+          </svg>
+
+
+
+        </button>
+        <button
+          onClick={scrollDown}
+          style={{
+            position: 'absolute',
+            bottom: '35px',
+            right: '-12px',
+            border: 'none',
+            borderRadius: '50%',
+            cursor: 'pointer',
+          }}
+        >
+          <svg width="12" height="87" viewBox="0 0 8 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.64645 46.8536C3.84171 47.0488 4.15829 47.0488 4.35356 46.8536L7.53554 43.6716C7.7308 43.4763 7.7308 43.1597 7.53554 42.9645C7.34027 42.7692 7.02369 42.7692 6.82843 42.9645L4 45.7929L1.17157 42.9645C0.976313 42.7692 0.65973 42.7692 0.464468 42.9645C0.269206 43.1597 0.269206 43.4763 0.464468 43.6716L3.64645 46.8536ZM3.5 0.5L3.5 46.5L4.5 46.5L4.5 0.5L3.5 0.5Z" fill="#D6D4D4" />
+          </svg>
+
+
+
+        </button>
       </div>
-      <button
-        onClick={scrollUp}
-        style={{
-          position: 'absolute',
-          top: '86px',
-          right: '-12px',
-          border: 'none',
-          borderRadius: '50%',
-          cursor: 'pointer',
-        }}
-      >
-<svg width="12" height="87" viewBox="0 0 8 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3.64645 0.146446C3.84171 -0.0488167 4.15829 -0.0488167 4.35356 0.146446L7.53554 3.32843C7.7308 3.52369 7.7308 3.84027 7.53554 4.03553C7.34027 4.23079 7.02369 4.23079 6.82843 4.03553L4 1.2071L1.17157 4.03553C0.976313 4.23079 0.65973 4.23079 0.464468 4.03553C0.269206 3.84027 0.269206 3.52369 0.464468 3.32843L3.64645 0.146446ZM3.5 46.5L3.5 0.5L4.5 0.5L4.5 46.5L3.5 46.5Z" fill="#D6D4D4"/>
-</svg>
-
-
-
-      </button>
-      <button
-        onClick={scrollDown}
-        style={{
-          position: 'absolute',
-          bottom: '35px',
-          right: '-12px',
-          border: 'none',
-          borderRadius: '50%',
-          cursor: 'pointer',
-        }}
-      >
-        <svg width="12" height="87" viewBox="0 0 8 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3.64645 46.8536C3.84171 47.0488 4.15829 47.0488 4.35356 46.8536L7.53554 43.6716C7.7308 43.4763 7.7308 43.1597 7.53554 42.9645C7.34027 42.7692 7.02369 42.7692 6.82843 42.9645L4 45.7929L1.17157 42.9645C0.976313 42.7692 0.65973 42.7692 0.464468 42.9645C0.269206 43.1597 0.269206 43.4763 0.464468 43.6716L3.64645 46.8536ZM3.5 0.5L3.5 46.5L4.5 46.5L4.5 0.5L3.5 0.5Z" fill="#D6D4D4"/>
-</svg>
-
-
-
-      </button>
-    </div>
     </div>
   );
 };

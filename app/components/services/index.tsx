@@ -5,9 +5,9 @@ import FormDecoration from '../common/form-decoration'
 
 const Services = () => {
     return (
-        <div className='py-[40px]' style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
-            <h1 className='service-text mb-6'>What <strong className='text-[#350ABC]'>services</strong> are <br /> you looking for?</h1>
-            <div className="relative px-72 pb-4">
+        <div className='py-[56px]' style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
+            <h1 className='service-text mb-[60px]'>What <strong className='text-[#350ABC]'>services</strong> are <br /> you looking for?</h1>
+            <div className="relative px-40 pb-4">
                 <div className="absolute top-[-186px]  z-[-1] left-0" style={{ transform: 'rotate(50deg)' }}>
                     <svg width="500" height="500" viewBox="0 0 601 1096" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path opacity="0.1" d="M601 548C601 850.652 355.652 1096 53 1096C-249.652 1096 -495 850.652 -495 548C-495 245.348 -249.652 0 53 0C355.652 0 601 245.348 601 548ZM-491.004 548C-491.004 848.445 -247.445 1092 53 1092C353.445 1092 597.004 848.445 597.004 548C597.004 247.555 353.445 3.99622 53 3.99622C-247.445 3.99622 -491.004 247.555 -491.004 548Z" fill="#350ABC" />
@@ -24,9 +24,9 @@ const Services = () => {
                         position: 'absolute', top: "-395px",
                         left: "-364px"
                     }} />
-                    <div className="-m-1 flex flex-wrap">
-                        <div className="flex w-1/3 flex-wrap">
-                            <div className="w-full p-1 md:p-2 min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
+                    <div className="-m-1 flex flex-wrap gap-y-[60px]">
+                        <div className="w-1/3 p-2">
+                            <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
                                 <Image
                                     src="/images/services/bartander.jpg"
                                     alt="Bartander"
@@ -73,7 +73,7 @@ const Services = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex w-1/3 flex-wrap">
+                        <div className="w-1/3 p-2">
                             <div className="w-full p-1 md:p-2 min-h-[280px] md:max-h-[200px] max-h-[320px] 2xl:max-h-[420px]">
                                 <Image
                                     src="/images/services/waiters.jpg"
@@ -118,8 +118,8 @@ const Services = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex w-1/3 flex-wrap">
-                            <div className="w-full p-1 md:p-2 min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
+                        <div className="w-1/3 p-2">
+                            <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
                                 <Image
                                     src="/images/services/cocktail.jpg"
                                     alt="Cocktail"
@@ -153,8 +153,8 @@ const Services = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex w-1/3 flex-wrap">
-                            <div className="w-full p-1 md:p-2 min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
+                        <div className="w-1/3 p-2">
+                            <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
                                 <Image
                                     src="/images/services/barbacks.jpg"
                                     alt="Barbacks"
@@ -194,8 +194,8 @@ const Services = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex w-1/3 flex-wrap">
-                            <div className="w-full p-1 md:p-2 min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
+                        <div className="w-1/3 p-2">
+                            <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
                                 <Image
                                     src="/images/services/promomodel.jpg"
                                     alt="Promo Model"
@@ -230,8 +230,8 @@ const Services = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex w-1/3 flex-wrap">
-                            <div className="w-full p-1 md:p-2 min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
+                        <div className="w-1/3 p-2">
+                            <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
                                 <Image
                                     src="/images/services/eventhelper.jpg"
                                     alt="Event Helper"
@@ -286,9 +286,9 @@ const Services = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='w-full text-center mt-16'>
-                    <button type="button" className=" text-[#F3F0FF] justify-center bg-[#2C2240] rounded-[4px] text-[16px] font-normal px-[100px] py-[8px] text-center inline-flex items-center  me-2 ">
-                  Hire Now
+                    <div className='w-full text-center mt-16 mb-[57px]'>
+                    <button type="button" className=" text-[#F3F0FF] justify-center bg-[#2C2240] rounded-[4px] text-[16px] font-normal px-[50px] py-[8px] text-center inline-flex items-center  me-2 ">
+                    Hire Required Staff Now!
                 </button>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ const Security = () => {
   return (
     <div className='security-bg'  style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
       {/* You can place your content here */}
-      <div className='content relative z-[999] mx-60 right-4'>
+      <div className='content relative z-[999] mx-40 right-4'>
         <div className='flex  h-[70vh]'>
           <div className='py-28 w-[30%] text-white'>
             <h1 className='why-choose mb-4'>Why <br /> Choose Updone?</h1>

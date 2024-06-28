@@ -78,7 +78,7 @@ const StaffListing = () => {
             />
           </div>
           <nav aria-label="Page navigation example">
-            <ul className="flex items-center -space-x-px h-8 text-sm">
+            <ul className="flex items-center -space-x-px h-10 text-sm py-[8px] px-[24px]">
               <li>
                 <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                   <span className="sr-only">Previous</span>

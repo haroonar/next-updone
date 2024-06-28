@@ -121,13 +121,13 @@ const page = ({ params }: { params: { id: string } }) => {
       </div>
 
 
-      <div className="max-w-[1276px] mx-auto h-auto pt-3">
-        <div className="h-[405px] flex gap-10 mt-4 ">
+      <div className="max-w-[1276px] mx-auto h-auto pt-[46px]">
+        <div className="h-[405px] flex gap-[45px]">
           <div className="w-[65%]">
             <CalendarWithAvailability />
           </div>
           <div className="w-[35%]">
-            <h1 className='text-center font-semibold text-[20px] translate-[-1%] text-[#000000] mb-5'>Cost Breakdown</h1>
+            <h1 className='text-center font-semibold text-[20px] translate-[-1%] text-[#000000] mb-4'>Cost Breakdown</h1>
             <div className="mx-auto max-w-3xl pb-4 pt-3 px-5" style={{ boxShadow: '0px -1px 10px -3px rgb(0 0 0 / 4%), 3px 1px 20px -2px rgb(0 0 0 / 5%)' }}>
               <div className="relative overflow-x-auto border-b-2 border-[#f8f8f8]">
                 <table className="w-full text-left font-medium md:table-fixed">
@@ -204,7 +204,7 @@ const page = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         </div>
-        <div className="h-[465px] flex gap-[25px] mt-20 mb-6">
+        <div className="h-[465px] flex gap-[25px] mt-[100px] mb-6">
           <div className="w-[55%]">
             <div >
               <div className='flex gap-2 justify-start items-center mb-6'>
@@ -214,7 +214,7 @@ const page = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
 
-              <div className='space-y-3'>
+              <div className='space-y-4'>
                 <div className="font-normal  rounded-[8.007px] w-[100%]">
                   <div className="space-y-1">
                     <div className='flex justify-between items-center'>
@@ -340,8 +340,9 @@ const page = ({ params }: { params: { id: string } }) => {
           top: "1580px",
           left: 0,
           right: 0,
-          zIndex: -1
-        }} className='h-[250px] bg-[#f3f0ff] w-[90vw] m-auto'>
+          zIndex: -1,
+          marginTop: "0px"
+        }} className='h-[323px] bg-[#f3f0ff] w-[90vw] m-auto'>
         </div>
       </div>
     </>
