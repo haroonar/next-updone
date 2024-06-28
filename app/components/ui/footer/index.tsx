@@ -8,11 +8,11 @@ const Footer = () => {
 
     return (
         <div className="bg-[#2c2240]">
-            <div style={{ margin: '0 100px' }}>
+            <div className="mx-40">
                 <footer className="relative bg-[#2c2240] text-white pt-8 pb-6 footer-image">
-                    <div className="max-w-screen-xl mx-auto px-4">
+                    <div className="max-w-screen-xl mx-auto">
                         <div className="flex text-left lg:text-left">
-                            <div className="w-full space-y-4 lg:w-6/12 px-4 pl-[90px]">
+                            <div className="w-full space-y-4">
                                 <Image src='/images/footer/footer-updone-logo.svg' alt='footer' width={165} height={48} />
                                 <h5 className="text-subheading-3">
                                     Our vision is to provide convenience and help increase <br /> your sales business.
@@ -24,14 +24,14 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div className="w-full lg:w-6/12 px-4">
-                                <div className="flex flex-wrap items-top mb-6 ">
+                                <div className="flex items-top mb-6 gap-x-6">
                                     <FooterList title="About" items={ABOUT_ITEMS} />
                                     <FooterList title="Listings" items={LISTING_ITEMS} />
                                     <FooterList title="Socials" items={SOCIAL_ITEMS} />
                                 </div>
                             </div>
                         </div>
-                        <div className='mt-[50px] mx-20'>
+                        <div>
                             <hr className="my-6 border-[.5px] border-[#807a8c]" />
                             <div className="flex flex-wrap items-center md:justify-between justify-center">
                                 <div className="w-full px-4 text-center mx-[74px]">
@@ -45,7 +45,7 @@ const Footer = () => {
                                                 <a href="https://www.creative-tim.com/product/notus-js" target="_blank"> Privacy & Policy.</a>
                                             </div>
                                             <div>
-                                                Terms & Condition<a href="https://www.creative-tim.com/product/notus-js" target="_blank"></a>
+                                                Terms & Condition.<a href="https://www.creative-tim.com/product/notus-js" target="_blank"></a>
                                             </div>
                                         </div>
                                     </div>

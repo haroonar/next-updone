@@ -27,8 +27,8 @@ const Hero = () => {
                     </span>
 
                     <div style={{...heroFilters}} className="flex space-x-3 w-full p-1 text-black justify-center items-center text-center">
-                        <div className="w-1/4 text-start ml-4">
-                            <div className="relative inline-block border-none shadow-none pr-[14px]">
+                        <div style={{width:'15%'}} className=" text-start ml-4">
+                            <div className="relative inline-block border-none shadow-none">
                                 <select
                                     className="block appearance-none md:w-[90px] 2xl:w-[100px] 2xl:text-[20px] font-[500] md:text-[12px] bg-white pr-4 rounded focus:outline-none focus:shadow-outline"
                                     onChange={handleChange}
@@ -53,7 +53,7 @@ const Hero = () => {
                             <span className='block md:text-[10px] 2xl:text-[15px]  text-[#696969] mr-[30px]'>{selectedValue}</span>
                         </div>
                         <img src="./images/Line 4.png" alt="" />
-                        <div className="w-1/4 text-start">
+                        <div style={{width:'25%'}} className=" text-start">
                             <div className="relative inline-flex border-none shadow-none">
                                 {/* SVG icon */}
                                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2 text-gray-700">
@@ -83,7 +83,7 @@ const Hero = () => {
 
 
                         <img src="./images/Line 4.png" alt="" />
-                        <div className="w-1/4 text-start">
+                        <div style={{width:'20%'}} className=" text-start">
                             <div className="relative inline-flex border-none shadow-none">
                                 {/* SVG icon */}
                                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2 text-black">
@@ -110,8 +110,8 @@ const Hero = () => {
 
                         </div>
                         <img src="./images/Line 4.png" alt="" />
-                        <div className="w 2/5 space-y-1.5">
-                            <div className='flex justify-center items-center space-x-6'>
+                        <div style={{width:'30%'}} className="space-y-1.5">
+                            <div className='flex justify-center items-center'>
                                 <span className='px-[14px] py-[0px] text-white text-[14px] bg-black rounded-lg font-[400]'>All</span>
                                 <div className="flex items-center">
                                     <svg width="144" height="18" viewBox="0 0 149 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,7 +124,7 @@ const Hero = () => {
 
                                 </div>
                             </div>
-                            <div className='flex justify-center items-center space-x-6'>
+                            <div className='flex justify-center items-center'>
                                 <span className='relative right-[10px]'><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
