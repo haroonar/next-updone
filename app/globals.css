@@ -124,3 +124,7 @@ color: #6B6B6B;
 .shadow-whiteeee {
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 4%), 0 6px 20px 0 rgb(0 0 0 / 0%);
 }
+.time-scroll{
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}

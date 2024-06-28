@@ -56,8 +56,8 @@ const StaffListing = () => {
             <p className="text-center text-xl mt-20">No staff found, sorry.</p>
           ) : (
             People.map((staff: Staff) => (
-              <div key={staff.id} onClick={() => handleStaffClick(staff)}>
-                <StaffMap staff={staff} />
+              <div key={staff.id} >
+                <StaffMap handleStaffClick={handleStaffClick} staff={staff} />
               </div>
             ))
           )}

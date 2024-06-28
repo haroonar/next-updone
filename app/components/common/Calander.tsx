@@ -64,8 +64,8 @@ const CalendarWithAvailability: React.FC<CalendarWithAvailabilityProps> = ({ isC
         <h2 className="invisible">Sarah's Availability</h2>
         <div
           ref={scrollRef}
-          className="space-y-2 p-2"
-          style={{ maxHeight: '300px', overflow: 'hidden' }}
+          style={{ maxHeight: '300px', overflow: 'auto' }} // Adjust overflow to 'auto'
+           className='time-scroll space-y-2 p-2'
         >
           <div className="shadow-2xl" style={{
             position: "absolute",

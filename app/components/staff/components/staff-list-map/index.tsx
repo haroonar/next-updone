@@ -3,8 +3,9 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 type StaffMapProps = {
     staff: Staff;
+    handleStaffClick:(arg:Staff)=>void
 }
-const StaffMap = ({ staff }: StaffMapProps) => {
+const StaffMap = ({ staff,handleStaffClick }: StaffMapProps) => {
     const [showAllServices, setShowAllServices] = useState(false);
     return (
         <>
@@ -113,7 +114,7 @@ const StaffMap = ({ staff }: StaffMapProps) => {
                         </div>
                     </div>
                     <div className="flex justify-around items-center mt-4 w-full space-x-2 border-t pt-4 pb-2 border-[#f3f0ff]">
-                        <button className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md">View Details</button>
+                        <button onClick={() => handleStaffClick(staff)} className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md">View Details</button>
                         <button type="button" className="text-[#dfdbec] bg-[#2c2240]  rounded-[4px] text-[14px] font-normal px-[30px] py-[10px] text-center inline-flex items-center  me-2 ">
                             <span className='mr-2'>
                                 <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
