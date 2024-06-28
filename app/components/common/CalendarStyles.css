@@ -1,0 +1,122 @@
+.custom-calendar {
+  max-height: 100%; /* Ensure the height does not exceed the container */
+  width: 100%;
+  border-top-left-radius: 30px;
+  background-color: #faf8ff;
+  border: none;
+}
+
+.react-calendar__navigation {
+  background: #2C2240; /* Apply white background to the navigation */
+  
+}
+
+.react-calendar__navigation button {
+  background-color: #2C2240; /* Adjust button color */
+  color: white;
+  
+}
+
+.react-calendar__navigation__prev-button
+ {
+  color: white !important;
+  font-size: x-large;
+}
+.react-calendar__navigation__next-button {
+  color: white !important;
+  font-size: x-large;
+}
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  visibility: hidden;
+  position: absolute;
+}
+
+.react-calendar__tile--active {
+  background: #350ABC !important; /* Change active date background to the specified color */
+  border-radius: 100px !important; /* Apply border radius */
+  color: white !important; /* Change the text color of active date to white */
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  border-bottom: none !important; /* Remove the dotted border at the bottom */
+  outline: none !important;
+  color: #350ABC;
+}
+
+.react-calendar__month-view__weekdays {
+  max-width: 1000px !important;
+  font-size: larger;
+  padding: 8px 0px;
+  background: #FFFFFF;
+  margin: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #f1f1f1;
+font-size: 13.23px;
+font-weight: 600;
+}
+
+.react-calendar__month-view__weekdays__weekday:first-child abbr {
+  color: #350ABC; /* Change the color of 'MON' to the specified color */
+  
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  font-size: 10px;
+  word-spacing: 1px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0px;
+}
+
+.react-calendar__tile--now {
+  background: white !important; /* Change the background of the current date */
+  max-width: 71px !important;
+  color: #b7b7b7 !important; /* Ensure the text color is set */
+}
+
+.react-calendar__tile--active {
+  background: none !important; /* Reset background for active date */
+  max-width: 71px !important;
+  color: white !important; /* Ensure the text color is set */
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #b7b7b7;
+  max-width: 71px !important;
+}
+
+.react-calendar__month-view__days {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day {
+  max-width: 71px !important;
+  color: #6B6B6B;
+  font-weight: 500;
+  font-size: 13.23px;
+}
+
+.react-calendar__tile--active abbr {
+  color: white;
+  background: #2C2240 !important;
+  padding-top: 1px;
+  border-radius: 10px; /* Ensure perfect circle for selected date */
+  display: inline-block;
+  width: 34px; /* Equal width and height for perfect circle */
+  height: 34px;
+  line-height: 34px; /* Center the text vertically */
+  text-align: center; /* Center the text horizontally */
+}
+.time-border-style{
+  border-radius: 4px;
+border: 1.295px solid #f3f0ff;
+}
+.selected-style{
+  border-radius: 4px;
+background: #350ABC;
+padding: 12px 10px;
+}

@@ -1,3 +1,4 @@
+'use client'
 const AccordionItem: React.FC<{ index: number, title: string, content: JSX.Element, isOpen: boolean, onClick: () => void }> = ({ title, content, isOpen, onClick }) => {
   return (
     <div>

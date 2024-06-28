@@ -1,3 +1,4 @@
+'use client'
 export const ACCORDIAN_DATA = [
     {
       title: "How does Updone's staffing service work?",

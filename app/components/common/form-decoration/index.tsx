@@ -1,3 +1,4 @@
+'use client'
 interface PositionProps {
   [key: string]: string | number;
 }

@@ -1,3 +1,4 @@
+'use client'
 import CommonSelect from '@/app/components/common/select-option'
 import { HERO_FILTER_STAFF, LOCATION, TIMES_CONST } from '@/app/libs/Constants'
 import Image from 'next/image'

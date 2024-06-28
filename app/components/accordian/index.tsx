@@ -1,3 +1,4 @@
+'use client'
 import React, { useCallback, useState } from 'react';
 import { ACCORDIAN_DATA } from './constants';
 import AccordionItem from './components';

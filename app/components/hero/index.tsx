@@ -1,10 +1,11 @@
+'use client'
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { heroFilters } from './hero';
 import ResponsiveImage from '../common/responsive-image';
 
 const Hero = () => {
-    const [selectedValue, setSelectedValue] = useState('Bartanders');
+    const [selectedValue, setSelectedValue] = useState('Bartenders');
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedText = event.target.options[event.target.selectedIndex].text;

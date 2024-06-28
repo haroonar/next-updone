@@ -5,7 +5,7 @@ interface MainWrapperProps{
 }
 const MainWrapper = ({children}:MainWrapperProps) => {
   return (
-    <div className='mt-[80px] '>
+    <div className='mt-[64px] '>
       {children}
     </div>
   )

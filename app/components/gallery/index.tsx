@@ -1,6 +1,6 @@
+'use client'
 import React from 'react';
 import Marquee from 'react-fast-marquee';
-import styles from './index.module.css'; // Using CSS Modules
 
 function GalleryContent() {
     return (
@@ -16,7 +16,7 @@ function GalleryContent() {
             </div>
 
             <Marquee direction="left" speed={50} gradient={false} play={true}>
-                <div className="max-w-screen-xl mx-auto py-8 lg:py-16 ">
+                <div className="max-w-screen-xl mx-auto">
                     <div className="flex flex-col md:flex-row">
                         {/* Image 1 */}
                         <div className="flex flex-col w-full md:w-1/3">

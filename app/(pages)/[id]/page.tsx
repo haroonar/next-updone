@@ -1,9 +1,18 @@
 'use client'
+import CalendarWithAvailability from '@/app/components/common/Calander';
+import Testimonials from '@/app/components/testimonials';
+import HOME_TESTIMONINAL_CONTENT from '@/app/components/testimonials/constants';
 import { Staff } from '@/app/types';
+import { Montserrat } from 'next/font/google';
+import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { GoDotFill } from 'react-icons/go';
-
+import { PiLineVerticalThin } from "react-icons/pi";
+const montserrat = Montserrat({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"]
+});
 const page = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -21,104 +30,319 @@ const page = ({ params }: { params: { id: string } }) => {
     }
   }, [searchParams]);
 
-  useEffect(() => {
-    if (staff) {
-      console.log('Staff details:', staff);
-    }
-  }, [staff]);
 
   return (
     <>
-      <div className='h-[200.9px] bg-[#f3f0ff]'></div>
-      <div className="max-w-[1279px] mx-auto h-screen">
-        <div className='absolute'>
-          <GoDotFill className='text-[40px] absolute right-0 top-[-56px] z-[1] left-[-4px]  text-[#8C52FF]' />
-          <img
-            className="relative bottom-[83px] border-solid border-8 border-white object-cover w-34 h-34 mt-3 mr-3 rounded-full"
-            src={staff?.img}
-            alt={`${staff?.name}`}
-          />
-        </div>
-        {staff ? (
-          <div className="grid grid-cols-10 h-full">
-            <div className="col-span-4 p-4 mt-16"> {/* Left side - 30% */}
-              <h1 className="text-2xl font-[600] text-black">{staff?.name}</h1>
-              <p className="text-[#6b6b6b] text-lg font-[500] mb-2">
-                {staff?.services.map((service, index) => (
-                  <span key={index}>
-                    {service}
-                    {index < staff?.services.length - 1 && " & "}
-                  </span>
-                ))}
-              </p>
-              <p className='flex gap-4'>
-                <span className="flex items-center">
-                  <span>
-                    <svg width="85" height="85" viewBox="0 0 85 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g filter="url(#filter0_d_457_4209)">
-                        <circle cx="42.5" cy="42.5" r="16.5" fill="#2C2240" />
-                      </g>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M40.219 44.7802C42.5098 47.071 44.6326 47.3219 45.2558 47.3451C46.0088 47.3725 46.7774 46.7576 47.1098 46.1279C46.5796 45.5059 45.8891 45.0233 45.133 44.5002C44.6868 44.9459 44.1369 45.774 43.4047 45.4773C42.9882 45.3099 41.9599 44.8362 41.0614 43.9372C40.1624 43.0388 39.6893 42.0104 39.5207 41.5946C39.224 40.8612 40.0546 40.3101 40.5008 39.8638C39.9777 39.0953 39.5035 38.3869 38.8826 37.8834C38.244 38.2171 37.6255 38.9797 37.6535 39.7429C37.6768 40.3661 37.9276 42.4889 40.219 44.7802ZM45.2117 48.5361C44.3537 48.5045 41.9223 48.1685 39.376 45.6227C36.8302 43.0763 36.4947 40.6455 36.4626 39.787C36.4149 38.4786 37.417 37.2078 38.5746 36.7115C38.714 36.6513 38.8667 36.6284 39.0176 36.645C39.1685 36.6616 39.3126 36.7172 39.4355 36.8063C40.3936 37.5051 41.0543 38.5638 41.6221 39.3932C41.7402 39.5656 41.7943 39.7739 41.775 39.9821C41.7558 40.1902 41.6644 40.385 41.5166 40.5329L40.7087 41.3414C40.8964 41.7554 41.2783 42.4692 41.9039 43.0948C42.5294 43.7203 43.2432 44.1022 43.6579 44.2899L44.4651 43.482C44.6136 43.334 44.8092 43.2427 45.018 43.2241C45.2269 43.2054 45.4356 43.2607 45.6079 43.3801C46.4539 43.9664 47.4476 44.6176 48.1721 45.5452C48.2684 45.6691 48.3297 45.8166 48.3495 45.9722C48.3693 46.1278 48.3469 46.2859 48.2847 46.43C47.7861 47.5935 46.5242 48.5843 45.2117 48.5361Z" fill="white" />
-                      <path d="M43.8796 39.9163C44.0534 39.9998 44.2696 40.216 44.3745 40.3904C44.4093 40.6338 44.5831 39.6932 45.4339 39.1357M46.9645 39.6527C46.9645 40.2675 46.7203 40.8571 46.2855 41.2919C45.8508 41.7266 45.2611 41.9708 44.6463 41.9708C44.0315 41.9708 43.4418 41.7266 43.0071 41.2919C42.5724 40.8571 42.3281 40.2675 42.3281 39.6527C42.3281 39.0378 42.5724 38.4482 43.0071 38.0135C43.4418 37.5787 44.0315 37.3345 44.6463 37.3345C45.2611 37.3345 45.8508 37.5787 46.2855 38.0135C46.7203 38.4482 46.9645 39.0378 46.9645 39.6527Z" stroke="white" stroke-width="0.869319" stroke-linecap="round" stroke-linejoin="round" />
-                      <defs>
-                        <filter id="filter0_d_457_4209" x="0" y="0" width="85" height="85" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                          <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                          <feOffset />
-                          <feGaussianBlur stdDeviation="13" />
-                          <feComposite in2="hardAlpha" operator="out" />
-                          <feColorMatrix type="matrix" values="0 0 0 0 0.796875 0 0 0 0 0.796875 0 0 0 0 0.796875 0 0 0 0.26 0" />
-                          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_457_4209" />
-                          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_457_4209" result="shape" />
-                        </filter>
-                      </defs>
-                    </svg>
+      <div className='h-[225px] bg-[#f3f0ff] flex justify-center items-end'>
+        <div className='h-[152px] w-full max-w-[1276px]  flex'>
+          <div className='w-[16%]'>
+            {/* <!-- Content for the left side --> */}
+            <div className='absolute top-[215px]'>
+              <GoDotFill className='text-[40px] absolute right-0 top-[-70px] z-[1] left-[4px]  text-[#350ABC]' />
+              <Image
+                className="relative bottom-[100px] border-solid border-8 border-white object-cover w-34 h-34 mt-3 mr-3 rounded-full"
+                //@ts-ignore
+                src={staff?.img} // Fallback to a default image if staff?.img is undefined
+                //@ts-ignore
+                alt={staff?.name}
+                width={180}
+                height={180}
+                objectFit="cover"
+                quality={100} // This ensures the highest quality
+              />
 
-
-                  </span>
-                  <span className="ml-1 text-md">phone number verified</span>
-                </span>
-                <span className="flex items-center">
-                  <svg width="86" height="85" viewBox="0 0 86 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g filter="url(#filter0_d_457_4210)">
-                      <circle cx="42.5166" cy="42.5" r="16.5" fill="#2C2240" />
-                    </g>
-                    <g clip-path="url(#clip0_457_4210)">
-                      <path d="M45.4121 45.8896C45.5864 45.9732 45.803 46.1898 45.9081 46.3646C45.943 46.6086 46.1172 45.666 46.9698 45.1073M48.5036 45.6253C48.5036 46.2414 48.2588 46.8323 47.8232 47.268C47.3875 47.7037 46.7966 47.9484 46.1805 47.9484C45.5644 47.9484 44.9735 47.7037 44.5378 47.268C44.1022 46.8323 43.8574 46.2414 43.8574 45.6253C43.8574 45.0092 44.1022 44.4183 44.5378 43.9827C44.9735 43.547 45.5644 43.3022 46.1805 43.3022C46.7966 43.3022 47.3875 43.547 47.8232 43.9827C48.2588 44.4183 48.5036 45.0092 48.5036 45.6253Z" stroke="white" stroke-width="0.871155" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M42.4096 43.3C43.0511 43.3 43.5711 42.78 43.5711 42.1385C43.5711 41.497 43.0511 40.9769 42.4096 40.9769C41.7681 40.9769 41.248 41.497 41.248 42.1385C41.248 42.78 41.7681 43.3 42.4096 43.3Z" stroke="white" stroke-width="0.871155" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M40.377 45.6227C40.9288 45.1 41.3934 44.8096 42.4243 44.7515M47.3463 41.8477C47.3463 41.3831 47.3608 39.9602 47.2882 39.3794C47.2446 38.9003 47.114 38.2469 46.5187 37.8694C46.1557 37.6806 45.8072 37.5064 44.1375 37.4919M40.6384 37.4919C39.3897 37.4919 38.4169 37.5935 37.9378 38.1888C37.5313 38.7446 37.5551 39.3794 37.5168 39.5827C37.4296 40.6716 37.4877 44.4757 37.4877 45.1145C37.4877 45.7824 37.4442 47.1396 38.3589 47.5973C39.1429 47.9893 39.956 47.9312 42.7146 47.9458M42.3226 36.3304C41.9742 36.3304 41.6838 36.3304 41.3934 36.6353C41.1466 36.8676 41.1843 37.0726 41.0885 37.4338C40.9526 37.942 40.8852 38.2103 41.074 38.4211C41.247 38.6476 41.538 38.6488 41.7953 38.6494H41.7999C42.0468 38.6668 42.8761 38.6587 43.1212 38.6494C43.3837 38.6389 43.5957 38.6244 43.7745 38.3921C43.9343 38.1848 43.8396 37.8392 43.7455 37.4774C43.6526 37.1208 43.6874 36.9402 43.4406 36.6353C43.0921 36.2868 42.6711 36.3304 42.3226 36.3304Z" stroke="white" stroke-width="0.871155" stroke-linecap="round" stroke-linejoin="round" />
-                    </g>
-                    <defs>
-                      <filter id="filter0_d_457_4210" x="0.0166016" y="0" width="85" height="85" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                        <feOffset />
-                        <feGaussianBlur stdDeviation="13" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix" values="0 0 0 0 0.796875 0 0 0 0 0.796875 0 0 0 0 0.796875 0 0 0 0.26 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_457_4210" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_457_4210" result="shape" />
-                      </filter>
-                      <clipPath id="clip0_457_4210">
-                        <rect width="13.9385" height="13.9385" fill="white" transform="translate(36.0166 35.1707)" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-
-                  <span className="ml-1 text-md">id verified</span>
-                </span>
-              </p>
-            </div>
-
-            <div className="col-span-6 p-4 mt-16"> {/* Right side - 70% */}
-              <h2 className="text-xl font-semibold">More Details</h2>
-              {/* Add additional staff details here */}
-              <p>Additional information can be placed here...</p>
             </div>
           </div>
-        ) : (
-          <p>Loading staff details...</p>
-        )}
+          <div className='w-[84%] flex justify-center items-center gap-[64px] mb-[27px]'>
+            <div className='w-2/5 space-y-4'>
+              <div className="text-center mb-[21px] flex justify-between w-full items-center font-bold text-lg">
+                <h1 style={{ letterSpacing: '-2%' }} className='text-[44px] text-[#000000] font-semibold '>{staff?.name}</h1>
+                <div className="flex items-center ">
+                  <span className='mb-[4px] mr-1'>
+                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10.0002 0.833374L12.8327 6.57171L19.1668 7.49754L14.5835 11.9617L15.6652 18.2684L10.0002 15.2892L4.33516 18.2684L5.41683 11.9617L0.833496 7.49754L7.16766 6.57171L10.0002 0.833374Z" fill="#F79809" stroke="#F79809" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+
+                  <p style={{ letterSpacing: '-2%' }} className="ms-1 text-[16px] leading-[26px] font-normal text-[#000000]">5.0/5</p>
+                </div>
+              </div>
+              <div className="flex justify-start items-center text-start w-full space-x-1 mb-2 ">
+                <p className='text-[14px] font-normal text-[#6B6B6B] leading-[24px] tracking-[-2%]'>Cocktail Server</p>
+                <span><PiLineVerticalThin /></span>
+
+                <p className='text-[14px] font-normal text-[#6B6B6B] leading-[24px] tracking-[-2%]'>Cocktail Server</p>
+                <span>  <PiLineVerticalThin /></span>
+
+                <p className='text-[14px] font-normal text-[#6B6B6B] leading-[24px] tracking-[-2%]'>Cocktail Server</p>
+
+              </div>
+              <div className="text-center text-[16px] font-normal  text-[#2C2240] flex gap-2">
+                <span>
+                  <Image width={16} height={16} alt='verified' src='/images/staff-listing/map.svg' />
+                </span>
+                <div className='relative bottom-[5px] text-[16px] font-normal leading-[26px] tracking-[-2%] text-[#2C2240]'>
+                  {`${staff?.city}`}
+                </div>
+              </div>
+              <div className="flex justify-start items-center text-start w-full space-x-3 mb-2 ">
+                <span className='relative bottom-[5px]'>
+                  <Image width={14} height={14} alt='verified' src='/images/staff-listing/phone.svg' />
+                </span>
+                <div style={{ letterSpacing: '-2%' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
+                  {`Phone Number`}
+                  <Image width={58} height={12} alt='verified' src='/images/staff-listing/vertified.svg' />
+                </div>
+
+                <span className='relative bottom-[6px]'>
+                  <Image width={16} height={16} alt='verified' src='/images/staff-listing/person.svg' />
+                </span>
+                <div style={{ letterSpacing: '-2%' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
+                  {`ID`}
+                  <Image width={58} height={12} alt='verified' src='/images/staff-listing/vertified.svg' />
+
+                </div>
+
+
+              </div>
+            </div>
+
+            <div className='w-3/5'>
+              <h1 style={{ letterSpacing: '-1%', lineHeight: 'auto' }} className=' text-[#2C2240] text-[24px] font-semibold'>
+                About Me
+              </h1>
+              <p style={{ letterSpacing: '-2%' }} className='text-[#6B6B6B] text-[14px] font-normal leading-[24px]'>
+                I'm Sarah Miller, a vibrant and outgoing individual passionate about creating memorable experiences. As a cocktail server, I ensure guests feel welcome and enjoy their time.  As a promo model, I bring brands to life with high energy and a captivating smile.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div className="max-w-[1276px] mx-auto h-auto pt-3">
+        <div className="h-[405px] flex gap-10 mt-10 ">
+          <div className="w-[65%]">
+            <CalendarWithAvailability />
+          </div>
+          <div className="w-[35%]">
+            <h1 className='text-center font-semibold text-[20px] translate-[-1%] text-[#000000] mb-5'>Cost Breakdown</h1>
+            <div className="mx-auto max-w-3xl pb-4 pt-3 px-5" style={{ boxShadow: '0px -1px 10px -3px rgb(0 0 0 / 4%), 3px 1px 20px -2px rgb(0 0 0 / 5%)' }}>
+              <div className="relative overflow-x-auto border-b-2 border-[#f8f8f8]">
+                <table className="w-full text-left font-medium md:table-fixed">
+                  <tbody>
+                    <tr className='border-b-[1px] border-[#f8f8f8]'>
+                      <td className="whitespace-nowrap py-2 md:w-[384px]">
+                        <div className="flex items-center gap-4">
+                          <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
+                            Worker Fee Per Hour
+                          </p>
+                        </div>
+                      </td>
+                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$50</td>
+                    </tr>
+                    <tr className='border-b-[1px] border-[#f8f8f8]'>
+                      <td className="whitespace-nowrap py-2 md:w-[384px]">
+                        <div className="flex items-center gap-4">
+                          <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
+                            Number of Hours
+                          </p>
+                        </div>
+                      </td>
+                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">5 h</td>
+                    </tr>
+                    <tr className='border-b-[1px] border-[#f8f8f8]'>
+                      <td className="whitespace-nowrap py-2 md:w-[384px]">
+                        <div className="flex items-center gap-4">
+                          <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
+                            Worker Fee Calculation
+                          </p>
+                        </div>
+                      </td>
+                      <td className="flex justify-between items-center gap-1">
+                        <span className="text-[#9B9B9B] text-[10px] font-normal leading-[26px]">5hours x $50</span>
+                        <span style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$250</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="whitespace-nowrap py-2 md:w-[384px] pb-8">
+                        <div className="flex items-center gap-4">
+                          <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
+                            Platform Fee
+                          </p>
+                        </div>
+                      </td>
+                      <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$10</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              {/* buttons */}
+              <div>
+                <div className='my-8 mb-1 border-b-[1px] border-[#f8f8f8] flex justify-between items-center'>
+                  <div className="whitespace-nowrap py-2 md:w-[384px]">
+                    <div className="flex items-center gap-4">
+                      <p style={{ letterSpacing: '-2%' }} className=" text-[#2C2240] text-[14px] items-center shrink-0">
+                        Total
+                      </p>
+                    </div>
+                  </div>
+                  <h1 style={{ letterSpacing: '-1%' }} className="text-right text-[#000000] text-[24px] font-semibold">$250.00</h1>
+                </div>
+                <button type="button" className=" text-[#F3F0FF] w-full justify-center bg-[#350ABC] tracking-[-2%]  leading-[26px] rounded-[4px] text-[16px] font-normal px-[30px] py-[10px] text-center inline-flex items-center  me-2 ">
+                  <span className='mr-2'>
+                    <svg width="23" height="23" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="#F3F0FF" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+
+                  Hire Now
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="h-[465px] flex gap-[25px] mt-20 mb-6">
+          <div className="w-[55%]">
+            <div >
+              <div className='flex gap-2 justify-start items-center mb-6'>
+                <div className={`${montserrat.className} text-[24px] font-semibold translate-[-1%] text-[#2C2240]`}>Work History</div>
+                <div className='mt-[6px]'>
+                  <h1 className='text-[#9B9B9B] text-[12px] font-normal translate-[-2%] leading-[26px] relative top-2'>(60 jobs)</h1>
+                </div>
+              </div>
+
+              <div className='space-y-3'>
+                <div className="font-normal  rounded-[8.007px] w-[100%]">
+                  <div className="space-y-1">
+                    <div className='flex justify-between items-center'>
+                      <h6 className={`${montserrat.className} text-[14px] leading-[18px] text-[#000000] font-medium translate-[-1%]`}>
+                        The Palm Tree Terrace, Los Angeles, CA <br /> Cocktail Server
+                      </h6>
+                      <span className='text-[#9B9B9B] text-[12px] font-normal tracking-[-2%] leading-[24px]'>(2023 - 2024)</span>
+                    </div>
+                    <p className='text-[12px] leading-[26px] text-[#6B6B6B] font-normal translate-[-2%]'>
+                      Provided exceptional service to restaurant patrons, ensuring a welcoming and enjoyable dining experience. <br /> Maintained a positive and engaging attitude while handling multiple tables efficiently.
+                    </p>
+                  </div>
+                </div>
+                <svg width="626" height="1" viewBox="0 0 626 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line y1="0.5" x2="626" y2="0.5" stroke="url(#paint0_linear_453_6379)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_453_6379" x1="0" y1="1.5" x2="626" y2="1.5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#D4D4D4" stop-opacity="0" />
+                      <stop offset="0.515" stop-color="#D4D4D4" />
+                      <stop offset="1" stop-color="#D4D4D4" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="font-normal w-[100%]">
+                  <div className="space-y-1">
+                    <div className='flex justify-between items-center'>
+                      <h6 className={`${montserrat.className} text-[14px] leading-[18px] text-[#000000] font-medium translate-[-1%]`}>
+                        The Palm Tree Terrace, Los Angeles, CA <br /> Cocktail Server
+                      </h6>
+                      <span className='text-[#9B9B9B] text-[12px] font-normal tracking-[-2%] leading-[24px]'>(2023 - 2024)</span>
+                    </div>
+                    <p className='text-[12px] leading-[26px] text-[#6B6B6B] font-normal translate-[-2%]'>
+                      Provided exceptional service to restaurant patrons, ensuring a welcoming and enjoyable dining experience. <br /> Maintained a positive and engaging attitude while handling multiple tables efficiently.
+                    </p>
+                  </div>
+                </div>
+                <svg width="626" height="1" viewBox="0 0 626 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line y1="0.5" x2="626" y2="0.5" stroke="url(#paint0_linear_453_6379)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_453_6379" x1="0" y1="1.5" x2="626" y2="1.5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#D4D4D4" stop-opacity="0" />
+                      <stop offset="0.515" stop-color="#D4D4D4" />
+                      <stop offset="1" stop-color="#D4D4D4" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="font-normal w-[100%]">
+                  <div className="space-y-1">
+                    <div className='flex justify-between items-center'>
+                      <h6 className={`${montserrat.className} text-[14px] leading-[18px] text-[#000000] font-medium translate-[-1%]`}>
+                        The Palm Tree Terrace, Los Angeles, CA <br /> Cocktail Server
+                      </h6>
+                      <span className='text-[#9B9B9B] text-[12px] font-normal tracking-[-2%] leading-[24px]'>(2023 - 2024)</span>
+                    </div>
+                    <p className='text-[12px] leading-[24px] text-[#6B6B6B] font-normal translate-[-2%]'>
+                      Provided exceptional service to restaurant patrons, ensuring a welcoming and enjoyable dining experience. <br /> Maintained a positive and engaging attitude while handling multiple tables efficiently.
+                    </p>
+                  </div>
+                  <div className='flex justify-center items-center gap-2 mt-4'>
+                    <h1 className='text-center text-[12px] leading-[26px] text-[#6B6B6B] font-normal translate-[-2%]'>Load More</h1>
+                    <span><svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.5 3.33325L8.5 12.6666" stroke="#545454" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M13.1665 8L8.49984 12.6667L3.83317 8" stroke="#545454" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-[45%] grid grid-cols-2 grid-rows-2 gap-x-3 relative bottom-[20px]">
+            {/* Image Grid */}
+            <div className="col-span-1 row-span-1 ">
+              <Image
+                src="/images/staff-listing/d1.jpg"
+                layout="responsive"
+                width={500}
+                height={500}
+                className="object-cover rounded-[4px] relative top-[18px]"
+                alt="Staff 1"
+              />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <Image
+                src="/images/staff-listing/d2.jpg"
+                layout="responsive"
+                width={500}
+                height={500}
+                className="object-cover rounded-[4px] relative top-[18px]"
+                alt="Staff 2"
+              />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <Image
+                src="/images/staff-listing/d3.jpg"
+                layout="responsive"
+                width={500}
+                height={500}
+                className="object-cover rounded-[4px]"
+                alt="Staff 3"
+              />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <Image
+                src="/images/staff-listing/d4.jpg"
+                layout="responsive"
+                width={500}
+                height={500}
+                className="object-cover rounded-[4px]"
+                alt="Staff 4"
+              />
+            </div>
+          </div>
+
+        </div>
+        <div>
+          <Testimonials isDetailTestonial testimonials={HOME_TESTIMONINAL_CONTENT} />
+        </div>
+        <div style={{
+          position: "absolute",
+          bottom: "-15px",
+          top: "1610px",
+          left: 0,
+          right: 0,
+          zIndex: -1
+        }} className='h-[250px] bg-[#f3f0ff] w-[90vw] m-auto'>
+        </div>
       </div>
     </>
   );

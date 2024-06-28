@@ -36,6 +36,18 @@ export const HERO_FILTER_STAFF: { [key: string]: string } = {
     { value: 'Promo Models', label: 'Promo Models' },
     { value: 'Event Helper', label: 'Event Helper' },
   ];
+  export   const TIMES_DATA: string[] = [
+    '09:00 AM - 10:00 AM',
+    '10:00 AM - 11:00 AM',
+    '11:00 AM - 12:00 PM',
+    '01:00 PM - 02:00 PM',
+    '02:00 PM - 03:00 PM',
+    '03:00 PM - 04:00 PM',
+    '04:00 PM - 05:00 PM',
+    '05:00 PM - 06:00 PM',
+    '06:00 PM - 07:00 PM',
+    '07:00 PM - 08:00 PM'
+  ];
   //footer component constants
   export const ABOUT_ITEMS = [
     { text: 'How it works', href: 'https://www.creative-tim.com/presentation?ref=njs-profile' },

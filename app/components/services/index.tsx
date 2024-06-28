@@ -58,7 +58,7 @@ const Services = () => {
                                             </svg>
                                         </div>
                                         <div className='w-[80%] relative bottom-[8px] left-[35px]'>
-                                            <h1 className='font-bold text-[20px]'>Bartanders</h1>
+                                            <h1 className='font-bold text-[20px]'>Bartenders</h1>
                                             <p className='text-[#6B6B6B] text-[12px] bold-[400]'>Updone's staffing service streamlines the hiring process for your business. We start by working closely with you to understand your.</p>
                                         </div>
                                     </div>
