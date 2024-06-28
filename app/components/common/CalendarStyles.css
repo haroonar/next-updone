@@ -8,13 +8,19 @@
 
 .react-calendar__navigation {
   background: #2C2240; /* Apply white background to the navigation */
-  
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
 }
 
 .react-calendar__navigation button {
   background-color: #2C2240; /* Adjust button color */
   color: white;
-  
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.react-calendar__navigation button:enabled:hover {
+  background-color: transparent; /* Remove background color on hover */
 }
 
 .react-calendar__navigation__prev-button
