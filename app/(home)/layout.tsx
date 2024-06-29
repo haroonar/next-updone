@@ -4,17 +4,15 @@ import React from 'react';
 
 
 interface RootLayoutProps {
-    home: React.ReactNode
     children: React.ReactNode
 
 }
 
-const RootLayout = ({ home,children }: RootLayoutProps) => {
+const RootLayout = ({ children }: RootLayoutProps) => {
 
 
     return (
         <div className='mt-[64px]'>
-            {home}
             {children}
         </div>
     );
