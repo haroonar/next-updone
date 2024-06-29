@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { heroFilters } from './hero';
-import ResponsiveImage from '../common/responsive-image';
+import ResponsiveImage from '../../common/responsive-image';
 
 const Hero = () => {
     const [selectedValue, setSelectedValue] = useState('Bartenders');

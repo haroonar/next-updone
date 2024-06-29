@@ -1,7 +1,11 @@
 'use client';
 import React, { useCallback, useState } from 'react';
-import { ACCORDIAN_DATA } from './constants';
-import AccordionItem from './components';
+import  ACCORDIAN_DATA  from './constants';
+import dynamic from 'next/dynamic';
+// Dynamic import for AccordionItem component
+const AccordionItem = dynamic(() => import('./components'), {
+  loading: () => <div>Loading...</div>, // Fallback UI while loading
+});
 
 const Accordion: React.FC = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
@@ -46,4 +50,4 @@ const Accordion: React.FC = () => {
   );
 };
 
-export default Accordion;
+export default React.memo(Accordion);

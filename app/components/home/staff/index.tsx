@@ -1,15 +1,19 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import People from '../dummy-data';
-import { Staff } from '@/app/types';
-import CommonSelect from '../common/select-option';
-import { PAGINATION_LIMIT } from '@/app/libs/Constants';
+import People from '../../dummy-data';
+import CommonSelect from '../../common/select-option';
 import StaffFilters from './components/staff-list-filter';
 import StaffMap from './components/staff-list-map';
+import { Staff } from '@/types';
+import { PAGINATION_LIMIT } from '@/app/libs/Constants';
+import { useAppDispatch } from '@/app/libs/store/hooks';
+import { setStaff } from '@/app/libs/store/features/staff';
+import { AppDispatch } from '@/app/libs/store/store';
 
 const StaffListing = () => {
-  const router = useRouter();
+  const dispatch: AppDispatch = useAppDispatch();
+  const navigate=useRouter()
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(event.target.value);
@@ -20,8 +24,9 @@ const StaffListing = () => {
   };
 
   const handleStaffClick = (staff: Staff) => {
-    const query = btoa(JSON.stringify(staff)); // base64 encode the staff object
-    router.push(`/detail?staff=${query}`);
+    // Assuming useAppDispatch is from react-redux or similar
+    dispatch(setStaff(staff)); // Dispatch setStaff action with staff object as payload
+    navigate.push('./staff/detail')
   };
   
   const [scrollY, setScrollY] = useState(0);
@@ -51,7 +56,7 @@ const StaffListing = () => {
       </div>
       <div className="max-w-[1279px] mx-auto">
         <StaffFilters scrollY={scrollY} handleLocationChange={handleLocationChange} handleTimeChange={handleTimeChange} />
-        <div className="relative md:top-10 2xl:top-22 grid gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 justify-center items-center z-10">
+        <div className="relative md:top-20 2xl:top-22 grid gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 justify-center items-center z-10">
           {People.length === 0 ? (
             <p className="text-center text-xl mt-20">No staff found, sorry.</p>
           ) : (

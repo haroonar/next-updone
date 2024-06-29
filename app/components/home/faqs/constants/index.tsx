@@ -1,5 +1,5 @@
 'use client'
-export const ACCORDIAN_DATA = [
+ const ACCORDIAN_DATA = [
     {
       title: "How does Updone's staffing service work?",
       content: (
@@ -79,3 +79,4 @@ export const ACCORDIAN_DATA = [
       )
     }
   ];
+  export default ACCORDIAN_DATA;

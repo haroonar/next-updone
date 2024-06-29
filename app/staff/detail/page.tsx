@@ -1,36 +1,23 @@
 'use client'
+
 import CalendarWithAvailability from '@/app/components/common/Calander';
-import Testimonials from '@/app/components/testimonials';
-import HOME_TESTIMONINAL_CONTENT from '@/app/components/testimonials/constants';
-import { Staff } from '@/app/types';
+import Testimonials from '@/app/components/home/testimonials';
+import HOME_TESTIMONINAL_CONTENT from '@/app/components/home/testimonials/constants';
+import { selectStaff } from '@/app/libs/store/features/staff';
+import { useAppSelector } from '@/app/libs/store/hooks';
+import { Staff } from '@/types';
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GoDotFill } from 'react-icons/go';
 import { PiLineVerticalThin } from "react-icons/pi";
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"]
 });
-const page = ({ params }: { params: { id: string } }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [staff, setStaff] = useState<Staff>();
-
-  useEffect(() => {
-    const encodedStaff = searchParams.get('staff');
-    if (encodedStaff) {
-      try {
-        const decodedStaff = JSON.parse(atob(encodedStaff));
-        setStaff(decodedStaff);
-      } catch (error) {
-        console.error('Failed to decode staff data', error);
-      }
-    }
-  }, [searchParams]);
-
-
+const page = () => {
+  //this is to get data from store 
+ const {staff} = useAppSelector(selectStaff);
   return (
     <>
       <div className='h-[225px] bg-[#f3f0ff] flex justify-center items-end'>
@@ -286,7 +273,7 @@ const page = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
           </div>
-          <div className="w-[45%] grid grid-cols-2 grid-rows-2 gap-x-3 relative bottom-[20px]">
+          <div className="w-[45%] grid grid-cols-2 grid-rows-2 gap-x-3 relative">
             {/* Image Grid */}
             <div className="col-span-1 row-span-1 ">
               <Image

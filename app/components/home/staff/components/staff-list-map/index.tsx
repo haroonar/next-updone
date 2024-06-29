@@ -1,4 +1,4 @@
-import { Staff } from '@/app/types'
+import { Staff } from '@/types';
 import Image from 'next/image'
 import React, { useState } from 'react'
 type StaffMapProps = {
