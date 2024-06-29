@@ -1,5 +1,6 @@
+"use client"
+import RenderLoader from '@/app/components/ui/loader'
 import React from 'react'
-import RenderLoader from '../components/ui/loader'
 
 const loading = () => {
   return (

@@ -2,10 +2,16 @@ import React, { Suspense } from 'react'
 import dynamic from 'next/dynamic';
 import RenderLoader from '../components/ui/loader';
 import Loading from './loading';
-const Home = dynamic(() => import('../components/home'),{ssr:false});
+import Loader from '../components/ui/loader';
+const Home = dynamic(() => import('../components/home'), {
+  loading: () => <Loader />, // Display loader while loading
+  ssr: false, // Do not SSR for this component
+});
 const page = () => {
   return (
-        <Home />
+    <Suspense fallback={<Loading/>}>
+      <Home />
+    </Suspense>
   )
 }
 
