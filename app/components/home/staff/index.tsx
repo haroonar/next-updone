@@ -10,10 +10,13 @@ import { PAGINATION_LIMIT } from '@/app/libs/Constants';
 import { useAppDispatch } from '@/app/libs/store/hooks';
 import { setStaff } from '@/app/libs/store/features/staff';
 import { AppDispatch } from '@/app/libs/store/store';
+import CardSkeleton from '../../ui/card-skeleton';
 
 const StaffListing = () => {
+  const [loading, setLoading] = useState(true);
+
   const dispatch: AppDispatch = useAppDispatch();
-  const navigate=useRouter()
+  const navigate = useRouter()
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(event.target.value);
@@ -28,7 +31,7 @@ const StaffListing = () => {
     dispatch(setStaff(staff)); // Dispatch setStaff action with staff object as payload
     navigate.push('./staff/detail')
   };
-  
+
   const [scrollY, setScrollY] = useState(0);
 
   const handleScroll = () => {
@@ -47,6 +50,14 @@ const StaffListing = () => {
     transition: 'top 0.2s ease-out',
   };
 
+  useEffect(() => {
+    // Use setTimeout to toggle loading state after 5 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // 5000 milliseconds = 5 seconds
+
+    return () => clearTimeout(timer); // Clean up timer on unmount or state change
+  }, []);
   return (
     <>
       <div className="fixed z-[-1] left-0" style={svgStyle}>
@@ -62,62 +73,62 @@ const StaffListing = () => {
           ) : (
             People.map((staff: Staff) => (
               <div key={staff.id} >
-                <StaffMap handleStaffClick={handleStaffClick} staff={staff} />
+                {loading ? <CardSkeleton staff={staff} /> : <StaffMap handleStaffClick={handleStaffClick} staff={staff} />}
               </div>
             ))
           )}
         </div>
         {/* pagination */}
         <div className='h-10 mb-16 mt-24 w-full absolute '>
-        <div className='flex justify-between items-center max-w-[1279px]'>
-        <div>
-            View Per Page:
-            <CommonSelect
-              options={PAGINATION_LIMIT}
-              valueKey="value"
-              labelKey="label"
-              defaultValue="0"
-              onChange={() => { }}
-              className='w-14 h-8 border-none bg-white rounded-md focus:border-none p-1 ml-2'
-              isLimit
-            />
+          <div className='flex justify-between items-center max-w-[1279px]'>
+            <div>
+              View Per Page:
+              <CommonSelect
+                options={PAGINATION_LIMIT}
+                valueKey="value"
+                labelKey="label"
+                defaultValue="0"
+                onChange={() => { }}
+                className='w-14 h-8 border-none bg-white rounded-md focus:border-none p-1 ml-2'
+                isLimit
+              />
+            </div>
+            <nav aria-label="Page navigation example">
+              <ul className="flex items-center -space-x-px h-10 text-sm py-[8px] px-[24px]">
+                <li>
+                  <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    <span className="sr-only">Previous</span>
+                    <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 1 1 5l4 4" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                </li>
+                <li>
+                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                </li>
+                <li>
+                  <a href="#" aria-current="page" className="z-10 flex items-center justify-center px-3 h-8 leading-tight text-white  bg-[#350abc] hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                </li>
+                <li>
+                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+                </li>
+                <li>
+                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+                </li>
+                <li>
+                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    <span className="sr-only">Next</span>
+                    <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
-          <nav aria-label="Page navigation example">
-            <ul className="flex items-center -space-x-px h-10 text-sm py-[8px] px-[24px]">
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  <span className="sr-only">Previous</span>
-                  <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 1 1 5l4 4" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-              </li>
-              <li>
-                <a href="#" aria-current="page" className="z-10 flex items-center justify-center px-3 h-8 leading-tight text-white  bg-[#350abc] hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  <span className="sr-only">Next</span>
-                  <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
         </div>
       </div>
       <div className='h-[250px] bg-[#f3f0ff] w-[90vw] m-auto'>
