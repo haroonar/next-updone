@@ -19,12 +19,12 @@ const StaffFilters = ({ handleTimeChange, handleLocationChange, scrollY }: Staff
                 }}
                     className='fixed z-50 mb-[65px] font-normal pt-4 pl-4 pb-0 pr-4 bg-white rounded-lg mt-[2%] shadow-sm'>
                     <div className="flex justify-center items-center w-full space-x-3 mb-2">
-                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#413753] px-[20px] py-[8px] rounded-md">Cocktail Server</button>
-                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#413753] px-[20px] py-[8px] rounded-md">Promo Model</button>
-                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#413753] px-[20px] py-[8px] rounded-md">Bar Back</button>
-                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#413753] px-[20px] py-[8px] rounded-md">Event Helper</button>
-                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#413753] px-[20px] py-[8px] rounded-md">Waiter</button>
-                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#413753] px-[20px] py-[8px] rounded-md">Bartander</button>
+                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Cocktail Server</button>
+                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Promo Model</button>
+                        <button className="bg-[#2C2240] text-[14px] font-normal text-[#F3F0FF] px-[20px] py-[6px] rounded-md">Bar Back</button>
+                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Event Helper</button>
+                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Waiter</button>
+                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Bartander</button>
                     </div>
                     <div style={{ ...HERO_FILTER_STAFF }} className="flex space-x-3 w-full p-1 text-black justify-center items-center text-center">
                         <div style={{ width: '28%' }} className="text-start space-y-2">
@@ -67,7 +67,7 @@ const StaffFilters = ({ handleTimeChange, handleLocationChange, scrollY }: Staff
                                 </div>
                             </div>
                             <div className='flex justify-center items-center space-x-6'>
-                                <span className='relative right-[10px]'>
+                                <span className='relative right-[15px]'>
                                     <Image src='/images/gallery/person.svg' alt='cocktail' width={13.4} height={13.4} />
                                 </span>
                                 <div className="flex items-center space-x-2.5 text-[12px] text-[#696969] relative left-[16px]">

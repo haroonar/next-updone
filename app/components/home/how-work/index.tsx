@@ -32,7 +32,7 @@ function HowWork() {
                         {cards.map((card) => (
                             <div
                                 key={card.id}
-                                className={`px-3 py-2 transition-all duration-1000 ease-in-out ${hoveredCard === card.id ? 'bg-[#e9e5fb] border-[1px] shadow-xl border-[#7152d1]' : ''} rounded-lg w-3/4 text-start cursor-pointer`}
+                                className={`px-3 py-2  transition ease-in delay-150 hover:-translate-y-1 hover:scale-110  duration-150 ${hoveredCard === card.id ? 'bg-[#e9e5fb] border-[1px] shadow-xl border-[#7152d1]' : ''} rounded-lg w-3/4 text-start cursor-pointer`}
                                 onMouseEnter={() => setHoveredCard(card.id)}
                                 onMouseLeave={() => setHoveredCard(1)}
                             >
@@ -46,7 +46,7 @@ function HowWork() {
                         {cards.map((card) => (
                             <div
                                 key={card.id}
-                                className={`absolute transition-opacity duration-1000 ease-in-out ${hoveredCard === card.id ? 'opacity-100' : 'opacity-0'}`}
+                                className={`absolute  transition ease-in delay-150 hover:-translate-y-1 hover:scale-110  duration-150  ${hoveredCard === card.id ? 'opacity-100' : 'opacity-0'}`}
                                 style={{ margin: '1rem' }} // Adjust margin here
                             >
                                 <Image

@@ -1,20 +1,35 @@
 'use client'
-import React from 'react'
-import Testimonials from '../testimonials'
+import React, { Suspense } from 'react'
+import Loader from '../../ui/loader';
+const Testimonials = dynamic(() => import('../testimonials'), {
+    ssr: false, // Do not SSR for this component
+    loading: () =><><p className='flex text-center'>Loading...</p></>, // Display loader while loading
+});
+const CalendarWithAvailability = dynamic(() => import('../../common/Calander'), {
+    ssr: false, // Do not SSR for this component
+    loading: () =><><p className='flex text-center'>Loading...</p></>, // Display loader while loading
+});
+const StaffImageGrid = dynamic(() => import('./components/StaffImages'), {
+    ssr: false, // Do not SSR for this component
+    loading: () =><><p className='flex text-center'>Loading...</p></>, // Display loader while loading
+
+});
+const StaffHistory = dynamic(() => import('./components/StaffHistory'), {
+    ssr: false, // Do not SSR for this component
+    loading: () =><><p className='flex text-center'>Loading...</p></>, // Display loader while loading
+
+});
 import Image from 'next/image'
 import { PiLineVerticalThin } from 'react-icons/pi'
-import CalendarWithAvailability from '../../common/Calander'
 import { GoDotFill } from 'react-icons/go'
-import { Montserrat } from 'next/font/google'
 import { useAppSelector } from '@/app/libs/store/hooks'
 import { selectStaff } from '@/app/libs/store/features/staff'
 import HOME_TESTIMONINAL_CONTENT from '../testimonials/constants'
-const montserrat = Montserrat({
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    subsets: ["latin"]
-  });
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+
 const StaffDetail = () => {
- const {staff} = useAppSelector(selectStaff);
+    const { staff } = useAppSelector(selectStaff);
 
     return (
         <div>
@@ -109,7 +124,7 @@ const StaffDetail = () => {
             <div className="max-w-[1276px] mx-auto h-auto pt-[46px]">
                 <div className="h-[405px] flex gap-[45px]">
                     <div className="w-[65%]">
-                        <CalendarWithAvailability />
+                            <CalendarWithAvailability />
                     </div>
                     <div className="w-[35%]">
                         <h1 className='text-center font-semibold text-[20px] translate-[-1%] text-[#000000] mb-4'>Cost Breakdown</h1>
@@ -175,7 +190,7 @@ const StaffDetail = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" className=" text-[#F3F0FF] w-full justify-center bg-[#350ABC] tracking-[-2%]  leading-[26px] rounded-[4px] text-[16px] font-normal px-[30px] py-[10px] text-center inline-flex items-center  me-2 ">
+                                <Link href='/staff/booking' className=" text-[#F3F0FF] w-full justify-center bg-[#350ABC] tracking-[-2%]  leading-[26px] rounded-[4px] text-[16px] font-normal px-[30px] py-[10px] text-center inline-flex items-center  me-2 ">
                                     <span className='mr-2'>
                                         <svg width="23" height="23" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="#F3F0FF" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
@@ -183,151 +198,20 @@ const StaffDetail = () => {
                                     </span>
 
                                     Hire Now
-                                </button>
+                                </Link>
 
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="h-[465px] flex gap-[25px] mt-[100px] mb-6">
-                    <div className="w-[55%]">
-                        <div >
-                            <div className='flex gap-2 justify-start items-center mb-6'>
-                                <div className={`${montserrat.className} text-[24px] font-semibold translate-[-1%] text-[#2C2240]`}>Work History</div>
-                                <div className='mt-[6px]'>
-                                    <h1 className='text-[#9B9B9B] text-[12px] font-normal translate-[-2%] leading-[26px] relative top-2'>(60 jobs)</h1>
-                                </div>
-                            </div>
-
-                            <div className='space-y-4'>
-                                <div className="font-normal  rounded-[8.007px] w-[100%]">
-                                    <div className="space-y-1">
-                                        <div className='flex justify-between items-center'>
-                                            <h6 className={`${montserrat.className} text-[14px] leading-[18px] text-[#000000] font-medium translate-[-1%]`}>
-                                                The Palm Tree Terrace, Los Angeles, CA <br /> Cocktail Server
-                                            </h6>
-                                            <span className='text-[#9B9B9B] text-[12px] font-normal tracking-[-2%] leading-[24px]'>(2023 - 2024)</span>
-                                        </div>
-                                        <p className='text-[12px] leading-[26px] text-[#6B6B6B] font-normal translate-[-2%]'>
-                                            Provided exceptional service to restaurant patrons, ensuring a welcoming and enjoyable dining experience. <br /> Maintained a positive and engaging attitude while handling multiple tables efficiently.
-                                        </p>
-                                    </div>
-                                </div>
-                                <svg width="626" height="1" viewBox="0 0 626 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line y1="0.5" x2="626" y2="0.5" stroke="url(#paint0_linear_453_6379)" />
-                                    <defs>
-                                        <linearGradient id="paint0_linear_453_6379" x1="0" y1="1.5" x2="626" y2="1.5" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#D4D4D4" stop-opacity="0" />
-                                            <stop offset="0.515" stop-color="#D4D4D4" />
-                                            <stop offset="1" stop-color="#D4D4D4" stop-opacity="0" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                                <div className="font-normal w-[100%]">
-                                    <div className="space-y-1">
-                                        <div className='flex justify-between items-center'>
-                                            <h6 className={`${montserrat.className} text-[14px] leading-[18px] text-[#000000] font-medium translate-[-1%]`}>
-                                                The Palm Tree Terrace, Los Angeles, CA <br /> Cocktail Server
-                                            </h6>
-                                            <span className='text-[#9B9B9B] text-[12px] font-normal tracking-[-2%] leading-[24px]'>(2023 - 2024)</span>
-                                        </div>
-                                        <p className='text-[12px] leading-[26px] text-[#6B6B6B] font-normal translate-[-2%]'>
-                                            Provided exceptional service to restaurant patrons, ensuring a welcoming and enjoyable dining experience. <br /> Maintained a positive and engaging attitude while handling multiple tables efficiently.
-                                        </p>
-                                    </div>
-                                </div>
-                                <svg width="626" height="1" viewBox="0 0 626 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line y1="0.5" x2="626" y2="0.5" stroke="url(#paint0_linear_453_6379)" />
-                                    <defs>
-                                        <linearGradient id="paint0_linear_453_6379" x1="0" y1="1.5" x2="626" y2="1.5" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#D4D4D4" stop-opacity="0" />
-                                            <stop offset="0.515" stop-color="#D4D4D4" />
-                                            <stop offset="1" stop-color="#D4D4D4" stop-opacity="0" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                                <div className="font-normal w-[100%]">
-                                    <div className="space-y-1">
-                                        <div className='flex justify-between items-center'>
-                                            <h6 className={`${montserrat.className} text-[14px] leading-[18px] text-[#000000] font-medium translate-[-1%]`}>
-                                                The Palm Tree Terrace, Los Angeles, CA <br /> Cocktail Server
-                                            </h6>
-                                            <span className='text-[#9B9B9B] text-[12px] font-normal tracking-[-2%] leading-[24px]'>(2023 - 2024)</span>
-                                        </div>
-                                        <p className='text-[12px] leading-[24px] text-[#6B6B6B] font-normal translate-[-2%]'>
-                                            Provided exceptional service to restaurant patrons, ensuring a welcoming and enjoyable dining experience. <br /> Maintained a positive and engaging attitude while handling multiple tables efficiently.
-                                        </p>
-                                    </div>
-                                    <div className='flex justify-center items-center gap-2 mt-4'>
-                                        <h1 className='text-center text-[12px] leading-[26px] text-[#6B6B6B] font-normal translate-[-2%]'>Load More</h1>
-                                        <span><svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.5 3.33325L8.5 12.6666" stroke="#545454" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M13.1665 8L8.49984 12.6667L3.83317 8" stroke="#545454" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        </span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="w-[45%] grid grid-cols-2 grid-rows-2 gap-x-3 relative">
-                        {/* Image Grid */}
-                        <div className="col-span-1 row-span-1 ">
-                            <Image
-                                src="/images/staff-listing/d1.jpg"
-                                layout="responsive"
-                                width={500}
-                                height={500}
-                                className="object-cover rounded-[4px] relative top-[18px]"
-                                alt="Staff 1"
-                            />
-                        </div>
-                        <div className="col-span-1 row-span-1">
-                            <Image
-                                src="/images/staff-listing/d2.jpg"
-                                layout="responsive"
-                                width={500}
-                                height={500}
-                                className="object-cover rounded-[4px] relative top-[18px]"
-                                alt="Staff 2"
-                            />
-                        </div>
-                        <div className="col-span-1 row-span-1">
-                            <Image
-                                src="/images/staff-listing/d3.jpg"
-                                layout="responsive"
-                                width={500}
-                                height={500}
-                                className="object-cover rounded-[4px]"
-                                alt="Staff 3"
-                            />
-                        </div>
-                        <div className="col-span-1 row-span-1">
-                            <Image
-                                src="/images/staff-listing/d4.jpg"
-                                layout="responsive"
-                                width={500}
-                                height={500}
-                                className="object-cover rounded-[4px]"
-                                alt="Staff 4"
-                            />
-                        </div>
-                    </div>
-
+                        <StaffHistory />
+                        <StaffImageGrid />
                 </div>
                 <div>
-                    <Testimonials isDetailTestonial testimonials={HOME_TESTIMONINAL_CONTENT} />
+                        <Testimonials isDetailTestonial testimonials={HOME_TESTIMONINAL_CONTENT} />
                 </div>
-                <div style={{
-                    position: "absolute",
-                    bottom: "-15px",
-                    top: "1580px",
-                    left: 0,
-                    right: 0,
-                    zIndex: -1,
-                    marginTop: "0px"
-                }} className='h-[323px] bg-[#f3f0ff] w-[90vw] m-auto'>
+                <div className='h-[323px] bg-[#f3f0ff] w-[90vw] m-auto mt-0 z-[-1] right-0 left-0 top-[1580px] bottom-[-15px] absolute'>
                 </div>
             </div>
         </div>

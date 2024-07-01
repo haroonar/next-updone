@@ -9,12 +9,13 @@ const LazyGalleryContent = dynamic(() => import('./gallery'), { ssr: false });
 const LazyTestimonials = dynamic(() => import('./testimonials'), { ssr: false });
 const LazyAccordion = dynamic(() => import('./faqs'), { ssr: false });
 import HOME_TESTIMONINAL_CONTENT from './testimonials/constants';
+import Loader from '../ui/loader';
 
 const Home = () => {
   return (
     <>
       <div className='overflow-hidden'>
-        <Suspense fallback={<div className='h-screen w-full flex justify-center items-center'>Loading...</div>}>
+        <Suspense fallback={<><Loader/></>}>
           <LazyHero />
           <LazyServices />
           <LazyOurSponsors />

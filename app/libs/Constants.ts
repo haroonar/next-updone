@@ -68,3 +68,11 @@ export const SOCIAL_ITEMS = [
     { text: 'Twitter', href: 'https://creative-tim.com/privacy?ref=njs-profile' },
     { text: 'Facebook', href: 'https://creative-tim.com/contact-us?ref=njs-profile' },
 ];
+//staff details constanst
+
+export const STAFF_IAMHES = [
+  { src: '/images/staff-listing/d1.jpg', alt: 'Staff 1',class:'object-cover rounded-[4px] relative top-[18px]' },
+  { src: '/images/staff-listing/d2.jpg', alt: 'Staff 2',class:'object-cover rounded-[4px] relative top-[18px]' },
+  { src: '/images/staff-listing/d3.jpg', alt: 'Staff 3',class:'object-cover rounded-[4px]' },
+  { src: '/images/staff-listing/d4.jpg', alt: 'Staff 4',class:'object-cover rounded-[4px]' },
+];

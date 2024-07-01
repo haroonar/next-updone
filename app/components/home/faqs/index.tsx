@@ -4,7 +4,6 @@ import  ACCORDIAN_DATA  from './constants';
 import dynamic from 'next/dynamic';
 // Dynamic import for AccordionItem component
 const AccordionItem = dynamic(() => import('./components'), {
-  loading: () => <div>Loading...</div>, // Fallback UI while loading
 });
 
 const Accordion: React.FC = () => {
