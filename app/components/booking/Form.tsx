@@ -598,7 +598,7 @@ export default function Form() {
 
                                                                             </div>
                                                                             <div className="flex items-center w-full" style={{ width: '320px' }}>
-                                                                                <div className="absolute inset-y-0 mt-3 ml-[21px] start-0 flex items-center ps-3 pointer-events-none">
+                                                                                <div className="absolute inset-y-0 mt-3 ml-[21px] start-0 flex items-center ps-3 pointer-events-none bottom-[20px]">
                                                                                     <Image width={14} height={15} src='/images/booking/9.svg' alt='step-1' />
 
                                                                                 </div>
