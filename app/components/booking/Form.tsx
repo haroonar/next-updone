@@ -769,12 +769,10 @@ export default function Form() {
                                     <Image width={603} height={603} src='/images/booking/2.svg' alt='step-1' />
                                 </div>
                             </div>
-                            <div className="absolute bottom-[-562px] z-[-1] right-[-70px]">
+                            <div className="absolute bottom-[-280px] z-[-1] right-[-210px]">
                                 <Image width={603} height={603} src='/images/booking/1.svg' alt='step-1' />
                             </div>
 
-                            <div className="absolute bottom-[-562px] z-[-1] right-[-70px]">
-                            </div>
                         </div>
                     </form>
                 </motion.div>
@@ -1008,7 +1006,7 @@ export default function Form() {
                 </form> */}
 
                 {/* Navigation */}
-                <div className='mt-8 pt-5'>
+                {/* <div className='mt-8 pt-5'>
                     <div className='flex justify-between'>
                         <button
                             type='button'
@@ -1053,7 +1051,7 @@ export default function Form() {
                             </svg>
                         </button>
                     </div>
-                </div>
+                </div> */}
             </section>
         </>
     )
