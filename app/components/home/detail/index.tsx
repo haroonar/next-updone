@@ -159,7 +159,7 @@ const StaffDetail = () => {
                                                         Worker Fee Calculation
                                                     </p>
                                                     <td className="flex justify-between items-center gap-1">
-                                                        <span className="text-[#9B9B9B] text-[10px] font-normal leading-[26px]">5 hours x $50</span>
+                                                        <span className="text-[#9B9B9B] text-[10px] font-normal leading-[26px] mr-2">5 hours x $50</span>
                                                         <span style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$250</span>
                                                     </td>
                                                 </div>
@@ -180,7 +180,7 @@ const StaffDetail = () => {
                             </div>
                             {/* buttons */}
                             <div>
-                                <div className='my-8 mb-1 border-b-[1px] border-[#f8f8f8] flex justify-between items-center'>
+                                <div className='my-7 mb-1 border-b-[1px] border-[#f8f8f8] flex justify-between items-center'>
                                     <div className="whitespace-nowrap py-2 md:w-[384px]">
                                         <div className="flex justify-between items-center gap-4">
                                             <p style={{ letterSpacing: '-2%' }} className=" text-[#2C2240] text-[14px] items-center shrink-0">
