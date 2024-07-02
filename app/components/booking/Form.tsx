@@ -746,8 +746,8 @@ export default function Form() {
                                                                                 </div>
 
                                                                             </div>
-                                                                            <button style={{ width: '65%', margin: '21px auto' }} className={`${styles.login_btn_}  mt-[20px] w-full justify-center bg-[#350ABC] text-[#F3F0FF3] opacity-[0.9] rounded-[4px]  px-[16px] py-[18px] text-center inline-flex items-center`}>
-                                                                                Login
+                                                                            <button style={{ width: '60.5%', margin: '21px auto' }} className={`${styles.login_btn_}  mt-[20px] w-full justify-center bg-[#350ABC] text-[#F3F0FF3] opacity-[0.9] rounded-[4px]  px-[16px] py-[18px] text-center inline-flex items-center`}>
+                                                                                Register
                                                                                 <span className={`ml-2`}>
                                                                                     <Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' />
                                                                                 </span>
