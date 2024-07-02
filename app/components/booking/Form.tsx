@@ -566,7 +566,7 @@ export default function Form() {
                                                                     Join Updone
                                                                 </h1>
                                                                 <p className={styles.loginpopup_body}>Sign In or Sign up to updone to book pro event staff in a snap</p>
-                                                                <div className='flex justify-center items-center gap-[7px] mx-24 relative bottom-[62px]'>
+                                                                <div className='flex justify-center items-center gap-[7px] mx-24 relative bottom-[80px]'>
                                                                     <button onClick={() => setShowLoginForm(false)} className={`${styles.login_btn}`}>Login</button>
                                                                     <button onClick={(e) => handleShowRegisterForm(e)} className={`${styles.register_btn}`}>Register</button>
                                                                 </div>
