@@ -146,4 +146,7 @@ color: #6B6B6B;
 .login_backgorund{
   background-color: rgba(243, 240, 255, 0.5);
 }
+.focus\:outline-blue-200:focus{
+  background-color: white;
+}
 
