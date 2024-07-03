@@ -735,7 +735,7 @@ export default function Form() {
                                                                                         type="password"
                                                                                         id="default-search"
                                                                                         className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px] pr-10`} // Adjusted paddingRight to accommodate the icon
-                                                                                        placeholder="Password"
+                                                                                        placeholder="Confirm Password"
                                                                                     />
                                                                                     <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
                                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
