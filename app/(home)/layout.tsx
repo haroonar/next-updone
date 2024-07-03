@@ -12,7 +12,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
 
 
     return (
-        <div className='mt-[54px]'>
+        <div className='mt-[60px]'>
             {children}
         </div>
     );

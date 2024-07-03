@@ -7,7 +7,7 @@ import { ABOUT_ITEMS, LISTING_ITEMS, SOCIAL_ITEMS } from "@/app/libs/Constants";
 const Footer = () => {
 
     return (
-        <div className="bg-[#2c2240]">
+        <div className="bg-[#2c2240] relative">
             <div className="mx-40">
                 <footer className="relative bg-[#2c2240] text-white pt-8 pb-6 footer-image">
                     <div className="max-w-screen-xl mx-auto">

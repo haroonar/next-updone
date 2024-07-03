@@ -7,7 +7,7 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
 
     return (
-        <div className='mt-[64px] '>
+        <div className='mt-[70px] '>
             {children}
         </div>
     )

@@ -197,7 +197,7 @@ const StaffDetail = () => {
                                         </svg>
                                     </span>
 
-                                    Hire Now
+                                    Book Now
                                 </Link>
 
                             </div>

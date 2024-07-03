@@ -124,7 +124,7 @@ const StaffMap = ({ staff, handleStaffClick }: StaffMapProps) => {
                                 </svg>
                             </span>
 
-                            Hire Now
+                            Book Now
                         </button>
 
                     </div>

@@ -8,7 +8,7 @@ import Image from 'next/image';
 const Header = () => {
     return (
         <header  className={styles.header}>
-            <nav className=" border-gray-200 py-[24px] w-full max-w-[1279px] mx-auto">
+            <nav className=" border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto">
 
                 <div className="flex flex-wrap justify-between items-center mx-3" style={{cursor:'pointer'}}>
                     <Link  href="/" className="flex items-center">

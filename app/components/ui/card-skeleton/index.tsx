@@ -100,7 +100,7 @@ const CardSkeleton = ({ staff }: CardSkeletonProps) => {
                                 </svg>
                             </span>
 
-                            Hire Now
+                            Book Now
                         </button>
 
                     </div>
