@@ -14,12 +14,12 @@ const Hero = () => {
     };
     return (
         <div> 
-            <main className="h-screen flex flex-col justify-end items-center">
-                <div className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[80px] 2xl:text-[250px]">Workers</div>
+            <main className="h-screen flex flex-col justify-end items-center ">
+                <div className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[80px] 2xl:text-[220px]  max-w-[1279px] m-auto">Workers</div>
                 <Image layout="intrinsic" src="./background.svg" height={580} width={1950} alt="Background" />
                 {/* Add your content here */}
-                <div className="absolute flex flex-col items-center justify-center text-white text-lg mx-w-[1000px] m-auto">
-                    <span className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[130px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
+                <div className="absolute flex flex-col items-center justify-center text-white text-lg sm:max-w-[700px] lg:max-w-[840px] xl:max-w-[1000px] 2xl:max-w-[1050px] m-auto">
+                    <span className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px]  2xl:text-[130px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
                         BOOK <strong className="text-[#350abc]">EVENT</strong>
                     </span>
                     <span className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px] 2xl:text-[110px] mb-[38px] 2xl:mb-[55px]">
@@ -122,7 +122,7 @@ const Hero = () => {
                             
                         </div>
                     </div>
-                    <ResponsiveImage src="/images/hero/hero.png" alt="Hero Image" />
+                    <Image height={744} width={1094} src="/images/hero/hero.png" alt="Hero Image" />
                 </div>
             </main>
         </div>

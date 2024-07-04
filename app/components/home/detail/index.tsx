@@ -90,7 +90,7 @@ const StaffDetail = () => {
                                     <Image width={14} height={14} alt='verified' src='/images/staff-listing/phone.svg' />
                                 </span>
                                 <div style={{ letterSpacing: '-2%' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
-                                    {`Phone Number`}
+                                    {`Contact Number`}
                                     <Image width={58} height={12} alt='verified' src='/images/staff-listing/vertified.svg' />
                                 </div>
 

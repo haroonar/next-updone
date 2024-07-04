@@ -470,7 +470,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                             <div id="dropdown-phone" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-52 dark:bg-gray-700">
 
                                                             </div>
-                                                            <label htmlFor="phone-input" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Phone number:</label>
+                                                            <label htmlFor="phone-input" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Contact Number:</label>
                                                             <div className="relative w-full">
                                                                 <input type="text" id="phone-input" className={`${styles.defaultsearch}   mt-[12px] border-[#EFEFEF] py-[14px]  min-h-[52px] bg-[#FFFFFF] w-full focus:outline-blue-200 rounded-[4px]`} placeholder='345-456-2368' />
                                                             </div>
@@ -485,7 +485,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                             type="search"
                                                             id="default-search"
                                                             className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
-                                                            placeholder="Company Name"
+                                                            placeholder="Company Name*"
 
                                                         />
 
@@ -625,7 +625,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                                         type="search"
                                                                                         id="default-search"
                                                                                         className={`${styles.defaultsearch} mt-[12px]  shadow-lg py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200`}
-                                                                                        placeholder="Email address"
+                                                                                        placeholder="Email address*"
 
                                                                                     />
 
@@ -696,7 +696,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                                             type="search"
                                                                                             id="default-search"
                                                                                             className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Email address"
+                                                                                            placeholder="Email address*"
                                                                                             style={loginInputStyles}
                                                                                         />
 
@@ -713,7 +713,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                                             type="search"
                                                                                             id="default-search"
                                                                                             className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Company Name"
+                                                                                            placeholder="Company Name*"
                                                                                             style={loginInputStyles}
                                                                                         />
 
@@ -739,7 +739,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                                             type="search"
                                                                                             id="default-search"
                                                                                             className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Company Name"
+                                                                                            placeholder="Company Name*"
                                                                                             style={loginInputStyles}
                                                                                         />
 
