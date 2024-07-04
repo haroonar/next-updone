@@ -28,14 +28,13 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({ src, alt }) => {
     }, []);
 
     return (
-        <div id="image-container" className="w-[112%]">
+        <div id="image-container"  style={{width:'112%'}}>
             <Image
                 src={src}
                 alt={alt}
                 layout="responsive"
                 width={containerWidth}
                 height={containerWidth} // Adjust height according to your aspect ratio needs
-                className="max-w-full h-auto"
             />
         </div>
     );
