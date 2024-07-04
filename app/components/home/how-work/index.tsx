@@ -25,9 +25,9 @@ function HowWork() {
             </div>
 
             {/* Centered text */}
-            <h1 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[100px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h1>
+            <h1 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[60px] pb-[67px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h1>
             <div className="absolute top-0 left-0 right-0 flex justify-center">
-                <div className="relative h-screen flex flex-col md:flex-row w-full mx-40 top-[60px]">
+                <div className="relative h-screen flex flex-col md:flex-row w-full max-w-[1279px] top-[60px]">
                     <div className="w-full md:w-[54%] flex flex-col items-center justify-center space-y-4">
                         {cards.map((card) => (
                             <div

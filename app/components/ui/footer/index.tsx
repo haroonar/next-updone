@@ -7,12 +7,13 @@ import { ABOUT_ITEMS, LISTING_ITEMS, SOCIAL_ITEMS } from "@/app/libs/Constants";
 const Footer = () => {
 
     return (
+       <>
         <div className="bg-[#2c2240] relative">
-            <div className="mx-40">
+            <div className='max-w-[1279px] m-auto'>
                 <footer className="relative bg-[#2c2240] text-white pt-8 pb-6 footer-image">
                     <div className="max-w-screen-xl mx-auto">
                         <div className="flex text-left lg:text-left">
-                            <div className="w-full space-y-4">
+                            <div className="w-[70%] space-y-4" >
                                 <Image src='/images/footer/footer-updone-logo.svg' alt='footer' width={165} height={48} />
                                 <h5 className="text-subheading-3">
                                     Our vision is to provide convenience and help increase <br /> your sales business.
@@ -23,7 +24,7 @@ const Footer = () => {
                                     <Image src='/images/footer/footer-linkedin-logo.svg' alt='footer' width={70} height={70} />
                                 </div>
                             </div>
-                            <div className="w-full lg:w-6/12 px-4">
+                            <div className="w-[70%]">
                                 <div className="flex items-top mb-6 gap-x-6">
                                     <FooterList title="About" items={ABOUT_ITEMS} />
                                     <FooterList title="Listings" items={LISTING_ITEMS} />
@@ -34,7 +35,7 @@ const Footer = () => {
                         <div>
                             <hr className="my-6 border-[.5px] border-[#807a8c]" />
                             <div className="flex flex-wrap items-center md:justify-between justify-center">
-                                <div className="w-full px-4 text-center mx-[74px]">
+                                <div className="w-full text-center">
                                     <div className="text-paragraph py-1 flex justify-between items-center">
                                         <div>
                                             Copyright © <span id="get-current-year">2021</span>
@@ -56,6 +57,7 @@ const Footer = () => {
                 </footer>
             </div>
         </div>
+       </>
     );
 };
 

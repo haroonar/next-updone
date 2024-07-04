@@ -7,9 +7,15 @@ body{
   padding: 0px;
   box-sizing: border-box;
 }
+.element-with-clip-path {
+  width: 300px; /* Adjust dimensions as needed */
+  height: 200px; /* Adjust dimensions as needed */
+  background-color: #f0f0f0; /* Example background color */
+  clip-path: polygon(5.2% 19%, 94.8% 7.2%, 94.8% 52.2%, 94.6% 100%, 5.4% 100%);
+  border-radius: 50px; /* Round the corners */
+}
 
 .style-card {
-  clip-path: polygon(5.2% 19%, 94.8% 7.2%, 94.8% 52.2%, 94.6% 100%, 5.4% 100%);
   position: relative;
   bottom: 74px;
   background-color: white;
@@ -51,7 +57,7 @@ text-transform: uppercase;
   letter-spacing: -0.01em;
   text-align: center;
   color: #2C2240;
-  padding-bottom: 40px 40px 0px 40px;
+  padding: 80px 0 0 0;
 }
 /* security */
 .security-bg {
@@ -91,12 +97,14 @@ text-align: left;
 color: white;
 }
 .security-head{
-  font-size: 20px;
+  color:  #FFF;
+  /* REGULAR BODY */
+  font-size: 16px;
+  font-style: normal;
   font-weight: 600;
-  line-height: 24.38px;
-  letter-spacing: -0.01em;
-  text-align: left;
-  color: #F3F0FF;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: -0.32px;
+  margin-bottom: 5px;
 }
 .security-body{
   font-size: 14px;
@@ -152,4 +160,10 @@ color: #6B6B6B;
 .focus\:outline-blue-200:focus{
   background-color: white;
 }
-
+.swiper-pagination-bullet{
+  border-radius: 0px !important;
+}
+.swiper-pagination-bullet-active{
+  border-radius: 8px !important;
+  width: 43.5px !important;
+}

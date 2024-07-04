@@ -20,14 +20,13 @@ type Inputs = z.infer<typeof FormDataSchema>
 
 
 
-export default function Form() {
+export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
     const [previousStep, setPreviousStep] = useState(0)
     const [currentStep, setCurrentStep] = useState(0)
     const [showLoginForm, setShowLoginForm] = useState(true);
     const [showRegisterForm, setShowRegisterForm] = useState(true); // Start with registration form hidden
     const [close, setClose] = useState(true)
-    const [changeActiveColor, setChangeActiveColor] = useState(false)
-    console.log('changeActiveColor', changeActiveColor)
+
     const handleShowRegisterForm = (e: any) => {
         e.preventDefault();
         setShowLoginForm(false);
@@ -130,7 +129,11 @@ export default function Form() {
         appearance: 'none', // Hide default arrow in modern browsers
     };
 
-
+    const loginInputStyles: any = {
+        borderRadius: "4px",
+        background: " #FFF",
+        boxShadow: " 0px 4px 16px 0px rgba(0, 0, 0, 0.08)"
+    }
     const placeholderOptionStyles: any = {
         color: '#9D9D9D',
         fontSize: '5px',
@@ -144,9 +147,10 @@ export default function Form() {
     ];
     return (
         <>
-            <section style={{ maxHeight: changeActiveColor ? "830px" : "" }} className='max-w-[1279px] mx-auto'>
+            <section style={{ maxHeight: changeActiveColor ? "430px" : "" }} className='max-w-[1279px] mx-auto'>
+
                 {/* steps */}
-                <nav aria-label='Progress' className='relative left-6 z-[999]'>
+                <nav aria-label='Progress' className='relative left-6 z-[1]'>
                     <ol role='list' className='flex space-x-4 justify-center items-center mt-[133px] mx-[224px]'>
                         {/* //active */}
                         {steps.map((step, index) => (
@@ -435,7 +439,7 @@ export default function Form() {
                                                         <input
                                                             type="search"
                                                             id="default-search"
-                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
                                                             placeholder="Full Name*"
 
                                                         />
@@ -452,7 +456,7 @@ export default function Form() {
                                                             <input
                                                                 type="search"
                                                                 id="default-search"
-                                                                className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                                className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
                                                                 placeholder="Email Address *"
 
                                                             />
@@ -480,7 +484,7 @@ export default function Form() {
                                                         <input
                                                             type="search"
                                                             id="default-search"
-                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
                                                             placeholder="Company Name"
 
                                                         />
@@ -516,7 +520,7 @@ export default function Form() {
                                                             <input
                                                                 type="search"
                                                                 id="default-search"
-                                                                className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                                className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
                                                                 placeholder="Postal Code *"
 
                                                             />
@@ -530,7 +534,7 @@ export default function Form() {
                                                         <input
                                                             type="search"
                                                             id="default-search"
-                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
                                                             placeholder="Choose Event Location *"
 
                                                         />
@@ -545,7 +549,7 @@ export default function Form() {
                                                         <input
                                                             type="search"
                                                             id="default-search"
-                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
                                                             placeholder="Enter Address *"
 
                                                         />
@@ -562,8 +566,8 @@ export default function Form() {
                                                 </button>
 
                                                 {close ? <></> :
-                                                    <div style={{ height: showLoginForm ? "257px" : (showRegisterForm ? "430px" : "700px") }} className={`${styles.loginpopup}  w-40 right-0 h-40 z-10 absolute overflow-hidden`}>
-                                                        <span className='relative bottom-[21px]'>
+                                                    <div style={{ height: showLoginForm ? "257px" : (showRegisterForm ? "430px" : "765px") }} className={`${styles.loginpopup}  w-40 right-0 h-40 z-10 absolute overflow-hidden`}>
+                                                        <span className='relative bottom-[6px]'>
                                                             <Image width={98} height={98} src='/images/booking/6.svg' alt='step-1' />
                                                         </span>
 
@@ -574,6 +578,15 @@ export default function Form() {
                                                         >
                                                             <Image width={12} height={12} src='/images/booking/7.svg' alt='step-1' />
                                                         </button>
+                                                        {!showLoginForm && <button
+                                                            className="absolute top-[11px] left-[11px] text-gray-500  hover:text-gray-800 focus:outline-none"
+                                                            onClick={handleClose}
+                                                        >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="6" viewBox="0 0 42 6" fill="none">
+                                                                <path d="M0 3L5 5.88675L5 0.113249L0 3ZM41 3.5C41.2761 3.5 41.5 3.27615 41.5 3C41.5 2.72386 41.2761 2.5 41 2.5L41 3.5ZM4.5 3.5L41 3.5L41 2.5L4.5 2.5L4.5 3.5Z" fill="#6B6B6B" />
+                                                            </svg>
+                                                            <span className='text-[12px] relative bottom-1 text-[#6B6B6B] font-[400] leading-[24px] tracking-[-0.2px]'>back</span>
+                                                        </button>}
 
                                                         {/* Background section */}
                                                         <div style={{ height: showLoginForm ? "193px" : "300px", bottom: showLoginForm ? '-59.125px' : '-130.125px' }} className='login_backgorund w-[529px] h-[193px] absolute bottom-[-59.125px] z-1 rounded-[56%]'>
@@ -608,9 +621,10 @@ export default function Form() {
                                                                                         <Image width={14} height={14} src='/images/booking/8.svg' alt='step-1' />
                                                                                     </div>
                                                                                     <input
+                                                                                        style={loginInputStyles}
                                                                                         type="search"
                                                                                         id="default-search"
-                                                                                        className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                                                        className={`${styles.defaultsearch} mt-[12px]  shadow-lg py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200`}
                                                                                         placeholder="Email address"
 
                                                                                     />
@@ -622,9 +636,10 @@ export default function Form() {
 
                                                                                     </div>
                                                                                     <input
+                                                                                    style={loginInputStyles}
                                                                                         type="search"
                                                                                         id="default-search"
-                                                                                        className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                                                        className={`${styles.defaultsearch} mt-[12px]  shadow-lg py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200`}
                                                                                         placeholder="Password"
 
                                                                                     />
@@ -639,7 +654,7 @@ export default function Form() {
 
                                                                             </button>
                                                                         </div> :
-                                                                            <div className='relative bottom-[412px]'>
+                                                                            <div className='relative bottom-[468px]'>
                                                                                 <div className='flex justify-center items-center gap-[7px] mx-24 relative bottom-[-145px] flex-col'>
                                                                                     <h1 className={`${styles.registerpopup_head} bottom-[120px]`}>
                                                                                         Welcome Back
@@ -659,8 +674,9 @@ export default function Form() {
                                                                                         <input
                                                                                             type="search"
                                                                                             id="default-search"
-                                                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                                                            className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
                                                                                             placeholder="Full Name*"
+                                                                                            style={loginInputStyles}
 
                                                                                         />
 
@@ -679,9 +695,9 @@ export default function Form() {
                                                                                         <input
                                                                                             type="search"
                                                                                             id="default-search"
-                                                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                                                            className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
                                                                                             placeholder="Email address"
-
+                                                                                            style={loginInputStyles}
                                                                                         />
 
                                                                                     </div>
@@ -696,9 +712,9 @@ export default function Form() {
                                                                                         <input
                                                                                             type="search"
                                                                                             id="default-search"
-                                                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                                                            className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
                                                                                             placeholder="Company Name"
-
+                                                                                            style={loginInputStyles}
                                                                                         />
 
                                                                                     </div>
@@ -722,9 +738,9 @@ export default function Form() {
                                                                                         <input
                                                                                             type="search"
                                                                                             id="default-search"
-                                                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                                                                            className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
                                                                                             placeholder="Company Name"
-
+                                                                                            style={loginInputStyles}
                                                                                         />
 
                                                                                     </div>
@@ -736,8 +752,9 @@ export default function Form() {
                                                                                         <input
                                                                                             type="password"
                                                                                             id="default-search"
-                                                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px] pr-10`} // Adjusted paddingRight to accommodate the icon
+                                                                                            className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
                                                                                             placeholder="Password"
+                                                                                            style={loginInputStyles}
                                                                                         />
                                                                                         <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
                                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
@@ -753,8 +770,9 @@ export default function Form() {
                                                                                         <input
                                                                                             type="password"
                                                                                             id="default-search"
-                                                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px] bg-[#FFFFFF] border-[#EFEFEF] py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px] pr-10`} // Adjusted paddingRight to accommodate the icon
+                                                                                            className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
                                                                                             placeholder="Confirm Password"
+                                                                                            style={loginInputStyles}
                                                                                         />
                                                                                         <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
                                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
@@ -772,6 +790,10 @@ export default function Form() {
                                                                                     </span>
 
                                                                                 </button>
+                                                                                <div className='flex justify-center items-center gap-2'>
+                                                                                    <p className='text-[#494848] text-[14px] fonr-[400] leading-[24px] tracking-[-0.28px]'>Already have an account? </p>
+                                                                                    <h1 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]'>Login</h1>
+                                                                                </div>
                                                                             </div>
                                                                     }
                                                                 </div>
@@ -941,10 +963,14 @@ export default function Form() {
 
                     {currentStep === 2 && (
                         <>
-                            <div>
+                            <motion.div
+                                initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            >
                                 <main className="h-screen flex flex-col justify-start items-center">
-                                    <div style={{ zIndex: '-1' }} className="absolute top-[0] left-[-80px] text-black">
-                                        <svg width="608" height="576" viewBox="0 0 608 576" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <div style={{ zIndex: '-1' }} className="absolute top-[-266px] left-[-221px] text-black">
+                                        <svg width="708" height="676" viewBox="0 0 608 576" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g opacity="0.2" filter="url(#filter0_f_944_2074)">
                                                 <circle cx="304" cy="272" r="104" fill="navy" />
                                             </g>
@@ -958,9 +984,8 @@ export default function Form() {
                                         </svg>
 
                                     </div>
-                                    <Image layout="intrinsic" src="../background.svg" height={0} width={100} alt="Background" className="w-full absolute h-[100vh] bottom-[-268px]" style={{ height: '100vh' }} />
                                     {/* Add your content here */}
-                                    <div className="absolute flex items-start gap-[146px] justify-center text-white max-w-[1279px] mx-auto w-full h-auto ml-[47px]">
+                                    <div className="absolute flex items-start justify-center text-white max-w-[1279px] mx-auto w-full h-auto ">
                                         <div style={{ width: "50%" }} className='h-full'>
                                             <section>
                                                 <div>
@@ -1000,7 +1025,7 @@ export default function Form() {
                                                 </svg>
 
                                             </div>
-                                            <div className='bg-[#FFFFFF] h-[110px] rounded-[8px] max-w-[460px] m-auto' style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)' }}>
+                                            <div  className='bg-[#FFFFFF] h-[110px] rounded-[8px] max-w-[460px] m-auto' style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)',marginRight:'0' }}>
                                                 <div className='flex justify-between  items-start pb-[29px] px-[41.5px] pt-[17px] m-auto'>
                                                     <div>
                                                         <h1 className={`${montserrat.className} text-[40px] leading-[48.76px] tracking-[-2%] text-[#000000] font-[700]`}>$260.00</h1>
@@ -1123,10 +1148,11 @@ export default function Form() {
                                                 </svg>
 
                                             </div>
+
                                         </div>
                                     </div>
                                 </main>
-                            </div>
+                            </motion.div>
                         </>
                     )}
                 </form>

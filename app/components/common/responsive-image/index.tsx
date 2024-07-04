@@ -28,7 +28,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({ src, alt }) => {
     }, []);
 
     return (
-        <div id="image-container" className="w-full">
+        <div id="image-container" className="w-[112%]">
             <Image
                 src={src}
                 alt={alt}

@@ -9,10 +9,10 @@ const montserrat = Montserrat({
 const AccordionItem: React.FC<{ index: number, title: string, content: JSX.Element, isOpen: boolean, onClick: () => void }> = ({ title, content, isOpen, onClick }) => {
   return (
     <div >
-      <h6 className="mb-4 2xl:mb-6" >
+      <h6>
         <button
         style={{ background: isOpen ? '#2C2240' : undefined, color: isOpen ? '#F3F0FF' : undefined }}
-          className={`relative flex items-center w-full py-3 2xl:py-6 rounded-md px-4 text-left bg-[#FFFFFF] transition-all ease-in cursor-pointer text-[#2C2240] group ${isOpen ? ' text-[#F3F0FF] rounded-md m-0 rounded-0 relative bottom-[-12px]' : 'accordian-style'}`}
+          className={`relative flex items-center w-full py-3 2xl:py-6 rounded-tl-lg rounded-tr-lg px-4 text-left bg-[#FFFFFF] transition-all ease-in cursor-pointer text-[#2C2240] group ${isOpen ? ' text-[#F3F0FF]  m-0  relative bottom-[-12px]' : 'accordian-style rounded-md'}`}
           onClick={onClick}
         >
           <span className={`${montserrat.className} leading-[150%] text-[18px] font-medium px-3`}>{title}</span>
@@ -34,7 +34,7 @@ const AccordionItem: React.FC<{ index: number, title: string, content: JSX.Eleme
           )}
         </button>
       </h6>
-      <div className={`${isOpen ? 'block rounded-lg mb-4 bg-[#FFFFFF]' : 'h-0'} overflow-hidden transition-all duration-300 ease-in-out`}>
+      <div className={`${isOpen ? 'block rounded-bl-lg rounded-br-lg mb-4 bg-[#FFFFFF]' : 'h-0'} overflow-hidden transition-all duration-300 ease-in-out`}>
         <div className="p-4 text-[14px] text-[#6B6B6B] leading-[24px] tracking-[-2%] font-normal ">
           {content}
         </div>

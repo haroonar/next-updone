@@ -1,18 +1,16 @@
 'use client'
+import { Montserrat } from 'next/font/google';
 import React from 'react';
 import Marquee from 'react-fast-marquee';
-
+const montserrat = Montserrat({
+    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+    subsets: ["latin"]
+});
 function GalleryContent() {
     return (
         <div style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
             <div className="text-center md:pt-[60px] 2xl:pt-[40px]">
-                <h2 className="text-4xl tracking-tight font-bold text-primary-800 uppercase"><strong className='text-[#4831b6]'>Events</strong> Gallery</h2>
-                <p style={{display:'ruby',color:'#E77307'}} className='relative top-[12px]'><span className='mr-2'><svg width="118" height="2" viewBox="0 0 118 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.5 1H116.5" stroke="#E77307" stroke-width="2" stroke-linecap="round" />
-                </svg>
-                </span> 
-                View More Events
-                </p>
+                <h2 className={`${montserrat.className} leading-normal uppercase text-[60px] text-[#000] font-[700]`}><span className={`${montserrat.className} leading-normal uppercase text-[60px] text-[#350ABC] font-[900]`} >Events</span> Gallery</h2>
             </div>
 
             <Marquee direction="left" speed={50} gradient={false} play={true}>
@@ -44,7 +42,7 @@ function GalleryContent() {
                         </div>
                     </div>
                 </div>
-                <div className="max-w-screen-xl mx-auto py-8 lg:py-16 ">
+                <div className="max-w-screen-xl mx-auto py-8  ">
                     <div className="flex flex-col md:flex-row">
                         {/* Image 1 */}
                         <div className="flex flex-col w-full md:w-1/3">
@@ -72,7 +70,7 @@ function GalleryContent() {
                         </div>
                     </div>
                 </div>
-                <div className="max-w-screen-xl mx-auto py-8 lg:py-16">
+                <div className="max-w-screen-xl mx-auto py-8 ">
                     <div className="flex flex-col md:flex-row">
                         {/* Image 1 */}
                         <div className="flex flex-col w-full md:w-1/3">
@@ -100,7 +98,7 @@ function GalleryContent() {
                         </div>
                     </div>
                 </div>
-                <div className="max-w-screen-xl mx-auto py-8 lg:py-16">
+                <div className="max-w-screen-xl mx-auto py-8 ">
                     <div className="flex flex-col md:flex-row">
                         {/* Image 1 */}
                         <div className="flex flex-col w-full md:w-1/3">

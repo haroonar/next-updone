@@ -5,10 +5,9 @@ export const heroFilters:any = {
   position: 'relative',
   top: '0px',
   left: '6.5px',
-  width: '79.8%',
+  width: '89.4%',
   height: '77px',
-  backgroundColor: '#ffffff',
-  borderStyle: 'solid',
-  borderColor: '#464646',
-  border: '0.6px solid #464646'
+  backgroundColor: "white",
+  boxShadow: "rgba(0, 0, 0, 0.08) 0px -7px 30px 10px",
+  padding:'11px'
 };

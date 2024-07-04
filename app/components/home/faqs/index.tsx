@@ -23,15 +23,15 @@ const Accordion: React.FC = () => {
       }}
       className="relative bg-[#F9F9F9] py-[100px] flex justify-center items-center"
     >
-      <div className="flex flex-col justify-center mx-40 items-center gap-8 lg:flex-row max-lg:max-w-2xl max-w-full">
+      <div className="flex flex-col justify-center max-w-[1279px] items-center gap-8 lg:flex-row  m-auto">
         <div>
           <h1 className="2xl:faq-head md:text-[34px] 2xl:text-[45px] mb-4 font-[600] md:leading-[40.64px] 2xl:leading-[44.64px]">
             Frequently Asked Questions
           </h1>
           <p className="faq-body">Have question? We’re here to help</p>
         </div>
-        <div className="w-full">
-          <div className="accordion-group" data-accordion="default-accordion">
+        <div className="w-full space-y-2">
+          <div className="accordion-group space-y-[20px]" data-accordion="default-accordion">
             {ACCORDIAN_DATA.map((item, index) => (
               <AccordionItem
                 key={index}

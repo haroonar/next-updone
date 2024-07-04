@@ -19,16 +19,23 @@ const HOME_TESTIMONINAL_CONTENT = [
     },
     {
         avatarSrc: "https://pagedone.io/asset/uploads/1696229994.png",
-        name: "David Kim",
+        name: "Alexia Bennington",
         role: "",
-        content: "Updone has consistently provided us with reliable event planners and support staff. Their ability to meet our demanding needs quickly is why we keep coming back."
+        content: "Updone nails event staffing with wide range of talent and also understands my needs. Flawless execution."
     },
     {
         avatarSrc: "https://pagedone.io/asset/uploads/1696229994.png",
-        name: "Maria Gonzalez",
+        name: "Michael Lawson",
         role: "",
-        content: "UpDone’s responsiveness and the caliber of their personnel have made them invaluable in executing flawless events. They understand the nuances of event staffing."
+        content: "Finding good bar staff? Updone! Reliable, talented and stress-free!"
     },
+    {
+        avatarSrc: "https://pagedone.io/asset/uploads/1696229994.png",
+        name: "Katherine Lee",
+        role: "",
+        content: "Updone's bartenders saved my event! Pro, efficient and guests loved them. 5 stars!"
+    },
+
 ];
 export default HOME_TESTIMONINAL_CONTENT;
 
