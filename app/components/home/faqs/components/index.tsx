@@ -35,7 +35,7 @@ const AccordionItem: React.FC<{ index: number, title: string, content: JSX.Eleme
         </button>
       </h6>
       <div className={`${isOpen ? 'block rounded-bl-lg rounded-br-lg mb-4 bg-[#FFFFFF]' : 'h-0'} overflow-hidden transition-all duration-300 ease-in-out`}>
-        <div className="p-4 text-[14px] text-[#6B6B6B] leading-[24px] tracking-[-2%] font-normal ">
+        <div className="p-4 text-[14px] text-[#6B6B6B] leading-[24px] tracking-[-2%] font-normal mt-[16px] ">
           {content}
         </div>
       </div>

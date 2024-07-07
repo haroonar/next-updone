@@ -25,7 +25,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, content, avatar
   return (
     <>
       {isDetailTestonial ?
-           <div className={`testiminial_styles h-[248px] text-center justify-center items-center relative overflow-hidden  group p-6 flex gap-4 flex-col transition-all duration-500 container`}>
+           <div className={`testiminial_styles h-[248px] text-center justify-center items-center relative overflow-hidden  group py-6 flex gap-4 flex-col transition-all duration-500 container`}>
           
  
            {/* Content */}
@@ -99,7 +99,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, isDetailTesto
       loop: true,
       centeredSlides: true,
       autoplay: {
-        delay: 2500,
+        delay: 500000,
         disableOnInteraction: false,
       },
       pagination: {
@@ -127,16 +127,17 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, isDetailTesto
   return (
     <>
       {isDetailTestonial ?
-            <section className='mb-[72px] relative bottom-[40px]'> 
+            <section> 
 
             {/* Testimonials Slider */}
                      {/* Testimonials heading and description */}
           <div>
-            <h1 className={`${montserrat.className} mt-[129px] text-center font-semibold text-[#000000] text-[32px] tracking-[-1%] mb-[33px]`}>Testimonials</h1>
+            <h1 className={`${montserrat.className} mt-[110px] text-center font-semibold text-[#000000] text-[32px] tracking-[-1%] mb-[140px]`}>Testimonials</h1>
           </div>
 
-            <div >
-              <div className="mx-auto mb-14 flex justify-center items-center">
+           <div className='px-[100px] pb-[87px] bg-[#F3F0FF] relative top-[12px] w-[90%] m-auto'>
+           <div  className='relative bottom-[85px]'>
+              <div className="mx-auto flex justify-center items-center">
                 <div className="px-[30px] swiper mySwiper">
                   <div className="swiper-wrapper w-max">
                     {testimonials?.map((testimonial, index) => (
@@ -155,9 +156,10 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, isDetailTesto
                 </div>
               </div>
             </div>
+           </div>
   
             {/* Pagination outside Testimonials Slider */}
-            <div className="swiper-pagination absolute top-4 left-0 right-0 flex justify-center z-10 mt-[41]"></div>
+            <div className="swiper-pagination absolute top-4 left-0 right-0 flex justify-center z-10 " style={{bottom:'100px'}}></div>
           </section> :
       <section className="relative py-[100px]">
       <div  className="absolute top-[0px]  z-[999] right-0">

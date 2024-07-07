@@ -23,7 +23,7 @@ const StaffMap = ({ staff, handleStaffClick }: StaffMapProps) => {
                 height={120}
                 alt=''
             />
-            <div key={staff.id} className="p-3 pb-0 h-[430px] max-w-full mx-auto rounded-lg overflow-hidden shadow-whiteeee z-10 bg-white border-2 border-[#f4f4f4]">
+            <div key={staff.id} className="p-3 pb-0 h-[430px] max-w-full mx-auto rounded-lg overflow-hidden shadow-whiteeee z-10 bg-white border-[1px] border-[#E9E9E9]">
                 <div className='text-center relative top-[20px] left-[73px] bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] px-[22px]'>
                     <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_481_590)">
@@ -80,7 +80,7 @@ const StaffMap = ({ staff, handleStaffClick }: StaffMapProps) => {
                                         </defs>
                                     </svg>
                                 </span>
-                                Last job was a bartander, 25th June
+                                Last job was a bartender, 25th June
                             </p>
 
                         </div>

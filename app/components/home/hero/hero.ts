@@ -8,6 +8,6 @@ export const heroFilters:any = {
   width: '79.9%',
   height: '77px',
   backgroundColor: "white",
-  boxShadow: "rgba(0, 0, 0, 0.08) 0px -7px 30px 10px",
+  boxShadow: "rgba(0, 0, 0, 0.08) 0px -7px 30px 20px",
   padding:'11px'
 };

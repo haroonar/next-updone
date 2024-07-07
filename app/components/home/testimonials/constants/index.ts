@@ -3,7 +3,7 @@ const HOME_TESTIMONINAL_CONTENT = [
         avatarSrc: "https://pagedone.io/asset/uploads/1696229969.png",
         name: "Rebecca Moore ",
         role: "",
-        content: "For our large-scale events, Updone's bartanders and waitstaff have been top-notch. They understand service and presentation, making every event smooth and professional."
+        content: "For our large-scale events, Updone's bartenders and waitstaff have been top-notch. They understand service and presentation, making every event smooth and professional."
     },
     {
         avatarSrc: "https://pagedone.io/asset/uploads/1696229994.png",

@@ -33,7 +33,7 @@ const Services = () => {
                                     <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
                                         <Image
                                             src="/images/services/bartander.jpg"
-                                            alt="Bartander"
+                                            alt="Bartender"
                                             width={400} // Adjusted width
                                             height={240} // Adjusted height
                                             className=' shadow-stone-300'

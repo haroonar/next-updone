@@ -27,7 +27,7 @@
       content: (
         <>
           <p>
-            Need last-minute event staff? Updone's your hero! Their pre-vetted network of bartanders, waiters, servers, and promo models lets them find qualified candidates fast.
+            Need last-minute event staff? Updone's your hero! Their pre-vetted network of bartenders, waiters, servers, and promo models lets them find qualified candidates fast.
           </p>
           <br />
           <p>
@@ -41,7 +41,7 @@
       content: (
         <>
           <p>
-            Updone takes the stress out of event staffing, even for last-minute needs! Their secret weapon? A pre-vetted network of bartanders, waiters, servers, and promo models, ready to jump in and make your event a success.
+            Updone takes the stress out of event staffing, even for last-minute needs! Their secret weapon? A pre-vetted network of bartenders, waiters, servers, and promo models, ready to jump in and make your event a success.
           </p>
           <br />
           <p>

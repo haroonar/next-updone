@@ -110,7 +110,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
 
         }
     ]
-    const selectStyles: any = {
+    const selectStyles: { [key: string]: string } = {
         border: '1px solid #EFEFEF',
         marginTop: '12px',
         padding: '14px',
@@ -129,15 +129,16 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
         appearance: 'none', // Hide default arrow in modern browsers
     };
 
-    const loginInputStyles: any = {
+    const loginInputStyles: { [key: string]: string } = {
         borderRadius: "4px",
         background: " #FFF",
         boxShadow: " 0px 4px 16px 0px rgba(0, 0, 0, 0.08)"
     }
-    const placeholderOptionStyles: any = {
+    const placeholderOptionStyles: { [key: string]: string } = {
         color: '#9D9D9D',
         fontSize: '5px',
     };
+    
 
     const countryOptions = [
         { value: '', label: 'City', disabled: true },
@@ -994,7 +995,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                 <div>
                                                     <h1 className={`${montserrat.className} font-[700] text-[54px] leading-[65.83px] translate-[-2%] text-[#000000] text-start mt-[16px]`}>Booking Confirmed Successfully!</h1>
                                                     <p className={`font-[400] text-[20px] leading-[36px] translate-[-2%] text-[#6B6B6B] text-start mt-[32px]`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum sed arcu non odio. Posuere soll.</p>
-                                                    <Link href='/' className="text-[#dfdbec] bg-[#350ABC] mt-[42px]  rounded-[4px] text-[14px] font-normal px-[24px] h-[48px] py-[16px] text-center inline-flex items-center  me-2 ">
+                                                    <Link href='/' className="text-[#dfdbec] bg-[#350ABC] mt-[42px]  rounded-[4px] text-[14px] font-normal px-[55px] h-[48px] py-[14px] text-center inline-flex items-center ">
                                                         <span className='mr-2'>
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M12.666 8H3.33268" stroke="#F3F0FF" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />

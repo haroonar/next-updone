@@ -3,21 +3,26 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 
 function HowWork() {
-    const [hoveredCard, setHoveredCard] = useState(1);
+    const [selectedCard, setSelectedCard] = useState(1); // State to track selected card
 
     const cards = [
-        { id: 1, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '1. Pick a service', image: '/step1.png' },
-        { id: 2, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '2. Choose a worker', image: '/step2.png' },
-        { id: 3, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '3. Check availability', image: '/step3.png' },
-        { id: 4, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '4. Book for an event', image: '/step4.png' },
+        { id: 1, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: `1.  Pick a service`, image: '/step1.png' },
+        { id: 2, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '2.  Choose a worker', image: '/step2.png' },
+        { id: 3, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '3.  Check availability', image: '/step3.png' },
+        { id: 4, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '4.  Book for an event', image: '/step4.png' },
     ];
 
+    const handleCardSelect = (cardId:any) => {
+        setSelectedCard(cardId === selectedCard ? 0 : cardId); // Toggle selection
+    };
+
     return (
-        <div className="relative h-screen pb-[100px]" style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)" }}>
+       <div style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)" }}>
+            <h1 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[100px] pb-[25px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h1>
+        <div className="relative min-h-screen max-h-screen" >
             {/* Background blur */}
             <div className="absolute inset-0 blur-5xl"></div>
 
-            {/* Random colored circles with blur */}
             <div className="absolute inset-0 flex justify-end items-center space-x-4 space-y-4 blur-5xl">
                 <div className="absolute left-[937px] top-[172px] w-32 h-32 bg-[#FFACC5] rounded-full"></div>
                 <div className="absolute right-[238px] top-[404px] w-32 h-32 bg-[#FFFCAC] rounded-full"></div>
@@ -25,44 +30,48 @@ function HowWork() {
             </div>
 
             {/* Centered text */}
-            <h1 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[60px] pb-[67px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h1>
             <div className="absolute top-0 left-0 right-0 flex justify-center">
                 <div className="relative h-screen flex flex-col md:flex-row w-full max-w-[1279px] top-[60px]">
-                    <div className="w-full md:w-[54%] flex flex-col items-center justify-center space-y-4">
+                    <div className="w-full md:w-[54%] flex flex-col items-start justify-start space-y-4">
                         {cards.map((card) => (
                             <div
                                 key={card.id}
-                                className={`px-3 py-2  transition ease-in delay-150 hover:-translate-y-1 hover:scale-110  duration-150 ${hoveredCard === card.id ? 'bg-[#e9e5fb] border-[1px] shadow-xl border-[#7152d1]' : ''} rounded-lg w-3/4 text-start cursor-pointer`}
-                                onMouseEnter={() => setHoveredCard(card.id)}
-                                onMouseLeave={() => setHoveredCard(1)}
+                                style={{margin:'0px'}}
+                                className={`pl-[36px] py-2 transition ease-in   ${selectedCard===card.id ? 'border-l-[6px]  border-[#350ABC]':'border-l-[6px]  border-[#e1dfea]'} ${selectedCard === card.id ? '' : ''}  w-3/4 text-start cursor-pointer`}
+                                onClick={() => handleCardSelect(card.id)}
                             >
-                                <h1 className={`${hoveredCard === card.id ? 'text-[#3E2392] font-[600] text-[22px]' : 'text-[#6B6B6B] font-[600] text-[20px]'}`}>{card.text}</h1>
-                                <p className='text-[14px] ml-[21px] text-[#6B6B6B]'>{hoveredCard === card.id ? card.dec : ""}</p>
+                                <h1 className={`tracking-[-0.48px] leading-normal font-[500] text-[24px] montserrat-font ${selectedCard === card.id ? 'text-[#3E2392]' : 'text-[#2C2240]'}`}>{card.text}</h1>
+                                <p className='text-[16px] leading-[26px] font-[400] translate-[-0.32px] ml-[26px] text-[#6B6B6B] mb-4 w-[120%]'>{ card.dec}</p>
                             </div>
                         ))}
+                        <div  className='text-start  text-[#2C2240] m-0 text-[14.545px] font-[700] tracking-[-0.291px] leading-[ 23.636px] mt-[18px]' style={{transform: "rotate(91deg)",
+    position: "relative",
+    right: "256px",margin:'0'}}>
+                        </div>
+                           <span style={{transform: "rotate(91deg)"}} className='relative right-1.5'>0{selectedCard}</span> <span style={{margin:'0'}} className='m-0 '><svg className='relative right-1.5 my-1' width="17" height="6" viewBox="0 0 17 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.7018 5.70169L0.527273 1.71623L0.527273 0.407139L16.7018 4.37805L16.7018 5.70169Z" fill="#6B6B6B"/>
+</svg>
+</span> <span style={{margin:'0',transform: "rotate(91deg)"}} className='m-0 relative right-1.5 text-start text-[#6B6B6B] text-[14.545px] font-[500] tracking-[-0.291px] leading-[ 23.636px]'>04</span>
                     </div>
 
-                    <div className="w-full md:w-[46%] flex items-center justify-center relative right-20">
-                        {cards.map((card) => (
-                            <div
-                                key={card.id}
-                                className={`absolute  transition ease-in delay-150 hover:-translate-y-1 hover:scale-110  duration-150  ${hoveredCard === card.id ? 'opacity-100' : 'opacity-0'}`}
-                                style={{ margin: '1rem' }} // Adjust margin here
-                            >
+                    <div className="w-full md:w-[46%] flex items-start justify-start">
+                        {selectedCard > 0 && ( // Render image only if a card is selected
+                            <div className="absolute transition ease-in delay-150 -translate-y-1 scale-110 duration-150 opacity-100">
                                 <Image
-                                    src={card.image}
-                                    alt={card.text}
-                                    width={1500}
-                                    height={1500}
+                                    src={cards[selectedCard - 1].image} // Adjust index because array index starts from 0
+                                    alt={cards[selectedCard - 1].text} // Adjust index because array index starts from 0
+                                    width={2000}
+                                    height={2000}
                                     className='rounded-lg shadow-stone-300'
                                     layout="responsive"
                                 />
                             </div>
-                        ))}
+                        )}
                     </div>
                 </div>
             </div>
         </div>
+       </div>
     );
 }
 

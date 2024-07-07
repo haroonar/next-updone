@@ -8,6 +8,11 @@ type StaffFiltersProps = {
     handleLocationChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
     scrollY: number;
 }
+const svgStyle = {
+    top: `-${scrollY}px`,
+    transition: 'top 0.3s ease-out',
+    transform:"rotate(0.2deg)"
+  };
 const StaffFilters = ({ handleTimeChange, handleLocationChange, scrollY }: StaffFiltersProps) => {
     return (
         <div className='w-full h-40 flex justify-center items-start'>
@@ -24,7 +29,7 @@ const StaffFilters = ({ handleTimeChange, handleLocationChange, scrollY }: Staff
                         <button className="bg-[#2C2240] text-[14px] font-normal text-[#F3F0FF] px-[20px] py-[6px] rounded-md">Bar Back</button>
                         <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Event Helper</button>
                         <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Waiter</button>
-                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Bartander</button>
+                        <button className="bg-[#F9F8FF] text-[14px] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Bartender</button>
                     </div>
                     <div style={{ ...HERO_FILTER_STAFF }} className="flex space-x-3 w-full p-1 text-black justify-center items-center text-center">
                         <div style={{ width: '28%' }} className="text-start space-y-2">

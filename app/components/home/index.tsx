@@ -1,6 +1,9 @@
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-const LazyHero = dynamic(() => import('./hero'), { ssr: false });
+import Loader from '../ui/loader';
+const LazyHero = dynamic(() => import('./hero'), { ssr: false,
+  loading: () => <Loader />, // Display loader while loading
+ });
 const LazyServices = dynamic(() => import('./services'), { ssr: false });
 const LazyOurSponsors = dynamic(() => import('./sponsors'), { ssr: false });
 const LazyHowWork = dynamic(() => import('./how-work'), { ssr: false });
@@ -9,7 +12,6 @@ const LazyGalleryContent = dynamic(() => import('./gallery'), { ssr: false });
 const LazyTestimonials = dynamic(() => import('./testimonials'), { ssr: false });
 const LazyAccordion = dynamic(() => import('./faqs'), { ssr: false });
 import HOME_TESTIMONINAL_CONTENT from './testimonials/constants';
-import Loader from '../ui/loader';
 
 const Home = () => {
   return (

@@ -12,7 +12,7 @@ const StaffHistory = () => {
         <div className='flex gap-2 justify-start items-center mb-6'>
             <div className={`${montserrat.className} text-[24px] font-semibold translate-[-1%] text-[#2C2240]`}>Work History</div>
             <div className='mt-[6px]'>
-                <h1 className='text-[#9B9B9B] text-[12px] font-normal translate-[-2%] leading-[26px] relative top-2'>(60 jobs)</h1>
+                <h1 className='text-[#9B9B9B] text-[12px] font-normal translate-[-2%] leading-[26px] relative'>(60 jobs)</h1>
             </div>
         </div>
 

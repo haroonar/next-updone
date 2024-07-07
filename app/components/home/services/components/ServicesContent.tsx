@@ -13,13 +13,18 @@ const ServicesContent = ({name,description,serviceSrc}:any) => {
             <div className='flex justify-between items-start h-full gap-4 flex-col'>
                 <div className='w-[80%] relative bottom-[266px] left-[64px]'>
                     <div className='flex justify-end items-end w-full relative right-[-15px] bottom-[-12px]'>
-                    <Image src={serviceSrc}  alt="service" width={name==="Barbacks"?46:36} height={36} />
+                    <Image src={serviceSrc}  alt="service" width={name==="Barbacks"?42:36} height={36} />
                     </div>
                     <h1 className={`${montserrat.className} text-[24px] font-[600] leading-normal translate-[-0.24px] text-[#000000]`}>{name}</h1>
                     <p className='text-[#6B6B6B] text-[16px] bold-[400] leading-[26px] translate-[-0.32px]'>{description}</p>
                 </div>
                <div>
-               <Link href={'/staff'} style={{marginTop:name==="Bartenders"?"25.5px":name==="Promo Models"?"25.5px":''}} className='text-[14px] font-[500] text-[#2C2240] leading-[24px] tracking-[-0.28px] flex justify-start relative left-[4.25rem] gap-2 items-center w-full bottom-[252px]'>
+               <Link href={'/staff'} style={{
+  marginTop: name === "Bartenders" || name === "Promo Models" ? "25.5px" : "",
+  bottom:name === "Barbacks" ? "260px" : "252px"
+}}
+className={`text-[14px] font-semibold text-[#2C2240] leading-[24px] tracking-[-0.28px] flex justify-start relative left-[4.25rem] gap-2 items-center w-full`}
+>
                     Book Now
                     <span>
                         <svg width="35" height="8" viewBox="0 0 35 8" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -47,7 +47,8 @@ const StaffListing = () => {
 
   const svgStyle = {
     top: `-${scrollY}px`,
-    transition: 'top 0.2s ease-out',
+    transition: 'top 0.3s ease-out',
+    transform:"rotate(0.3deg)"
   };
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const StaffListing = () => {
   }, []);
   return (
     <>
-      <div className="fixed z-[-1] left-0" style={svgStyle}>
+      <div  className="fixed z-[-1] left-0" style={svgStyle}>
         <svg width="100vw" height="472" viewBox="0 0 1915 472" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1915 0H-3V472C705.5 136 1709.95 342.138 1915 472V0Z" fill="#F3F0FF" />
         </svg>
