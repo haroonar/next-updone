@@ -206,7 +206,7 @@ const StaffDetail = () => {
                                 </span>
                                 <div style={{ letterSpacing: '-2%' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
                                     {`ID`}
-                                    <Image width={77} height={12} alt='verified' src='/images/staff-listing/not-verfied.svg' />
+                                    <Image width={82} height={16} alt='verified' src='/images/staff-listing/not-verfied.svg' />
 
                                 </div>
 
@@ -235,7 +235,7 @@ const StaffDetail = () => {
                             <h1 className='font-[500] leading-[19.93px] tracking-[0.316px] text-[16.608px] text-[#000000]'>
                                 Choose Service
                             </h1>
-                            <div className='space-y-[20px] py-[28px] capitalize'>
+                            <div className='space-y-[20px] pb-[28px] pt-[20px] capitalize'>
                                 {services.map((service) => {
                                     const isSelected = service.id === selectedServiceId;
                                     return (
@@ -279,9 +279,9 @@ const StaffDetail = () => {
                             </div>
                             {highlightedDatesAvailable.includes(date.toISOString().split('T')[0]) && (
                                 <div className='w-[12rem] h-full'>
-                                    <div >
+                                    <div  className='relative bottom-[50px]'>
                                         <h2 className="invisible absolute">Sarah's Availability</h2>
-                                        <div className='absolute right-[683px]' style={{ width: '12%' }}>
+                                        <div className='relative right-[64px] top-[2.4rem]'>
                                             <svg height="40" width='260' viewBox="0 0 148 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="260" height="70" transform="matrix(1 0 0 -1 0 40)" fill="url(#paint0_linear_483_1294)" />
                                                 <rect width="260" height="70" transform="matrix(1 0 0 -1 0 40)" fill="url(#paint1_linear_483_1294)" />
@@ -300,7 +300,7 @@ const StaffDetail = () => {
                                         </div>
                                         <div
                                             ref={scrollRef}
-                                            style={{ height: '335px', overflow: 'auto' }}
+                                            style={{ height: '363px', overflow: 'auto' }}
                                             className='time-scroll space-y-2'
                                         >
                                             {availableTimesMap[date.toISOString().split('T')[0]]?.map((timeObj) => (
@@ -329,7 +329,7 @@ const StaffDetail = () => {
                                                 </div>
                                             ))}
                                         </div>
-                                        <div className='absolute bottom-[130px]' >
+                                        <div  className='relative bottom-[60px]'>
                                             <svg width="210" height="70" viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="210" height="70" fill="url(#paint0_linear_1041_2726)" />
                                                 <rect width="210" height="70" fill="url(#paint1_linear_1041_2726)" />
@@ -365,7 +365,7 @@ const StaffDetail = () => {
                                     </div>
                                     <button
                                         onClick={handleAddToBooking}
-                                        className='text-[#350ABC] relative mt-[21px] bottom-[15px] text-sm flex justify-center items-center w-full py-[8px] px-[16px] border border-[#DED6FF] bg-[#F3F0FF] rounded-[4px] h-[40px]'
+                                        className='text-[#350ABC] relative bottom-[105px] text-sm flex justify-center items-center w-full py-[8px] px-[16px] border border-[#DED6FF] bg-[#F3F0FF] rounded-[4px] h-[40px]'
                                     >
                                         <span className='text-lg mr-2'>+</span> Add to Booking
                                     </button>
@@ -384,7 +384,7 @@ const StaffDetail = () => {
                                                         <Image width={14} height={14} color='red' src='/images/detail/calnder.svg' alt='calander' />
                                                         <h1 className='tracking-[-0.214px] leading-[21.416px]  font-[400] text-[10.708px] text-[#2C2240]'>{time.date}</h1>
                                                     </div>
-                                                    <div className='flex items-center gap-[45px] tracking-[-0.25px] leading-[21.416px]  font-[400] text-[12.493px] text-[#848486]'>
+                                                    <div className='ml-[105px] justify-between flex items-center gap-[45px] tracking-[-0.25px] leading-[21.416px]  font-[400] text-[12.493px] text-[#848486]'>
                                                         <div className='flex flex-col'>
                                                             {time.times.map((singleTime, index) => (
                                                                 <div key={index} className='flex items-center gap-1 justify-center'>
@@ -434,10 +434,10 @@ const StaffDetail = () => {
                                                 Worker Fee Per Hour
                                             </div>
                                             <div className='text-[#2C2240] text-base font-normal tracking-wide leading-6'>
-                                                <span className=' text-[#C2C2C2] text-[14px] font-normal leading-4 mr-[1.9px]'>5</span>
-                                                <span className='text-[12px] text-[#C2C2C2] font-normal leading-4 mr-1'>Days</span>
-                                                <span className=' text-[#C2C2C2] text-[14px] font-normal leading-4 mr-[1.9px]'>9</span>
-                                                <span className='text-[12px] text-[#C2C2C2] font-normal leading-4 mr-2'>hours</span>
+                                                <span className=' text-[#C2C2C2] text-[11px] font-normal leading-4 mr-[1.9px]'>5</span>
+                                                <span className='text-[8px] text-[#C2C2C2] font-normal leading-4 mr-1'>Days</span>
+                                                <span className=' text-[#C2C2C2] text-[11px] font-normal leading-4 mr-[1.9px]'>9</span>
+                                                <span className='text-[8px] text-[#C2C2C2] font-normal leading-4 mr-2'>hours</span>
                                                 <span className='text-[#2C2240] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>54h</span>
                                             </div>
 
@@ -451,10 +451,10 @@ const StaffDetail = () => {
                                                 </div>
                                                 <div className='text-[#2C2240] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>
                                                 <div className='text-[#2C2240] text-base font-normal tracking-wide leading-6'>
-                                                <span className=' text-[#C2C2C2] text-[14px] font-normal leading-4 mr-[1.9px]'>5</span>
-                                                <span className='text-[12px] text-[#C2C2C2] font-normal leading-4 mr-1'>Days</span>
-                                                <span className=' text-[#C2C2C2] text-[14px] font-normal leading-4 mr-[1.9px]'>9</span>
-                                                <span className='text-[12px] text-[#C2C2C2] font-normal leading-4 mr-2'>hours</span>
+                                                <span className=' text-[#C2C2C2] text-[11px] font-normal leading-4 mr-[1.9px]'>5</span>
+                                                <span className='text-[8px] text-[#C2C2C2] font-normal leading-4 mr-1'>Days</span>
+                                                <span className=' text-[#C2C2C2] text-[11px] font-normal leading-4 mr-[1.9px]'>9</span>
+                                                <span className='text-[8px] text-[#C2C2C2] font-normal leading-4 mr-2'>hours</span>
                                                 <span className='text-[#2C2240] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>40$</span>
                                             </div>
                                                 </div>
@@ -474,7 +474,7 @@ const StaffDetail = () => {
                                     <h6 className={`${montserrat.className} tracking-[-0.2px] leading-normal font-[600] text-[20px] text-[#6B6B6B]`}>Total</h6>
                                     <h1 className={`${montserrat.className} tracking-[-0.32px] leading-normal font-[600] text-[32px] text-[#000000]`}>$2,700.00</h1>
                                 </div>
-                                <Link href='/' className="text-[#dfdbec] bg-[#350ABC] justify-center rounded-[4px] text-[14px] font-normal px-[20px] w-[100%] opacity-[0.9] h-[48px] py-[16px] text-center inline-flex items-center ">
+                                <Link href='/staff/booking' className="text-[#dfdbec] bg-[#350ABC] justify-center rounded-[4px] text-[14px] font-normal px-[20px] w-[100%] opacity-[0.9] h-[48px] py-[16px] text-center inline-flex items-center ">
                                     <span className='mr-2 '>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
                                             <path d="M13.8332 4L6.49984 11.3333L3.1665 8" stroke="#F3F0FF" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />

@@ -80,7 +80,7 @@ const StaffListing = () => {
           )}
         </div>
         {/* pagination */}
-        <div className='h-10 mb-16 mt-24 w-full absolute '>
+        <div className='h-10 mb-16 mt-[8rem] w-full absolute '>
           <div className='flex justify-between items-center max-w-[1279px]'>
             <div>
               View Per Page:

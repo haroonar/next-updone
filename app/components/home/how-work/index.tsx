@@ -17,7 +17,7 @@ function HowWork() {
     };
 
     return (
-       <div style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)" }}>
+       <div style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)" ,height:'100%'}}>
             <h1 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[100px] pb-[25px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h1>
         <div className="relative min-h-screen max-h-screen" >
             {/* Background blur */}

@@ -486,7 +486,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                             type="search"
                                                             id="default-search"
                                                             className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
-                                                            placeholder="Company Name*"
+                                                            placeholder="Company Name"
 
                                                         />
 
@@ -714,7 +714,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                                             type="search"
                                                                                             id="default-search"
                                                                                             className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Company Name*"
+                                                                                            placeholder="Company Name"
                                                                                             style={loginInputStyles}
                                                                                         />
 
@@ -740,7 +740,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                                             type="search"
                                                                                             id="default-search"
                                                                                             className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Company Name*"
+                                                                                            placeholder="Company Name"
                                                                                             style={loginInputStyles}
                                                                                         />
 
