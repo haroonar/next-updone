@@ -7,12 +7,10 @@ import Image from 'next/image';
 const Header = () => {
     // Define your navigation links
     const navLinks = [
-        { href: '/', label: 'Home' },
-        { href: '/reviews', label: 'Reviews' },
-        { href: '/staff', label: 'Hire a Staff' },
-        { href: '/faqs', label: 'FAQs' },
-        { href: '/community', label: 'Community' },
-        { href: '/contact', label: 'Contact' },
+        { href: '/staff', label: 'Workers' },
+        { href: '/faqs', label: 'Contact' },
+        { href: '/community', label: 'About Us' },
+        { href: '/contact', label: 'Blogs' },
         // Add more links as needed
     ];
 
@@ -62,6 +60,11 @@ const Header = () => {
                                             stroke-linejoin="round"
                                         />
                                     </svg>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="#" className=" text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize">
+                                    Login
                                 </Link>
                             </li>
                             <li>

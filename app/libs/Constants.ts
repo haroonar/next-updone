@@ -6,12 +6,11 @@ export const HERO_FILTER_STAFF: { [key: string]: string } = {
   position: 'relative',
   top: '0px',
   maxWidth: '797px',
-  height: '77px',
   margin: 'auto',
   backgroundColor: '#ffffff',
   justifyContent: 'space-evenly',
   border: 'none',
-  padding: '0px 0px 0px 16px'
+  padding: '0px 0px 0px 0px'
 };
 
   

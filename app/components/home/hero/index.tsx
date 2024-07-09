@@ -6,11 +6,15 @@ import ResponsiveImage from '../../common/responsive-image';
 import Loader from '../../ui/loader';
 import MenuItem from '../../common/Menu';
 import CommonDropdown from '../../common/Menu';
+import TimeAndCalander from '../../ui/booking-calander/calander-time';
+import { useBookingContext } from '@/app/libs/context/BookingContext';
+import StarRating from '../../ui/star-rating';
 
 
-const itemLocationNames: string[] = [`New york USA`, 'Newark New Jersey', 'Newport News Virginia', 'New haven Connecticut', 'New braunfels Texas'];
+const itemLocationNames: string[] = [`Los Angeles`];
 const itemServiceNames: string[] = ['Bartender', 'Waiters', 'Cocktails', 'Barbacks', 'Promo Models', 'Event Servers'];
 const Hero = () => {
+    const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, timessss, staff, selectedServiceId } = useBookingContext();
     const [selectedValue, setSelectedValue] = useState('');
     const [imageLoading, setLoadImage] = useState(false)
     const [serviceOpen, setServiceOpen] = useState(false) //to open service 
@@ -18,6 +22,8 @@ const Hero = () => {
     const [selectedService, setSelectedService] = useState<string | null>(null); //to get selected service
 
     const [locationOpen, setLocationOpen] = useState(false) //to open service 
+
+    const [dateOpen, setDateOpen] = useState(false) //to open service 
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null); //to get selected service
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -27,14 +33,22 @@ const Hero = () => {
     };
     const handleImageLoad = () => {
         setLoadImage(true)
+        
     }
     const handleService = () => {
         setLocationOpen(false)
+        setDateOpen(false)
         setServiceOpen(!serviceOpen)
     }
     const handleLocation = () => {
         setServiceOpen(false)
+        setDateOpen(false)
         setLocationOpen(!locationOpen)
+    }
+    const handleDate = () => {
+        setLocationOpen(false)
+        setServiceOpen(false)
+        setDateOpen(!dateOpen)
     }
     const handleServiceSelect = (itemName: string) => { //for location
         setSelectedService(itemName === selectedService ? null : itemName); // Toggle selection
@@ -76,7 +90,7 @@ const Hero = () => {
                                     <Image onLoadingComplete={handleImageLoad} height={13} width={13} src='/images/hero/box.svg' alt='box' />
                                 </div>
                             </div>
-                            <span onClick={handleService} className='block 2xl:text-[15px] text-start font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858]'>{selectedService||'Choose Service'}</span>
+                            <span onClick={handleService} className='block 2xl:text-[15px] text-start font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858] cursor-pointer'>{selectedService||'Choose Service'}</span>
 
 
                             <CommonDropdown onCloseDropdown={()=>setServiceOpen(false)} selectedItem={selectedService} handleSelect={handleServiceSelect} isOpen={serviceOpen} itemNames={itemServiceNames} />
@@ -97,8 +111,9 @@ const Hero = () => {
                                 Location
                                </span>
                             </div>
-                            <span onClick={handleLocation} className='block 2xl:text-[15px] text-start font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858]'>{selectedLocation||'Choose Location'}</span>
-                            <CommonDropdown onCloseDropdown={()=>setLocationOpen(false)} selectedItem={selectedLocation} handleSelect={handleLocationSelect} isOpen={locationOpen} itemNames={itemLocationNames} isLocation />
+                            <span onClick={handleLocation} className='block 2xl:text-[15px] text-start font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858] cursor-pointer'>{selectedLocation||'Los Angeles'}</span>
+                            <CommonDropdown  onCloseDropdown={()=>setLocationOpen(false)} selectedItem={selectedLocation} handleSelect={handleLocationSelect} isOpen={locationOpen} itemNames={itemLocationNames} isLocation />
+                               
 
                         </div>
 
@@ -110,39 +125,45 @@ const Hero = () => {
                                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2 text-black">
                                     <Image height={13} width={13} src='/images/hero/star.svg' alt='box' />
                                 </div>
-
-                                {/* Dropdown */}
-                                <select
-                                    className="font-[500] block appearance-none w-full 2xl:text-[20px] 2xl:pr-0 md:text-[16px] bg-white pl-[32px] leading-[150%] text-[#0B0B0B] capitalize rounded focus:outline-none focus:shadow-outline"
-                                    onChange={handleChange}
-                                    defaultValue="0"
-                                >
-                                    <option value="0">Day & Time</option>
-                                    <option value="Audi">Waiters</option>
-                                    <option value="BMW">Cocktail Servers</option>
-                                    <option value="Citroen">Bar Backs</option>
-                                    <option value="Ford">Promo Models</option>
-                                    <option value="Honda">Event Helper</option>
-                                </select>
+                                <span
+                               className="font-[500] block appearance-none w-full  md:text-[16px] 2xl:text-[20px] bg-white pl-[32px] leading-[150%] text-[#0B0B0B] capitalize rounded focus:outline-none focus:shadow-outline"
+                               >
+                                Date and Time
+                               </span>
+                                <CommonDropdown isCalander onCloseDropdown={()=>setDateOpen(false)}  handleSelect={handleDate} isOpen={dateOpen}>
+                                <h1><TimeAndCalander
+                                 date={date}
+                                 setDate={setDate}
+                                 setSelectedTimeId={setSelectedTimeId}
+                                 scrollRef={scrollRef}
+                                 availableTimesMap={availableTimesMap}
+                                 handleTimeSelection={handleTimeSelection}
+                                 isCalander
+                                 selectedTimeId={selectedTimeId}
+                                 scrollUp={scrollUp}
+                                 scrollDown={scrollDown}
+                                 handleAddToBooking={handleAddToBooking}
+                                /></h1>
+                                </CommonDropdown >
                             </div>
-                            <span className='block 2xl:text-[15px] text-start pl-[10px] font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858]'>{'July 24, 2024'}</span>
+                            <span className='block 2xl:text-[15px] text-start pl-[10px] font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858] cursor-pointer' onClick={handleDate}>{'July 24, 2024'}</span>
 
+                                    {/* <Image height={18} width={124} src='/images/hero/stars.svg' alt='box' /> */}
                         </div>
                         <img src="./images/Line 4.png" alt="" className='relative right-[15px]' />
-                        <div style={{ width: '21%' }} className="space-y-1.5">
+                        <div style={{ width: '21%' }} className="space-y-1.5 mt-[7px]">
 
                             <div className='flex justify-center items-center'>
                                 <span className='px-[14px] py-[0px] text-[#2C2240] text-[14px] relative right-[11px] font-[400] rounded-lg '>All</span>
                                 <div className="flex items-center">
-                                    <Image height={18} width={124} src='/images/hero/stars.svg' alt='box' />
-
+                                <StarRating/>
                                 </div>
                             </div>
                             <div className='flex justify-center items-center'>
-                                <span className='relative right-[10px]'> <Image height={13} width={13} src='/images/hero/hero2.svg' alt='box' /></span>
+                                <span className='relative right-[11px]'> <Image height={13} width={13} src='/images/hero/hero2.svg' alt='box' /></span>
                                 <div className="flex items-center space-x-2.5 text-[13.5px]  text-[#696969] relative left-[16px]">
                                     <span>02</span>
-                                    <span>07</span>
+                                    <span title='sdsd'>07</span>
                                     <span>29</span>
                                     <span>59</span>
                                     <span>73</span>

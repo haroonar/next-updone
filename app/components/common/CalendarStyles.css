@@ -162,7 +162,8 @@ line-height: 13.287px;
   padding: 0 10px !important;
   justify-content: space-between !important;
   align-items: center !important;
-  height: 220px !important;
+  height: 100% !important;
+  line-height: 30.5px;
 }
 
 .react-calendar__tile.react-calendar__month-view__days__day {

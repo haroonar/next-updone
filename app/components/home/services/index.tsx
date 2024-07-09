@@ -124,8 +124,8 @@ const Services = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-full text-center md:mt-[64px] 2xl:mt-[-40px] mb-[26px]'>
-                <Link href={'/staff'} className=" text-[#F3F0FF] justify-center bg-[#2C2240] rounded-[4px] text-[16px] font-normal px-[50px] py-[8px] text-center inline-flex items-center  me-2 ">
+            <div className='w-full text-center md:mt-[64px] 2xl:mt-[-40px] mb-[26px] cursor-pointer'>
+                <Link href={'/staff'} className=" text-[#F3F0FF] justify-center bg-[#2C2240]  rounded-[4px] text-[16px] font-normal px-[50px] py-[8px] text-center inline-flex items-center  me-2 ">
                     Hire Required Staff Now!
                 </Link>
             </div>

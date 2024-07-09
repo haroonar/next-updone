@@ -14,6 +14,7 @@ import CardSkeleton from '../../ui/card-skeleton';
 
 const StaffListing = () => {
   const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false); //open staff filter modal state
 
   const dispatch: AppDispatch = useAppDispatch();
   const navigate = useRouter()
@@ -67,14 +68,14 @@ const StaffListing = () => {
         </svg>
       </div>
       <div className="max-w-[1279px] mx-auto">
-        <StaffFilters scrollY={scrollY} handleLocationChange={handleLocationChange} handleTimeChange={handleTimeChange} />
+        <StaffFilters  modalOpen={modalOpen} scrollY={scrollY} handleLocationChange={handleLocationChange} handleTimeChange={handleTimeChange} />
         <div className="relative md:top-20 2xl:top-22 grid gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 justify-center items-center z-10">
           {People.length === 0 ? (
             <p className="text-center text-xl mt-20">No staff found, sorry.</p>
           ) : (
             People.map((staff: Staff) => (
               <div key={staff.id} >
-                {loading ? <CardSkeleton staff={staff} /> : <StaffMap handleStaffClick={handleStaffClick} staff={staff} />}
+                {loading ? <CardSkeleton staff={staff} /> : <StaffMap setModalOpen={setModalOpen} modalOpen={modalOpen}  handleStaffClick={handleStaffClick} staff={staff} />}
               </div>
             ))
           )}
@@ -95,7 +96,7 @@ const StaffListing = () => {
               />
             </div>
             <nav aria-label="Page navigation example">
-              <ul className="flex items-center -space-x-px h-10 text-sm py-[8px] px-[24px]">
+              <ul className="flex items-center">
                 <li>
                   <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                     <span className="sr-only">Previous</span>

@@ -1,14 +1,16 @@
 // CommonDropdown.tsx
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 
 interface MenuItemProps {
-    itemNames: string[];
+    itemNames?: string[];
     isOpen?: boolean;
-    handleSelect: (arg: string) => void;
-    selectedItem: string | null;
+    handleSelect?: (arg: string) => void;
+    selectedItem?: string | null;
     isLocation?: boolean;
-    onCloseDropdown: () => void; // Callback to close dropdown
+    onCloseDropdown?: () => void; // Callback to close dropdown
+    children?: ReactNode;
+    isCalander?: boolean
 }
 
 const CommonDropdown: React.FC<MenuItemProps> = ({
@@ -18,9 +20,12 @@ const CommonDropdown: React.FC<MenuItemProps> = ({
     selectedItem,
     isLocation,
     onCloseDropdown,
+    children,
+    isCalander
 }) => {
+    console.log('isOpen', isOpen)
     const dropdownRef = useRef<HTMLDivElement>(null);
-
+    console.log('dropdownRef', dropdownRef)
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -29,7 +34,7 @@ const CommonDropdown: React.FC<MenuItemProps> = ({
                 !dropdownRef.current.contains(event.target as Node)
             ) {
                 // Click occurred outside the dropdown, so close it
-                onCloseDropdown();
+                onCloseDropdown?.();
             }
         };
 
@@ -47,13 +52,14 @@ const CommonDropdown: React.FC<MenuItemProps> = ({
             {isOpen && (
                 <div
                     ref={dropdownRef}
-                    className={`${isLocation ? 'space-y-[28px]  left-[-20px]' : 'space-y-[18px]  left-0'}  bg-[#FFF] w-[260px] h-auto absolute  rounded-[4px]`}
+                    className={`${isLocation ? 'space-y-[28px] h-[355px] left-[-20px]' : isCalander ? "mt-[60px] h-[455px]  left-[-10px] " : 'space-y-[18px]  left-0'}  bg-[#FFF] ${isCalander ? "w-auto" : "w-[260px]"} absolute min-h-[340px] rounded-[4px]`}
                     style={{
                         boxShadow:
                             '0px 10px 26px 0px rgba(0, 0, 0, 0.10)',
                     }}
                 >
-                    <div className='pt-[12px] px-[12px]'>
+                    <div className={`${isCalander ? "pt-[20px] pb-[20px] pr-[20px] pl-[20px]" : "pt-[12px] px-[12px]"}`}>
+                        {isCalander && children}
                         {isLocation && (
                             <div className='relative'>
                                 <span className='absolute left-3 top-1/2 transform -translate-y-1/2'>
@@ -75,55 +81,51 @@ const CommonDropdown: React.FC<MenuItemProps> = ({
                                 />
                             </div>
                         )}
-                        <>
-                            {itemNames.map((itemName) => (
-                                
-                                <div
-                                    key={itemName}
-                                    className={`flex justify-between items-center w-full ${isLocation ? "py-[12px]":"py-[9px]"} px-[10px] border-b-[.5px] border-[#F1EAFF] ${
-                                        selectedItem === itemName
-                                            ? 'bg-[#F3F0FF] border-b-[#D4BFFF] border-[0.5px]'
-                                            : ''
+                        {itemNames?.map((itemName) => (
+
+                            <div
+                                key={itemName}
+                                className={`flex justify-between items-center w-full ${isLocation ? "py-[12px]" : "py-[9px]"} px-[10px] border-b-[.5px] border-[#F1EAFF] ${selectedItem === itemName
+                                    ? 'bg-[#F3F0FF] border-b-[#D4BFFF] border-[0.5px]'
+                                    : ''
                                     }`}
-                                    onClick={() => handleSelect(itemName)}
-                                    style={{ cursor: 'pointer' }}
-                                >
-                                    <h1
-                                        className={` ${
-                                            selectedItem === itemName
-                                                ? 'text-[#350ABC] flex justify-start items-center  gap-[15px]'
-                                                : isLocation
-                                                ? 'text-[#1D1D1D] flex justify-start items-center gap-[15px] text-[12px] font-[500] leading-normal'
-                                                : 'text-[#595959]'
+                                onClick={() => handleSelect?.(itemName)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <h1
+                                    className={` ${selectedItem === itemName
+                                        ? 'text-[#350ABC] flex justify-start items-center  gap-[15px]'
+                                        : isLocation
+                                            ? 'text-[#1D1D1D] flex justify-start items-center gap-[15px] text-[12px] font-[500] leading-normal'
+                                            : 'text-[#595959]'
                                         } tracking-[-0.24px] leading-[24px] font-[400] text-[12px]`}
-                                    >
-                                        {isLocation && (
-                                            <span>
-                                                <Image
-                                                    width={12}
-                                                    height={12}
-                                                    src={
-                                                        '/images/hero/map.svg'
-                                                    }
-                                                    alt='map'
-                                                />
-                                            </span>
-                                        )}
-                                        {itemName}
-                                    </h1>
-                                    {selectedItem === itemName && (
-                                        <Image
-                                            width={12}
-                                            height={12}
-                                            src={'/images/hero/tick.svg'}
-                                            alt='tick'
-                                        />
+                                >
+                                    {isLocation && (
+                                        <span>
+                                            <Image
+                                                width={12}
+                                                height={12}
+                                                src={
+                                                    '/images/hero/map.svg'
+                                                }
+                                                alt='map'
+                                            />
+                                        </span>
                                     )}
-                                </div>
-                            ))}
-                        </>
+                                    {itemName}
+                                </h1>
+                                {selectedItem === itemName && (
+                                    <Image
+                                        width={12}
+                                        height={12}
+                                        src={'/images/hero/tick.svg'}
+                                        alt='tick'
+                                    />
+                                )}
+                            </div>
+                        ))}
                     </div>
-                    <div className='flex justify-between items-center py-[11px] px-[21px] w-full bg-[#F3F0FF]'>
+                    <div className={`flex ${isCalander ? "justify-end gap-[13px]" : 'justify-between'} items-center py-[11px] px-[21px] w-full bg-[#F3F0FF] absolute bottom-0`}>
                         <button className='border-[#595959] border rounded-[4px] px-[50px] py-[3px] text-[12px] font-[400] w-[93.5px] leading-[24px] tracking-[-0.24px] flex justify-center items-center text-[#595959]'>
                             Reset
                         </button>

@@ -32,6 +32,7 @@ const CalendarWithAvailability = ({setSelectedTimeId ,setDate,date}:any) => {
     <div className='flex gap-6'>
       <div style={{ width: '100%' }}>
         <Calendar
+        
           className="custom-calendar w-full border-none bg-[#faf8ff]"
           onChange={handleDateChange}
           value={date}

@@ -1,12 +1,25 @@
+import Modal from '@/app/components/common/modal';
+import BookingCalander from '@/app/components/ui/booking-calander';
+import { useBookingContext } from '@/app/libs/context/BookingContext';
 import { Staff } from '@/types';
 import Image from 'next/image'
 import React, { useState } from 'react'
 type StaffMapProps = {
     staff: Staff;
     handleStaffClick: (arg: Staff) => void
+    setModalOpen?: (arg: boolean) => void;
+    modalOpen?: boolean
 }
-const StaffMap = ({ staff, handleStaffClick }: StaffMapProps) => {
+const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMapProps) => {
     const [showAllServices, setShowAllServices] = useState(false);
+    const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, timessss, selectedServiceId } = useBookingContext();
+    const openModal = () => {
+        setModalOpen?.(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen?.(false);
+    };
     return (
         <>
             <Image
@@ -117,7 +130,7 @@ const StaffMap = ({ staff, handleStaffClick }: StaffMapProps) => {
                     </div>
                     <div className="flex justify-around items-center mt-4 w-full space-x-2 border-t pt-4 pb-2 border-[#f3f0ff]">
                         <button onClick={() => handleStaffClick(staff)} className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md">View Details</button>
-                        <button type="button" className="text-[#dfdbec] bg-[#2c2240]  rounded-[4px] text-[14px] font-normal px-[30px] py-[10px] text-center inline-flex items-center  me-2 ">
+                        <button onClick={openModal} type="button" className="text-[#dfdbec] bg-[#2c2240]  rounded-[4px] text-[14px] font-normal px-[30px] py-[10px] text-center inline-flex items-center  me-2 ">
                             <span className='mr-2'>
                                 <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="#F3F0FF" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
@@ -126,7 +139,23 @@ const StaffMap = ({ staff, handleStaffClick }: StaffMapProps) => {
 
                             Book Now
                         </button>
-
+                        <Modal isOpen={modalOpen} onClose={closeModal}>
+                            <BookingCalander
+                            isStaffListerFilter
+                                date={date}
+                                setDate={setDate}
+                                setSelectedTimeId={setSelectedTimeId}
+                                scrollRef={scrollRef}
+                                availableTimesMap={availableTimesMap}
+                                handleTimeSelection={handleTimeSelection}
+                                selectedTimeId={selectedTimeId}
+                                scrollUp={scrollUp}
+                                scrollDown={scrollDown}
+                                timessss={timessss}
+                                handleAddToBooking={handleAddToBooking}
+                                selectedTimes={selectedTimes}
+                            />
+                        </Modal>
                     </div>
                 </div>
             </div>

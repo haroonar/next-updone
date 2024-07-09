@@ -338,7 +338,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                             <Image width={21} height={21} src='/images/booking/pancel.svg' alt='step-1' />
                                         </div>
                                     </div>
-                                    {/* cast break down section */}
+                                    {/* cost break down section */}
                                     <div>
                                         <h1 className='text-[20px] font-[600] montserrat-font p-[8px] mb-[16px] mt-[24px] leading-normal tracking-[-0.2px] text-[#000000]'>Cost Breakdown</h1>
                                         <div className="mx-auto max-w-3xl rounded-[4px] p-[20px]" style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)' }}>
