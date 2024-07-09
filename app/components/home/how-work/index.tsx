@@ -12,7 +12,7 @@ function HowWork() {
         { id: 4, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '4.  Book for an event', image: '/step4.png' },
     ];
 
-    const handleCardSelect = (cardId:number) => {
+    const handleCardSelect = (cardId: number) => {
         setSelectedCard(cardId === selectedCard ? 0 : cardId); // Toggle selection
     };
 
@@ -42,33 +42,32 @@ function HowWork() {
                                     onClick={() => handleCardSelect(card.id)}
                                 >
                                     <h1 className={`tracking-[-0.48px] leading-normal font-[500] text-[24px] montserrat-font ${selectedCard === card.id ? 'text-[#3E2392]' : 'text-[#2C2240]'}`}>{card.text}</h1>
-                                    <p className='text-[16px] leading-[26px] font-[400] translate-[-0.32px] ml-[26px] text-[#6B6B6B] w-[120%] ' style={{marginBottom:card.id===4?'0':"0.5rem"}}>{card.dec}</p>
+                                    <p className='text-[16px] leading-[26px] font-[400] translate-[-0.32px] ml-[26px] text-[#6B6B6B] w-[120%] ' style={{ marginBottom: card.id === 4 ? '0' : "0.5rem" }}>{card.dec}</p>
                                 </div>
                             ))}
-                                                    <div  className='text-start  text-[#2C2240] m-0 text-[14.545px] font-[700] tracking-[-0.291px] leading-[ 23.636px] mt-[18px]' style={{transform: "rotate(91deg)",
-    position: "relative",
-    right: "256px",margin:'0'}}>
-                        </div>
-                           <span style={{transform: "rotate(91deg)"}} className='relative right-1.5'>0{selectedCard}</span> <span style={{margin:'0'}} className='m-0 '><svg className='relative right-1.5 my-1' width="17" height="6" viewBox="0 0 17 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16.7018 5.70169L0.527273 1.71623L0.527273 0.407139L16.7018 4.37805L16.7018 5.70169Z" fill="#6B6B6B"/>
-</svg>
-</span> <span style={{margin:'0',transform: "rotate(91deg)"}} className='m-0 relative right-1.5 text-start text-[#6B6B6B] text-[14.545px] font-[500] tracking-[-0.291px] leading-[ 23.636px]'>04</span>
+                            <div className='text-start  text-[#2C2240] m-0 text-[14.545px] font-[700] tracking-[-0.291px] leading-[ 23.636px] mt-[18px]' style={{
+                                transform: "rotate(91deg)",
+                                position: "relative",
+                                right: "256px", margin: '0'
+                            }}>
+                            </div>
+                            <span style={{ transform: "rotate(91deg)" }} className='relative right-1.5'>0{selectedCard}</span> <span style={{ margin: '0' }} className='m-0 '><svg className='relative right-1.5 my-1' width="17" height="6" viewBox="0 0 17 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.7018 5.70169L0.527273 1.71623L0.527273 0.407139L16.7018 4.37805L16.7018 5.70169Z" fill="#6B6B6B" />
+                            </svg>
+                            </span> <span style={{ margin: '0', transform: "rotate(91deg)" }} className='m-0 relative right-1.5 text-start text-[#6B6B6B] text-[14.545px] font-[500] tracking-[-0.291px] leading-[ 23.636px]'>04</span>
 
                         </div>
 
                         <div className="w-full md:w-[46%] flex items-start justify-end">
                             {selectedCard > 0 && ( // Render image only if a card is selected
-                                <div className="absolute transition ease-in delay-150 -translate-y-1 scale-95 duration-155 opacity-100">
-                                    <Image
+                                    <img
+                                    style={{height:'65[%',width:'100%',objectFit:'contain'}}
                                         src={cards[selectedCard - 1].image} // Adjust index because array index starts from 0
                                         alt={cards[selectedCard - 1].text} // Adjust index because array index starts from 0
-                                        width={2000}
-                                        height={2000}
+                                        width={1}
+                                        height={1}
                                         className='rounded-lg shadow-stone-300'
-                                        layout="responsive"
-                                        quality={100}
                                     />
-                                </div>
                             )}
                         </div>
                     </div>

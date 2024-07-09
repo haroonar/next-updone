@@ -14,7 +14,7 @@ import StarRating from '../../ui/star-rating';
 const itemLocationNames: string[] = [`Los Angeles`];
 const itemServiceNames: string[] = ['Bartender', 'Waiters', 'Cocktails', 'Barbacks', 'Promo Models', 'Event Servers'];
 const Hero = () => {
-    const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, timessss, staff, selectedServiceId } = useBookingContext();
+    const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, staff, selectedServiceId } = useBookingContext();
     const [selectedValue, setSelectedValue] = useState('');
     const [imageLoading, setLoadImage] = useState(false)
     const [serviceOpen, setServiceOpen] = useState(false) //to open service 

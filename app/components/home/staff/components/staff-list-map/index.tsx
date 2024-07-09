@@ -12,7 +12,7 @@ type StaffMapProps = {
 }
 const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMapProps) => {
     const [showAllServices, setShowAllServices] = useState(false);
-    const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, timessss, selectedServiceId } = useBookingContext();
+    const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss } = useBookingContext();
     const openModal = () => {
         setModalOpen?.(true);
     };
