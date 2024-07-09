@@ -14,7 +14,7 @@ const StaffFilters = ({ handleTimeChange, handleLocationChange, scrollY=0 ,modal
     return (
         <div className='w-full h-40 flex justify-center items-start'>
             {modalOpen ? "":   
-           <div className={scrollY ? 'w-full h-40 bg-[#FFF] transition-all duration-500 ease-in flex justify-center fixed z-50 items-start bottom-0 top-10 left-0 right-0' : 'w-full flex justify-center transition-all duration-500 ease-in fixed z-50 items-start'}>
+           <div className={scrollY ? 'w-full h-44 bg-[#FFF] transition-all duration-500 ease-in flex justify-center fixed z-50 items-start bottom-0 top-10 left-0 right-0' : 'w-full flex justify-center transition-all duration-500 ease-in fixed z-50 items-start'}>
 
                 <div style={{
                     boxShadow: scrollY
