@@ -60,14 +60,15 @@ function HowWork() {
 
                         <div className="w-full md:w-[46%] flex items-start justify-end">
                             {selectedCard > 0 && ( // Render image only if a card is selected
-                                    <img
-                                    style={{height:'65[%',width:'100%',objectFit:'contain'}}
-                                        src={cards[selectedCard - 1].image} // Adjust index because array index starts from 0
-                                        alt={cards[selectedCard - 1].text} // Adjust index because array index starts from 0
-                                        width={1}
-                                        height={1}
-                                        className='rounded-lg shadow-stone-300'
-                                    />
+                                 <div style={{ height: '65%', width: '100%', position: 'relative' }}>
+                                 <Image
+                                     src={cards[selectedCard - 1].image}
+                                     alt={cards[selectedCard - 1].text}
+                                     layout="fill" // Fill the container with the image
+                                     objectFit="contain" // Maintain aspect ratio and fit within container
+                                     className='rounded-lg shadow-stone-300'
+                                 />
+                             </div>
                             )}
                         </div>
                     </div>
