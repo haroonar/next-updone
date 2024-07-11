@@ -83,6 +83,7 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
                                     const isSelected = service.id === selectedServiceId;
                                     return (
                                         <h3
+                                        style={{background:service.id === 2 ? "#20192e":"F3F0FF"}}
                                             key={service.id}
                                             onClick={() => handleServiceClick(service.id)}
                                             className={`${service.id === 2 ?"bg-[#20192e] text-[#F3F0FF] opacity-[0.9]":"opacity-[0.7]" } cursor-pointer w-[192px] text-[14px] leading-[24px] tracking-[-0.28px] font-[400] text-center rounded-[29px] py-[6px] px-[20px] ${isSelected ? 'bg-[#2C2240] text-[#F3F0FF]' : 'bg-[#F3F0FF] text-[#2C2240]'

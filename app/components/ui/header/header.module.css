@@ -54,14 +54,14 @@
 }
 
 .loginpopup {
-  display: flex;
-  width: 396px;
-  padding: 25px 38px;
-  flex-direction: column;
-  align-items: center;
-  gap: 23px;
-  border-radius: 8px;
-  background: #FFF;
+  display: flex !important;
+  width: 396px !important;
+  padding: 25px 38px !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 23px !important;
+  border-radius: 8px !important;
+  background: #FFF !important;
   box-shadow: 0px 16px 38px 0px rgba(0, 0, 0, 0.10);
   /* position: absolute;
     left: 355px;
