@@ -702,8 +702,8 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                 </span>
                                                 <div className='absolute bottom-0 max-w-[395px] ml-[11px]'>
                                                     <div>
-                                                        <div className="mx-auto max-w-[415px] rounded-[4px] relative right-[9px] bottom-[28px]">
-                                                            <div className="relative overflow-x-auto ">
+                                                        <div className="mx-auto max-w-[415px] rounded-[4px] relative right-[11.5px] bottom-[28px]">
+                                                            <div className="relative overflow-x-auto m-[6px]">
                                                                 <table className="w-full text-left font-medium md:table-fixed">
                                                                     <tbody>
                                                                         <tr >
