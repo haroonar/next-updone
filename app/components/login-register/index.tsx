@@ -13,7 +13,7 @@ const LoginFrom = ({ showLoginForm, close, showRegisterForm, styles, handleClose
   return (
     <div>
       {close ? <></> :
-        <div style={{ height: showLoginForm ? "257px" : (showRegisterForm ? "430px" : "765px") }} className={`${styles.loginpopup}  ${isHeaderLogin ? "right-14 top-16":"w-40 right-0"} h-40 z-10 absolute overflow-hidden`}>
+        <div style={{ height: showLoginForm ? "257px" : (showRegisterForm ? "430px" : "765px") }} className={`${styles.loginpopup}  ${isHeaderLogin ? "right-14 top-16":" right-0"} h-40 z-10 absolute overflow-hidden`}>
           <span className='relative bottom-[20px]'>
             <Image width={98} height={98} src='/images/booking/6.svg' alt='step-1' />
           </span>
