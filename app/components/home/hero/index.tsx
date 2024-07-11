@@ -72,7 +72,7 @@ const Hero = () => {
                 <Image onLoadingComplete={handleImageLoad} layout="intrinsic" src="./background.svg" height={580} width={1950} alt="Background" />
 
                 {/* Add your content here */}
-                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg max-w-[850px] m-auto">
+                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg max-w-[900px] m-auto">
                     <h1 className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px]  2xl:text-[100px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
                         <span className='md:block md:w-full md:text-center md:relative md:top-[170px] 2xl:top-[270px]'>BOOK <strong className="text-[#350abc]">EVENT</strong></span> <br /> <strong className="text-[#350abc]">STAFF</strong> IN A SNAP!
                     </h1>
