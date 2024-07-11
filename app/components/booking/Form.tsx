@@ -643,7 +643,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
                             <div className='flex gap-[34px] mx-auto max-w-[1064px]  min-h-[796px] mt-[0] mb-[0] '>
-                                <div className={`${styles.bookingsummary_section} w-[42%]`}>
+                                <div className={`${styles.bookingsummary_section} w-[44.5%]`}>
                                     <div className='flex justify-center flex-col items-center w-full'>
                                         <h2 className={`${styles.bookingsummary_text} ${montserrat.className}`}>Booking Summary</h2>
                                         <Image className='w-[117px] h-[107px]' width={120} height={120} quality={100} src='/images/booking/Frame 1410126315 (1).png' alt='step-2' />
