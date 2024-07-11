@@ -51,9 +51,9 @@ const LoginFrom = ({ showLoginForm, close, showRegisterForm, styles, handleClose
                 </div>
               </div>
               :
-              <div className="relative text-center bottom-[25px]">
+              <div className={`relative text-center  bottom-[25px]`}>
                 {!showRegisterForm ? "" : <>
-                  <h3 className={`${styles.loginpopup_heads} ${isHeaderLogin ? "":"bottom-[120px]"}`}>
+                  <h3 style={{}} className={`${styles.loginpopup_heads}`}>
                     Welcome Back
                   </h3>
                   <p className={styles.loginpopup_bodys}>Sign In or Sign up to updone to book pro event staff in a snap</p>
