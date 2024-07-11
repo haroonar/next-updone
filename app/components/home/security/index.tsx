@@ -3,12 +3,12 @@ import React from 'react';
 
 const Security = () => {
   return (
-    <div className='security-bg'  style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
+    <div className='security-bg bg-[#FFFFFF]' >
       {/* You can place your content here */}
       <div className='content relative z-[999] max-w-[1279px] m-auto right-4'>
         <div className='flex  h-[70vh] relative left-[15px]'>
           <div className='py-28 w-[30%] text-white'>
-            <h1 className='why-choose mb-4'>Why <br /> Choose Updone?</h1>
+            <h2 className='why-choose mb-4'>Why <br /> Choose Updone?</h2>
             <p className='text-[20px] font-[400] leading-[31.25px] text-left'>Plan your event with ease and confidence, we have you covered!</p>
           </div>
           <div className=' w-[70%] text-white'>
@@ -34,9 +34,9 @@ const Security = () => {
 
                       <div className="flex w-full flex-col gap-0.5">
                         <div className="flex items-center justify-between">
-                          <h5 className="block security-head">
+                          <h3 className="block security-head">
                             Pre-vetted, Qualified Staff
-                          </h5>
+                          </h3>
                         </div>
                         <p className="block security-body">
                           Updone ensures consistent quality by thoroughly vetting all staff for skills, experience, and professionalism.
@@ -57,9 +57,9 @@ const Security = () => {
 
                       <div className="flex w-full flex-col gap-0.5">
                         <div className="flex items-center justify-between">
-                          <h5 className="block security-head">
+                          <h3 className="block security-head">
                             Flexibility and Scalability
-                          </h5>
+                          </h3>
                         </div>
                         <p className="block security-body">
                           Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.
@@ -86,9 +86,9 @@ const Security = () => {
 
                       <div className="flex w-full flex-col gap-0.5">
                         <div className="flex items-center justify-between">
-                          <h5 className="block security-head">
+                          <h3 className="block security-head">
                             Streamlined Booking Process
-                          </h5>
+                          </h3>
                         </div>
                         <p className="block security-body">
                           The user-friendly online platform allows clients to browse available staff, filter by specific needs, and confirm bookings within minutes.
@@ -109,9 +109,9 @@ const Security = () => {
 
                       <div className="flex w-full flex-col gap-0.5">
                         <div className="flex items-center justify-between">
-                          <h5 className="block security-head">
+                          <h3 className="block security-head">
                             Transparent pricing structure
-                          </h5>
+                          </h3>
                         </div>
                         <p className="block security-body">
                           Competitive rates and transparent pricing structure ensure clients get the best value for their staffing needs..

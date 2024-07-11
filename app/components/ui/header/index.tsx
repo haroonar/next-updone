@@ -3,8 +3,14 @@ import React, { SetStateAction, useState } from 'react';
 import styles from './header.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import LoginRegister from '../../login-register';
+import { useAuthContext } from '@/app/libs/context/AuthContext';
 
 const Header = () => {
+    const [showLoginForm, setShowLoginForm] = useState(true);
+    const [showRegisterForm, setShowRegisterForm] = useState(true); // Start with registration form hidden
+    const [close, setClose] = useState(true)
+    const [getStyles,getGetStyles]=useState()
     // Define your navigation links
     const navLinks = [
         { href: '/staff', label: 'Workers' },
@@ -20,6 +26,23 @@ const Header = () => {
     const handleSetActiveLink = (href: string) => {
         setActiveLink(href);
     };
+    const handleClose = (e: any) => {
+        e.preventDefault();
+
+        setClose(true)
+    }
+    const handleShowRegisterForm = (e: any) => {
+        e.preventDefault();
+        setShowLoginForm(false);
+        setShowRegisterForm(false); // Set to true to show the registration form
+    };
+    const handleOpenLoginPopup = (e: any) => {
+        e.preventDefault();
+        setShowLoginForm(!showLoginForm);
+        setClose(false)
+        
+    }
+    
     return (
         <header className={styles.header}>
             <nav className="border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto">
@@ -63,12 +86,12 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className=" text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize">
+                                <Link onClick={handleOpenLoginPopup} href="#" className=" text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize">
                                     Login
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
+                                <Link  onClick={handleShowRegisterForm} href="#" className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
                                     Register
                                 </Link>
                             </li>
@@ -76,6 +99,11 @@ const Header = () => {
                     </div>
                 </div>
             </nav>
+            <LoginRegister
+            isHeaderLogin
+            style={styles}
+                showLoginForm={showLoginForm} close={close} showRegisterForm={showRegisterForm} styles={styles} handleClose={handleClose} setShowLoginForm={setShowLoginForm} handleShowRegisterForm={handleShowRegisterForm}
+            />
         </header>
     );
 };

@@ -17,32 +17,35 @@ function HowWork() {
     };
 
     return (
-        <div style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)", height: '100%' }}>
-            <h1 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[100px] pb-[25px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h1>
+        <div style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)", maxHeight: '990px' }} className='max-w-[1279px m-auto'>
+            <h2 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[100px] pb-[25px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h2>
             <div className="relative min-h-screen max-h-screen" >
                 {/* Background blur */}
                 <div className="absolute inset-0 blur-5xl"></div>
 
                 {/* Colored circles */}
-                <div className="absolute inset-0 flex justify-end items-center space-x-4 space-y-4 blur-5xl">
-                    <div className="absolute left-[15%] top-[5%] md:left-[1074px] md:top-[-17px] w-44 h-44 bg-[#FFACC5] rounded-full"></div>
-                    <div className="absolute right-[5%] top-[47%] w-44 h-44 bg-[#FFFCAC] rounded-full"></div>
+                <div className="absolute inset-0 flex justify-end items-center space-x-4 space-y-4 blur-5xl max-w-[1279px] m-auto h-[90%]">
+                    <div className="absolute left-[32%] top-[2%] md:left-[1144px] md:top-[-17px] w-44 h-44 bg-[#FFACC5] rounded-full"></div>
+                    <div className="absolute right-[0%] top-[56%] w-44 h-44 bg-[#FFFCAC] rounded-full"></div>
                     <div className="absolute right-[33%] bottom-[40%] w-44 h-44 bg-[#FFD4AC] rounded-full"></div>
                 </div>
 
                 {/* Centered text */}
                 <div className="absolute top-0 left-0 right-0 flex justify-center">
                     <div className="relative h-screen flex flex-col md:flex-row w-full max-w-[1279px] top-[60px]">
-                        <div className="w-full md:w-[54%] flex flex-col items-start justify-start space-y-4">
+                        <div className="w-full md:w-[54%] flex flex-col items-start justify-start space-y-4" style={{
+                            width: "54%",
+                            height: "auto",
+                        }}>
                             {cards.map((card) => (
                                 <div
                                     key={card.id}
-                                    style={{ margin: '0px' }}
-                                    className={`pl-[36px] py-2 transition ease-in ${selectedCard === card.id ? 'border-l-[6px]  border-[#350ABC]' : 'border-l-[6px]  border-[#e1dfea]'} ${selectedCard === card.id ? '' : ''}  w-3/4 text-start cursor-pointer`}
+                                    style={{ margin: '0px', width: '86%' }}
+                                    className={`pl-[36px] pt-2 pb-[25px] give-border transition ease-in ${selectedCard === card.id ? 'border-l-[6px]  border-[#350ABC]' : 'border-l-[6px]  border-[#e1dfea]'} ${selectedCard === card.id ? '' : ''}  w-3/4 text-start cursor-pointer`}
                                     onClick={() => handleCardSelect(card.id)}
                                 >
-                                    <h1 className={`tracking-[-0.48px] leading-normal font-[500] text-[24px] montserrat-font ${selectedCard === card.id ? 'text-[#3E2392]' : 'text-[#2C2240]'}`}>{card.text}</h1>
-                                    <p className='text-[16px] leading-[26px] font-[400] translate-[-0.32px] ml-[26px] text-[#6B6B6B] w-[120%] ' style={{ marginBottom: card.id === 4 ? '0' : "0.5rem" }}>{card.dec}</p>
+                                    <h3 className={`pb-1 tracking-[-0.48px] leading-normal font-[500] text-[24px] montserrat-font ${selectedCard === card.id ? 'text-[#3E2392]' : 'text-[#2C2240]'}`}>{card.text}</h3>
+                                    <p className='text-[16px] leading-[26px] font-[400] translate-[-0.32px] ml-[26px] text-[#6B6B6B] w-[104%%] ' style={{ marginBottom: card.id === 4 ? '0' : "0.5rem" }}>{card.dec}</p>
                                 </div>
                             ))}
                             <div className='text-start  text-[#2C2240] m-0 text-[14.545px] font-[700] tracking-[-0.291px] leading-[ 23.636px] mt-[18px]' style={{
@@ -58,17 +61,22 @@ function HowWork() {
 
                         </div>
 
-                        <div className="w-full md:w-[46%] flex items-start justify-end">
+                        <div className="w-full md:w-[46%] flex items-start justify-end bottom-[15px]">
                             {selectedCard > 0 && ( // Render image only if a card is selected
-                                 <div style={{ height: '65%', width: '100%', position: 'relative' }}>
-                                 <Image
-                                     src={cards[selectedCard - 1].image}
-                                     alt={cards[selectedCard - 1].text}
-                                     layout="fill" // Fill the container with the image
-                                     objectFit="contain" // Maintain aspect ratio and fit within container
-                                     className='rounded-lg shadow-stone-300'
-                                 />
-                             </div>
+                                <div style={{ position: 'relative', width: '100%', height: '65%' }}>
+                                    <div style={{ position: 'absolute', inset: 0 }}>
+                                        <Image
+                                            src={cards[selectedCard - 1].image}
+                                            alt={cards[selectedCard - 1].text}
+                                            objectFit="fill" // Maintain aspect ratio and fit within container
+                                            className='rounded-lg shadow-stone-300'
+                                            quality={100} // Maximum quality
+                                            width={800}
+                                            height={800}
+                                            
+                                        />
+                                    </div>
+                                </div>
                             )}
                         </div>
                     </div>

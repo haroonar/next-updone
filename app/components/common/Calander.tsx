@@ -8,9 +8,8 @@ interface CalendarWithAvailabilityProps {
   setSelectedTime?: (time: { date: string; times: string[] }[]) => void; // Define setSelectedTime prop function type
 }
 
-export  const highlightedDatesNotAvailable = ['2024-07-08', '2024-07-11', '2024-07-28'];
-export const highlightedDatesAvailable = ['2024-07-21', '2024-07-24'];
-const CalendarWithAvailability = ({setSelectedTimeId ,setDate,date}:any) => {
+
+const CalendarWithAvailability = ({highlightedDatesAvailable,highlightedDatesNotAvailable,setSelectedTimeId ,setDate,date}:any) => {
 
 
 
@@ -36,12 +35,11 @@ const CalendarWithAvailability = ({setSelectedTimeId ,setDate,date}:any) => {
           className="custom-calendar w-full border-none bg-[#faf8ff]"
           onChange={handleDateChange}
           value={date}
-          formatShortWeekday={(_locale, date) => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()]}
-          tileClassName={({ date }) => {
+          tileClassName={ ({ date }) => {
             const formattedDate = date.toISOString().split('T')[0];
-            if (highlightedDatesNotAvailable.includes(formattedDate)) {
+            if (highlightedDatesNotAvailable?.includes(formattedDate)) {
               return 'highlight';
-            } else if (highlightedDatesAvailable.includes(formattedDate)) {
+            } else if (highlightedDatesAvailable?.includes(formattedDate)) {
               return 'highlight-avail';
             }
             return '';

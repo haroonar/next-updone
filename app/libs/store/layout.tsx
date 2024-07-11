@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Header from '@/app/components/ui/header';
 import Footer from '@/app/components/ui/footer';
 import { BookingProvider } from '../context/BookingContext';
+import { AuthProvider } from '../context/AuthContext';
 interface RootLayoutProps {
     children: ReactNode;
 }
@@ -13,13 +14,15 @@ interface RootLayoutProps {
 const ReduxProvider = ({ children }: RootLayoutProps) => {
     return (
         <div className='overflow-auto'>
-            <Provider store={store}>
-                <BookingProvider>
+            <AuthProvider>
+                <Provider store={store}>
                     <Header />
-                    {children}
+                    <BookingProvider>
+                        {children}
+                    </BookingProvider>
                     <Footer />
-                </BookingProvider>
-            </Provider>
+                </Provider>
+            </AuthProvider>
         </div>
     )
 }

@@ -29,7 +29,6 @@ import HOME_TESTIMONINAL_CONTENT from '../testimonials/constants'
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { TIMES_DATA } from '@/app/libs/Constants';
-import { highlightedDatesAvailable } from '../../common/Calander';
 import { Montserrat } from 'next/font/google';
 import BookingCalander from '../../ui/booking-calander';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
@@ -43,6 +42,8 @@ export const montserrat = Montserrat({
     weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
     subsets: ["latin"]
 });
+export  const highlightedDatesNotAvailable = ['2024-07-08', '2024-07-11', '2024-07-28'];
+export const highlightedDatesAvailable = ['2024-07-21', '2024-07-24'];
 const StaffDetail = () => {
     const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, timessss, staff, selectedServiceId } = useBookingContext();
     return (
@@ -71,7 +72,7 @@ const StaffDetail = () => {
                     <div className='w-[84%] flex justify-center items-center gap-[64px] mb-[27px]'>
                         <div className='w-2/5 space-y-4'>
                             <div className="text-center mb-[21px] flex justify-between w-full items-center font-bold text-lg">
-                                <h1 style={{ letterSpacing: '-2%' }} className='text-[44px] text-[#000000] font-semibold '>{staff?.name}</h1>
+                                <h3 style={{ letterSpacing: '-2%' }} className='text-[44px] text-[#000000] font-semibold '>{staff?.name}</h3>
                                 <div className="flex items-center ">
                                     <span className='mb-[4px] mr-1'>
                                         <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +80,7 @@ const StaffDetail = () => {
                                         </svg>
                                     </span>
 
-                                    <p style={{ letterSpacing: '-2%' }} className="ms-1 text-[16px] leading-[26px] font-normal text-[#000000]">5.0/5</p>
+                                    <span style={{ letterSpacing: '-2%' }} className="ms-1 text-[16px] leading-[26px] font-normal text-[#000000]">5.0/5</span>
                                 </div>
                             </div>
                             <div className="flex justify-start items-center text-start w-full space-x-1 mb-2 ">
@@ -100,11 +101,11 @@ const StaffDetail = () => {
                                     {`${staff?.city}`}
                                 </div>
                             </div>
-                            <div className="flex justify-start items-center text-start w-full space-x-3 mb-2 ">
+                            <div className="flex justify-between items-center text-start w-full space-x-3 mb-2 ">
                                 <span className='relative bottom-[5px]'>
                                     <Image width={14} height={14} alt='verified' src='/images/staff-listing/phone.svg' />
                                 </span>
-                                <div style={{ letterSpacing: '-2%' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
+                                <div style={{ letterSpacing: '-2%' ,marginRight:'25px'}} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
                                     {`Contact Number`}
                                     <Image width={58} height={12} alt='verified' src='/images/staff-listing/vertified.svg' />
                                 </div>
@@ -112,7 +113,7 @@ const StaffDetail = () => {
                                 <span className='relative bottom-[6px]'>
                                     <Image width={16} height={16} alt='verified' src='/images/staff-listing/person.svg' />
                                 </span>
-                                <div style={{ letterSpacing: '-2%' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
+                                <div style={{ letterSpacing: '-2%',marginRight:'25px' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
                                     {`ID`}
                                     <Image width={82} height={16} alt='verified' src='/images/staff-listing/not-verfied.svg' />
 
@@ -123,9 +124,9 @@ const StaffDetail = () => {
                         </div>
 
                         <div className='w-3/5'>
-                            <h1 style={{ letterSpacing: '-1%', lineHeight: 'auto' }} className=' text-[#2C2240] text-[24px] font-semibold'>
+                            <h3 style={{ letterSpacing: '-1%', lineHeight: 'auto' }} className=' text-[#2C2240] text-[24px] font-semibold'>
                                 About Me
-                            </h1>
+                            </h3>
                             <p style={{ letterSpacing: '-2%' }} className='text-[#6B6B6B] text-[14px] font-normal leading-[24px]'>
                                 I'm Sarah Miller, a vibrant and outgoing individual passionate about creating memorable experiences. As a cocktail server, I ensure guests feel welcome and enjoy their time.  As a promo model, I bring brands to life with high energy and a captivating smile.
                             </p>
@@ -138,113 +139,23 @@ const StaffDetail = () => {
 
             <div className="max-w-[1276px] mx-auto h-auto pt-[80px]">
                 <div>
-                    <div className='w-full h-[348px] mb-[60px] flex gap-[33px] justify-start items-start'>
-                        <div className='w-[192px] h-full'>
-                            <h1 className='font-[500] leading-[19.93px] tracking-[0.316px] text-[16.608px] text-[#000000]'>
-                                Choose Service
-                            </h1>
-                            <div className='space-y-[20px] pb-[28px] pt-[20px] capitalize'>
-                                {services.map((service) => {
-                                    const isSelected = service.id === selectedServiceId;
-                                    return (
-                                        <h1
-                                            key={service.id}
-                                            onClick={() => handleServiceClick(service.id)}
-                                            className={`cursor-pointer w-[192px] text-[14px] leading-[24px] tracking-[-0.28px] font-[400] text-center rounded-[29px] py-[6px] px-[20px] ${isSelected ? 'bg-[#2C2240] text-[#F3F0FF]' : 'bg-[#F3F0FF] text-[#2C2240] line-through opacity-[0.6]'
-                                                }`}
-                                        >
-                                            {service.text}
-                                        </h1>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                        <BookingCalander
-                            date={date}
-                            setDate={setDate}
-                            setSelectedTimeId={setSelectedTimeId}
-                            scrollRef={scrollRef}
-                            availableTimesMap={availableTimesMap}
-                            handleTimeSelection={handleTimeSelection}
-                            handleServiceClick={handleServiceClick}
-                            selectedServiceId={selectedServiceId}
-                            selectedTimeId={selectedTimeId}
-                            scrollUp={scrollUp}
-                            scrollDown={scrollDown}
-                            timessss={timessss}
-                            handleAddToBooking={handleAddToBooking}
-                            selectedTimes={selectedTimes}
-                        />
-                    </div>
-                    <div className='w-full bg-[#FFF] rounded-[8px] p-[24px] mt-[80px]' style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)' }}>
-                        <h1 className={`${montserrat.className} text-start text-[#000000] text-[20px] font-[600] leading-normal tracking-[-0.2px] py-[8px] border-b-[1px] border-[#F1F1F1]`}>Cost Breakdown</h1>
-                        <div className='flex justify-start items-center w-full gap-[61px] mt-[16px]'>
-                            <div className='w-[75%] py-[20px]'>
-                                <div className='gap-[28px] flex justify-start items-center w-full' >
-                                    <div className='w-[50%] flex flex-col gap-[4px]'>
-                                        <div className='flex justify-between items-start py-[16px] px-[4px]  border-b-[1px] border-[#F1F1F1]'>
-                                            <div className='text-[#6B6B6B] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>
-                                                Worker Fee Per Hour
-                                            </div>
-                                            <div className='text-[#2C2240] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>30$</div>
-                                        </div>
-                                        <div className='flex justify-between items-start py-[16px] px-[4px]'>
-                                            <div className='text-[#6B6B6B] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>
-                                                Worker Fee Per Hour
-                                            </div>
-                                            <div className='text-[#2C2240] text-base font-normal tracking-wide leading-6'>
-                                                <span className=' text-[#C2C2C2] text-[11px] font-normal leading-4 mr-[1.9px]'>5</span>
-                                                <span className='text-[8px] text-[#C2C2C2] font-normal leading-4 mr-1'>Days</span>
-                                                <span className=' text-[#C2C2C2] text-[11px] font-normal leading-4 mr-[1.9px]'>9</span>
-                                                <span className='text-[8px] text-[#C2C2C2] font-normal leading-4 mr-2'>hours</span>
-                                                <span className='text-[#2C2240] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>54h</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div className='w-[50%]'>
-                                        <div className='w-[50%] flex flex-col gap-[4px]' style={{ width: '100%' }}>
-                                            <div className='flex justify-between items-start py-[16px] px-[4px]  border-b-[1px] border-[#F1F1F1]'>
-                                                <div className='text-[#6B6B6B] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>
-                                                    Worker Fee Per Hour
-                                                </div>
-                                                <div className='text-[#2C2240] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>
-                                                    <div className='text-[#2C2240] text-base font-normal tracking-wide leading-6'>
-                                                        <span className=' text-[#C2C2C2] text-[11px] font-normal leading-4 mr-[1.9px]'>5</span>
-                                                        <span className='text-[8px] text-[#C2C2C2] font-normal leading-4 mr-1'>Days</span>
-                                                        <span className=' text-[#C2C2C2] text-[11px] font-normal leading-4 mr-[1.9px]'>9</span>
-                                                        <span className='text-[8px] text-[#C2C2C2] font-normal leading-4 mr-2'>hours</span>
-                                                        <span className='text-[#2C2240] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>40$</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className='flex justify-between items-start py-[16px] px-[4px]'>
-                                                <div className='text-[#6B6B6B] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>
-                                                    Worker Fee Per Hour
-                                                </div>
-                                                <div className='text-[#2C2240] text-[14px] font-[400] tracking-[-0.28px] leading-[24px]'>10$</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='w-[25%] h-[100%] bg-[#F3F0FF] py-[10px] px-[20px]'>
-                                <div className='flex justify-between items-center pb-[14px]'>
-                                    <h6 className={`${montserrat.className} tracking-[-0.2px] leading-normal font-[600] text-[20px] text-[#6B6B6B]`}>Total</h6>
-                                    <h1 className={`${montserrat.className} tracking-[-0.32px] leading-normal font-[600] text-[32px] text-[#000000]`}>$2,700.00</h1>
-                                </div>
-                                <Link href='/staff/booking' className="text-[#dfdbec] bg-[#350ABC] justify-center rounded-[4px] text-[14px] font-normal px-[20px] w-[100%] opacity-[0.9] h-[48px] py-[16px] text-center inline-flex items-center ">
-                                    <span className='mr-2 '>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
-                                            <path d="M13.8332 4L6.49984 11.3333L3.1665 8" stroke="#F3F0FF" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-
-                                    Hire Now
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+                    <BookingCalander
+                            isStaffListerFilter
+                                date={date}
+                                setDate={setDate}
+                                setSelectedTimeId={setSelectedTimeId}
+                                scrollRef={scrollRef}
+                                availableTimesMap={availableTimesMap}
+                                handleTimeSelection={handleTimeSelection}
+                                selectedTimeId={selectedTimeId}
+                                scrollUp={scrollUp}
+                                scrollDown={scrollDown}
+                                timessss={timessss}
+                                handleAddToBooking={handleAddToBooking}
+                                selectedTimes={selectedTimes}
+                                highlightedDatesNotAvailable={highlightedDatesNotAvailable}
+                                highlightedDatesAvailable={highlightedDatesAvailable}
+                            />
                 </div>
                 {/* staff history section */}
                 <div className="h-[465px] flex gap-[25px] mt-[100px] mb-6">

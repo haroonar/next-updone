@@ -3,6 +3,7 @@ import CommonSelect from '@/app/components/common/select-option'
 import { HERO_FILTER_STAFF, LOCATION, TIMES_CONST } from '@/app/libs/Constants'
 import Image from 'next/image'
 import React from 'react'
+import { CSSTransition } from 'react-transition-group';
 type StaffFiltersProps = {
     handleTimeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
     handleLocationChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
@@ -14,7 +15,9 @@ const StaffFilters = ({ handleTimeChange, handleLocationChange, scrollY=0 ,modal
     return (
         <div className='w-full h-40 flex justify-center items-start'>
             {modalOpen ? "":   
-           <div className={scrollY ? 'w-full h-44 bg-[#FFF] transition-all duration-500 ease-in flex justify-center fixed z-50 items-start bottom-0 top-10 left-0 right-0' : 'w-full flex justify-center transition-all duration-500 ease-in fixed z-50 items-start'}>
+           <div className={scrollY
+            ? 'transition-all delay-200 w-full h-44 bg-[#FFF] duration-500 ease-in flex justify-center fixed z-50 items-start bottom-0 top-10 left-0 right-0'
+            : 'w-full flex justify-center transition-all duration-500 ease-in fixed z-50 items-start'}>
 
                 <div style={{
                     boxShadow: scrollY
@@ -22,7 +25,7 @@ const StaffFilters = ({ handleTimeChange, handleLocationChange, scrollY=0 ,modal
                         : ''
                 }}
                     className='fixed z-50 mb-[65px] font-normal pt-4 pl-4 pb-0 pr-4 bg-white rounded-lg mt-[2.5%] shadow-sm'>
-                    <div className={`flex justify-center items-center w-full space-x-3 ${scrollY ? "mb-[14px]":"mb-2"}`}>
+                    <div className={`flex justify-center items-center w-full space-x-3 ${scrollY ? "mb-[20px]":"mb-2.5"}`}>
                         <button style={{fontSize:scrollY ? "10px":"14px"}} className="bg-[#F9F8FF] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Cocktail Server</button>
                         <button style={{fontSize:scrollY ? "10px":"14px"}} className="bg-[#F9F8FF] font-normal text-[#2C2240] px-[20px] py-[6px] rounded-md">Promo Model</button>
                         <button style={{fontSize:scrollY ? "10px":"14px"}} className="bg-[#2C2240] font-normal text-[#F3F0FF] px-[20px] py-[6px] rounded-md">Bar Back</button>

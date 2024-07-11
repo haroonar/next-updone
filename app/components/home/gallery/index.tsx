@@ -8,7 +8,7 @@ const montserrat = Montserrat({
 });
 function GalleryContent() {
     return (
-        <div style={{ background: "radial-gradient(#eeecec85, transparent)" }}>
+        <div className='bg-[#FFFFFF]'>
             <div className="text-center md:pt-[60px] 2xl:pt-[40px]">
                 <h2 className={`${montserrat.className} leading-normal uppercase text-[60px] text-[#000] font-[700]`}><span className={`${montserrat.className} leading-normal uppercase text-[60px] text-[#350ABC] font-[900]`} >Events</span> Gallery</h2>
             </div>

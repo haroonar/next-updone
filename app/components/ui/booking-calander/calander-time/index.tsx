@@ -1,39 +1,45 @@
-import CalendarWithAvailability, { highlightedDatesAvailable } from '@/app/components/common/Calander'
-import { BookingCalanderProps } from '@/types'
+import CalendarWithAvailability from '@/app/components/common/Calander'
+import { BookingCalanderProps } from '@/app/libs/types'
 import Image from 'next/image'
 import React from 'react'
 
-const TimeAndCalander = ({ isCalander, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, handleAddToBooking,isStaffListerFilter }: BookingCalanderProps) => {
+const TimeAndCalander = ({ highlightedDatesAvailable,highlightedDatesNotAvailable,isCalander, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, handleAddToBooking,isStaffListerFilter }: BookingCalanderProps) => {
     return (
         <div className='flex justify-start items-start gap-[21px]'>
          
             <div style={{width:isStaffListerFilter ? "22rem":"26rem"}} className={`"h-[348px] `}>
-                <div className=' w-full h-auto p-[10px] bg-[#fff] rounded-[8px]' style={{ boxShadow: "0px 8px 26px 0px rgba(0, 0, 0, 0.07)" }}>
+                <div className=' w-full h-auto p-[10px] bg-[#fff] rounded-[8px]' style={{
+  boxShadow: isCalander ? "" : "0px 8px 26px 0px rgba(0, 0, 0, 0.07)",
+  border: isCalander ? "1px solid #f7f7f7" : "none"
+}}
+>
                     <CalendarWithAvailability
+                    highlightedDatesAvailable={highlightedDatesAvailable}
+                    highlightedDatesNotAvailable={highlightedDatesNotAvailable}
                         setSelectedTimeId={setSelectedTimeId} setDate={setDate} date={date}
                     />
                 </div>
                 {!isCalander && 
                 <div className='flex justify-start gap-[10px] items-center mt-[18px] ml-[10px] tracking-[-0.2px] leading-[24px] font-[400] text-[#6B6B6B] text-[10px]'>
-                    <h1 className='flex justify-center items-center gap-1'>
+                    <h3 className='flex justify-center items-center gap-1'>
                         <span>
                             <Image height={10} width={10} alt='not available' src='/images/detail/notavail.svg' />
                         </span>
                         <span className='mt-[1.6px]'>Not Available</span>
-                    </h1>
-                    <h1 className='flex justify-center items-center gap-1'>
+                    </h3>
+                    <h3 className='flex justify-center items-center gap-1'>
                         <span>
                             <Image height={10} width={10} alt='not available' src='/images/detail/current.svg' />
 
-                        </span><span className='mt-[1.6px]'>Current Selection</span></h1>
-                    <h1 className='flex justify-center items-center gap-1'><span>
+                        </span><span className='mt-[1.6px]'>Current Selection</span></h3>
+                    <h3 className='flex justify-center items-center gap-1'><span>
                         <Image height={10} width={10} alt='not available' src='/images/detail/available.svg' />
 
-                    </span><span className=''>Added to Booking</span></h1>
+                    </span><span className=''>Added to Booking</span></h3>
                 </div>
         }
             </div>
-            {highlightedDatesAvailable.includes(date.toISOString().split('T')[0]) && (
+            {highlightedDatesAvailable?.includes(date.toISOString().split('T')[0]) && (
                 <div className='w-[12rem] h-full'>
                     <div className='relative bottom-[41px]'>
                         <h2 className="invisible absolute">Sarah's Availability</h2>

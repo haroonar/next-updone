@@ -10,7 +10,7 @@ const Footer = () => {
        <>
         <div className="bg-[#2c2240] relative">
             <div className='max-w-[1279px] m-auto'>
-                <footer className="relative bg-[#2c2240] text-white pt-8 pb-6 footer-image">
+                <footer className="relative bg-[#2c2240] text-white pt-[100px] pb-8  footer-image">
                     <div className="max-w-screen-xl mx-auto">
                         <div className="flex text-left lg:text-left">
                             <div className="w-[70%] space-y-4" >
@@ -25,7 +25,7 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div className="w-[70%]">
-                                <div className="flex items-top mb-6 gap-x-6">
+                                <div className="flex items-top mb-6 gap-x-6 relative left-[75px]">
                                     <FooterList title="About" items={ABOUT_ITEMS} />
                                     <FooterList title="Listings" items={LISTING_ITEMS} />
                                     <FooterList title="Socials" items={SOCIAL_ITEMS} />
@@ -33,7 +33,7 @@ const Footer = () => {
                             </div>
                         </div>
                         <div>
-                            <hr className="my-6 border-[.5px] border-[#807a8c]" />
+                            <hr className="mb-6 mt-8 border-[.5px] border-[#807a8c]" />
                             <div className="flex flex-wrap items-center md:justify-between justify-center">
                                 <div className="w-full text-center">
                                     <div className="text-paragraph py-1 flex justify-between items-center">

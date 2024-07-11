@@ -138,7 +138,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, isDetailTesto
           {/* Testimonials Slider */}
           {/* Testimonials heading and description */}
           <div>
-            <h1 className={`${montserrat.className} mt-[110px] text-center font-semibold text-[#000000] text-[32px] tracking-[-1%] mb-[140px]`}>Testimonials</h1>
+            <h2 className={`${montserrat.className} mt-[110px] text-center font-semibold text-[#000000] text-[32px] tracking-[-1%] mb-[140px]`}>Testimonials</h2>
           </div>
 
           <div className='px-[100px] pb-[87px] bg-[#F3F0FF] relative top-[12px] w-[90%] m-auto'>
@@ -184,7 +184,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, isDetailTesto
           {/* Testimonials heading and description */}
 
           <div>
-            <h1 className={`${montserrat.className} text-[60px] font-[600] leading-normal tracking-[-1.2px] text-[#000000] text-center`}>Testimonials</h1>
+            <h2 className={`${montserrat.className} text-[60px] font-[600] leading-normal tracking-[-1.2px] text-[#000000] text-center`}>Testimonials</h2>
             <p className={`${montserrat.className} text-[20px] font-[400] leading-normal text-[#6B6B6B] text-center`}>At Updone we are committed to pushing the <br /> boundaries of what’s possible.</p>
           </div>
 

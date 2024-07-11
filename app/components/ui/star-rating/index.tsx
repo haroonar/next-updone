@@ -18,14 +18,12 @@ console.log('hoverStars', hoverStars)
 
   const getColorClass = (numStars:number) => {
     if (numStars <= hoverStars) {
-      switch (Math.ceil(numStars)) {
-   
-      }
+      return 'text-orange-400'; // Change to orange when hovered
     } else {
-      return 'text-white';
+      return 'text-white'; // Default fill color
     }
   };
-
+  
 
 
   return (
@@ -40,8 +38,8 @@ console.log('hoverStars', hoverStars)
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            height={21.5}
-            width={21.5}
+            height={17.5}
+            width={17.5}
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -49,7 +47,7 @@ console.log('hoverStars', hoverStars)
           </svg>
           {/* Tooltip */}
           {hoverStars === index + 1 && (
-            <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 mt-[-42px] ${hoverStars === 1 || hoverStars === 2  || hoverStars === 5 ? "min-w-24" : "min-w-52"}   text-black text-lg rounded px-2 py-1 opacity-100 transition-opacity duration-300 pointer-events-none`}>
+            <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 mt-[-42px] ${hoverStars === 1 || hoverStars === 2  || hoverStars === 5 ? "min-w-24" : "min-w-52"}   text-orange-400 text-lg rounded px-2 py-1 opacity-100 transition-opacity duration-300 pointer-events-none`}>
           </div>
           
           )}

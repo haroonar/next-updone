@@ -10,9 +10,9 @@ const StaffHistory = () => {
     <div className="w-[55%]">
     <div >
         <div className='flex gap-2 justify-start items-center mb-6'>
-            <div className={`${montserrat.className} text-[24px] font-semibold translate-[-1%] text-[#2C2240]`}>Work History</div>
-            <div className='mt-[6px]'>
-                <h1 className='text-[#9B9B9B] text-[12px] font-normal translate-[-2%] leading-[26px] relative'>(60 jobs)</h1>
+            <h2 className={`${montserrat.className} text-[24px] font-semibold translate-[-1%] text-[#2C2240]`}>Work History</h2>
+            <div className='mt-[4px]'>
+                <span className='text-[#9B9B9B] text-[12px] font-normal translate-[-2%] leading-[26px] relative'>(60 jobs)</span>
             </div>
         </div>
 
@@ -58,7 +58,7 @@ const StaffHistory = () => {
                     </p>
                 </div>
                 <div className='flex justify-center items-center gap-2 mt-4'>
-                    <h1 className='text-center text-[12px] leading-[26px] text-[#6B6B6B] font-normal translate-[-2%]'>Load More</h1>
+                    <span className='text-center text-[12px] leading-[26px] text-[#6B6B6B] font-normal translate-[-2%]'>Load More</span>
                     <span><svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.5 3.33325L8.5 12.6666" stroke="#545454" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M13.1665 8L8.49984 12.6667L3.83317 8" stroke="#545454" stroke-linecap="round" stroke-linejoin="round" />

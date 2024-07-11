@@ -11,6 +11,10 @@ import Image from 'next/image'
 import { Montserrat } from 'next/font/google'
 import styles from './booking.module.css'
 import Link from 'next/link'
+import LoginFrom from '../login-register'
+import { useAuthContext } from '@/app/libs/context/AuthContext'
+import { RiDeleteBin6Line } from "react-icons/ri";
+
 const montserrat = Montserrat({
     weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
     subsets: ["latin"]
@@ -21,11 +25,10 @@ type Inputs = z.infer<typeof FormDataSchema>
 
 
 export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
+    const { setShowLoginForm, showLoginForm, setShowRegisterForm, showRegisterForm, setClose, close } = useAuthContext()
     const [previousStep, setPreviousStep] = useState(0)
     const [currentStep, setCurrentStep] = useState(0)
-    const [showLoginForm, setShowLoginForm] = useState(true);
-    const [showRegisterForm, setShowRegisterForm] = useState(true); // Start with registration form hidden
-    const [close, setClose] = useState(true)
+
 
     const handleShowRegisterForm = (e: any) => {
         e.preventDefault();
@@ -138,7 +141,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
         color: '#9D9D9D',
         fontSize: '5px',
     };
-    
+
 
     const countryOptions = [
         { value: '', label: 'City', disabled: true },
@@ -280,7 +283,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                 <div className='w-[44%]  h-[100vh] '>
                                     {/* //card section */}
                                     <div>
-                                        <h2 className='px-[10px] pb-[10px] mb-[22px] montserrat-font font-[600] leading-normal text-[32px] tracking-[-0.32px] text-[#000000]'>
+                                        <h2 className='px-[10px] pb-[10px] mb-[4px] montserrat-font font-[600] leading-normal text-[32px] tracking-[-0.32px] text-[#000000]'>
                                             Booking Details
                                         </h2>
                                         <div style={{ boxShadow: "0px 12px 28px 0px rgba(0, 0, 0, 0.06)" }} className='relative z-10 bg-white flex gap-[14px] p-[8px] max-w-full min-h-[82px] rounded-[8px] '>
@@ -296,7 +299,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                             </span>
                                             <div className='w-[80%]'>
                                                 <div className='flex justify-between items-center'>
-                                                    <h1 className='text-[20px] font-[600] montserrat-font leading-normal tracking-[-0.2px] text-[#000000]'>Sarah Miler</h1>
+                                                    <h3 className='text-[20px] font-[600] montserrat-font leading-normal tracking-[-0.2px] text-[#000000]'>Sarah Miler</h3>
                                                     <div className="flex items-center justify-center">
                                                         <div className='relative bottom-[1px]'>
 
@@ -324,24 +327,70 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='min-h-[47px] w-full  mb-[24px] mt-[40px] bg-[#FFF] border-[1px] border-[#EDE9FF] rounded-[4px] py-[14px] px-[26px] flex justify-between items-center' style={{ boxShadow: '0px 8px 26px 0px rgba(53, 10, 188, 0.06)' }}>
-                                        <div className='flex justify-center items-center '>
-                                            <span className='mr-[10px]'><Image width={21} height={21} src='/images/booking/calander.svg' alt='step-1' /></span> <p></p>
-                                            <div><div className='text-[20px] font-[400] leading-normal tracking-[-0.2px] text-[#350ABC] flex gap-[10px] justify-center items-center'><div ><h1 className={`${montserrat.className} text-[20px] mt-[1.6px] font-[400] leading-normal tracking-[-1.2px] text-[#350ABC] capitalize`}>june</h1></div><span> 6<sup className='relative top-[.1px] text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#7658D3]'>th</sup></span></div>
-
-                                            </div>
-                                            <span><div className='text-[20px] font-[400] leading-normal tracking-[-0.2px] text-[#350ABC] flex gap-[10px] justify-center items-center'><div ><h1 className={`${montserrat.className} text-[20px] font-[400] leading-normal tracking-[-1.2px] text-[#350ABC] capitalize ml-[20px] mt-[1.6px]`}>Time</h1></div><span>10.30<sup className='relative top-[.1px] text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#7658D3]'>pm</sup></span>-<span>1.30<sup className='relative top-[.1px] text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#7658D3]'>am</sup></span></div>
-
-                                            </span>
+                                    <div className='flex justify-start items-center gap-3'>
+                                        <h3 className='mt-[40px] mb-[13.25px] leading-[17.784px] translate-[0.282px] font-[500] text-[14px] text-[#000000]'>Booking Times:</h3>
+                                        <span> <Image width={15} height={15} src='/images/booking/pancel.svg' alt='step-1' className='relative top-3.5' /></span>
+                                    </div>
+                                    <div className='min-h-[35px] max-h-auto w-full  mb-[6px]  bg-[#FFF] border-[1px] border-[#EDE9FF] rounded-[3.569px]  flex justify-between items-center' style={{ boxShadow: "0px 3.569px 7.139px 0px rgba(53, 10, 188, 0.06)" }}>
+                                        <div className='pl-[17px] flex justify-center items-center gap-3 text-[#2C2240] font-[400] leading-[24px] tracking-[-0.214px] text-[11px]'>
+                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
+                                                <path d="M9.95602 6.24617C8.09043 6.24617 6.57255 7.76405 6.57255 9.62964C6.57255 11.4843 8.09043 12.9928 9.95602 12.9928C11.8216 12.9928 13.3395 11.4749 13.3395 9.60934C13.3395 7.75468 11.8216 6.24617 9.95602 6.24617ZM9.95602 12.4723C8.37776 12.4723 7.09308 11.197 7.09308 9.62964C7.09308 8.05086 8.37776 6.76671 9.95602 6.76671C11.5343 6.76671 12.819 8.04201 12.819 9.60934C12.819 11.1881 11.5343 12.4723 9.95602 12.4723ZM10.6608 9.94561C10.7623 10.0471 10.7623 10.2121 10.6608 10.3136C10.6098 10.3646 10.5432 10.3896 10.4766 10.3896C10.4099 10.3896 10.3433 10.3641 10.2923 10.3136L9.77175 9.79309C9.72282 9.74416 9.69575 9.67805 9.69575 9.60882V8.56775C9.69575 8.42408 9.81235 8.30749 9.95602 8.30749C10.0997 8.30749 10.2163 8.42408 10.2163 8.56775V9.50107L10.6608 9.94561ZM10.9971 1.54107H10.2163V0.760267C10.2163 0.6166 10.0997 0.5 9.95602 0.5C9.81235 0.5 9.69575 0.6166 9.69575 0.760267V1.54107H4.49042V0.760267C4.49042 0.6166 4.37382 0.5 4.23015 0.5C4.08648 0.5 3.96988 0.6166 3.96988 0.760267V1.54107H3.18908C1.89764 1.54107 0.84668 2.59203 0.84668 3.88347V10.6504C0.84668 11.9419 1.89764 12.9928 3.18908 12.9928H6.31228C6.45595 12.9928 6.57255 12.8762 6.57255 12.7325C6.57255 12.5889 6.45595 12.4723 6.31228 12.4723H3.18908C2.18445 12.4723 1.36721 11.655 1.36721 10.6504V5.1848H12.819V5.9656C12.819 6.10927 12.9356 6.22587 13.0792 6.22587C13.2229 6.22587 13.3395 6.10927 13.3395 5.9656V3.88347C13.3395 2.59203 12.2885 1.54107 10.9971 1.54107ZM1.36721 4.66427V3.88347C1.36721 2.87884 2.18445 2.0616 3.18908 2.0616H10.9971C12.0017 2.0616 12.819 2.87884 12.819 3.88347V4.66427H1.36721Z" fill="#2C2240" />
+                                            </svg></span>
+                                            April 3, 2024
                                         </div>
-                                        <div>
-                                            <Image width={21} height={21} src='/images/booking/pancel.svg' alt='step-1' />
+                                        <div className='text-[#848486] text-[12px] font-[400] leading-[24px] tracking-[-0.25px]'>
+                                            <span>12:00pm - 1:00pm</span>
+
+                                        </div>
+                                        <div className='bg-red-100 py-[10px] px-[9px]'>
+                                            <RiDeleteBin6Line className='text-[#C20000]' />
                                         </div>
                                     </div>
+                                    <div className='min-h-[35px] w-full max-h-auto  mb-[6px]  bg-[#FFF] border-[1px] border-[#EDE9FF] rounded-[3.569px]  flex justify-between items-center' style={{ boxShadow: "0px 3.569px 7.139px 0px rgba(53, 10, 188, 0.06)" }}>
+                                        <div className='pl-[17px] flex justify-center items-center gap-3 text-[#2C2240] font-[400] leading-[24px] tracking-[-0.214px] text-[11px]'>
+                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
+                                                <path d="M9.95602 6.24617C8.09043 6.24617 6.57255 7.76405 6.57255 9.62964C6.57255 11.4843 8.09043 12.9928 9.95602 12.9928C11.8216 12.9928 13.3395 11.4749 13.3395 9.60934C13.3395 7.75468 11.8216 6.24617 9.95602 6.24617ZM9.95602 12.4723C8.37776 12.4723 7.09308 11.197 7.09308 9.62964C7.09308 8.05086 8.37776 6.76671 9.95602 6.76671C11.5343 6.76671 12.819 8.04201 12.819 9.60934C12.819 11.1881 11.5343 12.4723 9.95602 12.4723ZM10.6608 9.94561C10.7623 10.0471 10.7623 10.2121 10.6608 10.3136C10.6098 10.3646 10.5432 10.3896 10.4766 10.3896C10.4099 10.3896 10.3433 10.3641 10.2923 10.3136L9.77175 9.79309C9.72282 9.74416 9.69575 9.67805 9.69575 9.60882V8.56775C9.69575 8.42408 9.81235 8.30749 9.95602 8.30749C10.0997 8.30749 10.2163 8.42408 10.2163 8.56775V9.50107L10.6608 9.94561ZM10.9971 1.54107H10.2163V0.760267C10.2163 0.6166 10.0997 0.5 9.95602 0.5C9.81235 0.5 9.69575 0.6166 9.69575 0.760267V1.54107H4.49042V0.760267C4.49042 0.6166 4.37382 0.5 4.23015 0.5C4.08648 0.5 3.96988 0.6166 3.96988 0.760267V1.54107H3.18908C1.89764 1.54107 0.84668 2.59203 0.84668 3.88347V10.6504C0.84668 11.9419 1.89764 12.9928 3.18908 12.9928H6.31228C6.45595 12.9928 6.57255 12.8762 6.57255 12.7325C6.57255 12.5889 6.45595 12.4723 6.31228 12.4723H3.18908C2.18445 12.4723 1.36721 11.655 1.36721 10.6504V5.1848H12.819V5.9656C12.819 6.10927 12.9356 6.22587 13.0792 6.22587C13.2229 6.22587 13.3395 6.10927 13.3395 5.9656V3.88347C13.3395 2.59203 12.2885 1.54107 10.9971 1.54107ZM1.36721 4.66427V3.88347C1.36721 2.87884 2.18445 2.0616 3.18908 2.0616H10.9971C12.0017 2.0616 12.819 2.87884 12.819 3.88347V4.66427H1.36721Z" fill="#2C2240" />
+                                            </svg></span>
+                                            April 3, 2024
+                                        </div>
+                                        <div className='text-[#848486] text-[12px] font-[400] leading-[24px] tracking-[-0.25px]'>
+                                            <span>12:00pm - 1:00pm</span>
+
+                                        </div>
+                                        <div className='bg-red-100 py-[10px] px-[9px]'>
+                                            <RiDeleteBin6Line className='text-[#C20000]' />
+                                        </div>
+                                    </div>
+                                    <div className='min-h-[35px] w-full max-h-auto  mb-[6px]  bg-[#FFF] border-[1px] border-[#EDE9FF] rounded-[3.569px]  flex justify-between items-center' style={{ boxShadow: "0px 3.569px 7.139px 0px rgba(53, 10, 188, 0.06)" }}>
+                                        <div className='pl-[17px] flex justify-center items-center gap-3 text-[#2C2240] font-[400] leading-[24px] tracking-[-0.214px] text-[11px]'>
+                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
+                                                <path d="M9.95602 6.24617C8.09043 6.24617 6.57255 7.76405 6.57255 9.62964C6.57255 11.4843 8.09043 12.9928 9.95602 12.9928C11.8216 12.9928 13.3395 11.4749 13.3395 9.60934C13.3395 7.75468 11.8216 6.24617 9.95602 6.24617ZM9.95602 12.4723C8.37776 12.4723 7.09308 11.197 7.09308 9.62964C7.09308 8.05086 8.37776 6.76671 9.95602 6.76671C11.5343 6.76671 12.819 8.04201 12.819 9.60934C12.819 11.1881 11.5343 12.4723 9.95602 12.4723ZM10.6608 9.94561C10.7623 10.0471 10.7623 10.2121 10.6608 10.3136C10.6098 10.3646 10.5432 10.3896 10.4766 10.3896C10.4099 10.3896 10.3433 10.3641 10.2923 10.3136L9.77175 9.79309C9.72282 9.74416 9.69575 9.67805 9.69575 9.60882V8.56775C9.69575 8.42408 9.81235 8.30749 9.95602 8.30749C10.0997 8.30749 10.2163 8.42408 10.2163 8.56775V9.50107L10.6608 9.94561ZM10.9971 1.54107H10.2163V0.760267C10.2163 0.6166 10.0997 0.5 9.95602 0.5C9.81235 0.5 9.69575 0.6166 9.69575 0.760267V1.54107H4.49042V0.760267C4.49042 0.6166 4.37382 0.5 4.23015 0.5C4.08648 0.5 3.96988 0.6166 3.96988 0.760267V1.54107H3.18908C1.89764 1.54107 0.84668 2.59203 0.84668 3.88347V10.6504C0.84668 11.9419 1.89764 12.9928 3.18908 12.9928H6.31228C6.45595 12.9928 6.57255 12.8762 6.57255 12.7325C6.57255 12.5889 6.45595 12.4723 6.31228 12.4723H3.18908C2.18445 12.4723 1.36721 11.655 1.36721 10.6504V5.1848H12.819V5.9656C12.819 6.10927 12.9356 6.22587 13.0792 6.22587C13.2229 6.22587 13.3395 6.10927 13.3395 5.9656V3.88347C13.3395 2.59203 12.2885 1.54107 10.9971 1.54107ZM1.36721 4.66427V3.88347C1.36721 2.87884 2.18445 2.0616 3.18908 2.0616H10.9971C12.0017 2.0616 12.819 2.87884 12.819 3.88347V4.66427H1.36721Z" fill="#2C2240" />
+                                            </svg></span>
+                                            April 3, 2024
+                                        </div>
+                                        <div className='text-[#848486] text-[12px] font-[400] leading-[24px] tracking-[-0.25px]'>
+                                            <span>12:00pm - 1:00pm</span>
+
+                                        </div>
+                                        <div className='bg-red-100 py-[10px] px-[9px]'>
+                                            <RiDeleteBin6Line className='text-[#C20000]' />
+                                        </div>
+                                    </div>
+                                    <div style={{
+                                        background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)",
+                                        backdropFilter: "blur(1.7846870422363281px)"
+                                    }} className='text-center w-full bg-red-300 relative bottom-[41px] h-[36px] flex justify-center items-center gap-2 tracking-[-0.214px] text-[10px] font-[400] text-[#350ABC] opacity-[0.9] leading-[21px]'>
+                                        Load more <span><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.4165 3.85974L7.4165 12.1883" stroke="#350ABC" stroke-width="0.892343" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M11.5806 8.02405L7.4163 12.1883L3.25203 8.02405" stroke="#350ABC" stroke-width="0.892343" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        </span>
+                                    </div>
+
                                     {/* cost break down section */}
-                                    <div>
-                                        <h1 className='text-[20px] font-[600] montserrat-font p-[8px] mb-[16px] mt-[24px] leading-normal tracking-[-0.2px] text-[#000000]'>Cost Breakdown</h1>
-                                        <div className="mx-auto max-w-3xl rounded-[4px] p-[20px]" style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)' }}>
+                                    <div className='relative bottom-[21px]'>
+                                        <h2 className='text-[20px] font-[600] montserrat-font p-[8px] mb-[6px] leading-normal tracking-[-0.2px] text-[#000000]'>Cost Breakdown</h2>
+                                        <div className="mx-auto max-w-3xl rounded-[4px] py-[9px] px-[20px]" style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)' }}>
                                             <div className="relative overflow-x-auto border-b-2 border-[#f8f8f8]">
                                                 <table className="w-full text-left font-medium md:table-fixed">
                                                     <tbody>
@@ -356,7 +405,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                             </td>
                                                         </tr>
                                                         <tr className='border-b-[1px] border-[#f8f8f8]'>
-                                                            <td className="whitespace-nowrap py-2 md:w-[384px]">
+                                                            <td className="whitespace-nowrap py-[4px] md:w-[384px]">
                                                                 <div className="flex justify-between items-center gap-4">
                                                                     <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
                                                                         Number of Hours
@@ -369,7 +418,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                             </td>
                                                         </tr>
                                                         <tr className='border-b-[1px] border-[#f8f8f8]'>
-                                                            <td className="whitespace-nowrap py-2 md:w-[384px]">
+                                                            <td className="whitespace-nowrap py-[4px] md:w-[384px]">
                                                                 <div className="flex justify-between items-center gap-4">
                                                                     <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
                                                                         Worker Fee Calculation
@@ -382,7 +431,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td className="whitespace-nowrap py-2 md:w-[384px] pb-[27px]">
+                                                            <td className="whitespace-nowrap py-[4px] md:w-[384px] pb-[27px]">
                                                                 <div className="flex justify-between items-center gap-4">
                                                                     <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
                                                                         Platform Fee
@@ -395,12 +444,12 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                 </table>
                                             </div>
                                             {/* buttons */}
-                                            <div className="whitespace-nowrap mt-[27px] md:w-[384px] " style={{ width: '100%' }}>
+                                            <div className="whitespace-nowrap mt-[8px] md:w-[384px] " style={{ width: '100%' }}>
                                                 <div className="flex justify-between items-center gap-4">
                                                     <p style={{ letterSpacing: '-2%' }} className=" text-[#000000] leading-normal text-[20px] montserrat-font font-[600]">
                                                         Total
                                                     </p>
-                                                    <h1 style={{ letterSpacing: '-1%' }} className="text-right leading-normal text-[#000000] text-[32px] font-[600] montserrat-font">$1000.00</h1>
+                                                    <h3 style={{ letterSpacing: '-1%' }} className="text-right leading-normal text-[#000000] text-[32px] font-[600] montserrat-font">$1,000.00</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -426,7 +475,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                         </div>
                                         <section>
                                             <div className='flex justify-start p-[10px] gap-[8px] text-[18px] font-[500] leading-[32px] tracking-[-0.36px] text-[#000000] items-center'>
-                                                <span><Image width={15} height={15} src='/images/booking/person.svg' alt='user' /></span>   <h1>Contact Details</h1>
+                                                <span><Image width={15} height={15} src='/images/booking/person.svg' alt='user' /></span>   <h3>Contact Details</h3>
                                             </div>
                                             <form action="">
                                                 <div>
@@ -493,7 +542,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                     </div>
                                                 </div>
                                                 <div className='flex mt-[30px] justify-start p-[10px] gap-[8px] text-[18px] font-[500] leading-[32px] tracking-[-0.36px] text-[#000000] items-center'>
-                                                    <span><Image width={18} height={18} src='/images/booking/barglass.svg' alt='user' /></span>   <h1>Event Location</h1>
+                                                    <span><Image width={18} height={18} src='/images/booking/barglass.svg' alt='user' /></span>   <h3>Event Location</h3>
                                                 </div>
                                                 <div>
                                                     <div className='flex justify-between gap-[8px] items-center'>
@@ -566,243 +615,11 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
 
                                                 </button>
 
-                                                {close ? <></> :
-                                                    <div style={{ height: showLoginForm ? "257px" : (showRegisterForm ? "430px" : "765px") }} className={`${styles.loginpopup}  w-40 right-0 h-40 z-10 absolute overflow-hidden`}>
-                                                        <span className='relative bottom-[6px]'>
-                                                            <Image width={98} height={98} src='/images/booking/6.svg' alt='step-1' />
-                                                        </span>
-
-                                                        {/* Close button */}
-                                                        <button
-                                                            className="absolute top-[11px] right-[11px] text-gray-500  hover:text-gray-800 focus:outline-none"
-                                                            onClick={handleClose}
-                                                        >
-                                                            <Image width={12} height={12} src='/images/booking/7.svg' alt='step-1' />
-                                                        </button>
-                                                        {!showLoginForm && <button
-                                                            className="absolute top-[11px] left-[11px] text-gray-500  hover:text-gray-800 focus:outline-none"
-                                                            onClick={handleClose}
-                                                        >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="6" viewBox="0 0 42 6" fill="none">
-                                                                <path d="M0 3L5 5.88675L5 0.113249L0 3ZM41 3.5C41.2761 3.5 41.5 3.27615 41.5 3C41.5 2.72386 41.2761 2.5 41 2.5L41 3.5ZM4.5 3.5L41 3.5L41 2.5L4.5 2.5L4.5 3.5Z" fill="#6B6B6B" />
-                                                            </svg>
-                                                            <span className='text-[12px] relative bottom-1 text-[#6B6B6B] font-[400] leading-[24px] tracking-[-0.2px]'>back</span>
-                                                        </button>}
-
-                                                        {/* Background section */}
-                                                        <div style={{ height: showLoginForm ? "193px" : "300px", bottom: showLoginForm ? '-59.125px' : '-130.125px' }} className='login_backgorund w-[529px] h-[193px] absolute bottom-[-59.125px] z-1 rounded-[56%]'>
-                                                            {/* Content on top of background */}
-
-                                                            {showLoginForm ?
-                                                                <div className="relative text-center bottom-[-34px]">
-                                                                    <h1 className={styles.loginpopup_head}>
-                                                                        Join Updone
-                                                                    </h1>
-                                                                    <p className={styles.loginpopup_body}>Sign In or Sign up to updone to book pro event staff in a snap</p>
-                                                                    <div className='flex justify-center items-center gap-[7px] mx-24 relative bottom-[80px]'>
-                                                                        <button onClick={() => setShowLoginForm(false)} className={`${styles.login_btn}`}>Login</button>
-                                                                        <button onClick={(e) => handleShowRegisterForm(e)} className={`${styles.register_btn}`}>Register</button>
-                                                                    </div>
-                                                                </div>
-                                                                :
-                                                                <div className="relative text-center bottom-[25px]">
-                                                                    {!showRegisterForm ? "" : <>
-                                                                        <h1 className={`${styles.loginpopup_heads} bottom-[120px]`}>
-                                                                            Welcome Back
-                                                                        </h1>
-                                                                        <p className={styles.loginpopup_bodys}>Sign In or Sign up to updone to book pro event staff in a snap</p>
-                                                                    </>}
-                                                                    {
-                                                                        showRegisterForm ? <div className='flex justify-center items-center gap-[7px] mx-24 relative bottom-[143px] flex-col'>
-                                                                            <div className='flex justify-between flex-col gap-[8px] items-center'>
-                                                                                <div className="relative w-full" style={{ width: '320px' }}>
-
-
-                                                                                    <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
-                                                                                        <Image width={14} height={14} src='/images/booking/8.svg' alt='step-1' />
-                                                                                    </div>
-                                                                                    <input
-                                                                                        style={loginInputStyles}
-                                                                                        type="search"
-                                                                                        id="default-search"
-                                                                                        className={`${styles.defaultsearch} mt-[12px]  shadow-lg py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200`}
-                                                                                        placeholder="Email address*"
-
-                                                                                    />
-
-                                                                                </div>
-                                                                                <div className="flex items-center w-full" style={{ width: '320px' }}>
-                                                                                    <div className="absolute inset-y-0 mt-3 ml-[21px] start-0 flex items-center ps-3 pointer-events-none bottom-[20px]">
-                                                                                        <Image width={14} height={15} src='/images/booking/9.svg' alt='step-1' />
-
-                                                                                    </div>
-                                                                                    <input
-                                                                                    style={loginInputStyles}
-                                                                                        type="search"
-                                                                                        id="default-search"
-                                                                                        className={`${styles.defaultsearch} mt-[12px]  shadow-lg py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200`}
-                                                                                        placeholder="Password"
-
-                                                                                    />
-                                                                                </div>
-
-                                                                            </div>
-                                                                            <button className={`${styles.login_btn_}  mt-[20px] w-full justify-center bg-[#350ABC] text-[#F3F0FF3] opacity-[0.9] rounded-[4px]  px-[16px] py-[18px] text-center inline-flex items-center`}>
-                                                                                Login
-                                                                                <span className={`ml-2`}>
-                                                                                    <Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' />
-                                                                                </span>
-
-                                                                            </button>
-                                                                        </div> :
-                                                                            <div className='relative bottom-[468px]'>
-                                                                                <div className='flex justify-center items-center gap-[7px] mx-24 relative bottom-[-145px] flex-col'>
-                                                                                    <h1 className={`${styles.registerpopup_head} bottom-[120px]`}>
-                                                                                        Welcome Back
-                                                                                    </h1>
-                                                                                    <p className={styles.registerpopup_body}>Sign In or Sign up to updone to book pro event staff in a snap</p>
-                                                                                </div>
-                                                                                <div className='flex justify-between flex-col gap-[8px] items-center'>
-                                                                                    <div className="relative w-full" style={{ width: '320px' }}>
-
-
-                                                                                        <div className="absolute inset-y-0 mt-3 ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                                                                                <path d="M11.6668 12.25V11.0833C11.6668 10.4645 11.421 9.871 10.9834 9.43342C10.5458 8.99583 9.95233 8.75 9.3335 8.75H4.66683C4.04799 8.75 3.4545 8.99583 3.01691 9.43342C2.57933 9.871 2.3335 10.4645 2.3335 11.0833V12.25" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                                                                <path d="M6.99984 6.41667C8.2885 6.41667 9.33317 5.372 9.33317 4.08333C9.33317 2.79467 8.2885 1.75 6.99984 1.75C5.71117 1.75 4.6665 2.79467 4.6665 4.08333C4.6665 5.372 5.71117 6.41667 6.99984 6.41667Z" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                                                            </svg>
-                                                                                        </div>
-                                                                                        <input
-                                                                                            type="search"
-                                                                                            id="default-search"
-                                                                                            className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Full Name*"
-                                                                                            style={loginInputStyles}
-
-                                                                                        />
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className='flex justify-between flex-col gap-[8px] items-center'>
-                                                                                    <div className="relative w-full" style={{ width: '320px' }}>
-
-
-                                                                                        <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                                                                                                <path d="M2.33366 3.20801H11.667C12.3087 3.20801 12.8337 3.73301 12.8337 4.37467V11.3747C12.8337 12.0163 12.3087 12.5413 11.667 12.5413H2.33366C1.69199 12.5413 1.16699 12.0163 1.16699 11.3747V4.37467C1.16699 3.73301 1.69199 3.20801 2.33366 3.20801Z" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                                                                <path d="M12.8337 4.37451L7.00033 8.45784L1.16699 4.37451" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                                                            </svg>
-                                                                                        </div>
-                                                                                        <input
-                                                                                            type="search"
-                                                                                            id="default-search"
-                                                                                            className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Email address*"
-                                                                                            style={loginInputStyles}
-                                                                                        />
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className='flex justify-between flex-col gap-[8px] items-center'>
-                                                                                    <div className="relative w-full" style={{ width: '320px' }}>
-
-
-                                                                                        <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
-                                                                                            <Image width={16} height={16} src='/images/booking/company.svg' alt='step-1' />
-                                                                                        </div>
-                                                                                        <input
-                                                                                            type="search"
-                                                                                            id="default-search"
-                                                                                            className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Company Name"
-                                                                                            style={loginInputStyles}
-                                                                                        />
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className='flex justify-between flex-col gap-[8px] items-center'>
-                                                                                    <div className="relative w-full" style={{ width: '320px' }}>
-
-
-                                                                                        <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                                                                                                <g clip-path="url(#clip0_628_1848)">
-                                                                                                    <path d="M12.8338 10.7444V12.4944C12.8345 12.6569 12.8012 12.8177 12.7361 12.9665C12.671 13.1154 12.5756 13.249 12.4559 13.3588C12.3362 13.4687 12.1948 13.5523 12.0409 13.6043C11.887 13.6564 11.724 13.6757 11.5622 13.6611C9.76714 13.466 8.04291 12.8527 6.52799 11.8702C5.11856 10.9746 3.9236 9.77967 3.02799 8.37024C2.04214 6.84844 1.42863 5.11582 1.23716 3.31274C1.22258 3.15143 1.24175 2.98885 1.29345 2.83535C1.34515 2.68186 1.42824 2.54081 1.53744 2.42118C1.64663 2.30156 1.77954 2.20599 1.9277 2.14054C2.07586 2.0751 2.23602 2.04122 2.39799 2.04107H4.14799C4.43109 2.03829 4.70554 2.13853 4.92018 2.32313C5.13483 2.50773 5.27503 2.76408 5.31466 3.04441C5.38852 3.60444 5.5255 4.15433 5.72299 4.68357C5.80147 4.89236 5.81846 5.11927 5.77194 5.33742C5.72541 5.55557 5.61733 5.7558 5.46049 5.91441L4.71966 6.65524C5.55006 8.11564 6.75925 9.32483 8.21966 10.1552L8.96049 9.41441C9.11909 9.25757 9.31933 9.14948 9.53748 9.10296C9.75562 9.05644 9.98253 9.07342 10.1913 9.15191C10.7206 9.34939 11.2705 9.48638 11.8305 9.56024C12.1139 9.60021 12.3726 9.74294 12.5576 9.96128C12.7426 10.1796 12.8409 10.4583 12.8338 10.7444Z" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                                                                </g>
-                                                                                                <defs>
-                                                                                                    <clipPath id="clip0_628_1848">
-                                                                                                        <rect width="14" height="14" fill="white" transform="translate(0 0.874512)" />
-                                                                                                    </clipPath>
-                                                                                                </defs>
-                                                                                            </svg>
-                                                                                        </div>
-                                                                                        <input
-                                                                                            type="search"
-                                                                                            id="default-search"
-                                                                                            className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                                                                            placeholder="Company Name"
-                                                                                            style={loginInputStyles}
-                                                                                        />
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                {/* Dotted Border */}
-                                                                                <div style={{ width: '320px', margin: '14px auto 0px' }} className='border border-b border-dashed'></div>
-                                                                                <div className='flex justify-between flex-col gap-[8px] items-center'>
-                                                                                    <div className="relative w-full" style={{ width: '320px' }}>
-                                                                                        <input
-                                                                                            type="password"
-                                                                                            id="default-search"
-                                                                                            className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
-                                                                                            placeholder="Password"
-                                                                                            style={loginInputStyles}
-                                                                                        />
-                                                                                        <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                                                                                                <path d="M0.583008 7.87467C0.583008 7.87467 2.91634 3.20801 6.99967 3.20801C11.083 3.20801 13.4163 7.87467 13.4163 7.87467C13.4163 7.87467 11.083 12.5413 6.99967 12.5413C2.91634 12.5413 0.583008 7.87467 0.583008 7.87467Z" stroke="#9F9F9F" strokeWidth="0.583333" strokeLinecap="round" strokeLinejoin="round" />
-                                                                                                <path d="M7 9.62451C7.9665 9.62451 8.75 8.84101 8.75 7.87451C8.75 6.90801 7.9665 6.12451 7 6.12451C6.0335 6.12451 5.25 6.90801 5.25 7.87451C5.25 8.84101 6.0335 9.62451 7 9.62451Z" stroke="#9F9F9F" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" />
-                                                                                            </svg>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                </div>
-                                                                                <div className='flex justify-between flex-col gap-[8px] items-center'>
-                                                                                    <div className="relative w-full" style={{ width: '320px' }}>
-                                                                                        <input
-                                                                                            type="password"
-                                                                                            id="default-search"
-                                                                                            className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
-                                                                                            placeholder="Confirm Password"
-                                                                                            style={loginInputStyles}
-                                                                                        />
-                                                                                        <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                                                                                                <path d="M0.583008 7.87467C0.583008 7.87467 2.91634 3.20801 6.99967 3.20801C11.083 3.20801 13.4163 7.87467 13.4163 7.87467C13.4163 7.87467 11.083 12.5413 6.99967 12.5413C2.91634 12.5413 0.583008 7.87467 0.583008 7.87467Z" stroke="#9F9F9F" strokeWidth="0.583333" strokeLinecap="round" strokeLinejoin="round" />
-                                                                                                <path d="M7 9.62451C7.9665 9.62451 8.75 8.84101 8.75 7.87451C8.75 6.90801 7.9665 6.12451 7 6.12451C6.0335 6.12451 5.25 6.90801 5.25 7.87451C5.25 8.84101 6.0335 9.62451 7 9.62451Z" stroke="#9F9F9F" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" />
-                                                                                            </svg>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                </div>
-                                                                                <button style={{ width: '60.5%', margin: '21px auto' }} className={`${styles.login_btn_}  mt-[20px] w-full justify-center bg-[#350ABC] text-[#F3F0FF3] opacity-[0.9] rounded-[4px]  px-[16px] py-[18px] text-center inline-flex items-center`}>
-                                                                                    Register
-                                                                                    <span className={`ml-2`}>
-                                                                                        <Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' />
-                                                                                    </span>
-
-                                                                                </button>
-                                                                                <div className='flex justify-center items-center gap-2'>
-                                                                                    <p className='text-[#494848] text-[14px] fonr-[400] leading-[24px] tracking-[-0.28px]'>Already have an account? </p>
-                                                                                    <h1 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]'>Login</h1>
-                                                                                </div>
-                                                                            </div>
-                                                                    }
-                                                                </div>
-                                                            }
-                                                        </div>
-
-                                                    </div>
-                                                }
+                                                <LoginFrom
+                                                    styles={styles}
+                                                    //@ts-ignore
+                                                    showLoginForm={showLoginForm} close={close} showRegisterForm={showRegisterForm} styles={styles} handleClose={handleClose} setShowLoginForm={setShowLoginForm} handleShowRegisterForm={handleShowRegisterForm}
+                                                />
 
                                             </form>
                                         </section>
@@ -828,11 +645,11 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                             <div className='flex gap-[34px] mx-auto max-w-[1064px]  min-h-[796px] mt-[0] mb-[0] '>
                                 <div className={`${styles.bookingsummary_section} w-[42%]`}>
                                     <div className='flex justify-center flex-col items-center w-full'>
-                                        <h1 className={`${styles.bookingsummary_text} ${montserrat.className}`}>Booking Summary</h1>
+                                        <h2 className={`${styles.bookingsummary_text} ${montserrat.className}`}>Booking Summary</h2>
                                         <Image className='w-[117px] h-[107px]' width={120} height={120} quality={100} src='/images/booking/Frame 1410126315 (1).png' alt='step-2' />
                                         <div className='h-[146px] w-full mt-[36px] flex flex-col justify-start items-center mb-[30px]'>
                                             <div className='flex justify-between items-center w-full'>
-                                                <h1 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Worker Name</h1>
+                                                <h3 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Worker Name</h3>
                                                 <div className="flex items-center justify-center">
                                                     <div className='relative bottom-[1px]'>
 
@@ -848,7 +665,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                             </span>
 
                                             <div className='flex justify-between items-center w-full'>
-                                                <h1 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Booked Service</h1>
+                                                <h3 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Booked Service</h3>
                                                 <div className="flex items-center justify-center">
                                                     <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>Cocktail Server</p>
                                                 </div>
@@ -860,7 +677,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                             </span>
 
                                             <div className='flex justify-between items-center w-full'>
-                                                <h1 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Hourly wage</h1>
+                                                <h3 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Hourly wage</h3>
                                                 <div className="flex items-center justify-center">
                                                     <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>$30</p>
                                                 </div>
@@ -872,7 +689,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                             </span>
 
                                             <div className='flex justify-between items-center w-full'>
-                                                <h1 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Booking Dates & Time</h1>
+                                                <h3 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Booking Dates & Time</h3>
                                                 <div className="flex items-center justify-center">
                                                     <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>June 6th (9:30 - 1:30)</p>
                                                 </div>
@@ -883,7 +700,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                         <path d="M172.015 195.522C172.197 170.759 162.408 151.175 142.883 137.345C127.803 126.697 109.502 121.142 91.802 115.804C54.9294 104.626 44.2331 98.7383 44.2331 81.1053C44.2331 61.4641 69.7584 54.4757 91.61 54.4757C107.524 54.4757 125.833 59.4236 137.203 66.7564L159.745 31.8448C144.885 22.2112 124.547 15.6401 104.463 13.6006V-19H62.8799V15.8866C25.9158 24.0181 2.6304 48.1769 2.6304 81.1053C2.6304 104.166 12.2133 122.455 31.0586 135.354C45.3918 145.202 62.8725 150.49 79.7586 155.609C115.926 166.541 130.613 173.203 130.446 195.264L130.445 195.426C130.445 213.943 105.906 220.525 84.8838 220.525C65.0256 220.525 43.4307 211.822 31.1897 198.882L0.980469 227.457C16.4826 243.853 39.0054 255.445 62.879 259.989V294.001H104.463V260.721C145.538 254.841 171.974 230.113 172.015 195.522Z" fill="#F1EEFF" />
                                                     </svg>
                                                 </span>
-                                                <div className='absolute bottom-0'>
+                                                <div className='absolute bottom-0 max-w-[395px] ml-[11px]'>
                                                     <div>
                                                         <div className="mx-auto max-w-[415px] rounded-[4px] relative right-[9px] bottom-[28px]">
                                                             <div className="relative overflow-x-auto ">
@@ -942,10 +759,10 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                             {/* buttons */}
                                                             <div className="whitespace-nowrap" style={{ width: '100%' }}>
                                                                 <div className="flex justify-between items-center gap-4">
-                                                                    <p style={{ letterSpacing: '-2%' }} className=" text-[#000000] leading-normal text-[20px] montserrat-font font-[600]">
+                                                                    <h3 style={{ letterSpacing: '-2%' }} className=" text-[#000000] leading-normal text-[20px] montserrat-font font-[600]">
                                                                         Total
-                                                                    </p>
-                                                                    <h1 style={{ letterSpacing: '-1%' }} className="text-right leading-normal text-[#000000] text-[32px] font-[600] montserrat-font">$1000.00</h1>
+                                                                    </h3>
+                                                                    <h3 style={{ letterSpacing: '-1%' }} className="text-right leading-normal text-[#000000] text-[32px] font-[600] montserrat-font">$1,000.00</h3>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -993,9 +810,9 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                     <Image layout="intrinsic" src="/images/thankyou/tick.svg" height={100} width={100} alt="tick" />
                                                 </div>
                                                 <div>
-                                                    <h1 className={`${montserrat.className} font-[700] text-[54px] leading-[65.83px] translate-[-2%] text-[#000000] text-start mt-[16px]`}>Booking Confirmed Successfully!</h1>
+                                                    <h2 className={`${montserrat.className} font-[700] text-[54px] leading-[65.83px] translate-[-2%] text-[#000000] text-start mt-[16px]`}>Booking Confirmed Successfully!</h2>
                                                     <p className={`font-[400] text-[20px] leading-[36px] translate-[-2%] text-[#6B6B6B] text-start mt-[32px]`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum sed arcu non odio. Posuere soll.</p>
-                                                    <Link href='/' className="text-[#dfdbec] bg-[#350ABC] mt-[42px]  rounded-[4px] text-[14px] font-normal px-[55px] h-[48px] py-[14px] text-center inline-flex items-center ">
+                                                    <Link href='/' className="text-[#dfdbec] bg-[#350ABC] mt-[42px]  rounded-[4px] text-[14px] font-normal px-[65px] h-[48px] py-[14px] text-center inline-flex items-center ">
                                                         <span className='mr-2'>
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M12.666 8H3.33268" stroke="#F3F0FF" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
@@ -1026,10 +843,10 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                 </svg>
 
                                             </div>
-                                            <div  className='bg-[#FFFFFF] h-[110px] rounded-[8px] max-w-[460px] m-auto' style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)',marginRight:'0' }}>
+                                            <div className='bg-[#FFFFFF] h-[110px] rounded-[8px] max-w-[460px] m-auto' style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)', marginRight: '0' }}>
                                                 <div className='flex justify-between  items-start pb-[29px] px-[41.5px] pt-[17px] m-auto'>
                                                     <div>
-                                                        <h1 className={`${montserrat.className} text-[40px] leading-[48.76px] tracking-[-2%] text-[#000000] font-[700]`}>$260.00</h1>
+                                                        <h3 className={`${montserrat.className} text-[40px] leading-[48.76px] tracking-[-2%] text-[#000000] font-[700]`}>$260.00</h3>
                                                         <p className={` text-[11px] leading-[24px] tracking-[-1%] text-[#6B6B6B] font-[400]`}>Payment Successful.</p>
                                                     </div>
                                                     <div>
@@ -1068,7 +885,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                         <div className='text-black absolute top-0'>
                                                             <div className='h-[146px] w-full mt-[36px] flex flex-col justify-start items-center mb-[30px] pb-[81px] py-[44px] px-[20px]' style={{ margin: '0px' }}>
                                                                 <div className='flex justify-between items-center w-[94%]'>
-                                                                    <h1 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Worker Name:</h1>
+                                                                    <h3 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Worker Name:</h3>
                                                                     <div className="flex items-center justify-center">
                                                                         <div className='relative bottom-[1px]'>
 
@@ -1084,7 +901,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                 </span>
 
                                                                 <div className='flex justify-between items-center w-[94%]'>
-                                                                    <h1 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Booked Service:</h1>
+                                                                    <h3 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Booked Service:</h3>
                                                                     <div className="flex items-center justify-center">
                                                                         <p className={` flex justify-center items-center gap-2 text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}><span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                             <path d="M10 3.5H2C1.44772 3.5 1 3.94772 1 4.5V9.5C1 10.0523 1.44772 10.5 2 10.5H10C10.5523 10.5 11 10.0523 11 9.5V4.5C11 3.94772 10.5523 3.5 10 3.5Z" stroke="#6B6B6B" stroke-width="0.646154" stroke-linecap="round" stroke-linejoin="round" />
@@ -1100,7 +917,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                 </span>
 
                                                                 <div className='flex justify-between items-center w-[94%]'>
-                                                                    <h1 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Total Paid Amount:</h1>
+                                                                    <h3 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Total Paid Amount:</h3>
                                                                     <div className="flex items-center justify-center">
                                                                         <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>$260</p>
                                                                     </div>
@@ -1112,7 +929,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                 </span>
 
                                                                 <div className='flex justify-between items-center w-[94%]'>
-                                                                    <h1 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Event Details:</h1>
+                                                                    <h3 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Event Details:</h3>
                                                                     <div className="flex items-center justify-center">
                                                                         <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>3796 Stutler Lane, Altoona, PA, 16601</p>
                                                                     </div>
@@ -1123,7 +940,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                                     </svg>
                                                                 </span>
                                                                 <div className='flex justify-between items-center w-[94%]'>
-                                                                    <h1 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Contact:</h1>
+                                                                    <h3 className={`${montserrat.className} text-[12px] font-[500] leading-[14.63px] tracking-[-1%] text-[#000000]`}>Contact:</h3>
                                                                     <div className="flex items-center justify-center">
                                                                         <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>3796 Stutler Lane, Altoona, PA, 16601</p>
                                                                     </div>
@@ -1134,8 +951,8 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="absolute bottom-[0] z-[0] right-[-300px] text-black">
-                                                <svg width="733" height="502" viewBox="0 0 733 502" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <div className="absolute bottom-[-53px] z-[0] right-[-300px] text-black">
+                                                <svg width="733" height="602" viewBox="0 0 733 502" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g opacity="0.3" filter="url(#filter0_f_944_2073)">
                                                         <circle cx="366.5" cy="366.5" r="166.5" fill="#FCE1C8" />
                                                     </g>

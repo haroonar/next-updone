@@ -1,9 +1,10 @@
 import Modal from '@/app/components/common/modal/Modal';
 import BookingCalander from '@/app/components/ui/booking-calander';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
-import { Staff } from '@/types';
+import { Staff } from '@/app/libs/types';
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { highlightedDatesAvailable, highlightedDatesNotAvailable } from '../../../detail';
 type StaffMapProps = {
     staff: Staff;
     handleStaffClick: (arg: Staff) => void
@@ -60,7 +61,7 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
 
                     <div className="flex flex-col mt-4 items-center w-full">
                         <div className="text-center flex justify-between w-full items-center font-bold text-lg mb-2">
-                            <h1 style={{ letterSpacing: '-1%' }} className='text-[20px] text-[#2C2240] font-semibold '>{staff.name}</h1>
+                            <h3 style={{ letterSpacing: '-1%' }} className='text-[20px] text-[#2C2240] font-semibold '>{staff.name}</h3>
                             <div className="flex items-center justify-center">
                                 <div className='relative bottom-[2px]'>
                                     <svg className="w-4 h-4 text-[#F79809] me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -74,7 +75,7 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                             <div className="text-center text-[14px] font-normal  text-[#989898] flex gap-2">
                                 <Image src='/images/gallery/location.svg' alt='location-svg' width={15} height={15} />  {`${staff.city}`}
                             </div>
-                            <h1 className='text-[14px] font-semibold'>102 Jobs</h1>
+                            <span className='text-[14px] font-semibold'>102 Jobs</span>
                         </div>
                     </div>
                     <div className="flex justify-center items-center mt-2 w-full">
@@ -154,6 +155,8 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                                 timessss={timessss}
                                 handleAddToBooking={handleAddToBooking}
                                 selectedTimes={selectedTimes}
+                                highlightedDatesNotAvailable={highlightedDatesNotAvailable}
+                            highlightedDatesAvailable={highlightedDatesAvailable}
                             />
                         </Modal>
                     </div>

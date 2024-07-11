@@ -5,7 +5,7 @@ import People from '../../dummy-data';
 import CommonSelect from '../../common/select-option';
 import StaffFilters from './components/staff-list-filter';
 import StaffMap from './components/staff-list-map';
-import { Staff } from '@/types';
+import { Staff } from '@/app/libs/types';
 import { PAGINATION_LIMIT } from '@/app/libs/Constants';
 import { useAppDispatch } from '@/app/libs/store/hooks';
 import { setStaff } from '@/app/libs/store/features/staff';

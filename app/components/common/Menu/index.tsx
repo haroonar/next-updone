@@ -92,7 +92,7 @@ const CommonDropdown: React.FC<MenuItemProps> = ({
                                 onClick={() => handleSelect?.(itemName)}
                                 style={{ cursor: 'pointer' }}
                             >
-                                <h1
+                                <div
                                     className={` ${selectedItem === itemName
                                         ? 'text-[#350ABC] flex justify-start items-center  gap-[15px]'
                                         : isLocation
@@ -113,7 +113,7 @@ const CommonDropdown: React.FC<MenuItemProps> = ({
                                         </span>
                                     )}
                                     {itemName}
-                                </h1>
+                                </div>
                                 {selectedItem === itemName && (
                                     <Image
                                         width={12}

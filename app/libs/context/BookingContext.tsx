@@ -1,4 +1,4 @@
-import { BookingCalanderProps } from '@/types';
+import { BookingCalanderProps } from '@/app/libs/types';
 import React, { createContext, useContext, useState, ReactNode, useEffect, useRef } from 'react';
 import { useAppSelector } from '../store/hooks';
 import { selectStaff } from '../store/features/staff';
@@ -28,38 +28,48 @@ export const BookingProvider: React.FC<{ children: ReactNode }> = ({ children })
     console.log('timessss', timessss)
     const [date, setDate] = useState<Date>(new Date());
     // Define the available times for each highlighted date with unique IDs
+    [
+        {
+            "date": "2024-07-21",
+            "times": [
+                "7:00 pm - 8:00 pm",
+                "9:00 pm - 10:00 pm"
+            ]
+        }
+    ]
     const [availableTimesMap, setAvailableTimesMap] = useState<{ [date: string]: { id: string; time: string; disabled: boolean, isAvailable: boolean }[] }>({
         '2024-07-21': [
-            { id: 'time1', time: '4:00 pm', disabled: false, isAvailable: true },
-            { id: 'time2', time: '5:00 pm', disabled: false, isAvailable: true },
-            { id: 'time3', time: '6:00 pm', disabled: false, isAvailable: false },
-            { id: 'time4', time: '7:00 pm', disabled: false, isAvailable: true },
-            { id: 'time5', time: '8:00 pm', disabled: false, isAvailable: false },
-            { id: 'time6', time: '9:00 pm', disabled: false, isAvailable: true },
-            { id: 'time7', time: '10:00 pm', disabled: false, isAvailable: true },
-            { id: 'time8', time: '11:00 pm', disabled: false, isAvailable: true },
-            { id: 'time9', time: '12:00 pm', disabled: false, isAvailable: true },
-            { id: 'time10', time: '2:00 pm', disabled: false, isAvailable: true },
+            { id: 'time1', time: '4:00 pm - 5:00 pm', disabled: false, isAvailable: true },
+            { id: 'time2', time: '5:00 pm - 6:00 pm', disabled: false, isAvailable: true },
+            { id: 'time3', time: '6:00 pm - 7:00 pm', disabled: false, isAvailable: false },
+            { id: 'time4', time: '7:00 pm - 8:00 pm', disabled: false, isAvailable: true },
+            { id: 'time5', time: '8:00 pm - 9:00 pm', disabled: false, isAvailable: false },
+            { id: 'time6', time: '9:00 pm - 10:00 pm', disabled: false, isAvailable: true },
+            { id: 'time7', time: '10:00 pm - 11:00 pm', disabled: false, isAvailable: true },
+            { id: 'time8', time: '11:00 pm - 12:00 pm', disabled: false, isAvailable: true },
+            { id: 'time9', time: '12:00 pm - 3:00 pm', disabled: false, isAvailable: true },
+            { id: 'time10', time: '2:00 pm - 4:00 pm', disabled: false, isAvailable: true },
 
         ],
         '2024-07-24': [
-            { id: 'time6', time: '3:00 pm', disabled: false, isAvailable: true },
-            { id: 'time7', time: '4:00 pm', disabled: false, isAvailable: true },
-            { id: 'time8', time: '5:00 pm', disabled: false, isAvailable: true },
-            { id: 'time9', time: '6:00 pm', disabled: false, isAvailable: true },
-            { id: 'time10', time: '7:00 pm', disabled: false, isAvailable: true },
+            { id: 'time6', time: '3:00 pm - 4:00 pm', disabled: false, isAvailable: true },
+            { id: 'time7', time: '4:00 pm - 4:15 pm', disabled: false, isAvailable: true },
+            { id: 'time8', time: '5:00 pm - 6:00 pm', disabled: false, isAvailable: true },
+            { id: 'time9', time: '6:00 pm - 7:00 pm', disabled: false, isAvailable: true },
+            { id: 'time10', time: '7:00 pm - 10:00 pm', disabled: false, isAvailable: true },
         ],
         // Add more dates and corresponding times as needed
     });
-    const handleServiceClick = (id: number) => {
-        setSelectedService(id);
-    };
-
     const handleTimeSelection = (timeId: string, disabled: boolean) => {
         if (!disabled) {
             setSelectedTimeId(timeId === selectedTimeId ? null : timeId); // Toggle selection
         }
     };
+    
+    const handleServiceClick = (id: number) => {
+        setSelectedService(id);
+    };
+
 
     const handleAddToBooking = () => {
         if (selectedTimeId) {
@@ -116,7 +126,7 @@ export const BookingProvider: React.FC<{ children: ReactNode }> = ({ children })
     };
 
     return (
-        <BookingContext.Provider value={{setSelectedTimeId,selectedTimeId,scrollRef, selectedTimes,setSelectedService,scrollDown,scrollUp,handleAddToBooking, handleTimeSelection,handleServiceClick,availableTimesMap,setDate,date,timessss,setTimessss,staff,selectedServiceId}}>
+        <BookingContext.Provider value={{ setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, setSelectedService, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, timessss, setTimessss, staff, selectedServiceId }}>
             {children}
         </BookingContext.Provider>
     );
