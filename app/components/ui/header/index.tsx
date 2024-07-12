@@ -3,7 +3,7 @@ import React, { SetStateAction, useState } from 'react';
 import styles from './header.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import LoginRegister from '../../login-register';
+import LoginRegister from '../../common/login-register';
 import { useAuthContext } from '@/app/libs/context/AuthContext';
 
 const Header = () => {

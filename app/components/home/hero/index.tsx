@@ -94,6 +94,7 @@ const Hero = () => {
                 )}
              
                 <Image
+                style={{width:'100%'}}
                     onLoadingComplete={handleImage1Load}
                     layout="intrinsic"
                     src="./background.svg"

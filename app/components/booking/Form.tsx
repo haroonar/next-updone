@@ -11,7 +11,7 @@ import Image from 'next/image'
 import { Montserrat } from 'next/font/google'
 import styles from './booking.module.css'
 import Link from 'next/link'
-import LoginFrom from '../login-register'
+import LoginFrom from '../common/login-register'
 import { useAuthContext } from '@/app/libs/context/AuthContext'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { montserrat } from '@/app/libs/Fonts'

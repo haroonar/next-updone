@@ -3,18 +3,13 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "./libs/store/layout";
-import Image from "next/image";
 
 // Specify the weights you want to include
 const poppins = Poppins({
   weight: ["100","200","300","400", "500", "600", "700", "800", "900"],
   subsets: ["latin"]
 });
-// const lato = Poppins({
-//   weight: ["100", "300", "400", "700", "900"],
-//   subsets: ["latin"]
-// });
-//for SEO purpose
+
 export const metadata: Metadata = {
   robots: 'noindex',
   title: 'Updone',
