@@ -7,6 +7,7 @@ import CommonDropdown from '../../common/Menu';
 import TimeAndCalander from '../../ui/booking-calander/calander-time';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 import StarRating from '../../ui/star-rating';
+import { montserrat } from '@/app/libs/Fonts';
 
 
 const itemLocationNames: string[] = [`Los Angeles`];
@@ -85,16 +86,13 @@ const Hero = () => {
     return (
         <div>
 
-            <main className="h-screen flex flex-col justify-end items-center ">
+            <main className="h-screen flex flex-col justify-end items-center relative">
                 {allImagesLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bottom-[-62px] animate-pulse z-[99999] margin">
+                    <div className="absolute inset-0 flex items-start justify-start bg-gray-100 bottom-[0px] animate-pulse z-[99999] margin">
                         <div className="loader_hero"></div>
                     </div>
                 )}
-                {!allImagesLoaded &&
-                    <h2 className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[80px] 2xl:text-[200px] mx-auto">Workers</h2>
-                }
-                {/* <Image onLoadingComplete={handleImageLoad} layout="intrinsic" src="./background.svg" height={580} width={1950} alt="Background" /> */}
+             
                 <Image
                     onLoadingComplete={handleImage1Load}
                     layout="intrinsic"
@@ -105,13 +103,14 @@ const Hero = () => {
                 />
 
                 {/* Add your content here */}
-                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg max-w-[900px] m-auto">
+                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg  md:max-w-[900px] 2xl:max-w-[1050px] m-auto">
+
                     {!allImagesLoaded &&
-
-                        <h1 className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px]  2xl:text-[100px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
-                            <span className='md:block md:w-full md:text-center md:relative md:top-[170px] 2xl:top-[270px]'>BOOK <strong className="text-[#350abc]">EVENT</strong></span> <br /> <strong className="text-[#350abc]">STAFF</strong> IN A SNAP!
-                        </h1>
-
+                    
+                    <div className={`${montserrat.className} font-[900] mb-[18px]  flex flex-col text-[#0B0B0B] justify-center items-center uppercase text-center 2xl:text-[110px] 2xl:leading-[100px] md:leading-[60px] md:text-[60px]`}>
+                        <h2 className='text-[#f5f5f5] 2xl:text-[210px] md:text-[150px] relative z-[-1] top-[56px]'>WORKERS</h2>
+                        <h1>Book <span className='text-[#350ABC]'>Event</span> <br /> <span className='text-[#350ABC]'>Staff</span> in a snap!</h1>
+                    </div>
                     }
 
                     {!allImagesLoaded &&
