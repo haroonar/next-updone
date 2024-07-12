@@ -87,8 +87,6 @@ const Services = () => {
                         height={240}
                       />
                       <ServicesContent 
-                      setIsLoaded={setIsLoaded}
-                      isLoaded={isLoaded}
                         name={service.name} 
                         description={service.description} 
                         serviceSrc={service.serviceSrc} 

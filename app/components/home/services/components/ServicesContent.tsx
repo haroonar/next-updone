@@ -7,12 +7,10 @@ interface ServicesContentProps {
   name: string;
   description: string;
   serviceSrc: string;
-  setIsLoaded:any
-  isLoaded:boolean
 }
 
-const ServicesContent: React.FC<ServicesContentProps> = ({ name, description, serviceSrc,setIsLoaded }) => {
-
+const ServicesContent: React.FC<ServicesContentProps> = ({ name, description, serviceSrc }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <div className='w-[100%] m-auto relative bottom-[95px] right-[23.5px]'>
@@ -25,7 +23,7 @@ const ServicesContent: React.FC<ServicesContentProps> = ({ name, description, se
         height={685}
         onLoad={() => setIsLoaded(true)}
       />
-       
+      {isLoaded && (
         <div className='flex justify-between items-start h-full gap-4 flex-col'>
           <div className='w-[80%] relative bottom-[266px] left-[64px]'>
             <div className='flex justify-end items-end w-full relative right-[-15px] bottom-[-12px]'>
@@ -57,7 +55,7 @@ const ServicesContent: React.FC<ServicesContentProps> = ({ name, description, se
             </Link>
           </div>
         </div>
-      
+      )}
     </div>
   );
 };

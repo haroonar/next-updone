@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from './loader.module.css'
+
 const RenderLoader = () => {
     return (
        <div className="h-[100vh] w-full flex justify-center items-center">

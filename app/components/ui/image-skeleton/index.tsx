@@ -20,12 +20,13 @@ const ImageWithSkeleton: React.FC<ImageWithSkeletonProps> = ({ src, alt, width, 
     <>
    
     <div style={isLoaded ? { width, borderRadius:'40%' }:{ width, height, borderRadius:'40%' }} >
-      {!isLoaded && <Skeleton width={width} height={height} style={{borderRadius:'60% 60% 0 0'}} className='rounded-full animate-pulse bg-gray-50' />}
+      {!isLoaded && <Skeleton  style={{borderRadius:'60% 60% 0 0',height:'100vh',width:'100%'}} className='rounded-full animate-pulse bg-gray-50' />}
       <Image
        layout="responsive" objectFit='fill' quality={100} 
         src={src}
         alt={alt}
-        width={width}
+        width={1000}
+        className='w-full'
         height={height}
         onLoad={() => setIsLoaded(true)}
         // style={{ display: isLoaded ? 'block' : 'none', position: 'absolute', top: 0, left: 0 }}
