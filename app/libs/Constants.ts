@@ -75,3 +75,49 @@ export const STAFF_IAMHES = [
   { src: '/images/staff-listing/d3.jpg', alt: 'Staff 3',class:'object-cover rounded-[4px]' },
   { src: '/images/staff-listing/d4.jpg', alt: 'Staff 4',class:'object-cover rounded-[4px]' },
 ];
+
+//home page services section constanst 
+export const services = [
+  {
+    name: "Bartenders",
+    description: "Certified professionals crafting delicious drinks and keeping the party flowing.",
+    serviceSrc: '/images/services/bartander.svg',
+    imgSrc: '/images/services/bartander.jpg',
+    alt: 'Bartender',
+  },
+  {
+    name: "Waiters",
+    description: "Attentive wait staff delivering food efficiently and adding a touch of elegance.",
+    serviceSrc: '/images/services/waiter.svg',
+    imgSrc: '/images/services/waiters.jpg',
+    alt: 'Waiters',
+  },
+  {
+    name: "Cocktail",
+    description: "Experienced crew ensuring bartenders have everything they need for smooth service.",
+    serviceSrc: '/images/services/cocktail.svg',
+    imgSrc: '/images/services/cocktail.jpg',
+    alt: 'Cocktail',
+  },
+  {
+    name: "Promo Models",
+    description: "Engaging models bringing your brand to life and captivating your audience.",
+    serviceSrc: '/images/services/model.svg',
+    imgSrc: '/images/services/barbacks.jpg',
+    alt: 'Barbacks',
+  },
+  {
+    name: "Event Helper",
+    description: "Versatile helpers tackling setup, breakdown, and guest assistance for a seamless event.",
+    serviceSrc: '/images/services/helper.svg',
+    imgSrc: '/images/services/promomodel.jpg',
+    alt: 'Promo Model',
+  },
+  {
+    name: "Barbacks",
+    description: "Experienced crew ensuring bartenders have everything they need for smooth service.",
+    serviceSrc: '/images/services/barback.svg',
+    imgSrc: '/images/services/eventhelper.jpg',
+    alt: 'Event Helper',
+  },
+];

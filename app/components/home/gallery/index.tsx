@@ -4,6 +4,7 @@ import React from 'react';
 import Marquee from 'react-fast-marquee';
 
 function GalleryContent() {
+    
     return (
         <div className='bg-[#FFFFFF]'>
             <div className="text-center md:pt-[60px] 2xl:pt-[40px]">

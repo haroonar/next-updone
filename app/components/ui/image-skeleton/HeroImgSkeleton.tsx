@@ -16,14 +16,14 @@ interface HeroImageWithSkeletonProps {
 const HeroImageWithSkeleton: React.FC<HeroImageWithSkeletonProps> = ({ src, alt, width, height, isHeroImg }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const containerStyles = isLoaded  ? {} : { width, height };
 
   return (
-    <div style={containerStyles}>
+    <div >
       {!isLoaded && (
         <Skeleton
-          width={width}
-          height={height}
+          height={510}
+          width={532}
+          style={{width: '100%', height: '60%' }}
           className="rounded-full animate-pulse bg-gray-50"
         />
       )}

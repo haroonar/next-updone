@@ -177,8 +177,8 @@ color: #6B6B6B;
   width: 20px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #424141;
-  box-shadow: 0 0 0 0 #0004;
+  background: #7e7c7ca9;
+  box-shadow: 0 0 0 0 rgba(73, 73, 73, 0.267);
   animation: l2 1.5s infinite linear;
   position: relative;
 }
@@ -188,7 +188,7 @@ color: #6B6B6B;
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: 0 0 0 0 #0004;
+  box-shadow: 0 0 0 0 rgba(52, 52, 52, 0.267);
   animation: inherit;
   animation-delay: -0.5s;
 }
@@ -196,5 +196,5 @@ color: #6B6B6B;
   animation-delay: -1s;
 }
 @keyframes l2 {
-    100% {box-shadow: 0 0 0 40px #0000}
+    100% {box-shadow: 0 0 0 40px #55555500}
 }

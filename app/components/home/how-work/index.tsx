@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image';
 import React, { useState } from 'react';
+import HeroImageWithSkeleton from '../../ui/image-skeleton/HeroImgSkeleton';
 
 function HowWork() {
     const [selectedCard, setSelectedCard] = useState(1); // State to track selected card
@@ -63,17 +64,13 @@ function HowWork() {
 
                         <div className="w-full md:w-[46%] flex items-start justify-end bottom-[15px]">
                             {selectedCard > 0 && ( // Render image only if a card is selected
-                                <div style={{ position: 'relative', width: '100%', height: '65%' }}>
+                                <div style={{ position: 'relative', width: '100%', height: '60%' }}>
                                     <div style={{ position: 'absolute', inset: 0 }}>
-                                        <Image
+                                        <HeroImageWithSkeleton
                                             src={cards[selectedCard - 1].image}
                                             alt={cards[selectedCard - 1].text}
-                                            objectFit="fill" // Maintain aspect ratio and fit within container
-                                            className='rounded-lg shadow-stone-300'
-                                            quality={100} // Maximum quality
-                                            width={800}
-                                          height={800}
-                                         layout="responsive"
+                                            width={750}
+                                            height={750}
                                         />
                                     </div>
                                 </div>

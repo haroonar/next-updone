@@ -142,7 +142,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, isDetailTesto
           <div className='px-[100px] pb-[87px] bg-[#F3F0FF] relative top-[12px] w-[90%] m-auto'>
             <div className='relative bottom-[85px]'>
               <div className="mx-auto flex justify-center items-center">
-                <div className="px-[30px] swiper mySwiper">
+                <div className="px-[30px] swiper mySwiper max-w-[1279px] mx-auto">
                   <div className="swiper-wrapper w-max">
                     {testimonials?.map((testimonial, index) => (
                       <div key={index} className="swiper-slide">
