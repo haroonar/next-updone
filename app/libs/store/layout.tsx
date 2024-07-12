@@ -12,6 +12,7 @@ interface RootLayoutProps {
 }
 
 const ReduxProvider = ({ children }: RootLayoutProps) => {
+    
     return (
         <div className='overflow-auto'>
             <AuthProvider>

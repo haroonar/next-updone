@@ -20,16 +20,10 @@ const StaffHistory = dynamic(() => import('./components/StaffHistory'), {
 
 });
 import Image from 'next/image'
-import { AiOutlineDelete } from "react-icons/ai";
 import { PiLineVerticalThin } from 'react-icons/pi'
 import { GoDotFill } from 'react-icons/go'
-import { useAppSelector } from '@/app/libs/store/hooks'
-import { selectStaff } from '@/app/libs/store/features/staff'
 import HOME_TESTIMONINAL_CONTENT from '../testimonials/constants'
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { TIMES_DATA } from '@/app/libs/Constants';
-import { Montserrat } from 'next/font/google';
 import BookingCalander from '../../ui/booking-calander';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 export const services = [
@@ -38,14 +32,11 @@ export const services = [
     { id: 3, text: "Waiter" },
     { id: 4, text: "Bartender" }
 ]
-export const montserrat = Montserrat({
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    subsets: ["latin"]
-});
+
 export  const highlightedDatesNotAvailable = ['2024-07-08', '2024-07-11', '2024-07-28'];
 export const highlightedDatesAvailable = ['2024-07-21', '2024-07-24'];
 const StaffDetail = () => {
-    const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, timessss, staff, selectedServiceId } = useBookingContext();
+    const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss, staff } = useBookingContext();
     return (
         <div>
             {/* upper section */}

@@ -1,11 +1,9 @@
 'use client'
 
-import { Montserrat } from "next/font/google";
+import { montserrat } from "@/app/libs/Fonts";
 
-const montserrat = Montserrat({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"]
-});
+
+
 const AccordionItem: React.FC<{ index: number, title: string, content: JSX.Element, isOpen: boolean, onClick: () => void }> = ({ title, content, isOpen, onClick }) => {
   return (
     <div >

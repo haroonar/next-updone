@@ -14,11 +14,9 @@ import Link from 'next/link'
 import LoginFrom from '../login-register'
 import { useAuthContext } from '@/app/libs/context/AuthContext'
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { montserrat } from '@/app/libs/Fonts'
 
-const montserrat = Montserrat({
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    subsets: ["latin"]
-});
+
 type Inputs = z.infer<typeof FormDataSchema>
 
 
@@ -328,7 +326,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                         </div>
                                     </div>
                                     <div className='flex justify-start items-center gap-3'>
-                                        <h3 className='mt-[40px] mb-[13.25px] leading-[17.784px] translate-[0.282px] font-[500] text-[14px] text-[#000000]'>Booking Times:</h3>
+                                        <h3 className='mt-[37.8px] mb-[13.25px] leading-[17.784px] translate-[0.282px] font-[500] text-[14px] text-[#000000]'>Booking Times:</h3>
                                         <span> <Image width={15} height={15} src='/images/booking/pancel.svg' alt='step-1' className='relative top-3.5' /></span>
                                     </div>
                                     <div className='min-h-[35px] max-h-auto w-full  mb-[6px]  bg-[#FFF] border-[1px] border-[#EDE9FF] rounded-[3.569px]  flex justify-between items-center' style={{ boxShadow: "0px 3.569px 7.139px 0px rgba(53, 10, 188, 0.06)" }}>
@@ -379,7 +377,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                     <div style={{
                                         background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)",
                                         backdropFilter: "blur(1.7846870422363281px)"
-                                    }} className='text-center w-full bg-red-300 relative bottom-[41px] h-[36px] flex justify-center items-center gap-2 tracking-[-0.214px] text-[10px] font-[400] text-[#350ABC] opacity-[0.9] leading-[21px]'>
+                                    }} className='text-center w-full bg-red-300 relative bottom-[42px] h-[36px] flex justify-center items-center gap-2 tracking-[-0.214px] text-[10px] font-[400] text-[#350ABC] opacity-[0.9] leading-[21px]'>
                                         Load more <span><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M7.4165 3.85974L7.4165 12.1883" stroke="#350ABC" stroke-width="0.892343" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M11.5806 8.02405L7.4163 12.1883L3.25203 8.02405" stroke="#350ABC" stroke-width="0.892343" stroke-linecap="round" stroke-linejoin="round" />

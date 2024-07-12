@@ -1,0 +1,25 @@
+/* src/components/CommonModal.css */
+.modal-transition {
+  transition: transform 0.9s ease-in, opacity 0.9s ease-out;
+}
+
+.modal-open {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1; /* Ensure opacity is 1 when modal is open */
+
+}
+
+.modal-close {
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0; /* Ensure opacity is 0 when modal is closed */
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

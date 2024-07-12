@@ -72,8 +72,8 @@ function HowWork() {
                                             className='rounded-lg shadow-stone-300'
                                             quality={100} // Maximum quality
                                             width={800}
-                                            height={800}
-                                            
+                                          height={800}
+                                         layout="responsive"
                                         />
                                     </div>
                                 </div>

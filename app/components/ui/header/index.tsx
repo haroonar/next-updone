@@ -48,7 +48,7 @@ const Header = () => {
             <nav className="border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto">
                 <div className="flex flex-wrap justify-between items-center" style={{ cursor: 'pointer' }}>
                     <Link href="/" className="flex items-center">
-                        <Image src="/logo.svg" alt="header-logo" width={130} height={34} quality={100} />
+                        <Image src="/logo.svg" alt="header-logo" width={130} height={34} quality={100}  objectFit='fill'/>
                     </Link>
                     <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul className="flex flex-col mt-4 text-[#0B0B0B] text-[14px] font-[500] leading-[150%] capitalize lg:flex-row lg:space-x-8 lg:mt-0">

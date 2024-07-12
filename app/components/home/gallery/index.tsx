@@ -1,11 +1,8 @@
 'use client'
-import { Montserrat } from 'next/font/google';
+import { montserrat } from '@/app/libs/Fonts';
 import React from 'react';
 import Marquee from 'react-fast-marquee';
-const montserrat = Montserrat({
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    subsets: ["latin"]
-});
+
 function GalleryContent() {
     return (
         <div className='bg-[#FFFFFF]'>

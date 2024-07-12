@@ -104,7 +104,7 @@ const LoginFrom = ({ showLoginForm, close, showRegisterForm, styles, handleClose
                   </div> :
                     <div className='relative bottom-[468px]'>
                       <div className='flex justify-center items-center gap-[7px] mx-24 relative bottom-[-145px] flex-col'>
-                        <h3 className={`${styles.registerpopup_head} ${isHeaderLogin ? "":"bottom-[120px]"}`}>
+                        <h3 className={`${styles.registerpopup_head}`}>
                           Welcome Back
                         </h3>
                         <p className={styles.registerpopup_body}>Sign In or Sign up to updone to book pro event staff in a snap</p>

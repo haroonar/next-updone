@@ -2,8 +2,9 @@ import React from 'react'
 import Image from 'next/image'
 import TimeAndCalander from './calander-time'
 import { BookingCalanderProps } from '@/app/libs/types'
-import { montserrat, services } from '../../home/detail'
+import { services } from '../../home/detail'
 import Link from 'next/link'
+import { montserrat } from '@/app/libs/Fonts'
 
 
 const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailable,handleServiceClick,selectedServiceId,isCalander, isStaffListerFilter, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, timessss, handleAddToBooking, selectedTimes }: BookingCalanderProps) => {

@@ -15,6 +15,8 @@ const StaffImageGrid = () => {
             height={500}
             className={staff.class}
             alt={staff.alt}
+            quality={100}
+            objectFit='fill'
           />
         </div>
       ))}

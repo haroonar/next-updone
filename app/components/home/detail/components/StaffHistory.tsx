@@ -1,10 +1,7 @@
-import { Montserrat } from 'next/font/google';
+import { montserrat } from '@/app/libs/Fonts';
 import Image from 'next/image'
 import React from 'react'
-const montserrat = Montserrat({
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    subsets: ["latin"]
-});
+
 const StaffHistory = () => {
   return (
     <div className="w-[55%]">
@@ -30,7 +27,9 @@ const StaffHistory = () => {
                     </p>
                 </div>
             </div>
-            <Image width={626} height={1} alt='verified' src='/images/staff-listing/horizontalline.svg' />
+            <Image width={626} height={1} alt='verified' src='/images/staff-listing/horizontalline.svg'  quality={100}
+                objectFit='fill'
+                layout='responsive'/>
             <div className="font-normal w-[100%]">
                 <div className="space-y-1">
                     <div className='flex justify-between items-center'>
@@ -44,7 +43,9 @@ const StaffHistory = () => {
                     </p>
                 </div>
             </div>
-            <Image width={626} height={1} alt='verified' src='/images/staff-listing/horizontalline.svg' />
+            <Image width={626} height={1} alt='verified' src='/images/staff-listing/horizontalline.svg'  quality={100}
+                objectFit='fill'
+                layout='responsive'/>
             <div className="font-normal w-[100%]">
                 <div className="space-y-1">
                     <div className='flex justify-between items-center'>

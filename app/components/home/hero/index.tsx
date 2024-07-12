@@ -7,6 +7,9 @@ import CommonDropdown from '../../common/Menu';
 import TimeAndCalander from '../../ui/booking-calander/calander-time';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 import StarRating from '../../ui/star-rating';
+import ImageWithSkeleton from '../../ui/image-skeleton';
+import Skeleton from 'react-loading-skeleton';
+import HeroImageWithSkeleton from '../../ui/image-skeleton/HeroImgSkeleton';
 
 
 const itemLocationNames: string[] = [`Los Angeles`];
@@ -67,13 +70,12 @@ const Hero = () => {
     return (
         <div>
             <main className="h-screen flex flex-col justify-end items-center ">
-                <h2 className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[80px] 2xl:text-[200px] mx-auto">Workers</h2>
-                {!imageLoading && <Loader />}
-                <Image onLoadingComplete={handleImageLoad} layout="intrinsic" src="./background.svg" height={580} width={1950} alt="Background" />
+            <h2 className="text-center text-[#f5f5f5] md:text-[200px] font-bold uppercase relative top-[80px] 2xl:text-[200px] mx-auto">Workers</h2>
+                <ImageWithSkeleton  src="./background.svg" height={550} width={1950} alt="Background" />
 
                 {/* Add your content here */}
-                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg max-w-[900px] m-auto">
-                    <h1 className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px]  2xl:text-[100px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
+                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg max-w-[1279px] 2xl:max-w-[1279px] m-auto">
+                <h1 className="text-black font-900 md:font-extrabold text-[60px] md:text-[80px]  2xl:text-[100px] leading-[80px] md:leading-[120px] 2xl:leading-[188px] ">
                         <span className='md:block md:w-full md:text-center md:relative md:top-[170px] 2xl:top-[270px]'>BOOK <strong className="text-[#350abc]">EVENT</strong></span> <br /> <strong className="text-[#350abc]">STAFF</strong> IN A SNAP!
                     </h1>
 
@@ -182,7 +184,9 @@ const Hero = () => {
                         ) : null}
 
                     </div>
-                    <Image height={744} width={1094} src="/images/hero/hero.png" alt="Hero Image" />
+                    {/* {imageLoading && <Skeleton width={744} height={1094} style={{borderRadius:'60% 60% 0 0'}} className='rounded-full animate-pulse bg-gray-100' />} */}
+                    <HeroImageWithSkeleton isHeroImg  src="/images/hero/hero.png" height={744} width={1094} alt="Background" />
+                    {/* <Image loading='eager'onLoadingComplete={handleImageLoad} layout="responsive" objectFit='fill' quality={100} height={744} width={1094} src="/images/hero/hero.png" alt="Hero Image" /> */}
                 </div>
             </main>
         </div>

@@ -4,6 +4,7 @@ import React from 'react'
 import FormDecoration from '../../common/form-decoration'
 import Link from 'next/link'
 import ServicesContent from './components/ServicesContent'
+import ServiceImageWithSkeleton from '../../ui/image-skeleton/ServicesImageSkeleton'
 
 const Services = () => {
     return (
@@ -30,28 +31,25 @@ const Services = () => {
                             <div className="-m-1 flex flex-wrap md:gap-y-[135px] 2xl:gap-y-[30px]">
                                 <div className="w-1/3 p-2">
                                     <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
-                                        <Image
+                                        <ServiceImageWithSkeleton
                                             src="/images/services/bartander.jpg"
                                             alt="Bartender"
-                                            width={400} // Adjusted width
+                                            width={413} // Adjusted width
                                             height={240} // Adjusted height
-                                            className=' shadow-stone-300'
-                                            layout="responsive"
                                         />
-                                        <ServicesContent 
+                                         <ServicesContent 
                                         name={"Bartenders"} description={"Certified professionals crafting delicious drinks and keeping the party flowing."} serviceSrc='/images/services/bartander.svg' 
                                         />
+                                    
                                     </div>
                                 </div>
                                 <div className="w-1/3">
                                     <div className="w-full md:p-2 min-h-[280px] md:max-h-[200px] max-h-[320px] 2xl:max-h-[420px]">
-                                        <Image
+                                        <ServiceImageWithSkeleton
                                             src="/images/services/waiters.jpg"
                                             alt="Waiters"
-                                            width={400} // Adjusted width
+                                            width={413} // Adjusted width
                                             height={240} // Adjusted height
-                                            layout="responsive"
-                                            className=' shadow-stone-300 '
                                         />
                                         <ServicesContent 
                                         name={"Waiters"} description={"Attentive wait staff delivering food efficiently and adding a touch of elegance."} serviceSrc='/images/services/waiter.svg' 
@@ -60,13 +58,11 @@ const Services = () => {
                                 </div>
                                 <div className="w-1/3 p-2">
                                     <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
-                                        <Image
+                                        <ServiceImageWithSkeleton
                                             src="/images/services/cocktail.jpg"
                                             alt="Waiters"
-                                            width={400} // Adjusted width
+                                            width={413} // Adjusted width
                                             height={240} // Adjusted height
-                                            layout="responsive"
-                                            className='shadow-stone-300'
                                         />
                                         <ServicesContent 
                                         name={"Cocktail"} description={"Experienced crew ensuring bartenders have everything they need for smooth service."} serviceSrc='/images/services/cocktail.svg' 
@@ -75,13 +71,11 @@ const Services = () => {
                                 </div>
                                 <div className="w-1/3 p-2">
                                     <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
-                                        <Image
+                                        <ServiceImageWithSkeleton
                                             src="/images/services/barbacks.jpg"
                                             alt="Barbacks"
-                                            width={400} // Adjusted width
+                                            width={413} // Adjusted width
                                             height={240} // Adjusted height
-                                            layout="responsive"
-                                            className=' shadow-stone-300'
                                         />
                                          <ServicesContent 
                                         name={"Promo Models"} description={"Engaging models bringing your brand to life and captivating your audience."} serviceSrc='/images/services/model.svg' 
@@ -90,13 +84,11 @@ const Services = () => {
                                 </div>
                                 <div className="w-1/3 p-2">
                                     <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
-                                        <Image
+                                        <ServiceImageWithSkeleton
                                             src="/images/services/promomodel.jpg"
                                             alt="Promo Model"
-                                            width={400} // Adjusted width
+                                            width={413} // Adjusted width
                                             height={240} // Adjusted height
-                                            layout="responsive"
-                                            className=' shadow-stone-300'
                                         />
                                        <ServicesContent 
                                         name={"Event Helper"} description={"Versatile helpers tackling setup, breakdown, and guest assistance for a seamless event."} serviceSrc='/images/services/helper.svg' 
@@ -105,13 +97,11 @@ const Services = () => {
                                 </div>
                                 <div className="w-1/3 p-2">
                                     <div className="w-full  min-h-[280px] max-h-[320px] 2xl:max-h-[420px]">
-                                        <Image
+                                        <ServiceImageWithSkeleton
                                             src="/images/services/eventhelper.jpg"
                                             alt="Event Helper"
-                                            width={240} // Adjusted width
+                                            width={413} // Adjusted width
                                             height={240} // Adjusted height
-                                            layout="responsive"
-                                            className=' shadow-stone-300'
                                         />
                                        <ServicesContent 
                                         name={"Barbacks"} description={"Experienced crew ensuring bartenders have everything they need for smooth service."} serviceSrc='/images/services/barback.svg' 

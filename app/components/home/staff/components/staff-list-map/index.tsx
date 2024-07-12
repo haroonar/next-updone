@@ -5,6 +5,7 @@ import { Staff } from '@/app/libs/types';
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { highlightedDatesAvailable, highlightedDatesNotAvailable } from '../../../detail';
+import CommonModal from '@/app/components/common/modal/Modal';
 type StaffMapProps = {
     staff: Staff;
     handleStaffClick: (arg: Staff) => void
@@ -14,13 +15,11 @@ type StaffMapProps = {
 const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMapProps) => {
     const [showAllServices, setShowAllServices] = useState(false);
     const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss } = useBookingContext();
-    const openModal = () => {
-        setModalOpen?.(true);
-    };
 
-    const closeModal = () => {
-        setModalOpen?.(false);
-    };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
     return (
         <>
             <Image
@@ -33,6 +32,8 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                 }}
                 className="w-34 h-34 rounded-full object-cover "
                 src={staff.img}
+                quality={100}
+                objectFit='fill'
                 width={120}
                 height={120}
                 alt=''
@@ -140,7 +141,7 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
 
                             Book Now
                         </button>
-                        <Modal isOpen={modalOpen} onClose={closeModal}>
+                        <CommonModal isOpen={isModalOpen} onClose={closeModal} >
                             <BookingCalander
                             isStaffListerFilter
                                 date={date}
@@ -158,7 +159,7 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                                 highlightedDatesNotAvailable={highlightedDatesNotAvailable}
                             highlightedDatesAvailable={highlightedDatesAvailable}
                             />
-                        </Modal>
+                        </CommonModal>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import './index.css'
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
+import { montserrat } from '@/app/libs/Fonts';
 // Initialize Swiper modules
 SwiperCore.use([Autoplay, Pagination]);
 
@@ -18,10 +19,7 @@ interface TestimonialCardProps {
   content: string;
   isDetailTestonial?: boolean;
 }
-const montserrat = Montserrat({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"]
-});
+
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, content, avatarSrc, isDetailTestonial }) => {
   const [imageLoad, setImageLoad] = useState(false)
   const handleImageLoad = () => {
