@@ -3,7 +3,6 @@ import CommonSelect from '@/app/components/common/select-option'
 import { HERO_FILTER_STAFF, LOCATION, TIMES_CONST } from '@/app/libs/Constants'
 import Image from 'next/image'
 import React from 'react'
-import { CSSTransition } from 'react-transition-group';
 type StaffFiltersProps = {
     handleTimeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
     handleLocationChange: (e: React.ChangeEvent<HTMLSelectElement>) => void

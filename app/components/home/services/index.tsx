@@ -36,7 +36,7 @@ console.log('allImagesLoaded amnannnnnnnnnnnnnnn', allImagesLoaded)
   return (
     <>
       <div className='py-[100px] bg-[FFFFFF]'>
-        <h2 className='service-text mb-[70px]'>What <strong className='text-[#350ABC]'>services</strong> are <br /> you looking for?</h2>
+        <h2 className='service-text mb-[65px]'>What <strong className='text-[#350ABC]'>services</strong> are <br /> you looking for?</h2>
         <div className="relative pb-4">
           <div className="absolute top-[-337px] z-[-1] left-[-231px]" style={{ transform: 'rotate(86deg)' }}>
             <svg width="700" height="700" viewBox="0 0 601 1096" fill="none" xmlns="http://www.w3.org/2000/svg">
