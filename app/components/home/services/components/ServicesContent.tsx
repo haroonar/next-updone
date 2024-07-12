@@ -1,3 +1,4 @@
+"use client"
 import { montserrat } from '@/app/libs/Fonts';
 import Image from 'next/image';
 import Link from 'next/link'

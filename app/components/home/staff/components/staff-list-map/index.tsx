@@ -1,4 +1,4 @@
-import Modal from '@/app/components/common/modal/Modal';
+"use client"
 import BookingCalander from '@/app/components/ui/booking-calander';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 import { Staff } from '@/app/libs/types';

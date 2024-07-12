@@ -1,3 +1,4 @@
+"use client"
 import CalendarWithAvailability from '@/app/components/common/Calander'
 import { BookingCalanderProps } from '@/app/libs/types'
 import Image from 'next/image'

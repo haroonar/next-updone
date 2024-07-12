@@ -1,4 +1,4 @@
-// Import necessary modules and components
+"use client"
 import React, { SetStateAction, useState } from 'react';
 import styles from './header.module.css';
 import Link from 'next/link';

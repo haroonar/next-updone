@@ -1,4 +1,4 @@
-//staff-listing route component constants 
+"use client"
 export const HERO_FILTER_STAFF: { [key: string]: string } = {
   gap: '0px',
   borderRadius: '8px',
