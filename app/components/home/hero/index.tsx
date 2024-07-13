@@ -115,7 +115,7 @@ const Hero = () => {
                     }
 
                     {!allImagesLoaded &&
-                        <div onClick={handleClikedFilter} style={{ ...heroFilters }} className={`${isFilterOpened ? "w-[100%] transition-all duration-1000" : "w-[79.9%] transition-all duration-1000"}  flex space-x-3 p-1 text-black justify-center items-center text-center`}>
+                        <div onClick={handleClikedFilter} style={{ ...heroFilters }} className={`${isFilterOpened ? "w-[100%] !transition-all !duration-1000 !rounded-[8px]" : "!w-[79.9%] !transition-all !duration-1000"}  flex space-x-3 p-1 text-black justify-center items-center text-center`}>
                             <div style={{ width: '18%' }} className=" text-start space-y-1.5">
                                 <div className="relative inline-block border-none shadow-none">
                                     <span

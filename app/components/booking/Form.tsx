@@ -149,7 +149,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
     ];
     return (
         <>
-            <section style={{ maxHeight: changeActiveColor ? "430px" : "" }} className='max-w-[1279px] mx-auto'>
+            <section style={{ maxHeight: changeActiveColor ? "430px" : "" }} className='max-w-[1279px] mx-auto max-h-[1000px]'>
 
                 {/* steps */}
                 <nav aria-label='Progress' className='relative left-6 z-[1]'>
