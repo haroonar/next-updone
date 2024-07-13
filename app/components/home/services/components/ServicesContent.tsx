@@ -6,7 +6,7 @@ import React from 'react'
 
 const ServicesContent = ({ name, description, serviceSrc }: any) => {
     return (
-        <div className='w-[100%] m-auto relative z-[-1] bottom-[95px] right-[23.5px]'>
+        <div className='w-[100%] m-auto relative z-10 bottom-[95px] right-[23.5px] '>
             <Image  src="/images/services/serivceContent.svg" alt="service" className='max-w-[452px]' quality={100} width={800} height={685} />
             <div className='flex justify-between items-start h-full gap-4 flex-col'>
                 <div className='w-[80%] relative bottom-[266px] left-[64px]'>
