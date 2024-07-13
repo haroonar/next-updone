@@ -1,22 +1,22 @@
 'use client'
-import React, { Suspense, useRef, useState } from 'react'
-import Loader from '../../ui/loader';
+import React, { Suspense } from 'react'
 const Testimonials = dynamic(() => import('../testimonials'), {
     ssr: false, // Do not SSR for this component
-    loading: () => <><p className='flex text-center'>Loading...</p></>, // Display loader while loading
-});
-const CalendarWithAvailability = dynamic(() => import('../../common/Calander'), {
-    ssr: false, // Do not SSR for this component
-    loading: () => <><p className='flex text-center'>Loading...</p></>, // Display loader while loading
+    loading: () => <><p className='flex justify-center items-center w-full'>Loading...</p></>, // Display loader while loading
 });
 const StaffImageGrid = dynamic(() => import('./components/StaffImages'), {
     ssr: false, // Do not SSR for this component
-    loading: () => <><p className='flex text-center'>Loading...</p></>, // Display loader while loading
+    loading: () => <><p className='flex justify-center items-center'>Loading...</p></>, // Display loader while loading
 
 });
 const StaffHistory = dynamic(() => import('./components/StaffHistory'), {
     ssr: false, // Do not SSR for this component
-    loading: () => <><p className='flex text-center'>Loading...</p></>, // Display loader while loading
+    loading: () => <><p className='flex justify-center items-center'>Loading...</p></>, // Display loader while loading
+
+});
+const BookingCalander = dynamic(() => import('../../ui/booking-calander'), {
+    ssr: false, // Do not SSR for this component
+    loading: () => <><p className='flex justify-center items-center'>Loading...</p></>, // Display loader while loading
 
 });
 import Image from 'next/image'
@@ -24,7 +24,6 @@ import { PiLineVerticalThin } from 'react-icons/pi'
 import { GoDotFill } from 'react-icons/go'
 import HOME_TESTIMONINAL_CONTENT from '../testimonials/constants'
 import dynamic from 'next/dynamic';
-import BookingCalander from '../../ui/booking-calander';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 export const services = [
     { id: 1, text: "Cocktail Server" },
@@ -33,7 +32,7 @@ export const services = [
     { id: 4, text: "Bartender" }
 ]
 
-export  const highlightedDatesNotAvailable = ['2024-07-08', '2024-07-11', '2024-07-28'];
+export const highlightedDatesNotAvailable = ['2024-07-08', '2024-07-11', '2024-07-28'];
 export const highlightedDatesAvailable = ['2024-07-21', '2024-07-24'];
 const StaffDetail = () => {
     const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss, staff } = useBookingContext();
@@ -96,7 +95,7 @@ const StaffDetail = () => {
                                 <span className='relative bottom-[5px]'>
                                     <Image width={14} height={14} alt='verified' src='/images/staff-listing/phone.svg' />
                                 </span>
-                                <div style={{ letterSpacing: '-2%' ,marginRight:'25px'}} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
+                                <div style={{ letterSpacing: '-2%', marginRight: '25px' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
                                     {`Contact Number`}
                                     <Image width={58} height={12} alt='verified' src='/images/staff-listing/vertified.svg' />
                                 </div>
@@ -104,7 +103,7 @@ const StaffDetail = () => {
                                 <span className='relative bottom-[6px]'>
                                     <Image width={16} height={16} alt='verified' src='/images/staff-listing/person.svg' />
                                 </span>
-                                <div style={{ letterSpacing: '-2%',marginRight:'25px' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
+                                <div style={{ letterSpacing: '-2%', marginRight: '25px' }} className='relative bottom-[5px] text-[14px] font-normal flex justify-center items-center gap-2 text-[#000000]'>
                                     {`ID`}
                                     <Image width={82} height={16} alt='verified' src='/images/staff-listing/not-verfied.svg' />
 
@@ -130,33 +129,41 @@ const StaffDetail = () => {
 
             <div className="max-w-[1276px] mx-auto h-auto pt-[80px]">
                 <div>
-                    <BookingCalander
+                    <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
+                        <BookingCalander
                             isStaffListerFilter
-                                date={date}
-                                setDate={setDate}
-                                setSelectedTimeId={setSelectedTimeId}
-                                scrollRef={scrollRef}
-                                availableTimesMap={availableTimesMap}
-                                handleTimeSelection={handleTimeSelection}
-                                selectedTimeId={selectedTimeId}
-                                scrollUp={scrollUp}
-                                scrollDown={scrollDown}
-                                timessss={timessss}
-                                handleAddToBooking={handleAddToBooking}
-                                selectedTimes={selectedTimes}
-                                highlightedDatesNotAvailable={highlightedDatesNotAvailable}
-                                highlightedDatesAvailable={highlightedDatesAvailable}
-                            />
+                            date={date}
+                            setDate={setDate}
+                            setSelectedTimeId={setSelectedTimeId}
+                            scrollRef={scrollRef}
+                            availableTimesMap={availableTimesMap}
+                            handleTimeSelection={handleTimeSelection}
+                            selectedTimeId={selectedTimeId}
+                            scrollUp={scrollUp}
+                            scrollDown={scrollDown}
+                            timessss={timessss}
+                            handleAddToBooking={handleAddToBooking}
+                            selectedTimes={selectedTimes}
+                            highlightedDatesNotAvailable={highlightedDatesNotAvailable}
+                            highlightedDatesAvailable={highlightedDatesAvailable}
+                        />
+                    </Suspense>
                 </div>
                 {/* staff history section */}
                 <div className="h-[465px] flex gap-[25px] mt-[100px] mb-6">
-                    <StaffHistory />
-                    <StaffImageGrid />
+                    <Suspense fallback={<p className='w-[50%] flex justify-center items-center'>Loading...</p>}>
+                        <StaffHistory />
+                    </Suspense>
+                    <Suspense fallback={<p className='w-[50%] flex justify-center items-center'>Loading...</p>}>
+                        <StaffImageGrid />
+                    </Suspense>
                 </div>
 
             </div>
             <div>
-                <Testimonials isDetailTestonial testimonials={HOME_TESTIMONINAL_CONTENT} />
+                <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
+                    <Testimonials isDetailTestonial testimonials={HOME_TESTIMONINAL_CONTENT} />
+                </Suspense>
             </div>
 
         </div>

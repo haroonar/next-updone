@@ -1,11 +1,19 @@
 "use client"
-import BookingCalander from '@/app/components/ui/booking-calander';
+const BookingCalander = dynamic(() => import('@/app/components/ui/booking-calander'), {
+    loading: () => <Loader />, // Display loader while loading
+    ssr: false, // Do not SSR for this component
+});
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 import { Staff } from '@/app/libs/types';
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { highlightedDatesAvailable, highlightedDatesNotAvailable } from '../../../detail';
-import CommonModal from '@/app/components/common/modal/Modal';
+import dynamic from 'next/dynamic';
+import Loader from '@/app/components/ui/loader';
+const CommonModal = dynamic(() => import('@/app/components/common/modal/Modal'), {
+    ssr: false, // Do not SSR for this component
+});
+
 type StaffMapProps = {
     staff: Staff;
     handleStaffClick: (arg: Staff) => void
@@ -18,8 +26,8 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
     return (
         <>
             <Image
@@ -141,25 +149,29 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
 
                             Book Now
                         </button>
-                        <CommonModal isOpen={isModalOpen} onClose={closeModal} >
-                            <BookingCalander
-                            isStaffListerFilter
-                                date={date}
-                                setDate={setDate}
-                                setSelectedTimeId={setSelectedTimeId}
-                                scrollRef={scrollRef}
-                                availableTimesMap={availableTimesMap}
-                                handleTimeSelection={handleTimeSelection}
-                                selectedTimeId={selectedTimeId}
-                                scrollUp={scrollUp}
-                                scrollDown={scrollDown}
-                                timessss={timessss}
-                                handleAddToBooking={handleAddToBooking}
-                                selectedTimes={selectedTimes}
-                                highlightedDatesNotAvailable={highlightedDatesNotAvailable}
-                            highlightedDatesAvailable={highlightedDatesAvailable}
-                            />
-                        </CommonModal>
+                        <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading....</p>}>
+                            <CommonModal isOpen={isModalOpen} onClose={closeModal} >
+                                <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
+                                    <BookingCalander
+                                        isStaffListerFilter
+                                        date={date}
+                                        setDate={setDate}
+                                        setSelectedTimeId={setSelectedTimeId}
+                                        scrollRef={scrollRef}
+                                        availableTimesMap={availableTimesMap}
+                                        handleTimeSelection={handleTimeSelection}
+                                        selectedTimeId={selectedTimeId}
+                                        scrollUp={scrollUp}
+                                        scrollDown={scrollDown}
+                                        timessss={timessss}
+                                        handleAddToBooking={handleAddToBooking}
+                                        selectedTimes={selectedTimes}
+                                        highlightedDatesNotAvailable={highlightedDatesNotAvailable}
+                                        highlightedDatesAvailable={highlightedDatesAvailable}
+                                    />
+                                </Suspense>
+                            </CommonModal>
+                        </Suspense>
                     </div>
                 </div>
             </div>

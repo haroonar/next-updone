@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
 import dynamic from 'next/dynamic';
-import RenderLoader from '../components/ui/loader';
 import Loading from './loading';
 import Loader from '../components/ui/loader';
 const Home = dynamic(() => import('../components/home'), {

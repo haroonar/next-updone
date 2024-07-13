@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Image from 'next/image'
-import TimeAndCalander from './calander-time'
+const TimeAndCalander = dynamic(() => import('./calander-time'), {
+    ssr: false, // Do not SSR for this component
+  });
 import { BookingCalanderProps } from '@/app/libs/types'
 import { services } from '../../home/detail'
 import Link from 'next/link'
 import { montserrat } from '@/app/libs/Fonts'
+import dynamic from 'next/dynamic';
 
 
 const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailable,handleServiceClick,selectedServiceId,isCalander, isStaffListerFilter, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, timessss, handleAddToBooking, selectedTimes }: BookingCalanderProps) => {
@@ -12,6 +15,7 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
         <>
             {!isStaffListerFilter ?
                 <>
+                <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
                     <TimeAndCalander
                         date={date}
                         setDate={setDate}
@@ -27,6 +31,7 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
                         highlightedDatesNotAvailable={highlightedDatesNotAvailable}
                             highlightedDatesAvailable={highlightedDatesAvailable}
                     />
+                </Suspense>
                     <div className='w-full flex justify-between items-start flex-col gap-[14.28px]'>
                         <h2 className='leading-[19.93px] translate-[0.316px] font-[500] text-[16.608px] text-[#000000] '>Booking Times</h2>
                         {timessss?.length === 0 ? <><div className='w-full h-[50vh] flex justify-center items-center capitalize'>Please Add a time to Booking</div></> :

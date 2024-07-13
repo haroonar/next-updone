@@ -4,12 +4,12 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "./libs/store/layout";
 
-// Specify the weights you want to include
+// Specify the weights you want to include this font overall apply on any text default font 
 const poppins = Poppins({
   weight: ["100","200","300","400", "500", "600", "700", "800", "900"],
   subsets: ["latin"]
 });
-
+// For SEO purpose to tank next js application
 export const metadata: Metadata = {
   robots: 'noindex',
   title: 'Updone',
@@ -32,6 +32,7 @@ export default function RootLayout({
     
     <html lang="en">
       <body className={`${poppins.className} no-x-overflow`}>
+        {/* // wrapper for redux client components */}
         <ReduxProvider>
           {children}
         </ReduxProvider>

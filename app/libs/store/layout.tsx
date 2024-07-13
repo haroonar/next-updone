@@ -2,7 +2,6 @@
 import React, { ReactNode } from 'react'
 import { Provider } from 'react-redux';
 import store from './store';
-import Image from 'next/image';
 import Header from '@/app/components/ui/header';
 import Footer from '@/app/components/ui/footer';
 import { BookingProvider } from '../context/BookingContext';

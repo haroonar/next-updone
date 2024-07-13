@@ -1,44 +1,51 @@
 "use client"
-import CalendarWithAvailability from '@/app/components/common/Calander'
-import { BookingCalanderProps } from '@/app/libs/types'
-import Image from 'next/image'
-import React from 'react'
+const CalendarWithAvailability = dynamic(() => import('@/app/components/common/Calander'), {
+    ssr: false, // Do not SSR for this component
+    loading: () => <><p className='flex justify-center items-center w-full'>Loading...</p></>, // Display loader while loading
 
-const TimeAndCalander = ({ highlightedDatesAvailable,highlightedDatesNotAvailable,isCalander, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, handleAddToBooking,isStaffListerFilter }: BookingCalanderProps) => {
+});
+import { BookingCalanderProps } from '@/app/libs/types'
+import dynamic from 'next/dynamic';
+import Image from 'next/image'
+import React, { Suspense } from 'react'
+
+const TimeAndCalander = ({ highlightedDatesAvailable, highlightedDatesNotAvailable, isCalander, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, handleAddToBooking, isStaffListerFilter }: BookingCalanderProps) => {
     return (
         <div className='flex justify-start items-start gap-[21px]'>
-         
-            <div style={{width:isStaffListerFilter ? "22rem":"26rem"}} className={`"h-[348px] `}>
+
+            <div style={{ width: isStaffListerFilter ? "22rem" : "26rem" }} className={`"h-[348px] `}>
                 <div className=' w-full h-auto p-[10px] bg-[#fff] rounded-[8px]' style={{
-  boxShadow: isCalander ? "" : "0px 8px 26px 0px rgba(0, 0, 0, 0.07)",
-  border: isCalander ? "1px solid #f7f7f7" : "none"
-}}
->
-                    <CalendarWithAvailability
-                    highlightedDatesAvailable={highlightedDatesAvailable}
-                    highlightedDatesNotAvailable={highlightedDatesNotAvailable}
-                        setSelectedTimeId={setSelectedTimeId} setDate={setDate} date={date}
-                    />
+                    boxShadow: isCalander ? "" : "0px 8px 26px 0px rgba(0, 0, 0, 0.07)",
+                    border: isCalander ? "1px solid #f7f7f7" : "none"
+                }}
+                >
+                    <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
+                        <CalendarWithAvailability
+                            highlightedDatesAvailable={highlightedDatesAvailable}
+                            highlightedDatesNotAvailable={highlightedDatesNotAvailable}
+                            setSelectedTimeId={setSelectedTimeId} setDate={setDate} date={date}
+                        />
+                    </Suspense>
                 </div>
-                {!isCalander && 
-                <div className='flex justify-start gap-[10px] items-center mt-[18px] ml-[10px] tracking-[-0.2px] leading-[24px] font-[400] text-[#6B6B6B] text-[10px]'>
-                    <h3 className='flex justify-center items-center gap-1'>
-                        <span>
-                            <Image height={10} width={10} alt='not available' src='/images/detail/notavail.svg' />
-                        </span>
-                        <span className='mt-[1.6px]'>Not Available</span>
-                    </h3>
-                    <h3 className='flex justify-center items-center gap-1'>
-                        <span>
-                            <Image height={10} width={10} alt='not available' src='/images/detail/current.svg' />
+                {!isCalander &&
+                    <div className='flex justify-start gap-[10px] items-center mt-[18px] ml-[10px] tracking-[-0.2px] leading-[24px] font-[400] text-[#6B6B6B] text-[10px]'>
+                        <h3 className='flex justify-center items-center gap-1'>
+                            <span>
+                                <Image height={10} width={10} alt='not available' src='/images/detail/notavail.svg' />
+                            </span>
+                            <span className='mt-[1.6px]'>Not Available</span>
+                        </h3>
+                        <h3 className='flex justify-center items-center gap-1'>
+                            <span>
+                                <Image height={10} width={10} alt='not available' src='/images/detail/current.svg' />
 
-                        </span><span className='mt-[1.6px]'>Current Selection</span></h3>
-                    <h3 className='flex justify-center items-center gap-1'><span>
-                        <Image height={10} width={10} alt='not available' src='/images/detail/available.svg' />
+                            </span><span className='mt-[1.6px]'>Current Selection</span></h3>
+                        <h3 className='flex justify-center items-center gap-1'><span>
+                            <Image height={10} width={10} alt='not available' src='/images/detail/available.svg' />
 
-                    </span><span className=''>Added to Booking</span></h3>
-                </div>
-        }
+                        </span><span className=''>Added to Booking</span></h3>
+                    </div>
+                }
             </div>
             {highlightedDatesAvailable?.includes(date.toISOString().split('T')[0]) && (
                 <div className='w-[12rem] h-full'>
@@ -109,7 +116,7 @@ const TimeAndCalander = ({ highlightedDatesAvailable,highlightedDatesNotAvailabl
                             </svg>
 
                         </div>
-                        { (
+                        {(
                             <>
                                 <button
                                     onClick={scrollUp}
@@ -119,7 +126,7 @@ const TimeAndCalander = ({ highlightedDatesAvailable,highlightedDatesNotAvailabl
                                 </button>
                                 <button
                                     onClick={scrollDown}
-                                    style={{bottom:'172px'}}
+                                    style={{ bottom: '172px' }}
                                     className='absolute right-[-5px] border-none rounded-half cursor-pointer'
                                 >
                                     <Image height={120} width={10} src='/images/detail/arrowDown.svg' alt='' />
@@ -127,7 +134,7 @@ const TimeAndCalander = ({ highlightedDatesAvailable,highlightedDatesNotAvailabl
                             </>
                         )}
                     </div>
-                   {!isCalander &&  <button
+                    {!isCalander && <button
                         onClick={handleAddToBooking}
                         className='text-[#350ABC] relative bottom-[93px] text-sm flex justify-center items-center w-[91%] py-[8px] px-[16px] border border-[#DED6FF] bg-[#F3F0FF] rounded-[4px] h-[40px]'
                     >
