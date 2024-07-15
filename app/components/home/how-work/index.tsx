@@ -66,7 +66,10 @@ function HowWork() {
                             {selectedCard > 0 && ( // Render image only if a card is selected
                                 <div style={{ position: 'relative', width: '100%', height: '60%' }}>
                                     <div style={{ position: 'absolute', inset: 0 }}>
-                                        <HeroImageWithSkeleton
+                                        <Image
+                                            layout="responsive"
+                                            objectFit="fill"
+                                            quality={100}
                                             src={cards[selectedCard - 1].image}
                                             alt={cards[selectedCard - 1].text}
                                             width={750}

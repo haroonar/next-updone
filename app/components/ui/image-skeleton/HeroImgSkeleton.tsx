@@ -40,4 +40,4 @@ const HeroImageWithSkeleton: React.FC<HeroImageWithSkeletonProps> = ({ src, alt,
   );
 };
 
-export default HeroImageWithSkeleton;
+export default React.memo(HeroImageWithSkeleton);
