@@ -11,13 +11,25 @@ import { useAppDispatch } from '@/app/libs/store/hooks';
 import { setStaff } from '@/app/libs/store/features/staff';
 import { AppDispatch } from '@/app/libs/store/store';
 import CardSkeleton from '../../ui/card-skeleton';
+import { fetchAndCache } from '@/app/libs/services/useGetStaffs';
+import Pagination from '../../ui/pagination';
 
 const StaffListing = () => {
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false); //open staff filter modal state
-
   const dispatch: AppDispatch = useAppDispatch();
   const navigate = useRouter()
+
+  const [currentPage, setCurrentPage] = useState(1);
+  console.log('currentPage', currentPage)
+  const pageSize = 10; // Number of items per page
+  const totalCount = 100; // Total number of items (adjust as per your data)
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // You can implement your data fetching logic here
+    // Example: fetchData(page);
+  };
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(event.target.value);
@@ -52,6 +64,7 @@ const StaffListing = () => {
     transform:"rotate(0.3deg)"
   };
 
+
   useEffect(() => {
     // Use setTimeout to toggle loading state after 5 seconds
     const timer = setTimeout(() => {
@@ -60,80 +73,55 @@ const StaffListing = () => {
 
     return () => clearTimeout(timer); // Clean up timer on unmount or state change
   }, []);
+
+  const [data, setData] = useState(null);
+  //this is api call to get the staff data
+  useEffect(() => {
+    const fetchDataIfNeeded = async () => {
+      if (!data) {
+        try {
+          const newData = await fetchAndCache('/todos');
+          setData(newData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          // Handle error state or display an error message
+        }
+      }
+    };
+
+    fetchDataIfNeeded();
+  }, [data]); // Dependency array ensures useEffect runs when `data` changes
+
   return (
     <>
-      <div  className="fixed z-[-1] left-0" style={svgStyle}>
+      <div className="fixed z-[-1] left-0" style={svgStyle}>
         <svg width="100vw" height="472" viewBox="0 0 1915 472" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1915 0H-3V472C705.5 136 1709.95 342.138 1915 472V0Z" fill="#F3F0FF" />
         </svg>
       </div>
       <div className="max-w-[1279px] mx-auto">
-        <StaffFilters  modalOpen={modalOpen} scrollY={scrollY} handleLocationChange={handleLocationChange} handleTimeChange={handleTimeChange} />
+        <StaffFilters modalOpen={modalOpen} scrollY={scrollY} handleLocationChange={handleLocationChange} handleTimeChange={handleTimeChange} />
         <div className="relative md:top-20 2xl:top-22 grid gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 justify-center items-center z-10">
           {People.length === 0 ? (
             <p className="text-center text-xl mt-20">No staff found, sorry.</p>
           ) : (
             People.map((staff: Staff) => (
               <div key={staff.id} >
-                {loading ? <CardSkeleton staff={staff} /> : <StaffMap setModalOpen={setModalOpen} modalOpen={modalOpen}  handleStaffClick={handleStaffClick} staff={staff} />}
+                {loading ? <CardSkeleton staff={staff} /> : <StaffMap setModalOpen={setModalOpen} modalOpen={modalOpen} handleStaffClick={handleStaffClick} staff={staff} />}
               </div>
             ))
           )}
         </div>
         {/* pagination */}
-        <div className='h-10 mb-16 mt-[8rem] w-full absolute '>
-          <div className='flex justify-between items-center max-w-[1279px]'>
-            <div>
-              View Per Page:
-              <CommonSelect
-                options={PAGINATION_LIMIT}
-                valueKey="value"
-                labelKey="label"
-                defaultValue="0"
-                onChange={() => { }}
-                className='w-14 h-8 border-none bg-white rounded-md focus:border-none p-1 ml-2'
-                isLimit
-              />
-            </div>
-            <nav aria-label="Page navigation example">
-              <ul className="flex items-center">
-                <li>
-                  <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-black bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <span className="sr-only">Previous</span>
-                    <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 1 1 5l4 4" />
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                </li>
-                <li>
-                  <a href="#" aria-current="page" className="z-10 flex items-center justify-center px-3 h-8 leading-tight text-white  bg-[#350abc] hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-black bg-white  rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <span className="sr-only">Next</span>
-                    <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+        <Pagination
+        currentPage={currentPage}
+        pageSize={pageSize}
+        totalCount={totalCount}
+        onPageChange={handlePageChange}
+      />
+      
       </div>
-      <div className='h-[250px] bg-[#f3f0ff] w-[90vw] m-auto'>
+      <div className='h-[250px] bg-[#f3f0ff] w-[90vw] m-auto pt-[130px]'>
       </div>
     </>
   );

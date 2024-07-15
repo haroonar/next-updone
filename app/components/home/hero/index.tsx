@@ -116,7 +116,7 @@ const Hero = () => {
 
                     {!allImagesLoaded &&
                         <div onClick={handleClikedFilter} style={{ ...heroFilters }} className={`${isFilterOpened ? "w-[100%] !transition-all !duration-1000 !rounded-[8px]" : "!w-[79.9%] !transition-all !duration-1000"}  flex space-x-3 p-1 text-black justify-center items-center text-center`}>
-                            <div style={{ width: '18%' }} className=" text-start space-y-1.5">
+                            <div style={{ width: '18%' }} className=" text-start space-y-1.5 !transition-all !duration-1000">
                                 <div className="relative inline-block border-none shadow-none">
                                     <span
                                         className="block appearance-none md:w-[90px] 2xl:w-[100px] 2xl:text-[20px] leading-[150%] capitalize font-[500] md:text-[16px] bg-white pr-4 rounded focus:outline-none focus:shadow-outline text-[#0B0B0B]"
@@ -132,7 +132,7 @@ const Hero = () => {
 
                             </div>
                             <img src="./images/Line 4.png" alt="" />
-                            <div style={{ width: '18%', marginLeft: '15px' }} className=" text-start space-y-1.5 relative left-2">
+                            <div style={{ width: '18%', marginLeft: '15px' }} className="!transition-all !duration-1000 text-start space-y-1.5 relative left-2">
                                 <div className="relative inline-flex border-none shadow-none">
                                     {/* SVG icon */}
                                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center text-gray-700">
@@ -154,7 +154,7 @@ const Hero = () => {
 
 
                             <img src="./images/Line 4.png" alt="" />
-                            <div style={{ width: '29%' }} className=" text-start space-y-1.5">
+                            <div style={{ width: '29%' }} className="!transition-all !duration-1000 text-start space-y-1.5">
                                 <div className="relative inline-flex border-none shadow-none">
                                     {/* SVG icon */}
                                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2 text-black">
@@ -182,12 +182,12 @@ const Hero = () => {
                                         />
                                     </CommonDropdown >
                                 </div>
-                                <span className='block 2xl:text-[15px] text-start pl-[10px] font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858] cursor-pointer' onClick={handleDate}>{'July 24, 2024'}</span>
+                                <span className='block 2xl:text-[15px] text-start pl-[10px] font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858] cursor-pointer !transition-all !duration-1000' onClick={handleDate}>{'July 24, 2024'}</span>
 
                                 {/* <Image height={18} width={124} src='/images/hero/stars.svg' alt='box' /> */}
                             </div>
                             <img src="./images/Line 4.png" alt="" className='relative right-[15px]' />
-                            <div style={{ width: '21%' }} className="space-y-1.5 mt-[7px]">
+                            <div style={{ width: '21%' }} className="!transition-all !duration-1000 space-y-1.5 mt-[7px]">
 
                                 <div className='flex justify-center items-center'>
                                     <span className='pl-[14px] pr-[2px] py-[0px] text-[#2C2240] text-[14px] relative right-[12.5px] font-[400] rounded-lg '>All</span>

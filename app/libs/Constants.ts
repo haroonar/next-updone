@@ -1,4 +1,5 @@
 "use client"
+export const BASE_URL="https://jsonplaceholder.typicode.com/"
 export const HERO_FILTER_STAFF: { [key: string]: string } = {
   gap: '0px',
   borderRadius: '8px',
@@ -13,7 +14,6 @@ export const HERO_FILTER_STAFF: { [key: string]: string } = {
   padding: '0px 0px 0px 0px'
 };
 
-  
   export const LOCATION = [
     { value: '0', label: 'Location' },
     { value: 'Waiters', label: 'Waiters' },

@@ -212,3 +212,19 @@ color: #6B6B6B;
   66%  {background-position: 250% 0,-150% 0}
   100% {background-position: 250% 0, 250% 0}
 }
+.filter-section {
+  position: relative;
+
+  z-index: 50;
+  transition:all  1.5s linear; /* Apply transition on transform */
+}
+
+.filter-section.scrolled {
+  transform: translateY(0%);
+  transition: all 1.5s linear; /* Apply transition on transform */
+}
+
+.inner-filter-section {
+  transition:all 1.5s linear; /* Example of transitioning background color */
+  /* Other styles */
+}

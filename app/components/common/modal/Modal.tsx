@@ -47,7 +47,6 @@ backdropFilter: "blur(3px)"
 const MyModal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   return (
     <Modal
-
       isOpen={isOpen}
       onRequestClose={onClose}
       style={customStyles}
