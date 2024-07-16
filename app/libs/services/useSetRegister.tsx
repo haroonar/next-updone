@@ -1,7 +1,7 @@
 import { BASE_URL } from "../Constants";
 
 // Function to fetch data and cache the result
-export async function fetchAndCache(url: string, body?: any) {
+export async function registerAction(url: string, body?: any) {
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",

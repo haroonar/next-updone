@@ -267,3 +267,13 @@
   background: linear-gradient(141deg, #F4EEFF 0%, #FFF 97.5%);
   backdrop-filter: blur(4px);
 }
+.menuBox {
+  position: absolute;
+  right: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  z-index: 1000;
+  max-width: 400px;
+  overflow: hidden;
+}

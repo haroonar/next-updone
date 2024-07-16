@@ -16,12 +16,13 @@ const CommonModal = dynamic(() => import('@/app/components/common/modal/Modal'),
 });
 
 type StaffMapProps = {
-    staff: Staff;
-    handleStaffClick: (arg: Staff) => void
+    staff: any;
+    handleStaffClick: (arg: any) => void
     setModalOpen?: (arg: boolean) => void;
     modalOpen?: boolean
 }
 const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMapProps) => {
+    console.log('staff in staffMap', staff)
     const [showAllServices, setShowAllServices] = useState(false);
     const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss } = useBookingContext();
 
@@ -40,8 +41,8 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                     padding: "6px",
                     background: "#f3f0ff"
                 }}
-                className="w-34 h-34 rounded-full object-cover "
-                src={staff.img}
+                className="w-[115px] h-[115px] rounded-full object-cover "
+                src={staff?.profile_pic}
                 quality={100}
                 objectFit='fill'
                 width={120}
@@ -49,7 +50,7 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                 alt=''
             />
             <div key={staff.id} className="p-3 pb-0 h-[430px] max-w-full mx-auto rounded-lg overflow-hidden shadow-whiteeee z-10 bg-white border-[1px] border-[#E9E9E9]">
-                <div className='text-center relative top-[20px] left-[73px] bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] px-[22px]'>
+                <div className='text-center relative top-[20px] left-[63px] bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] px-[22px]'>
                     <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_481_590)">
                             <path d="M16.4333 0H0.566667C0.416377 0 0.272243 0.0585317 0.165973 0.162719C0.0597022 0.266905 0 0.408213 0 0.555556L0 9.44444C0 9.59179 0.0597022 9.7331 0.165973 9.83728C0.272243 9.94147 0.416377 10 0.566667 10H16.4333C16.5836 10 16.7278 9.94147 16.834 9.83728C16.9403 9.7331 17 9.59179 17 9.44444V0.555556C17 0.408213 16.9403 0.266905 16.834 0.162719C16.7278 0.0585317 16.5836 0 16.4333 0ZM0.566667 9.44444V0.555556H16.4333V9.44444H0.566667Z" fill="#350ABC" />
@@ -65,7 +66,7 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                             </clipPath>
                         </defs>
                     </svg>
-                    <span className='text-[16px] font-normal '>{staff?.hourRate}$/hr</span>
+                    <span className='text-[16px] font-normal '>{staff?.per_hours_rate}$/hr</span>
                 </div>
 
                 <div className='flex flex-col h-[94%] items-start justify-center relative bottom-[22px] mt-[35px]'>
@@ -79,14 +80,14 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                                     </svg>
                                 </div>
-                                <p className="ms-1 text-[14px]  font-normal text-black">5.0/5</p>
+                                <p className="ms-1 text-[14px]  font-normal text-black">{staff?.rating}</p>
                             </div>
                         </div>
                         <div className="text-center flex justify-between w-full items-center font-bold text-lg mb-1">
                             <div className="text-center text-[14px] font-normal  text-[#989898] flex gap-2">
                                 <Image src='/images/gallery/location.svg' alt='location-svg' width={15} height={15} />  {`${staff.city}`}
                             </div>
-                            <span className='text-[14px] font-semibold'>102 Jobs</span>
+                            <span className='text-[14px] font-semibold'>{staff?.total_jobs_count} Jobs</span>
                         </div>
                     </div>
                     <div className="flex justify-center items-center mt-2 w-full">
@@ -128,16 +129,22 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                     <div className="flex flex-col items-start mt-2 w-full">
                         <h2 style={{ letterSpacing: '-2%' }} className="text-left text-[#2C2240] text-[14px] font-semibold w-full py-2">Services</h2>
                         <div className="flex gap-x-3 flex-wrap text-[#350abc]">
-                            {staff.services.slice(0, showAllServices ? staff.services.length : 3).map((service, index) => (
-                                <p key={index} className="text-left text-[14px] font-normal " style={{ margin: '0px' }}>
-                                    {service}
-                                </p>
-                            ))}
-                            {staff.services.length > 3 && !showAllServices && (
+                            {/* {staff?.services?.slice(0, showAllServices ? staff.services.length : 3).map((service, index) => (
+                                <p key={index} className="text-left text-[14px] font-normal " style={{ margin: '0px' }}> */}
+                                  <div>
+  {staff?.services_provided && staff.services_provided
+    .split(' ')
+    .slice(0, 4)
+    .join(' ')}
+</div>
+
+                                {/* </p>
+                            ))} */}
+                            {/* {staff?.services?.length > 3 && !showAllServices && (
                                 <button style={{ margin: '0px', letterSpacing: '-2%' }} className='font-semibold text-[12px]' onClick={() => setShowAllServices(true)}>
                                     +{staff.services.length - 3} more
                                 </button>
-                            )}
+                            )} */}
                         </div>
                     </div>
                     <div className="flex justify-around items-center mt-4 w-full space-x-2 border-t pt-4 pb-2 border-[#f3f0ff]">
@@ -181,4 +188,4 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
     )
 }
 
-export default StaffMap
+export default React.memo(StaffMap);

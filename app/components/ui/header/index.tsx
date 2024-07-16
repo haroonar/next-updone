@@ -3,14 +3,12 @@ import React, { SetStateAction, useState } from 'react';
 import styles from './header.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import LoginRegister from '../../common/login-register';
-import { useAuthContext } from '@/app/libs/context/AuthContext';
+import LoginForm from '../login';
+import RegisterForm from '../register';
+
 
 const Header = () => {
-    const [showLoginForm, setShowLoginForm] = useState(true);
-    const [showRegisterForm, setShowRegisterForm] = useState(true); // Start with registration form hidden
-    const [close, setClose] = useState(true)
-    const [getStyles,getGetStyles]=useState()
+
     // Define your navigation links
     const navLinks = [
         { href: '/staff', label: 'Workers' },
@@ -22,36 +20,31 @@ const Header = () => {
 
     // State to track the clicked link
     const [activeLink, setActiveLink] = useState<string | null>(null); // Initialize activeLink with null or an appropriate initial value
-
+// State to track the visibility of login and register menu
+const [loginMenuOpen, setLoginMenuOpen] = useState(false);
+const [registerMenuOpen, setRegisterMenuOpen] = useState(false);
     const handleSetActiveLink = (href: string) => {
         setActiveLink(href);
     };
-    const handleClose = (e: any) => {
-        e.preventDefault();
-
-        setClose(true)
-    }
-    const handleShowRegisterForm = (e: any) => {
-        e.preventDefault();
-        setShowLoginForm(false);
-        setShowRegisterForm(false); // Set to true to show the registration form
+    // Function to toggle login menu visibility
+    const toggleLoginMenu = () => {
+        setLoginMenuOpen(!loginMenuOpen);
     };
-    const handleOpenLoginPopup = (e: any) => {
-        e.preventDefault();
-        setShowLoginForm(!showLoginForm);
-        setClose(false)
-        
-    }
-    
+
+    // Function to toggle register menu visibility
+    const toggleRegisterMenu = () => {
+        setRegisterMenuOpen(!registerMenuOpen);
+    };
+
     return (
         <header className={styles.header}>
             <nav className="border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto">
                 <div className="flex flex-wrap justify-between items-center" style={{ cursor: 'pointer' }}>
                     <Link href="/" className="flex items-center">
-                        <Image src="/logo.svg" alt="header-logo" width={130} height={34} quality={100}  objectFit='fill'/>
+                        <Image src="/logo.svg" alt="header-logo" width={130} height={34} quality={100} objectFit='fill' />
                     </Link>
                     <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
-                        <ul className="flex flex-col mt-4 text-[#0B0B0B] text-[14px] font-[500] leading-[150%] capitalize lg:flex-row lg:space-x-8 lg:mt-0">
+                        <ul className="flex justify-center items-center flex-col mt-4 text-[#0B0B0B] text-[14px] font-[500] leading-[150%] capitalize lg:flex-row lg:space-x-8 lg:mt-0">
                             {navLinks.map((link) => (
                                 <li key={link.href}>
                                     <Link href={link.href}>
@@ -86,24 +79,31 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link onClick={handleOpenLoginPopup} href="#" className=" text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize">
+                                <div onClick={toggleLoginMenu} className=" text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize">
                                     Login
-                                </Link>
+                                </div>
+                                {loginMenuOpen && (
+                                    <div className={styles.menuBox}>
+                                        {/* Your login menu content here */}
+                                      <LoginForm/>
+                                    </div>
+                                )}
                             </li>
                             <li>
-                                <Link  onClick={handleShowRegisterForm} href="#" className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
+                                <div onClick={toggleRegisterMenu} className={` bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md`}>
                                     Register
-                                </Link>
+                                </div>
+                                {registerMenuOpen && (
+                                    <div className={styles.menuBox}>
+                                        {/* Your register menu content here */}
+                                       <RegisterForm/>
+                                    </div>
+                                )}
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            <LoginRegister
-            isHeaderLogin
-            style={styles}
-                showLoginForm={showLoginForm} close={close} showRegisterForm={showRegisterForm} styles={styles} handleClose={handleClose} setShowLoginForm={setShowLoginForm} handleShowRegisterForm={handleShowRegisterForm}
-            />
         </header>
     );
 };

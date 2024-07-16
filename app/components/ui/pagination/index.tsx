@@ -8,6 +8,7 @@ interface PaginationProps {
   pageSize: number;
   totalCount: number;
   onPageChange: (page: number) => void;
+  handleChange:(event: React.ChangeEvent<HTMLSelectElement>)=>void
 }
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -15,12 +16,13 @@ const Pagination: React.FC<PaginationProps> = ({
   pageSize,
   totalCount,
   onPageChange,
+  handleChange
 }) => {
   const totalPages = Math.ceil(totalCount / pageSize);
   const maxVisiblePages = 4; // Number of page numbers to show before showing ellipsis
-
   const [visiblePages, setVisiblePages] = useState<number[]>([]);
 
+  
   useEffect(() => {
     updateVisiblePages(currentPage);
   }, [currentPage]);
@@ -117,7 +119,7 @@ const Pagination: React.FC<PaginationProps> = ({
           valueKey="value"
           labelKey="label"
           defaultValue="0"
-          onChange={() => { }}
+          onChange={handleChange}
           className='w-14 h-8 border-none bg-white font-[400] leading-[24px] text-[14px] tracking-[-0.28px] rounded-md focus:border-none p-1 ml-2'
           isLimit
         />

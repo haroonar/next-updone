@@ -1,5 +1,6 @@
 "use client"
-export const BASE_URL="https://jsonplaceholder.typicode.com/"
+export const BASE_URL="http://44.192.105.40/api"
+export const TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMGM1YjI0OGY2ZWY5MjE1MDFkN2U5MTFjZGM2NWI3ZDI3YzAzNWJhYWJiZGJhMWMyZGZlNDdkYTJmZTFhY2U5NzRlY2U2MzRiNjQ1M2YyM2UiLCJpYXQiOjE3MjExMTc3NjIuMjQxMDU1LCJuYmYiOjE3MjExMTc3NjIuMjQxMDU3LCJleHAiOjE3NTI2NTM3NjIuMjM3NTAzLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.a99qfwUDTsuN5UJdguXFYtdG5n89qDFbUg24hxGrGTBdZtw5uR7pSQvWQE9Vj2T4FoxYRJwJR6cTaMgQz59mp_uw4XKbT52k3grjtrrtPmKQxfjLs1fuDMm0twCODcRG4lrtRkAEq7JTnZnp4p_xUKakAY1youO4ZLWKko5z1eKw9Z_9zprOHz3myD71Xi0wHcf7gECJ1kMVUTJq08L3wx-BgLmywehbuLef9NPSN7tEUAqvOzOeXX3d2yc8gh1RoenBcX4ZFng0G4ynH-tR46Jz4btOPL7GKsJ_O3aKdOuUoDZBQQg6y0KXk_QjNJpTboMqqvWrUp-Z3heqSilYy6mEsWjBmzzrTUmDYdXL4Z6lTaY7KMLUj57jXU66CAcZc2Hz9EtOi0Pt-Hs71T_K9el-MmGIS-OQKSBvX_DZfMH-Pz0ofBURWKV8Nwk7IQioOgmS2I6cusxORPJNoOEOyr3IAcWcc7mWZXpxFQUeVSrT-mVVMbubuiE7ibZdHiPa7uDH9hy65jzJmXiHq_VJ4A-ZV9vQhfPhelV0S5-LKiO00Cs77g1dwpKn8UaoJMdVNG_uTtgMJrlOAVgJPoEAVVDNfM0ow82DczCDCsI9RTYQ9X8q_XF4W_ngjFBhCOMdyUreyHOvFrqx5V1OBfCTwZASu_9stvpiBR9jNahMxQ8"
 export const HERO_FILTER_STAFF: { [key: string]: string } = {
   gap: '0px',
   borderRadius: '8px',
@@ -23,9 +24,9 @@ export const HERO_FILTER_STAFF: { [key: string]: string } = {
     { value: 'Event Helper', label: 'Event Helper' },
   ];
   export const PAGINATION_LIMIT = [
-    { value: '0', label: '06' },
-    { value: '05', label: '05' },
-    { value: '08', label: '08' },
+    { value: '10', label: '10' },
+    { value: '20', label: '20' },
+    { value: '50', label: '50' },
   ];
   export const TIMES_CONST = [
     { value: '0', label: 'Day & Time' },

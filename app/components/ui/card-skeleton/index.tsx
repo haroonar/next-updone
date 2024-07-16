@@ -78,12 +78,12 @@ const CardSkeleton = ({ staff }: CardSkeletonProps) => {
                         <h2 style={{ letterSpacing: '-2%' }} className="text-left text-[#2C2240] text-[14px] font-semibold w-full py-2"> <div className="animate-pulse w-20 rounded-md h-2 row-full relative bg-gray-200  dark:bg-gray-700"></div></h2>
 
                         <div className="flex gap-x-3 flex-wrap text-[#350abc]">
-                            {staff.services.slice(0, showAllServices ? staff.services.length : 3).map((service, index) => (
+                            {staff?.services?.slice(0, showAllServices ? staff.services.length : 3).map((service, index) => (
                                 <p key={index} className="text-left text-[14px] font-normal " style={{ margin: '0px' }}>
                                      {<div className="mt-1 animate-pulse w-20 rounded-md h-2 row-full relative bg-gray-200  dark:bg-gray-700"></div>}
                                 </p>
                             ))}
-                            {staff.services.length > 3 && !showAllServices && (
+                            {staff?.services?.length > 3 && !showAllServices && (
                                 <button style={{ margin: '0px', letterSpacing: '-2%' }} className='font-semibold text-[12px]' onClick={() => setShowAllServices(true)}>
                                 </button>
                             )}

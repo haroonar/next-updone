@@ -1,12 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import People from '../../dummy-data';
-import CommonSelect from '../../common/select-option';
 import StaffFilters from './components/staff-list-filter';
 import StaffMap from './components/staff-list-map';
 import { Staff } from '@/app/libs/types';
-import { PAGINATION_LIMIT } from '@/app/libs/Constants';
 import { useAppDispatch } from '@/app/libs/store/hooks';
 import { setStaff } from '@/app/libs/store/features/staff';
 import { AppDispatch } from '@/app/libs/store/store';
@@ -22,9 +19,13 @@ const StaffListing = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   console.log('currentPage', currentPage)
-  const pageSize = 10; // Number of items per page
-  const totalCount = 100; // Total number of items (adjust as per your data)
-
+  const [selectedCount,setSelectedCount]=useState<number>(10)
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValueString = event.target.value;
+    const selectedValueNumber = Number(selectedValueString); // Convert string to number
+    setSelectedCount(selectedValueNumber);
+    console.log('Selected value:', selectedValueNumber);
+  };
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // You can implement your data fetching logic here
@@ -61,36 +62,35 @@ const StaffListing = () => {
   const svgStyle = {
     top: `-${scrollY}px`,
     transition: 'top 0.3s ease-out',
-    transform:"rotate(0.3deg)"
+    transform: "rotate(0.3deg)"
   };
 
+  const [data, setData] = useState<any>(null);
+  console.log('data', data)
 
-  useEffect(() => {
-    // Use setTimeout to toggle loading state after 5 seconds
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000); // 5000 milliseconds = 5 seconds
-
-    return () => clearTimeout(timer); // Clean up timer on unmount or state change
-  }, []);
-
-  const [data, setData] = useState(null);
-  //this is api call to get the staff data
   useEffect(() => {
     const fetchDataIfNeeded = async () => {
-      if (!data) {
-        try {
-          const newData = await fetchAndCache('/todos');
-          setData(newData);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-          // Handle error state or display an error message
-        }
+      setLoading(true); // Show loading indicator
+      const body = {
+        sort_by: "id",
+        page_number: currentPage,
+        page_size: selectedCount,
+        order: "ASC"
+      };
+
+      try {
+        const newData = await fetchAndCache('/listings/paginated', body); // API call
+        setData(newData?.data); // Update state with fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error state or display an error message
+      } finally {
+        setLoading(false); // Hide loading indicator regardless of success or failure
       }
     };
 
-    fetchDataIfNeeded();
-  }, [data]); // Dependency array ensures useEffect runs when `data` changes
+    fetchDataIfNeeded(); // Call the function to fetch data
+  }, [currentPage, selectedCount]); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
 
   return (
     <>
@@ -101,11 +101,11 @@ const StaffListing = () => {
       </div>
       <div className="max-w-[1279px] mx-auto">
         <StaffFilters modalOpen={modalOpen} scrollY={scrollY} handleLocationChange={handleLocationChange} handleTimeChange={handleTimeChange} />
-        <div className="relative md:top-20 2xl:top-22 grid gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 justify-center items-center z-10">
-          {People.length === 0 ? (
-            <p className="text-center text-xl mt-20">No staff found, sorry.</p>
+        <div className={data?.records?.length===0 ?``:"relative md:top-20 2xl:top-22 grid gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 justify-center items-center z-10"}>
+          {data?.records?.length === 0 ? (
+            <div className="text-center text-xl  h-screen flex justify-center items-center">No staff found, sorry.</div>
           ) : (
-            People.map((staff: Staff) => (
+            data?.records?.map((staff: any) => (
               <div key={staff.id} >
                 {loading ? <CardSkeleton staff={staff} /> : <StaffMap setModalOpen={setModalOpen} modalOpen={modalOpen} handleStaffClick={handleStaffClick} staff={staff} />}
               </div>
@@ -114,12 +114,13 @@ const StaffListing = () => {
         </div>
         {/* pagination */}
         <Pagination
-        currentPage={currentPage}
-        pageSize={pageSize}
-        totalCount={totalCount}
-        onPageChange={handlePageChange}
-      />
-      
+          currentPage={currentPage}
+          pageSize={data?.pagination?.page_size}
+          totalCount={data?.pagination?.total_records}
+          onPageChange={handlePageChange}
+          handleChange={handleChange}
+        />
+
       </div>
       <div className='h-[250px] bg-[#f3f0ff] w-[90vw] m-auto pt-[130px]'>
       </div>

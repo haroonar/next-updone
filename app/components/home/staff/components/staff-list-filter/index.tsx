@@ -90,4 +90,4 @@ const StaffFilters = ({ handleTimeChange, handleLocationChange, scrollY=0 ,modal
     )
 }
 
-export default StaffFilters
+export default React.memo(StaffFilters);
