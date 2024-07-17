@@ -3,6 +3,7 @@ import { loginInputStyles } from '../../common/login-register'
 import styles from './register.module.css'
 import Image from 'next/image'
 import { registerAction } from '@/app/libs/services/useSetRegister'
+import { toast } from 'react-toastify'
 const RegisterForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -29,7 +30,9 @@ const RegisterForm = () => {
             try {
                 const newData = await registerAction('/register', body); // API call
                 setData(newData?.data); // Update state with fetched data
+                console.log('newData', newData)
             } catch (error) {
+                toast.error('Failed to login. Please check your credentials.');
                 console.error('Error fetching data:', error);
                 // Handle error state or display an error message
             } finally {
@@ -64,7 +67,7 @@ const RegisterForm = () => {
                             <input
                                 type="text"
                                 id="default-search"
-                                className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
+                                className={`${styles.defaultsearch} mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
                                 placeholder="Full Name*"
                                 style={loginInputStyles}
                                 value={name}
@@ -86,7 +89,7 @@ const RegisterForm = () => {
                             <input
                                 type="email"
                                 id="default-search"
-                                className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
+                                className={`${styles.defaultsearch} mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
                                 placeholder="Email address*"
                                 style={loginInputStyles}
                                 value={email}
@@ -105,7 +108,7 @@ const RegisterForm = () => {
                             <input
                                 type="text"
                                 id="default-search"
-                                className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
+                                className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
                                 placeholder="Company Name"
                                 style={loginInputStyles}
                                 value={company}
@@ -133,7 +136,7 @@ const RegisterForm = () => {
                             <input
                                 type="number"
                                 id="default-search"
-                                className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 `}
+                                className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
                                 placeholder="Contact Number"
                                 style={loginInputStyles}
                                 value={phoneNumber}
@@ -149,7 +152,7 @@ const RegisterForm = () => {
                             <input
                                 type="password"
                                 id="default-search"
-                                className={`${styles.defaultsearch}  mt-[12px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
+                                className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
                                 placeholder="Password"
                                 style={loginInputStyles}
                                 value={password}
@@ -169,7 +172,7 @@ const RegisterForm = () => {
                             <input
                                 type="password"
                                 id="default-search"
-                                className={`${styles.defaultsearch} mt-[12px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
+                                className={`${styles.defaultsearch} mt-[12px]  pb-[14px] pt-[17px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
                                 placeholder="Confirm Password"
                                 style={loginInputStyles}
                                 value={confirmPassword}

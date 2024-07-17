@@ -1,41 +1,43 @@
 "use client"
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import styles from './header.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import LoginForm from '../login';
 import RegisterForm from '../register';
-
+import Cookies from 'js-cookie';
+import { useAppSelector } from '@/app/libs/store/hooks';
+import { clearAuth, selectAuth } from '@/app/libs/store/features/authSlice';
+import { useDispatch } from 'react-redux';
+import { persistor } from '@/app/libs/store/store';
+import { NAV_LINKS } from '@/app/libs/Constants';
 
 const Header = () => {
-
-    // Define your navigation links
-    const navLinks = [
-        { href: '/staff', label: 'Workers' },
-        { href: '/faqs', label: 'Contact' },
-        { href: '/community', label: 'About Us' },
-        { href: '/contact', label: 'Blogs' },
-        // Add more links as needed
-    ];
-
     // State to track the clicked link
     const [activeLink, setActiveLink] = useState<string | null>(null); // Initialize activeLink with null or an appropriate initial value
-// State to track the visibility of login and register menu
-const [loginMenuOpen, setLoginMenuOpen] = useState(false);
-const [registerMenuOpen, setRegisterMenuOpen] = useState(false);
+    const { auth: storedData } = useAppSelector(selectAuth);
+    console.log('storedData', storedData?.data?.user)
+    // State to track the visibility of login and register menu
+    const [loginMenuOpen, setLoginMenuOpen] = useState(false);
+    const [registerMenuOpen, setRegisterMenuOpen] = useState(false);
+    const dispatch = useDispatch()
     const handleSetActiveLink = (href: string) => {
         setActiveLink(href);
     };
     // Function to toggle login menu visibility
     const toggleLoginMenu = () => {
         setLoginMenuOpen(!loginMenuOpen);
+        setRegisterMenuOpen(false)
     };
 
     // Function to toggle register menu visibility
     const toggleRegisterMenu = () => {
         setRegisterMenuOpen(!registerMenuOpen);
+        setLoginMenuOpen(false)
     };
-
+    const handleLogout = () => {
+        dispatch(clearAuth())
+    }
     return (
         <header className={styles.header}>
             <nav className="border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto">
@@ -45,7 +47,7 @@ const [registerMenuOpen, setRegisterMenuOpen] = useState(false);
                     </Link>
                     <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul className="flex justify-center items-center flex-col mt-4 text-[#0B0B0B] text-[14px] font-[500] leading-[150%] capitalize lg:flex-row lg:space-x-8 lg:mt-0">
-                            {navLinks.map((link) => (
+                            {NAV_LINKS.map((link) => (
                                 <li key={link.href}>
                                     <Link href={link.href}>
                                         <div
@@ -78,28 +80,40 @@ const [registerMenuOpen, setRegisterMenuOpen] = useState(false);
                                     </svg>
                                 </Link>
                             </li>
-                            <li>
-                                <div onClick={toggleLoginMenu} className=" text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize">
-                                    Login
-                                </div>
-                                {loginMenuOpen && (
-                                    <div className={styles.menuBox}>
-                                        {/* Your login menu content here */}
-                                      <LoginForm/>
-                                    </div>
-                                )}
-                            </li>
-                            <li>
-                                <div onClick={toggleRegisterMenu} className={` bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md`}>
-                                    Register
-                                </div>
-                                {registerMenuOpen && (
-                                    <div className={styles.menuBox}>
-                                        {/* Your register menu content here */}
-                                       <RegisterForm/>
-                                    </div>
-                                )}
-                            </li>
+                            {storedData ? (
+                                <>
+                                    <li>{storedData?.data?.user?.name}</li>
+                                    <li> <div onClick={handleLogout} className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
+                                        Logout
+                                    </div></li>
+                                </>
+                            ) : (
+                                <>
+                                    <li>
+                                        <div onClick={toggleLoginMenu} className="text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize">
+                                            Login
+                                        </div>
+                                        {loginMenuOpen && (
+                                            <div className={styles.menuBox}>
+                                                {/* Your login menu content here */}
+                                                <LoginForm />
+                                            </div>
+                                        )}
+                                    </li>
+                                    <li>
+                                        <div onClick={toggleRegisterMenu} className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
+                                            Register
+                                        </div>
+                                        {registerMenuOpen && (
+                                            <div className={styles.menuBox}>
+                                                {/* Your register menu content here */}
+                                                <RegisterForm />
+                                            </div>
+                                        )}
+                                    </li>
+                                </>
+                            )}
+
                         </ul>
                     </div>
                 </div>

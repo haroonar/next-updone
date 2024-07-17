@@ -1,7 +1,7 @@
 "use client"
 import React, { createContext, useContext, useState, ReactNode, useEffect, useRef } from 'react';
 import { useAppSelector } from '../store/hooks';
-import { selectStaff } from '../store/features/staff';
+import { selectStaff } from '../store/features/staffSlice';
 
 
 

@@ -6,6 +6,8 @@ import Header from '@/app/components/ui/header';
 import Footer from '@/app/components/ui/footer';
 import { BookingProvider } from '../context/BookingContext';
 import { AuthProvider } from '../context/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface RootLayoutProps {
     children: ReactNode;
 }
@@ -23,6 +25,7 @@ const ReduxProvider = ({ children }: RootLayoutProps) => {
                     <Footer />
                 </Provider>
             </AuthProvider>
+            <ToastContainer />
         </div>
     )
 }

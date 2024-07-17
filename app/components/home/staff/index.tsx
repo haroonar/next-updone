@@ -5,7 +5,7 @@ import StaffFilters from './components/staff-list-filter';
 import StaffMap from './components/staff-list-map';
 import { Staff } from '@/app/libs/types';
 import { useAppDispatch } from '@/app/libs/store/hooks';
-import { setStaff } from '@/app/libs/store/features/staff';
+import { setStaff } from '@/app/libs/store/features/staffSlice';
 import { AppDispatch } from '@/app/libs/store/store';
 import CardSkeleton from '../../ui/card-skeleton';
 import { fetchAndCache } from '@/app/libs/services/useGetStaffs';

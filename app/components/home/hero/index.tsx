@@ -8,6 +8,7 @@ import TimeAndCalander from '../../ui/booking-calander/calander-time';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 import StarRating from '../../ui/star-rating';
 import { montserrat } from '@/app/libs/Fonts';
+import { toast } from 'react-toastify';
 
 
 const itemLocationNames: string[] = [`Los Angeles`];
@@ -85,7 +86,6 @@ const Hero = () => {
     };
     return (
         <div>
-
             <main className="h-screen flex flex-col justify-end items-center relative">
                 {allImagesLoaded && (
                     <div className="absolute inset-0 flex items-start justify-start bg-gray-100 bottom-[0px] animate-pulse z-[99999] margin">

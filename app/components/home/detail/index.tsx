@@ -25,12 +25,7 @@ import { GoDotFill } from 'react-icons/go'
 import HOME_TESTIMONINAL_CONTENT from '../testimonials/constants'
 import dynamic from 'next/dynamic';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
-export const services = [
-    { id: 1, text: "Cocktail Server" },
-    { id: 2, text: "Promo Model" },
-    { id: 3, text: "Waiter" },
-    { id: 4, text: "Bartender" }
-]
+
 
 export const highlightedDatesNotAvailable = ['2024-07-08', '2024-07-11', '2024-07-28'];
 export const highlightedDatesAvailable = ['2024-07-21', '2024-07-24'];
@@ -48,10 +43,10 @@ const StaffDetail = () => {
                             <Image
                                 className="relative bottom-[100px] border-solid border-8 border-white object-cover w-34 h-34 mt-3 mr-3 rounded-full"
                                 //@ts-ignore
-                                src={staff?.img} // Fallback to a default image if staff?.img is undefined
+                                src={staff?.profile_pic} // Fallback to a default image if staff?.img is undefined
                                 //@ts-ignore
                                 alt={staff?.name}
-                                width={180}
+                                width={130}
                                 height={180}
                                 objectFit="cover"
                                 quality={100} // This ensures the highest quality
@@ -62,7 +57,7 @@ const StaffDetail = () => {
                     <div className='w-[84%] flex justify-center items-center gap-[64px] mb-[27px]'>
                         <div className='w-2/5 space-y-4'>
                             <div className="text-center mb-[21px] flex justify-between w-full items-center font-bold text-lg">
-                                <h3 style={{ letterSpacing: '-2%' }} className='text-[44px] text-[#000000] font-semibold '>{staff?.name}</h3>
+                                <h3 style={{ letterSpacing: '-2%' }} className='text-[44px] text-[#000000] text-start font-semibold '>{staff?.name}</h3>
                                 <div className="flex items-center ">
                                     <span className='mb-[4px] mr-1'>
                                         <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
