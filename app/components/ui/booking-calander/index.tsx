@@ -4,10 +4,10 @@ const TimeAndCalander = dynamic(() => import('./calander-time'), {
     ssr: false, // Do not SSR for this component
   });
 import { BookingCalanderProps } from '@/app/libs/types'
-import { services } from '../../home/detail'
 import Link from 'next/link'
 import { montserrat } from '@/app/libs/Fonts'
 import dynamic from 'next/dynamic';
+import { CHOOSE_SERVICES } from '@/app/libs/Constants';
 
 
 const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailable,handleServiceClick,selectedServiceId,isCalander, isStaffListerFilter, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, timessss, handleAddToBooking, selectedTimes }: BookingCalanderProps) => {
@@ -85,7 +85,7 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
                                 Choose Service
                             </h3>
                             <div className='space-y-[20px] pb-[28px] pt-[20px] capitalize'>
-                                {services.map((service) => {
+                                {CHOOSE_SERVICES.map((service) => {
                                     const isSelected = service.id === selectedServiceId;
                                     return (
                                         <h3
