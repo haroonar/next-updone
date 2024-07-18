@@ -2,50 +2,50 @@ import React, { useState } from 'react'
 import { loginInputStyles } from '../../common/login-register'
 import styles from './register.module.css'
 import Image from 'next/image'
-import { registerAction } from '@/app/libs/services/useSetRegister'
 import { toast } from 'react-toastify'
+import { useForm } from 'react-hook-form'
+import { apiRequest } from '@/app/libs/services'
+import { RegisterFormSchema } from '@/app/libs/validations/schema'
+import { useRegisterForm } from '@/app/libs/utils'
+
 const RegisterForm = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [company, setCompany] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConformPassword] = useState('');
     const [data, setData] = useState<any>(null);
     console.log('data', data)
     const [loading, setLoading] = useState(true);
+    const { register, handleSubmit, errors } = useRegisterForm({RegisterFormSchema});
 
-    const handleRegister = async (event: React.FormEvent) => {
-        event.preventDefault();
-            setLoading(true); // Show loading indicator
-            const body = {
-                name: name,
-                email: email,
-                company: company,
-                phone_number: phoneNumber,
-                password: password,
-                password_confirmation: confirmPassword
-            };
+    const onSubmit = async (data: any) => {
+        setLoading(true); // Show loading indicator
+        const body = {
+            name: data?.name,
+            email: data?.email,
+            company: data?.company,
+            phone_number: data?.phoneNumber,
+            password: data?.password,
+            password_confirmation: data?.confirmPassword
+        };
 
-            try {
-                const newData = await registerAction('/register', body); // API call
-                setData(newData?.data); // Update state with fetched data
-                console.log('newData', newData)
-            } catch (error) {
-                toast.error('Failed to login. Please check your credentials.');
-                console.error('Error fetching data:', error);
-                // Handle error state or display an error message
-            } finally {
-                setLoading(false); // Hide loading indicator regardless of success or failure
-            }
+        try {
+            const newData = await apiRequest('/register', {
+                method: 'POST',
+                body: JSON.stringify(body)
+              }); // API call
+            setData(newData?.data); // Update state with fetched data
+            console.log('newData', newData)
+        } catch (error) {
+            toast.error('Failed to login. Please check your credentials.');
+            console.error('Error fetching data:', error);
+            // Handle error state or display an error message
+        } finally {
+            setLoading(false); // Hide loading indicator regardless of success or failure
+        }
     };
-
     return (
         <div className='login_backgorund rounded-[47%] h-[620px] w-[567px] top-[384px] right-[83px] relative'>
 
             <div className='relative bottom-[380px] left-[7px] pb-[60px] h-[643px] overflow-scroll'>
 
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex justify-between flex-col gap-[8px] items-center'>
                         <div className="relative w-full" style={{ width: '320px' }}>
 
@@ -59,10 +59,7 @@ const RegisterForm = () => {
                                 <p className={styles.loginpopup_bodys}>Sign In or Sign up to updone to book pro event staff in a snap</p>
                             </div>
                             <div className="absolute top-[205px] inset-y-0 mt-3 ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M11.6668 12.25V11.0833C11.6668 10.4645 11.421 9.871 10.9834 9.43342C10.5458 8.99583 9.95233 8.75 9.3335 8.75H4.66683C4.04799 8.75 3.4545 8.99583 3.01691 9.43342C2.57933 9.871 2.3335 10.4645 2.3335 11.0833V12.25" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.99984 6.41667C8.2885 6.41667 9.33317 5.372 9.33317 4.08333C9.33317 2.79467 8.2885 1.75 6.99984 1.75C5.71117 1.75 4.6665 2.79467 4.6665 4.08333C4.6665 5.372 5.71117 6.41667 6.99984 6.41667Z" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                <Image width={14} height={14} src='/images/auth/name.svg' alt='step-1' />
                             </div>
                             <input
                                 type="text"
@@ -70,21 +67,17 @@ const RegisterForm = () => {
                                 className={`${styles.defaultsearch} mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
                                 placeholder="Full Name*"
                                 style={loginInputStyles}
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                {...register('name')}
                             />
-
+                            {errors.name && (
+                                <span className="text-red-500 text-xs italic block">{(errors as any).name.message}</span>
+                            )}
                         </div>
                     </div>
                     <div className='flex justify-between flex-col gap-[8px] items-center'>
                         <div className="relative w-full" style={{ width: '320px' }}>
-
-
                             <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                                    <path d="M2.33366 3.20801H11.667C12.3087 3.20801 12.8337 3.73301 12.8337 4.37467V11.3747C12.8337 12.0163 12.3087 12.5413 11.667 12.5413H2.33366C1.69199 12.5413 1.16699 12.0163 1.16699 11.3747V4.37467C1.16699 3.73301 1.69199 3.20801 2.33366 3.20801Z" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12.8337 4.37451L7.00033 8.45784L1.16699 4.37451" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                <Image width={14} height={15} src='/images/auth/email.svg' alt='step-1' />
                             </div>
                             <input
                                 type="email"
@@ -92,10 +85,11 @@ const RegisterForm = () => {
                                 className={`${styles.defaultsearch} mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
                                 placeholder="Email address*"
                                 style={loginInputStyles}
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                {...register('email')}
                             />
-
+                            {errors.email && (
+                                <span className="text-red-500 text-xs italic block">{(errors as any).email.message}</span>
+                            )}
                         </div>
                     </div>
                     <div className='flex justify-between flex-col gap-[8px] items-center'>
@@ -111,10 +105,11 @@ const RegisterForm = () => {
                                 className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
                                 placeholder="Company Name"
                                 style={loginInputStyles}
-                                value={company}
-                                onChange={(e) => setCompany(e.target.value)}
+                                {...register('company')}
                             />
-
+                            {errors.company && (
+                                <span className="text-red-500 text-xs italic block">{(errors as any).company.message}</span>
+                            )}
                         </div>
                     </div>
                     <div className='flex justify-between flex-col gap-[8px] items-center'>
@@ -122,16 +117,7 @@ const RegisterForm = () => {
 
 
                             <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                                    <g clip-path="url(#clip0_628_1848)">
-                                        <path d="M12.8338 10.7444V12.4944C12.8345 12.6569 12.8012 12.8177 12.7361 12.9665C12.671 13.1154 12.5756 13.249 12.4559 13.3588C12.3362 13.4687 12.1948 13.5523 12.0409 13.6043C11.887 13.6564 11.724 13.6757 11.5622 13.6611C9.76714 13.466 8.04291 12.8527 6.52799 11.8702C5.11856 10.9746 3.9236 9.77967 3.02799 8.37024C2.04214 6.84844 1.42863 5.11582 1.23716 3.31274C1.22258 3.15143 1.24175 2.98885 1.29345 2.83535C1.34515 2.68186 1.42824 2.54081 1.53744 2.42118C1.64663 2.30156 1.77954 2.20599 1.9277 2.14054C2.07586 2.0751 2.23602 2.04122 2.39799 2.04107H4.14799C4.43109 2.03829 4.70554 2.13853 4.92018 2.32313C5.13483 2.50773 5.27503 2.76408 5.31466 3.04441C5.38852 3.60444 5.5255 4.15433 5.72299 4.68357C5.80147 4.89236 5.81846 5.11927 5.77194 5.33742C5.72541 5.55557 5.61733 5.7558 5.46049 5.91441L4.71966 6.65524C5.55006 8.11564 6.75925 9.32483 8.21966 10.1552L8.96049 9.41441C9.11909 9.25757 9.31933 9.14948 9.53748 9.10296C9.75562 9.05644 9.98253 9.07342 10.1913 9.15191C10.7206 9.34939 11.2705 9.48638 11.8305 9.56024C12.1139 9.60021 12.3726 9.74294 12.5576 9.96128C12.7426 10.1796 12.8409 10.4583 12.8338 10.7444Z" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_628_1848">
-                                            <rect width="14" height="14" fill="white" transform="translate(0 0.874512)" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
+                                <Image width={14} height={15} src='/images/auth/contact.svg' alt='step-1' />
                             </div>
                             <input
                                 type="number"
@@ -139,10 +125,11 @@ const RegisterForm = () => {
                                 className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
                                 placeholder="Contact Number"
                                 style={loginInputStyles}
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                {...register('phoneNumber')}
                             />
-
+                            {errors.phoneNumber && (
+                                <span className="text-red-500 text-xs italic block">{(errors as any).phoneNumber.message}</span>
+                            )}
                         </div>
                     </div>
                     {/* Dotted Border */}
@@ -155,14 +142,13 @@ const RegisterForm = () => {
                                 className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
                                 placeholder="Password"
                                 style={loginInputStyles}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                {...register('password')}
                             />
+                            {errors.password && (
+                                <span className="text-red-500 text-xs italic block">{(errors as any).password.message}</span>
+                            )}
                             <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                                    <path d="M0.583008 7.87467C0.583008 7.87467 2.91634 3.20801 6.99967 3.20801C11.083 3.20801 13.4163 7.87467 13.4163 7.87467C13.4163 7.87467 11.083 12.5413 6.99967 12.5413C2.91634 12.5413 0.583008 7.87467 0.583008 7.87467Z" stroke="#9F9F9F" strokeWidth="0.583333" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M7 9.62451C7.9665 9.62451 8.75 8.84101 8.75 7.87451C8.75 6.90801 7.9665 6.12451 7 6.12451C6.0335 6.12451 5.25 6.90801 5.25 7.87451C5.25 8.84101 6.0335 9.62451 7 9.62451Z" stroke="#9F9F9F" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                <Image width={14} height={15} src='/images/auth/password.svg' alt='step-1' />
                             </div>
                         </div>
 
@@ -175,14 +161,13 @@ const RegisterForm = () => {
                                 className={`${styles.defaultsearch} mt-[12px]  pb-[14px] pt-[17px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
                                 placeholder="Confirm Password"
                                 style={loginInputStyles}
-                                value={confirmPassword}
-                                onChange={(e) => setConformPassword(e.target.value)}
+                                {...register('confirmPassword')}
                             />
+                            {errors.confirmPassword && (
+                                <span className="text-red-500 text-xs italic block">{(errors as any).confirmPassword.message}</span>
+                            )}
                             <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                                    <path d="M0.583008 7.87467C0.583008 7.87467 2.91634 3.20801 6.99967 3.20801C11.083 3.20801 13.4163 7.87467 13.4163 7.87467C13.4163 7.87467 11.083 12.5413 6.99967 12.5413C2.91634 12.5413 0.583008 7.87467 0.583008 7.87467Z" stroke="#9F9F9F" strokeWidth="0.583333" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M7 9.62451C7.9665 9.62451 8.75 8.84101 8.75 7.87451C8.75 6.90801 7.9665 6.12451 7 6.12451C6.0335 6.12451 5.25 6.90801 5.25 7.87451C5.25 8.84101 6.0335 9.62451 7 9.62451Z" stroke="#9F9F9F" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                <Image width={14} height={15} src='/images/auth/password.svg' alt='step-1' />
                             </div>
                         </div>
 

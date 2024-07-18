@@ -1,10 +1,32 @@
 "use client"
 import { montserrat } from '@/app/libs/Fonts';
+import { apiRequest } from '@/app/libs/services';
 import Image from 'next/image';
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ServicesContent = ({ name, description, serviceSrc }: any) => {
+    const [data, setData] = useState<any>(null);
+    console.log('data', data)
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchDataIfNeeded = async () => {
+          try {
+            const newData = await apiRequest('/services', {
+              method: 'GET',
+            }); // API call
+            setData(newData?.data); // Update state with fetched data
+          } catch (error) {
+            console.error('Error fetching data:', error);
+            // Handle error state or display an error message
+          } finally {
+            setLoading(false); // Hide loading indicator regardless of success or failure
+          }
+        };
+    
+        fetchDataIfNeeded(); // Call the function to fetch data
+      }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
     return (
         <div className='w-[100%] m-auto relative z-10 bottom-[95px] right-[23.5px] '>
             <Image  src="/images/services/serivceContent.svg" alt="service" className='max-w-[452px]' quality={100} width={800} height={685} />

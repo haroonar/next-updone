@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 // Define the props interface with a generic type
 interface UseRedirectOnLoginStatusProps<T> {
@@ -26,4 +27,14 @@ export const useRedirectOnLoginStatus = <T extends { newData: any }>({
       // Redirect to the business page
     } 
   }, [ newData]); // Include navigate and data in the dependency array
+};
+
+//helper function for react-form-hooks 
+export const useRegisterForm = <T extends unknown>(validationsSchema: T) => {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+      resolver: require('@hookform/resolvers/zod').zodResolver(validationsSchema),
+      mode: 'onChange', // Enable real-time validation on change
+  });
+
+  return { register, handleSubmit, errors };
 };

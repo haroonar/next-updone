@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import FormDecoration from '../../common/form-decoration';
 import Link from 'next/link';
 import ServicesContent from './components/ServicesContent';
-import ServiceImageWithSkeleton from '../../ui/image-skeleton/ServicesImageSkeleton';
 import { services } from '@/app/libs/Constants';
 
 
@@ -12,10 +11,8 @@ import { services } from '@/app/libs/Constants';
 const Services = () => {
   const [imageLoaded, setImageLoaded] = useState(Array(services.length).fill(false));
   const [allImagesLoaded, setAllImagesLoaded] = useState(true);
-console.log('allImagesLoaded amnannnnnnnnnnnnnnn', allImagesLoaded)
-// if(allImagesLoaded){
-//   alert('sdsdsd')
-// }
+
+
   useEffect(() => {
     // Check if all images have loaded
     if (imageLoaded.includes(false)) {
@@ -25,7 +22,7 @@ console.log('allImagesLoaded amnannnnnnnnnnnnnnn', allImagesLoaded)
     }
   }, [imageLoaded]);
 
-  const handleImageLoad = (index:number) => {
+  const handleImageLoad = (index: number) => {
     setImageLoaded((prev) => {
       const newLoaded = [...prev];
       newLoaded[index] = false;
@@ -68,15 +65,13 @@ console.log('allImagesLoaded amnannnnnnnnnnnnnnn', allImagesLoaded)
                       {/* Other content related to the image */}
                     </div>
                     {!imageLoaded[index] && (
-                        <ServicesContent 
-                        name={service.name} 
-                        description={service.description} 
-                        serviceSrc={service.serviceSrc} 
+                      <ServicesContent
+                        name={service.name}
+                        description={service.description}
+                        serviceSrc={service.serviceSrc}
                       />
-                     
+
                     )}
-                   
-                    
                   </div>
                 </div>
               ))}

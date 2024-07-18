@@ -80,7 +80,7 @@ const Header = () => {
                                     </svg>
                                 </Link>
                             </li>
-                            {storedData ? (
+                            {storedData?.data?.user?.name ? (
                                 <>
                                     <li>{storedData?.data?.user?.name}</li>
                                     <li> <div onClick={handleLogout} className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">

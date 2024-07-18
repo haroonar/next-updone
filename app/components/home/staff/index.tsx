@@ -8,8 +8,8 @@ import { useAppDispatch } from '@/app/libs/store/hooks';
 import { setStaff } from '@/app/libs/store/features/staffSlice';
 import { AppDispatch } from '@/app/libs/store/store';
 import CardSkeleton from '../../ui/card-skeleton';
-import { fetchAndCache } from '@/app/libs/services/useGetStaffs';
 import Pagination from '../../ui/pagination';
+import { apiRequest } from '@/app/libs/services';
 
 const StaffListing = () => {
   const [loading, setLoading] = useState(true);
@@ -79,8 +79,11 @@ const StaffListing = () => {
       };
 
       try {
-        const newData = await fetchAndCache('/listings/paginated', body); // API call
-        setData(newData?.data); // Update state with fetched data
+        const newData = await apiRequest('/listings/paginated', {
+          method: 'POST',
+          body: body
+        }); // API call
+        setData(newData); // Update state with fetched data
       } catch (error) {
         console.error('Error fetching data:', error);
         // Handle error state or display an error message

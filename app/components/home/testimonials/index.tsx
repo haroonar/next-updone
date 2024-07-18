@@ -7,6 +7,7 @@ import './index.css'
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
 import { montserrat } from '@/app/libs/Fonts';
+import { apiRequest } from '@/app/libs/services';
 // Initialize Swiper modules
 SwiperCore.use([Autoplay, Pagination]);
 
@@ -22,9 +23,29 @@ interface TestimonialCardProps {
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, content, avatarSrc, isDetailTestonial }) => {
   const [imageLoad, setImageLoad] = useState(false)
+  const [data, setData] = useState<any>(null);
+  console.log('data', data)
+  const [loading, setLoading] = useState(true);
   const handleImageLoad = () => {
     setImageLoad(true)
   }
+  useEffect(() => {
+    const fetchDataIfNeeded = async () => {
+      try {
+        const newData = await apiRequest('/testimonials', {
+          method: 'GET',
+        }); // API call
+        setData(newData?.data); // Update state with fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error state or display an error message
+      } finally {
+        setLoading(false); // Hide loading indicator regardless of success or failure
+      }
+    };
+
+    fetchDataIfNeeded(); // Call the function to fetch data
+  }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
   return (
     <>
       {isDetailTestonial ?
