@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 body{
   margin: 0px;
   padding: 0px;
@@ -171,34 +171,7 @@ color: #6B6B6B;
   box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.75), 
               0px -5px 5px -5px rgba(0, 0, 0, 0.75);
 }
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
-/* .loader_hero {
-  width: 20px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #7e7c7ca9;
-  box-shadow: 0 0 0 0 rgba(73, 73, 73, 0.267);
-  animation: l2 1.5s infinite linear;
-  position: relative;
-}
-.loader_hero:before,
-.loader_hero:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: 0 0 0 0 rgba(52, 52, 52, 0.267);
-  animation: inherit;
-  animation-delay: -0.5s;
-}
-.loader_hero:after {
-  animation-delay: -1s;
-}
-@keyframes l2 {
-    100% {box-shadow: 0 0 0 40px #55555500}
-} */
- /* HTML: <div class="loader"></div> */
+
 .loader_hero {
   height: 2px;
   width: 100%;
@@ -227,4 +200,9 @@ color: #6B6B6B;
 .inner-filter-section {
   transition:all 1.5s linear; /* Example of transitioning background color */
   /* Other styles */
+}
+.lato-regular {
+  font-family: "Lato", sans-serif !;
+  font-weight: 400 !important;
+  font-style: normal !important;
 }

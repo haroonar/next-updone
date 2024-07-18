@@ -14,7 +14,8 @@ import Link from 'next/link'
 import LoginFrom from '../common/login-register'
 import { useAuthContext } from '@/app/libs/context/AuthContext'
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { montserrat } from '@/app/libs/Fonts'
+import {  montserrat } from '@/app/libs/Fonts'
+import AccordionForm from '../ui/step-one'
 
 
 type Inputs = z.infer<typeof FormDataSchema>
@@ -150,11 +151,12 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
     return (
         <>
             <section style={{ maxHeight: changeActiveColor ? "430px" : "" }} className='max-w-[1279px] mx-auto max-h-[1000px]'>
-
+                <div className={`!lato-regular text-center text-[#000000] flex justify-center items-center gap-[20px] leading-[20.4px] tracking-[-0.32px] !text-[16px] pb-[16.5px] pt-[26.5px] px-[10px] mb-[42px]`}>
+                <Image width={24} height={24}  src='/images/booking/editPancel.svg' alt='step-1' />    Tell us about your task. We use these details to show Taskers in your area who fit your needs.
+                </div>
                 {/* steps */}
-                <nav aria-label='Progress' className='relative left-6 z-[1]'>
+                {/* <nav aria-label='Progress' className='relative left-6 z-[1]'>
                     <ol role='list' className='flex space-x-4 justify-center items-center mt-[133px] mx-[224px]'>
-                        {/* //active */}
                         {steps.map((step, index) => (
                             <li key={step.name} className='flex-1 gap-4'>
                                 {currentStep > index ? (
@@ -212,8 +214,6 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                             style={{
                                                 width: "184px",
                                                 position: "absolute",
-                                                /* left: 0; */
-                                                /* right: 0; */
                                                 marginLeft: step.name === "Pay the cost of hiring" ? '162px' : '153px'
                                             }}
                                             className={changeActiveColor ? "" : 'flex w-full flex-row justify-start items-center border-l-[1px] border-[#000000] opacity-[0.3px] py-2 pl-4 md:border-l-0 md:border-t-[1px] md:pb-0 md:pl-0 md:pt-4'}
@@ -253,8 +253,6 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                         style={{
                                             width: "184px",
                                             position: "absolute",
-                                            /* left: 0; */
-                                            /* right: 0; */
                                             marginLeft: '171px'
                                         }}
                                         className='flex w-full flex-row justify-start items-center border-l-[1px] border-[#b0b0b2] opacity-[0.3px] py-2 pl-4 md:border-l-0 md:border-t-[1px] md:pb-0 md:pl-0 md:pt-4'
@@ -266,370 +264,20 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                             </li>
                         ))}
                     </ol>
-                </nav>
+                </nav> */}
 
 
                 {/* Form */}
-                <form className='pb-[160px] pt-[70px]' onSubmit={handleSubmit(processForm)}>
+                <form className='pb-[160px]' onSubmit={handleSubmit(processForm)}>
                     {currentStep === 0 && (
                         <motion.div
                             initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                            <div className='flex gap-[34px] mx-auto max-w-[1064px]  min-h-[638px] mt-[0] mb-[0]'>
-                                <div className='w-[44%]  h-[100vh] '>
-                                    {/* //card section */}
-                                    <div>
-                                        <h2 className='px-[10px] pb-[10px] mb-[4px] montserrat-font font-[600] leading-normal text-[32px] tracking-[-0.32px] text-[#000000]'>
-                                            Booking Details
-                                        </h2>
-                                        <div style={{ boxShadow: "0px 12px 28px 0px rgba(0, 0, 0, 0.06)" }} className='relative z-10 bg-white flex gap-[14px] p-[8px] max-w-full min-h-[82px] rounded-[8px] '>
-                                            <span className='w-[20%]'>
-                                                <Image
-                                                    className='mt-[2px] '
-                                                    src="/images/booking/card-girl.svg"
-                                                    alt="step-1"
-                                                    width={400}
-                                                    height={400}
-                                                    quality={100}  // Ensures the image quality is set to maximum
-                                                />
-                                            </span>
-                                            <div className='w-[80%]'>
-                                                <div className='flex justify-between items-center'>
-                                                    <h3 className='text-[20px] font-[600] montserrat-font leading-normal tracking-[-0.2px] text-[#000000]'>Sarah Miler</h3>
-                                                    <div className="flex items-center justify-center">
-                                                        <div className='relative bottom-[1px]'>
+                            <div className='flex gap-[34px] mx-auto min-h-[638px] mt-[0] mb-[0]'>
 
-                                                            <Image width={15} height={15} className='me-1' src='/images/booking/5.svg' alt='step-1' />
-                                                        </div>
-                                                        <p className="text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#000000]">5.0/5</p>
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-1">
-                                                    <p className=" text-[#350ABC] text-[10px] font-[600] leading-[24px] tracking-[-0.2px] relative bottom-1">Cocktail Server</p>
-                                                </div>
-                                                <div className='flex justify-between items-center'>
-                                                    <div className='text-start  bg-[#e6e0fa] text-[#350abc] h-[25px] rounded-[2.25px] inline-flex gap-2 py-[4.5px] px-[9px]'>
-                                                        <Image width={18} height={18} src='/images/booking/4.svg' alt='step-1' />
-                                                        <span className='text-[9px] mt-[1.5px] font-[400] leading-[14.625px] text-center'>$30/hr</span>
-                                                    </div>
-                                                    <div className='flex justify-center items-center gap-1 bg-[#F9F9F9] px-[12px] py-[6px] rounded-[60px] h-[20px] w-[122px]'>
-                                                        <p className='text-[8px] font-[400] leading-[19.2px] tracking-[-0.16px] text-[#6B6B6B]'>
-                                                            <span className='text-[11.2px] text-[#6B6B6B] tracking-[-0.224px] leading-[19.2px] font-[400]'>4 </span> days x <span className='text-[11.2px] text-[#6B6B6B] tracking-[-0.224px] leading-[19.2px] font-[400]'>5 </span>hours
-                                                        </p>
-                                                        <span className='text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#2C2240]'>20h</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='flex justify-start items-center gap-3'>
-                                        <h3 className='mt-[37.8px] mb-[13.25px] leading-[17.784px] translate-[0.282px] font-[500] text-[14px] text-[#000000]'>Booking Times:</h3>
-                                        <span> <Image width={15} height={15} src='/images/booking/pancel.svg' alt='step-1' className='relative top-3.5' /></span>
-                                    </div>
-                                    <div className='min-h-[35px] max-h-auto w-full  mb-[6px]  bg-[#FFF] border-[1px] border-[#EDE9FF] rounded-[3.569px]  flex justify-between items-center' style={{ boxShadow: "0px 3.569px 7.139px 0px rgba(53, 10, 188, 0.06)" }}>
-                                        <div className='pl-[17px] flex justify-center items-center gap-3 text-[#2C2240] font-[400] leading-[24px] tracking-[-0.214px] text-[11px]'>
-                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
-                                                <path d="M9.95602 6.24617C8.09043 6.24617 6.57255 7.76405 6.57255 9.62964C6.57255 11.4843 8.09043 12.9928 9.95602 12.9928C11.8216 12.9928 13.3395 11.4749 13.3395 9.60934C13.3395 7.75468 11.8216 6.24617 9.95602 6.24617ZM9.95602 12.4723C8.37776 12.4723 7.09308 11.197 7.09308 9.62964C7.09308 8.05086 8.37776 6.76671 9.95602 6.76671C11.5343 6.76671 12.819 8.04201 12.819 9.60934C12.819 11.1881 11.5343 12.4723 9.95602 12.4723ZM10.6608 9.94561C10.7623 10.0471 10.7623 10.2121 10.6608 10.3136C10.6098 10.3646 10.5432 10.3896 10.4766 10.3896C10.4099 10.3896 10.3433 10.3641 10.2923 10.3136L9.77175 9.79309C9.72282 9.74416 9.69575 9.67805 9.69575 9.60882V8.56775C9.69575 8.42408 9.81235 8.30749 9.95602 8.30749C10.0997 8.30749 10.2163 8.42408 10.2163 8.56775V9.50107L10.6608 9.94561ZM10.9971 1.54107H10.2163V0.760267C10.2163 0.6166 10.0997 0.5 9.95602 0.5C9.81235 0.5 9.69575 0.6166 9.69575 0.760267V1.54107H4.49042V0.760267C4.49042 0.6166 4.37382 0.5 4.23015 0.5C4.08648 0.5 3.96988 0.6166 3.96988 0.760267V1.54107H3.18908C1.89764 1.54107 0.84668 2.59203 0.84668 3.88347V10.6504C0.84668 11.9419 1.89764 12.9928 3.18908 12.9928H6.31228C6.45595 12.9928 6.57255 12.8762 6.57255 12.7325C6.57255 12.5889 6.45595 12.4723 6.31228 12.4723H3.18908C2.18445 12.4723 1.36721 11.655 1.36721 10.6504V5.1848H12.819V5.9656C12.819 6.10927 12.9356 6.22587 13.0792 6.22587C13.2229 6.22587 13.3395 6.10927 13.3395 5.9656V3.88347C13.3395 2.59203 12.2885 1.54107 10.9971 1.54107ZM1.36721 4.66427V3.88347C1.36721 2.87884 2.18445 2.0616 3.18908 2.0616H10.9971C12.0017 2.0616 12.819 2.87884 12.819 3.88347V4.66427H1.36721Z" fill="#2C2240" />
-                                            </svg></span>
-                                            April 3, 2024
-                                        </div>
-                                        <div className='text-[#848486] text-[12px] font-[400] leading-[24px] tracking-[-0.25px]'>
-                                            <span>12:00pm - 1:00pm</span>
-
-                                        </div>
-                                        <div className='bg-red-100 py-[10px] px-[9px]'>
-                                            <RiDeleteBin6Line className='text-[#C20000]' />
-                                        </div>
-                                    </div>
-                                    <div className='min-h-[35px] w-full max-h-auto  mb-[6px]  bg-[#FFF] border-[1px] border-[#EDE9FF] rounded-[3.569px]  flex justify-between items-center' style={{ boxShadow: "0px 3.569px 7.139px 0px rgba(53, 10, 188, 0.06)" }}>
-                                        <div className='pl-[17px] flex justify-center items-center gap-3 text-[#2C2240] font-[400] leading-[24px] tracking-[-0.214px] text-[11px]'>
-                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
-                                                <path d="M9.95602 6.24617C8.09043 6.24617 6.57255 7.76405 6.57255 9.62964C6.57255 11.4843 8.09043 12.9928 9.95602 12.9928C11.8216 12.9928 13.3395 11.4749 13.3395 9.60934C13.3395 7.75468 11.8216 6.24617 9.95602 6.24617ZM9.95602 12.4723C8.37776 12.4723 7.09308 11.197 7.09308 9.62964C7.09308 8.05086 8.37776 6.76671 9.95602 6.76671C11.5343 6.76671 12.819 8.04201 12.819 9.60934C12.819 11.1881 11.5343 12.4723 9.95602 12.4723ZM10.6608 9.94561C10.7623 10.0471 10.7623 10.2121 10.6608 10.3136C10.6098 10.3646 10.5432 10.3896 10.4766 10.3896C10.4099 10.3896 10.3433 10.3641 10.2923 10.3136L9.77175 9.79309C9.72282 9.74416 9.69575 9.67805 9.69575 9.60882V8.56775C9.69575 8.42408 9.81235 8.30749 9.95602 8.30749C10.0997 8.30749 10.2163 8.42408 10.2163 8.56775V9.50107L10.6608 9.94561ZM10.9971 1.54107H10.2163V0.760267C10.2163 0.6166 10.0997 0.5 9.95602 0.5C9.81235 0.5 9.69575 0.6166 9.69575 0.760267V1.54107H4.49042V0.760267C4.49042 0.6166 4.37382 0.5 4.23015 0.5C4.08648 0.5 3.96988 0.6166 3.96988 0.760267V1.54107H3.18908C1.89764 1.54107 0.84668 2.59203 0.84668 3.88347V10.6504C0.84668 11.9419 1.89764 12.9928 3.18908 12.9928H6.31228C6.45595 12.9928 6.57255 12.8762 6.57255 12.7325C6.57255 12.5889 6.45595 12.4723 6.31228 12.4723H3.18908C2.18445 12.4723 1.36721 11.655 1.36721 10.6504V5.1848H12.819V5.9656C12.819 6.10927 12.9356 6.22587 13.0792 6.22587C13.2229 6.22587 13.3395 6.10927 13.3395 5.9656V3.88347C13.3395 2.59203 12.2885 1.54107 10.9971 1.54107ZM1.36721 4.66427V3.88347C1.36721 2.87884 2.18445 2.0616 3.18908 2.0616H10.9971C12.0017 2.0616 12.819 2.87884 12.819 3.88347V4.66427H1.36721Z" fill="#2C2240" />
-                                            </svg></span>
-                                            April 3, 2024
-                                        </div>
-                                        <div className='text-[#848486] text-[12px] font-[400] leading-[24px] tracking-[-0.25px]'>
-                                            <span>12:00pm - 1:00pm</span>
-
-                                        </div>
-                                        <div className='bg-red-100 py-[10px] px-[9px]'>
-                                            <RiDeleteBin6Line className='text-[#C20000]' />
-                                        </div>
-                                    </div>
-                                    <div className='min-h-[35px] w-full max-h-auto  mb-[6px]  bg-[#FFF] border-[1px] border-[#EDE9FF] rounded-[3.569px]  flex justify-between items-center' style={{ boxShadow: "0px 3.569px 7.139px 0px rgba(53, 10, 188, 0.06)" }}>
-                                        <div className='pl-[17px] flex justify-center items-center gap-3 text-[#2C2240] font-[400] leading-[24px] tracking-[-0.214px] text-[11px]'>
-                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
-                                                <path d="M9.95602 6.24617C8.09043 6.24617 6.57255 7.76405 6.57255 9.62964C6.57255 11.4843 8.09043 12.9928 9.95602 12.9928C11.8216 12.9928 13.3395 11.4749 13.3395 9.60934C13.3395 7.75468 11.8216 6.24617 9.95602 6.24617ZM9.95602 12.4723C8.37776 12.4723 7.09308 11.197 7.09308 9.62964C7.09308 8.05086 8.37776 6.76671 9.95602 6.76671C11.5343 6.76671 12.819 8.04201 12.819 9.60934C12.819 11.1881 11.5343 12.4723 9.95602 12.4723ZM10.6608 9.94561C10.7623 10.0471 10.7623 10.2121 10.6608 10.3136C10.6098 10.3646 10.5432 10.3896 10.4766 10.3896C10.4099 10.3896 10.3433 10.3641 10.2923 10.3136L9.77175 9.79309C9.72282 9.74416 9.69575 9.67805 9.69575 9.60882V8.56775C9.69575 8.42408 9.81235 8.30749 9.95602 8.30749C10.0997 8.30749 10.2163 8.42408 10.2163 8.56775V9.50107L10.6608 9.94561ZM10.9971 1.54107H10.2163V0.760267C10.2163 0.6166 10.0997 0.5 9.95602 0.5C9.81235 0.5 9.69575 0.6166 9.69575 0.760267V1.54107H4.49042V0.760267C4.49042 0.6166 4.37382 0.5 4.23015 0.5C4.08648 0.5 3.96988 0.6166 3.96988 0.760267V1.54107H3.18908C1.89764 1.54107 0.84668 2.59203 0.84668 3.88347V10.6504C0.84668 11.9419 1.89764 12.9928 3.18908 12.9928H6.31228C6.45595 12.9928 6.57255 12.8762 6.57255 12.7325C6.57255 12.5889 6.45595 12.4723 6.31228 12.4723H3.18908C2.18445 12.4723 1.36721 11.655 1.36721 10.6504V5.1848H12.819V5.9656C12.819 6.10927 12.9356 6.22587 13.0792 6.22587C13.2229 6.22587 13.3395 6.10927 13.3395 5.9656V3.88347C13.3395 2.59203 12.2885 1.54107 10.9971 1.54107ZM1.36721 4.66427V3.88347C1.36721 2.87884 2.18445 2.0616 3.18908 2.0616H10.9971C12.0017 2.0616 12.819 2.87884 12.819 3.88347V4.66427H1.36721Z" fill="#2C2240" />
-                                            </svg></span>
-                                            April 3, 2024
-                                        </div>
-                                        <div className='text-[#848486] text-[12px] font-[400] leading-[24px] tracking-[-0.25px]'>
-                                            <span>12:00pm - 1:00pm</span>
-
-                                        </div>
-                                        <div className='bg-red-100 py-[10px] px-[9px]'>
-                                            <RiDeleteBin6Line className='text-[#C20000]' />
-                                        </div>
-                                    </div>
-                                    <div style={{
-                                        background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)",
-                                        backdropFilter: "blur(1.7846870422363281px)"
-                                    }} className='text-center w-full bg-red-300 relative bottom-[42px] h-[36px] flex justify-center items-center gap-2 tracking-[-0.214px] text-[10px] font-[400] text-[#350ABC] opacity-[0.9] leading-[21px]'>
-                                        Load more <span><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7.4165 3.85974L7.4165 12.1883" stroke="#350ABC" stroke-width="0.892343" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M11.5806 8.02405L7.4163 12.1883L3.25203 8.02405" stroke="#350ABC" stroke-width="0.892343" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        </span>
-                                    </div>
-
-                                    {/* cost break down section */}
-                                    <div className='relative bottom-[21px]'>
-                                        <h2 className='text-[20px] font-[600] montserrat-font p-[8px] mb-[6px] leading-normal tracking-[-0.2px] text-[#000000]'>Cost Breakdown</h2>
-                                        <div className="mx-auto max-w-3xl rounded-[4px] py-[9px] px-[20px]" style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)' }}>
-                                            <div className="relative overflow-x-auto border-b-2 border-[#f8f8f8]">
-                                                <table className="w-full text-left font-medium md:table-fixed">
-                                                    <tbody>
-                                                        <tr className='border-b-[1px] border-[#f8f8f8]'>
-                                                            <td className="whitespace-nowrap py-1">
-                                                                <div className="flex items-center justify-between gap-4">
-                                                                    <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
-                                                                        Worker Fee Per Hour
-                                                                    </p>
-                                                                    <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$50</td>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr className='border-b-[1px] border-[#f8f8f8]'>
-                                                            <td className="whitespace-nowrap py-[4px] md:w-[384px]">
-                                                                <div className="flex justify-between items-center gap-4">
-                                                                    <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
-                                                                        Number of Hours
-                                                                    </p>
-                                                                    <div className='flex justify-center items-center'>
-                                                                        <span className="text-[#6B6B6B] text-[10px] font-normal leading-[26px] mr-2">4 days x 5 hours</span>
-                                                                        <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">5 h</td>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr className='border-b-[1px] border-[#f8f8f8]'>
-                                                            <td className="whitespace-nowrap py-[4px] md:w-[384px]">
-                                                                <div className="flex justify-between items-center gap-4">
-                                                                    <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
-                                                                        Worker Fee Calculation
-                                                                    </p>
-                                                                    <td className="flex justify-between items-center gap-1">
-                                                                        <span className="text-[#9B9B9B] text-[10px] font-normal leading-[26px] mr-2">5 hours x $50</span>
-                                                                        <span style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$250</span>
-                                                                    </td>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="whitespace-nowrap py-[4px] md:w-[384px] pb-[27px]">
-                                                                <div className="flex justify-between items-center gap-4">
-                                                                    <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
-                                                                        Platform Fee
-                                                                    </p>
-                                                                    <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$10</td>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            {/* buttons */}
-                                            <div className="whitespace-nowrap mt-[8px] md:w-[384px] " style={{ width: '100%' }}>
-                                                <div className="flex justify-between items-center gap-4">
-                                                    <p style={{ letterSpacing: '-2%' }} className=" text-[#000000] leading-normal text-[20px] montserrat-font font-[600]">
-                                                        Total
-                                                    </p>
-                                                    <h3 style={{ letterSpacing: '-1%' }} className="text-right leading-normal text-[#000000] text-[32px] font-[600] montserrat-font">$1,000.00</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className='w-[56%] h-[100vh] relative z-20'>
-                                    <div className={`${styles.contactdetail} absolute z-10 inset-0 flex justify-center items-center`}>
-                                        <div style={{ zIndex: '-1' }} className="absolute top-[-273px] left-[-300px]">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="603" height="603" viewBox="0 0 603 603" fill="none">
-                                                <g opacity="0.15" filter="url(#filter0_f_530_2275)">
-                                                    <circle cx="301.5" cy="301.5" r="101.5" fill="#230ABC" />
-                                                </g>
-                                                <defs>
-                                                    <filter id="filter0_f_530_2275" x="0" y="0" width="603" height="603" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                                                        <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_530_2275" />
-                                                    </filter>
-                                                </defs>
-                                            </svg>
-                                        </div>
-                                        <section>
-                                            <div className='flex justify-start p-[10px] gap-[8px] text-[18px] font-[500] leading-[32px] tracking-[-0.36px] text-[#000000] items-center'>
-                                                <span><Image width={15} height={15} src='/images/booking/person.svg' alt='user' /></span>   <h3>Contact Details</h3>
-                                            </div>
-                                            <form action="">
-                                                <div>
-                                                    <div className="relative">
-                                                        <div className="absolute inset-y-0 mt-3 ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                                                <path d="M11.6668 12.25V11.0833C11.6668 10.4645 11.421 9.871 10.9834 9.43342C10.5458 8.99583 9.95233 8.75 9.3335 8.75H4.66683C4.04799 8.75 3.4545 8.99583 3.01691 9.43342C2.57933 9.871 2.3335 10.4645 2.3335 11.0833V12.25" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M6.99984 6.41667C8.2885 6.41667 9.33317 5.372 9.33317 4.08333C9.33317 2.79467 8.2885 1.75 6.99984 1.75C5.71117 1.75 4.6665 2.79467 4.6665 4.08333C4.6665 5.372 5.71117 6.41667 6.99984 6.41667Z" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                            </svg>
-                                                        </div>
-                                                        <input
-                                                            type="search"
-                                                            id="default-search"
-                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
-                                                            placeholder="Full Name*"
-
-                                                        />
-
-                                                    </div>
-                                                    <div className='flex justify-between gap-[8px] items-center'>
-                                                        <div className="relative w-full">
-                                                            <div className="absolute inset-y-0 mt-[12px] ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                                                    <path d="M2.33317 2.33337H11.6665C12.3082 2.33337 12.8332 2.85837 12.8332 3.50004V10.5C12.8332 11.1417 12.3082 11.6667 11.6665 11.6667H2.33317C1.6915 11.6667 1.1665 11.1417 1.1665 10.5V3.50004C1.1665 2.85837 1.6915 2.33337 2.33317 2.33337Z" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                                    <path d="M12.8332 3.5L6.99984 7.58333L1.1665 3.5" stroke="#9F9F9F" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                                                </svg>
-                                                            </div>
-                                                            <input
-                                                                type="search"
-                                                                id="default-search"
-                                                                className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
-                                                                placeholder="Email Address *"
-
-                                                            />
-
-                                                        </div>
-                                                        <div className="flex items-center w-full">
-                                                            <button style={{ borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }} id="dropdown-phone-button" data-dropdown-toggle="dropdown-phone" className="bg-[#FFFFFF] border border-[#EFEFEF] border-l-[1px] border-t-[1px]   mt-[12px]  flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-[#9F9F9F] h-[53px]" type="button">
-                                                                <svg fill="none" aria-hidden="true" className="h-4 w-4 me-2" viewBox="0 0 20 15"><rect width="19.6" height={14} y=".5" fill="#fff" rx={2} /><mask id="a" style={{ maskType: 'luminance' }} width={20} height={15} x={0} y={0} maskUnits="userSpaceOnUse"><rect width="19.6" height={14} y=".5" fill="#fff" rx={2} /></mask><g mask="url(#a)"><path fill="#D02F44" fillRule="evenodd" d="M19.6.5H0v.933h19.6V.5zm0 1.867H0V3.3h19.6v-.933zM0 4.233h19.6v.934H0v-.934zM19.6 6.1H0v.933h19.6V6.1zM0 7.967h19.6V8.9H0v-.933zm19.6 1.866H0v.934h19.6v-.934zM0 11.7h19.6v.933H0V11.7zm19.6 1.867H0v.933h19.6v-.933z" clipRule="evenodd" /><path fill="#46467F" d="M0 .5h8.4v6.533H0z" /><g filter="url(#filter0_d_343_121520)"><path fill="url(#paint0_linear_343_121520)" fillRule="evenodd" d="M1.867 1.9a.467.467 0 11-.934 0 .467.467 0 01.934 0zm1.866 0a.467.467 0 11-.933 0 .467.467 0 01.933 0zm1.4.467a.467.467 0 100-.934.467.467 0 000 .934zM7.467 1.9a.467.467 0 11-.934 0 .467.467 0 01.934 0zM2.333 3.3a.467.467 0 100-.933.467.467 0 000 .933zm2.334-.467a.467.467 0 11-.934 0 .467.467 0 01.934 0zm1.4.467a.467.467 0 100-.933.467.467 0 000 .933zm1.4.467a.467.467 0 11-.934 0 .467.467 0 01.934 0zm-2.334.466a.467.467 0 100-.933.467.467 0 000 .933zm-1.4-.466a.467.467 0 11-.933 0 .467.467 0 01.933 0zM1.4 4.233a.467.467 0 100-.933.467.467 0 000 .933zm1.4.467a.467.467 0 11-.933 0 .467.467 0 01.933 0zm1.4.467a.467.467 0 100-.934.467.467 0 000 .934zM6.533 4.7a.467.467 0 11-.933 0 .467.467 0 01.933 0zM7 6.1a.467.467 0 100-.933.467.467 0 000 .933zm-1.4-.467a.467.467 0 11-.933 0 .467.467 0 01.933 0zM3.267 6.1a.467.467 0 100-.933.467.467 0 000 .933zm-1.4-.467a.467.467 0 11-.934 0 .467.467 0 01.934 0z" clipRule="evenodd" /></g></g><defs><linearGradient id="paint0_linear_343_121520" x1=".933" x2=".933" y1="1.433" y2="6.1" gradientUnits="userSpaceOnUse"><stop stopColor="#fff" /><stop offset={1} stopColor="#F0F0F0" /></linearGradient><filter id="filter0_d_343_121520" width="6.533" height="5.667" x=".933" y="1.433" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse"><feFlood floodOpacity={0} result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset dy={1} /><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_343_121520" /><feBlend in="SourceGraphic" in2="effect1_dropShadow_343_121520" result="shape" /></filter></defs></svg>
-                                                                +1 <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 1 4 4 4-4" /></svg>
-                                                            </button>
-                                                            <div id="dropdown-phone" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-52 dark:bg-gray-700">
-
-                                                            </div>
-                                                            <label htmlFor="phone-input" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Contact Number:</label>
-                                                            <div className="relative w-full">
-                                                                <input type="text" id="phone-input" className={`${styles.defaultsearch}   mt-[12px] border-[#EFEFEF] py-[14px]  min-h-[52px] bg-[#FFFFFF] w-full focus:outline-blue-200 rounded-[4px]`} placeholder='345-456-2368' />
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div className="relative">
-                                                        <div className="absolute inset-y-0 mt-3 ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-                                                            <Image width={16} height={16} src='/images/booking/company.svg' alt='step-1' />
-                                                        </div>
-                                                        <input
-                                                            type="search"
-                                                            id="default-search"
-                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
-                                                            placeholder="Company Name"
-
-                                                        />
-
-                                                    </div>
-                                                </div>
-                                                <div className='flex mt-[30px] justify-start p-[10px] gap-[8px] text-[18px] font-[500] leading-[32px] tracking-[-0.36px] text-[#000000] items-center'>
-                                                    <span><Image width={18} height={18} src='/images/booking/barglass.svg' alt='user' /></span>   <h3>Event Location</h3>
-                                                </div>
-                                                <div>
-                                                    <div className='flex justify-between gap-[8px] items-center'>
-                                                        <div className="relative w-full">
-
-                                                            <div className="relative w-full" style={{ width: '100%' }}>
-                                                                <select
-                                                                    id="city"
-                                                                    style={selectStyles}
-                                                                    value={selectedCountry}
-                                                                    onChange={handleCountryChange}
-                                                                >
-                                                                    <option disabled hidden value="" style={placeholderOptionStyles}>City</option>
-                                                                    {countryOptions.map((option, index) => (
-                                                                        <option key={index} value={option.value}>
-                                                                            {option.label}
-                                                                        </option>
-                                                                    ))}
-                                                                </select>
-                                                            </div>
-
-
-                                                        </div>
-                                                        <div className="flex items-center w-full">
-                                                            <input
-                                                                type="search"
-                                                                id="default-search"
-                                                                className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
-                                                                placeholder="Postal Code *"
-
-                                                            />
-                                                        </div>
-
-                                                    </div>
-                                                    <div className="relative">
-                                                        <div className="absolute inset-y-0 mt-3 ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-                                                            <Image width={14} height={14} src='/images/booking/location.svg' alt='step-1' />
-                                                        </div>
-                                                        <input
-                                                            type="search"
-                                                            id="default-search"
-                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
-                                                            placeholder="Choose Event Location *"
-
-                                                        />
-
-                                                    </div>
-
-                                                    <div className="relative">
-                                                        <div className="absolute inset-y-0 mt-3 ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-
-                                                            <Image width={14} height={14} src='/images/booking/address.svg' alt='step-1' />
-                                                        </div>
-                                                        <input
-                                                            type="search"
-                                                            id="default-search"
-                                                            className={`${styles.defaultsearch} border-[1px] mt-[12px]  py-[14px] pl-[42px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
-                                                            placeholder="Enter Address *"
-
-                                                        />
-
-                                                    </div>
-                                                </div>
-
-                                                <button onClick={handleOpenLoginPopup} className={`${styles.conformdetail}  mt-[42px] w-full justify-center bg-[#350ABC] text-[#F3F0FF3] opacity-[0.9] rounded-[4px]  px-[16px] py-[18px] text-center inline-flex items-center`}>
-                                                    Confirm Details
-                                                    <span className={`ml-2`}>
-                                                        <Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' />
-                                                    </span>
-
-                                                </button>
-
-                                                <LoginFrom
-                                                    styles={styles}
-                                                    //@ts-ignore
-                                                    showLoginForm={showLoginForm} close={close} showRegisterForm={showRegisterForm} styles={styles} handleClose={handleClose} setShowLoginForm={setShowLoginForm} handleShowRegisterForm={handleShowRegisterForm}
-                                                />
-
-                                            </form>
-                                        </section>
-                                    </div>
-                                    <div className="z-[-1] absolute top-[-225px] right-[-221px]">
-                                        <Image width={603} height={603} src='/images/booking/2.svg' alt='step-1' />
-                                    </div>
-                                </div>
-                                <div className="absolute bottom-[-280px] z-[-1] right-[-210px]">
-                                    <Image width={603} height={603} src='/images/booking/1.svg' alt='step-1' />
-                                </div>
-
+                                <AccordionForm />
                             </div>
                         </motion.div>
                     )}
@@ -640,7 +288,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                            <div className='flex gap-[34px] mx-auto max-w-[1064px]  min-h-[796px] mt-[0] mb-[0] '>
+                            <div className='flex gap-[34px] mx-auto  min-h-[796px] mt-[0] mb-[0] '>
                                 <div className={`${styles.bookingsummary_section} w-[44.5%]`}>
                                     <div className='flex justify-center flex-col items-center w-full'>
                                         <h2 className={`${styles.bookingsummary_text} ${montserrat.className}`}>Booking Summary</h2>
