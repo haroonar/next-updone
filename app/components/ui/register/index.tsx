@@ -28,7 +28,7 @@ const RegisterForm = () => {
         try {
             const newData = await apiRequest('/register', {
                 method: 'POST',
-                body: JSON.stringify(body)
+                body: body
               }); // API call
             setData(newData?.data); // Update state with fetched data
             console.log('newData', newData)

@@ -8,19 +8,19 @@
   
   /* Styles for open state */
   .open .accordion-content {
-    max-height: 500px; /* Adjust as per your content height */
+    max-height: 460px; /* Adjust as per your content height */
     transition:  1s ease-out !important;
   }
   /* Example CSS */
 .defaultsearch::placeholder {
-  color: #9F9F9F;
+  color: #2C2240;
   /* Small Body */
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
   /* 171.429% */
-  letter-spacing: -0.28px;
+  letter-spacing: -2%;
   position: relative;
   left: 8px;
 

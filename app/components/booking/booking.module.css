@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 .contactdetail {
     width: 565px;
     padding: 35px 28px;
@@ -90,6 +91,7 @@
     line-height: normal;
     letter-spacing: -0.28px;
 }
+
 .loginpopup_bodys {
     color: #6B6B6B;
     text-align: center;
@@ -126,6 +128,7 @@
     line-height: normal;
     letter-spacing: -0.28px;
 }
+
 .login_btn {
     display: flex;
     padding: 8px 20px;
@@ -149,7 +152,7 @@
     border-radius: 4px;
     background: #E3DAFF;
     width: 95%;
-margin: 20px auto;
+    margin: 20px auto;
 }
 
 .loginUserLogo {
@@ -163,20 +166,22 @@ margin: 20px auto;
     background: #F3F0FF;
     box-shadow: 0px -5.111px 5.111px 0px rgba(0, 0, 0, 0.09) inset, 0px 10.222px 25.556px 0px rgba(0, 0, 0, 0.05);
 }
-.login_btn_{
+
+.login_btn_ {
     display: flex;
-height: 48px;
-padding: 16px 20px;
-justify-content: center;
-align-items: center;
-gap: 4px;
-align-self: stretch;
-border-radius:  4px;
-background:#350ABC;
-color: #F3F0FF;
-width: 95%;
-margin: 20px auto;
+    height: 48px;
+    padding: 16px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+    border-radius: 4px;
+    background: #350ABC;
+    color: #F3F0FF;
+    width: 95%;
+    margin: 20px auto;
 }
+
 .registerpopup_body {
     color: #6B6B6B;
     text-align: center;
@@ -213,36 +218,45 @@ margin: 20px auto;
     line-height: normal;
     letter-spacing: -0.28px;
 }
-.bookingsummary_section{
+
+.bookingsummary_section {
     display: flex;
-width: 470px;
-padding: 32px 16px;
-align-items: start;
-gap: 10px;
-border-radius:8px;
-border: 1px solid #F3F3F3;
-background:  #FFF;
-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.08);
+    width: 470px;
+    padding: 32px 16px;
+    align-items: start;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #F3F3F3;
+    background: #FFF;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.08);
 }
-.bookingsummary_text{
+
+.bookingsummary_text {
     color: #000;
-text-align: center;
-font-size: 24px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-letter-spacing: -0.24px;
-flex: 1 0 0;
-margin-bottom: 40px;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.24px;
+    flex: 1 0 0;
+    margin-bottom: 40px;
 }
-.checkout_section{
+
+.checkout_section {
     display: flex;
-width: 565px;
-padding: 35px 28px;
-align-items: center;
-gap: 10px;
-border-radius:  8px;
-border: 1px solid #EBE5E5;
-background: linear-gradient(141deg, #F4EEFF 0%, #FFF 97.5%);
-backdrop-filter: blur(4px);
+    width: 565px;
+    padding: 35px 28px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #EBE5E5;
+    background: linear-gradient(141deg, #F4EEFF 0%, #FFF 97.5%);
+    backdrop-filter: blur(4px);
+}
+
+.tell_us {
+    font-family: "Lato", sans-serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
 }

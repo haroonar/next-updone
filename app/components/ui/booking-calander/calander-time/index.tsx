@@ -9,12 +9,12 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image'
 import React, { Suspense } from 'react'
 
-const TimeAndCalander = ({ highlightedDatesAvailable, highlightedDatesNotAvailable, isCalander, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, handleAddToBooking, isStaffListerFilter }: BookingCalanderProps) => {
+const TimeAndCalander = ({ isStepOneCalander,highlightedDatesAvailable, highlightedDatesNotAvailable, isCalander, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, handleAddToBooking, isStaffListerFilter }: BookingCalanderProps) => {
     return (
-        <div className='flex justify-start items-start gap-[21px]'>
+        <div style={{gap:isStepOneCalander ? "45px":""}} className={`flex justify-start items-start gap-[21px]`}>
 
-            <div style={{ width: isStaffListerFilter ? "22rem" : "26rem" }} className={`"h-[348px] `}>
-                <div className=' w-full h-auto p-[10px] bg-[#fff] rounded-[8px]' style={{
+            <div style={{ width: isStaffListerFilter ? "26rem" : "26rem" }} className={`"h-[348px] `}>
+                <div className={`${isStepOneCalander ? "ml-5":""} w-full h-auto p-[10px] bg-[#fff] rounded-[8px]`} style={{
                     boxShadow: isCalander ? "" : "0px 8px 26px 0px rgba(0, 0, 0, 0.07)",
                     border: isCalander ? "1px solid #f7f7f7" : "none"
                 }}
@@ -28,7 +28,7 @@ const TimeAndCalander = ({ highlightedDatesAvailable, highlightedDatesNotAvailab
                     </Suspense>
                 </div>
                 {!isCalander &&
-                    <div className='flex justify-start gap-[10px] items-center mt-[18px] ml-[10px] tracking-[-0.2px] leading-[24px] font-[400] text-[#6B6B6B] text-[10px]'>
+                    <div style={{marginLeft:isStepOneCalander ? "32px":""}} className={`flex justify-start gap-[10px] items-center mt-[18px] ml-[10px] tracking-[-0.2px] leading-[24px] font-[400] text-[#6B6B6B] text-[10px]`}>
                         <h3 className='flex justify-center items-center gap-1'>
                             <span>
                                 <Image height={10} width={10} alt='not available' src='/images/detail/notavail.svg' />
@@ -48,7 +48,7 @@ const TimeAndCalander = ({ highlightedDatesAvailable, highlightedDatesNotAvailab
                 }
             </div>
             {highlightedDatesAvailable?.includes(date.toISOString().split('T')[0]) && (
-                <div className='w-[12rem] h-full'>
+                <div className='w-[12.5rem] h-full'>
                     <div className='relative bottom-[41px]'>
                         <h2 className="invisible absolute">Sarah's Availability</h2>
                         <div className='relative right-[64px] top-[2.4rem]'>

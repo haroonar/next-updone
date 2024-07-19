@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import Image from 'next/image'
 const TimeAndCalander = dynamic(() => import('./calander-time'), {
     ssr: false, // Do not SSR for this component
-  });
+});
 import { BookingCalanderProps } from '@/app/libs/types'
 import Link from 'next/link'
 import { montserrat } from '@/app/libs/Fonts'
@@ -10,28 +10,28 @@ import dynamic from 'next/dynamic';
 import { CHOOSE_SERVICES } from '@/app/libs/Constants';
 
 
-const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailable,handleServiceClick,selectedServiceId,isCalander, isStaffListerFilter, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, timessss, handleAddToBooking, selectedTimes }: BookingCalanderProps) => {
+const BookingCalander = ({ highlightedDatesNotAvailable, highlightedDatesAvailable, handleServiceClick, selectedServiceId, isCalander, isStaffListerFilter, date, setDate, setSelectedTimeId, scrollRef, availableTimesMap, handleTimeSelection, selectedTimeId, scrollUp, scrollDown, timessss, handleAddToBooking, selectedTimes }: BookingCalanderProps) => {
     return (
         <>
             {!isStaffListerFilter ?
                 <>
-                <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
-                    <TimeAndCalander
-                        date={date}
-                        setDate={setDate}
-                        setSelectedTimeId={setSelectedTimeId}
-                        scrollRef={scrollRef}
-                        availableTimesMap={availableTimesMap}
-                        handleTimeSelection={handleTimeSelection}
-                        isStaffListerFilter
-                        selectedTimeId={selectedTimeId}
-                        scrollUp={scrollUp}
-                        scrollDown={scrollDown}
-                        handleAddToBooking={handleAddToBooking}
-                        highlightedDatesNotAvailable={highlightedDatesNotAvailable}
+                    <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
+                        <TimeAndCalander
+                            date={date}
+                            setDate={setDate}
+                            setSelectedTimeId={setSelectedTimeId}
+                            scrollRef={scrollRef}
+                            availableTimesMap={availableTimesMap}
+                            handleTimeSelection={handleTimeSelection}
+                            isStaffListerFilter
+                            selectedTimeId={selectedTimeId}
+                            scrollUp={scrollUp}
+                            scrollDown={scrollDown}
+                            handleAddToBooking={handleAddToBooking}
+                            highlightedDatesNotAvailable={highlightedDatesNotAvailable}
                             highlightedDatesAvailable={highlightedDatesAvailable}
-                    />
-                </Suspense>
+                        />
+                    </Suspense>
                     <div className='w-full flex justify-between items-start flex-col gap-[14.28px]'>
                         <h2 className='leading-[19.93px] translate-[0.316px] font-[500] text-[16.608px] text-[#000000] '>Booking Times</h2>
                         {timessss?.length === 0 ? <><div className='w-full h-[50vh] flex justify-center items-center capitalize'>Please Add a time to Booking</div></> :
@@ -60,14 +60,16 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
                                                         ))}
                                                     </div>
 
-                                                    <span className={`${!isStaffListerFilter ? "left-[10px]":'left-[85px]'} relative `}><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 13 13" fill="none">
-                                                        <path d="M6.74951 10.604H11.4343" stroke="black" stroke-width="0.520534" stroke-linecap="round" stroke-linejoin="round" />
-                                                        <path d="M9.0919 2.01531C9.29898 1.80823 9.57985 1.69189 9.8727 1.69189C10.0177 1.69189 10.1613 1.72046 10.2953 1.77595C10.4292 1.83144 10.551 1.91278 10.6535 2.01531C10.756 2.11785 10.8374 2.23958 10.8929 2.37355C10.9484 2.50752 10.9769 2.65111 10.9769 2.79611C10.9769 2.94112 10.9484 3.08471 10.8929 3.21868C10.8374 3.35265 10.756 3.47438 10.6535 3.57691L4.14683 10.0836L2.0647 10.6041L2.58523 8.52198L9.0919 2.01531Z" stroke="black" stroke-width="0.520534" stroke-linecap="round" stroke-linejoin="round" />
-                                                    </svg></span>
                                                 </div>
-                                                <div className='bg-[#FDD] ml-[15px] flex items-center justify-center min-h-[50px] max-h-[100px]  w-[33.017px] relative left-[0.8px]' style={{ borderTopRightRadius: '3px', borderBottomRightRadius: '3px' }} >
-                                                    <Image width={12} height={15} color='red' src='/images/detail/del.svg' alt='calander' />
-                                                </div>
+                                                <div  className='flex justify-center items-center gap-2'>
+                                                                <span className={`${!isStaffListerFilter ? "left-[10px]" : 'left-[85px]'} relative `}><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 13 13" fill="none">
+                                                                    <path d="M6.74951 10.604H11.4343" stroke="black" stroke-width="0.520534" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M9.0919 2.01531C9.29898 1.80823 9.57985 1.69189 9.8727 1.69189C10.0177 1.69189 10.1613 1.72046 10.2953 1.77595C10.4292 1.83144 10.551 1.91278 10.6535 2.01531C10.756 2.11785 10.8374 2.23958 10.8929 2.37355C10.9484 2.50752 10.9769 2.65111 10.9769 2.79611C10.9769 2.94112 10.9484 3.08471 10.8929 3.21868C10.8374 3.35265 10.756 3.47438 10.6535 3.57691L4.14683 10.0836L2.0647 10.6041L2.58523 8.52198L9.0919 2.01531Z" stroke="black" stroke-width="0.520534" stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg></span>
+                                                                <div className='bg-[#FDD] ml-[15px] flex justify-center items-center min-h-[50px] max-h-[100px]  w-[33.017px] relative left-[0.8px]' style={{ borderTopRightRadius: '3px', borderBottomRightRadius: '3px' }}>
+                                                                    <Image width={12} height={15} color='red' src='/images/detail/del.svg' alt='calander' />
+                                                                </div>
+                                                            </div>
                                             </div>
 
                                         </div>
@@ -81,7 +83,7 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
                 <div>
                     <div className='w-full h-[348px] mb-[60px] flex gap-[33px] justify-start items-start'>
                         <div className='w-[192px] h-full'>
-                            <h3 className='font-[500] leading-[19.93px] tracking-[0.316px] text-[16.608px] text-[#000000]'>
+                            <h3 className='font-[500] leading-[19.93px] tracking-[0.316px] text-[16.608px] text-center text-[#000000]'>
                                 Choose Service
                             </h3>
                             <div className='space-y-[20px] pb-[28px] pt-[20px] capitalize'>
@@ -89,10 +91,10 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
                                     const isSelected = service.id === selectedServiceId;
                                     return (
                                         <h3
-                                        style={{background:service.id === 2 ? "#20192e":"F3F0FF"}}
+                                            style={{ background: service.id === 2 ? "#20192e" : "F3F0FF" }}
                                             key={service.id}
                                             onClick={() => handleServiceClick(service.id)}
-                                            className={`${service.id === 2 ?"bg-[#20192e] text-[#F3F0FF] opacity-[0.9]":"opacity-[0.7]" } cursor-pointer w-[192px] text-[14px] leading-[24px] tracking-[-0.28px] font-[400] text-center rounded-[29px] py-[6px] px-[20px] ${isSelected ? 'bg-[#2C2240] text-[#F3F0FF]' : 'bg-[#F3F0FF] text-[#2C2240]'
+                                            className={`${service.id === 2 ? "bg-[#20192e] text-[#F3F0FF] opacity-[0.9]" : "opacity-[0.7]"} cursor-pointer w-[192px] text-[14px] leading-[24px] tracking-[-0.28px] font-[400] text-center rounded-[29px] py-[6px] px-[20px] ${isSelected ? 'bg-[#2C2240] text-[#F3F0FF]' : 'bg-[#F3F0FF] text-[#2C2240]'
                                                 }`}
                                         >
                                             {service.text}
@@ -118,7 +120,7 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
                             selectedTimes={selectedTimes}
                         />
                     </div>
-                     <div className='w-full bg-[#FFF] rounded-[8px] p-[24px] mt-[110px]' style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)' }}>
+                    <div className='w-full bg-[#FFF] rounded-[8px] p-[24px] mt-[110px]' style={{ boxShadow: '0px 8px 26px 0px rgba(0, 0, 0, 0.08)' }}>
                         <h2 className={`${montserrat.className} text-start text-[#000000] text-[20px] font-[600] leading-normal tracking-[-0.2px] py-[8px] border-b-[1px] border-[#F1F1F1]`}>Cost Breakdown</h2>
                         <div className='flex justify-start items-center w-full gap-[61px] mt-[16px]'>
                             <div className='w-[75%] py-[20px]'>
@@ -186,7 +188,7 @@ const BookingCalander = ({ highlightedDatesNotAvailable,highlightedDatesAvailabl
                                 </Link>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             }
 

@@ -1,5 +1,5 @@
 "use client"
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Loader from '../ui/loader';
 const LazyHero = dynamic(() => import('./hero'), { ssr: false,
@@ -13,8 +13,28 @@ const LazyGalleryContent = dynamic(() => import('./gallery'), { ssr: false });
 const LazyTestimonials = dynamic(() => import('./testimonials'), { ssr: false });
 const LazyAccordion = dynamic(() => import('./faqs'), { ssr: false });
 import HOME_TESTIMONINAL_CONTENT from './testimonials/constants';
-
+import { apiRequest } from '@/app/libs/services';
 const Home = () => {
+  const [data, setData] = useState<any>(null);
+  console.log('data', data)
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchDataIfNeeded = async () => {
+      try {
+        const newData = await apiRequest('/testimonials', {
+          method: 'GET',
+        }); // API call
+        setData(newData?.data); // Update state with fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error state or display an error message
+      } finally {
+        setLoading(false); // Hide loading indicator regardless of success or failure
+      }
+    };
+  
+    fetchDataIfNeeded(); // Call the function to fetch data
+  }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
   return (
     <>
       <div className='overflow-hidden'>

@@ -23,7 +23,7 @@ export default function page() {
         <Image width={950} height={889} src='/images/booking/topRight.svg' alt='step-1' />
       </div>
       {/* Bottom Left */}
-      <div className='absolute bottom-[-115px] left-[-72px] '>
+      <div className='absolute bottom-[-230px] left-[-72px] '>
       <Image width={920} height={652} src='/images/booking/bottomLeft.svg' alt='step-1' />
       </div>
 

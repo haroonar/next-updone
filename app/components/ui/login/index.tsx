@@ -28,7 +28,7 @@ const LoginForm = () => {
         try {
             const newData = await apiRequest('/login', {
                 method: 'POST',
-                body: JSON.stringify(body)
+                body: body
             }); // API call
             setData(newData?.data); // Update state with fetched data
             // Store newData in local storage

@@ -71,7 +71,8 @@ export const BookingProvider: React.FC<{ children: ReactNode }> = ({ children })
     };
 
 
-    const handleAddToBooking = () => {
+    const handleAddToBooking = (e:any) => {
+        e.preventDefault()
         if (selectedTimeId) {
             const selectedDate = date.toISOString().split('T')[0];
             const selectedTimeObj = availableTimesMap[selectedDate].find(time => time.id === selectedTimeId);

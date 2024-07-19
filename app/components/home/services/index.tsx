@@ -5,6 +5,7 @@ import FormDecoration from '../../common/form-decoration';
 import Link from 'next/link';
 import ServicesContent from './components/ServicesContent';
 import { services } from '@/app/libs/Constants';
+import { apiRequest } from '@/app/libs/services';
 
 
 
@@ -29,7 +30,27 @@ const Services = () => {
       return newLoaded;
     });
   };
+  const [data, setData] = useState<any>(null);
+  console.log('data', data)
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+      const fetchDataIfNeeded = async () => {
+        try {
+          const newData = await apiRequest('/services', {
+            method: 'GET',
+          }); // API call
+          setData(newData?.data); // Update state with fetched data
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          // Handle error state or display an error message
+        } finally {
+          setLoading(false); // Hide loading indicator regardless of success or failure
+        }
+      };
+  
+      fetchDataIfNeeded(); // Call the function to fetch data
+    }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
   return (
     <>
       <div className='py-[100px] bg-[FFFFFF]'>

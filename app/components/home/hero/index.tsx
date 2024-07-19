@@ -9,6 +9,7 @@ import { useBookingContext } from '@/app/libs/context/BookingContext';
 import StarRating from '../../ui/star-rating';
 import { montserrat } from '@/app/libs/Fonts';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 
 const itemLocationNames: string[] = [`Los Angeles`];
@@ -114,7 +115,7 @@ const Hero = () => {
                     </div>
                     }
 
-                    {!allImagesLoaded &&
+                    {/* {!allImagesLoaded &&
                         <div onClick={handleClikedFilter} style={{ ...heroFilters }} className={`${isFilterOpened ? "w-[100%] !transition-all !duration-1000 !rounded-[8px]" : "!w-[79.9%] !transition-all !duration-1000"}  flex space-x-3 p-1 text-black justify-center items-center text-center`}>
                             <div style={{ width: '18%' }} className=" text-start space-y-1.5 !transition-all !duration-1000">
                                 <div className="relative inline-block border-none shadow-none">
@@ -134,12 +135,10 @@ const Hero = () => {
                             <img src="./images/Line 4.png" alt="" />
                             <div style={{ width: '18%', marginLeft: '15px' }} className="!transition-all !duration-1000 text-start space-y-1.5 relative left-2">
                                 <div className="relative inline-flex border-none shadow-none">
-                                    {/* SVG icon */}
                                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center text-gray-700">
                                         <Image src='/images/gallery/location.svg' alt='location-svg' width={15} height={15} />
                                     </div>
 
-                                    {/* Dropdown */}
                                     <span
                                         className="font-[500] block appearance-none w-full  md:text-[16px] 2xl:text-[20px] bg-white pl-[32px] leading-[150%] text-[#0B0B0B] capitalize rounded focus:outline-none focus:shadow-outline"
                                     >
@@ -156,7 +155,6 @@ const Hero = () => {
                             <img src="./images/Line 4.png" alt="" />
                             <div style={{ width: '29%' }} className="!transition-all !duration-1000 text-start space-y-1.5">
                                 <div className="relative inline-flex border-none shadow-none">
-                                    {/* SVG icon */}
                                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2 text-black">
                                         <Image height={13} width={13} src='/images/hero/star.svg' alt='box' />
                                     </div>
@@ -184,7 +182,6 @@ const Hero = () => {
                                 </div>
                                 <span className='block 2xl:text-[15px] text-start pl-[10px] font-[400] leading-[150%] capitalize md:text-[14px] text-[#585858] cursor-pointer !transition-all !duration-1000' onClick={handleDate}>{'July 24, 2024'}</span>
 
-                                {/* <Image height={18} width={124} src='/images/hero/stars.svg' alt='box' /> */}
                             </div>
                             <img src="./images/Line 4.png" alt="" className='relative right-[15px]' />
                             <div style={{ width: '21%' }} className="!transition-all !duration-1000 space-y-1.5 mt-[7px]">
@@ -219,8 +216,12 @@ const Hero = () => {
                             ) : null}
 
                         </div>
-                    }
-                    <Image onLoadingComplete={handleImage2Load} height={744} width={1294} src="/images/hero/hero.png" alt="Hero Image" />
+                    } */}
+                    <div className='flex justify-center items-start gap-[14px] absolute bottom-[40px]'>
+                    <Link href='/staff/booking' className='py-[16px] px-[90px] text-[#350ABC] font-[600] leading-[26px] tracking-[-2%] text-[20px]' style={{background:'#f3f0ff'}}>Post job For Free</Link>
+                    <button className='py-[16px] px-[90px] bg-[#774DFD] text-[#F3F0FF] font-[600] leading-[26px] tracking-[-2%] text-[20px]'>Post job For Free</button>
+                    </div>
+                    <Image quality={100} onLoadingComplete={handleImage2Load} height={744} width={1294} src="/images/hero/hero.png" alt="Hero Image" />
                 </div>
             </main>
         </div>

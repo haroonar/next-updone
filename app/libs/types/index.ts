@@ -36,4 +36,5 @@ export interface BookingCalanderProps {
   isHeroFilterCalander?: boolean
   highlightedDatesNotAvailable?: any
   highlightedDatesAvailable?: any
+  isStepOneCalander?:boolean;
 }
