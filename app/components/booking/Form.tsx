@@ -96,14 +96,14 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
     };
     const steps = [
         {
-            id: 'Details',
+            id: 'Task Details',
             image: <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/stepBlue2.svg' alt='step-1' />,
-            name: 'Event and contact details',
+            name: 'Describe your task',
             fields: ['firstName', 'lastName', 'email']
         },
         {
-            id: 'Payment',
-            name: 'Pay the cost of hiring',
+            id: 'Payment detail',
+            name: 'Find your best fit worker',
             image: changeActiveColor ? <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/stepBlue2.svg' alt='step-1' /> : <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/step2.svg' alt='step-1' />,
             fields: ['country', 'state', 'city', 'street', 'zip']
         },
@@ -156,7 +156,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                     currentStep={currentStep} changeActiveColor={changeActiveColor} setChangeActiveColor={setChangeActiveColor}
                 />
              </div>
-            <section style={{ maxHeight: changeActiveColor ? "430px" : "" }} className='max-w-[1279px] mx-auto max-h-[1000px]'>
+            <section style={{ maxHeight: changeActiveColor ? "800px" : "" }} className='max-w-[1279px] mb-[100px] mx-auto max-h-[1000px]'>
                 <div className={`${styles.tell_us} text-center text-[#000000] flex justify-center items-center gap-[20px] leading-[20.4px] tracking-[-0.32px] !text-[16px] pt-[33.5px] px-[10px] mb-[68.5px]`}>
                     <Image width={20} height={20} src='/images/booking/editPancel.svg' alt='step-1' />    Tell us about your task. We use these details to show Taskers in your area who fit your needs.
                 </div>

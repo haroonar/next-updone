@@ -16,7 +16,7 @@ const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}
         <>
             {/* steps */}
             <nav aria-label='Progress' className='relative left-6 z-[1]'>
-                <ol role='list' className={`flex space-x-4 justify-center items-center ${!bookingActive &&  "mt-[133px]"}  max-w-[822px] m-auto`}>
+                <ol role='list' className={`flex space-x-4 justify-center items-center ${!bookingActive &&  "mt-[133px]"}  max-w-[911px] m-auto`}>
                     {steps.map((step, index) => (
                         <li key={step.name} className='flex-1 gap-4'>
                             {currentStep > index ? (
@@ -37,7 +37,7 @@ const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}
                                         style={{
                                             width: changeActiveColor ? "180px" : " 200px",
                                             position: "absolute",
-                                            marginLeft: changeActiveColor ? "160px" : step.name === "Event and contact details" ? '150px' : "147px"
+                                            marginLeft: changeActiveColor ? "200px" : step.name === "Describe your task" ? '180px' : "179px"
                                         }}
                                         className='flex w-full flex-row justify-start items-center border-l-[1px] border-[#000000] opacity-[0.3px] py-2 pl-4 md:border-l-0 md:border-t-[1px] md:pb-0 md:pl-0 md:pt-4'
                                         aria-current='step'
@@ -51,7 +51,7 @@ const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}
                                     <div className='flex justify-center items-center'>
                                         <span className='relative top-[6px] left-[16px]  text-sm font-medium text-sky-600'>
                                             {
-                                                step.name === "Pay the cost of hiring" ?
+                                                step.name === "Find your best fit worker" ?
                                                     <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/stepBlue2.svg' alt='step-1' /> :
                                                     step.name === "Congratulation!" && !changeActiveColor ? (
                                                         <>
@@ -74,7 +74,7 @@ const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}
                                         style={{
                                             width: "184px",
                                             position: "absolute",
-                                            marginLeft: step.name === "Pay the cost of hiring" ? '162px' : '153px'
+                                            marginLeft: step.name === "Find your best fit worker" ? '202px' : '180px'
                                         }}
                                         className={changeActiveColor ? "" : 'flex w-full flex-row justify-start items-center border-l-[1px] border-[#000000] opacity-[0.3px] py-2 pl-4 md:border-l-0 md:border-t-[1px] md:pb-0 md:pl-0 md:pt-4'}
                                         aria-current='step'
@@ -113,7 +113,7 @@ const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}
                                     style={{
                                         width: "184px",
                                         position: "absolute",
-                                        marginLeft: '171px'
+                                        marginLeft: '202px'
                                     }}
                                     className='flex w-full flex-row justify-start items-center border-l-[1px] border-[#b0b0b2] opacity-[0.3px] py-2 pl-4 md:border-l-0 md:border-t-[1px] md:pb-0 md:pl-0 md:pt-4'
                                     aria-current='step'

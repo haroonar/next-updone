@@ -1,13 +1,11 @@
+import { useForm } from 'react-hook-form';
 import { Suspense, useState } from 'react';
-import './AccordionForm.css'; // Import custom CSS for styling
 import Image from 'next/image';
-import styles from './style.module.css'
+import styles from './style.module.css';
 import { CHOOSE_SERVICES } from '@/app/libs/Constants';
-import { MdOutlineMessage } from "react-icons/md";
-import BookingCalander from '../booking-calander';
+import TimeAndCalander from '../booking-calander/calander-time';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 import { highlightedDatesAvailable, highlightedDatesNotAvailable } from '../../home/detail';
-import TimeAndCalander from '../booking-calander/calander-time';
 
 const AccordionForm = () => {
     const [isOpenFirst, setIsOpenFirst] = useState(true);
@@ -17,8 +15,7 @@ const AccordionForm = () => {
     const [firstSectionComplete, setFirstSectionComplete] = useState(false);
     const [secondSectionComplete, setSecondSectionComplete] = useState(false);
     const [thirdSectionComplete, setThirdSectionComplete] = useState(false);
-
-    const [selectedCountry, setSelectedCountry] = useState('');
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
     const toggleFirstAccordion = () => {
         setIsOpenFirst(!isOpenFirst);
@@ -38,75 +35,63 @@ const AccordionForm = () => {
         setIsOpenSecond(false);
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        // Handle form submission logic here
-    };
-
     const handleContinueFirst = () => {
-        // Validate second section inputs here (example: phoneNumber, postalCode)
-        // For simplicity, let's assume they are valid if not empty
-        const phoneNumber = (document.getElementById('city') as HTMLInputElement)?.value.trim();
-        console.log('phoneNumber', phoneNumber)
-        const postalPostal = (document.getElementById('postalcode') as HTMLInputElement)?.value.trim();
-        console.log('postalPostal', postalPostal)
-        const postalLocation = (document.getElementById('location') as HTMLInputElement)?.value.trim();
-        console.log('postalLocation', postalLocation)
-        const postalAddress = (document.getElementById('address') as HTMLInputElement)?.value.trim();
-        console.log('postalAddress', postalAddress)
-
-        if (phoneNumber && postalAddress && postalLocation && postalPostal) {
+        // Perform validation using react-hook-form methods
+        handleSubmit(onFirstSubmit)(); // Trigger form submission
+    };
+    const handleContinueSecond = () => {
+        // Perform validation using react-hook-form methods
+        handleSubmit(onSecondSubmit)(); // Trigger form submission
+    };
+    const onFirstSubmit = (data: any) => {
+        console.log('Form data11:', data);
+        // Handle further submission logic here
+        if (!errors.city && !errors.postalcode && !errors.location && !errors.address) {
             setFirstSectionComplete(true);
-            toggleSecondAccordion(); // Close the second accordion
-        } else {
-            alert('Please fill out all fields in the second section.');
+            toggleSecondAccordion(); // Close the first accordion
         }
     };
-
-    const handleContinueSecond = () => {
-        // Validate second section inputs here (example: phoneNumber, postalCode)
-        // For simplicity, let's assume they are valid if not empty
-        const phoneNumber = (document.getElementById('message1') as HTMLInputElement)?.value.trim();
-        const postalCode = (document.getElementById('message2') as HTMLInputElement)?.value.trim();
-
-        if (phoneNumber && postalCode) {
+    const onSecondSubmit = (data: any) => {
+        console.log('Form data222:', data);
+        // Handle further submission logic here
+        if (!errors.message1 && !errors.message1) {
             setSecondSectionComplete(true);
             toggleSecondAccordion(); // Close the second accordion
             toggleThirdAccordion()
-
-        } else {
-            alert('Please fill out all fields in the second section.');
         }
     };
 
-    const handleCountryChange = (e: any) => {
-        setSelectedCountry(e.target.value);
-    };
     const selectStyles: { [key: string]: string } = {
         border: '1px solid #EFEFEF',
-        padding: "10px 30px 10px 27px",
+        padding: '10px 30px 10px 27px',
         marginTop: '12px',
         paddingLeft: '27px',
         minHeight: '52px',
         fontWeight: '400',
         lineHeight: '24px',
         width: '100%',
-        outline: 'blue',
         borderRadius: '4px',
         fontSize: '14px',
         color: '#2C2240',
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%239D9D9D' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`, // Custom arrow icon
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%239D9D9D' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right 25px top 50%', // Adjust position here
+        backgroundPosition: 'right 25px top 50%',
         paddingRight: '30px',
-        appearance: 'none', // Hide default arrow in modern browsers
+        appearance: 'none',
     };
+
+    const errorStyles = {
+        border: '1px solid red',
+        outline: 'red',
+    };
+
     const countryOptions = [
-        { value: '', label: 'City*', disabled: true },
+        { value: '', label: 'Choose City *', disabled: true },
         { value: 'usa', label: 'USA' },
         { value: 'uk', label: 'United Kingdom' },
         { value: 'canada', label: 'Canada' }
     ];
+
     const locationOptions = [
         { value: '', label: 'Choose Event Location *', disabled: true },
         { value: 'los angeles', label: 'Los Angeles' },
@@ -114,138 +99,119 @@ const AccordionForm = () => {
     const { isStaffListerFilter, setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss, staff } = useBookingContext();
     return (
         <div className="w-full">
-            <form onSubmit={handleSubmit}>
-                {/* First accordion section */}
-                <div style={{ boxShadow: "0px 6px 26px 0px rgba(0, 0, 0, 0.07)" }} className={`${isOpenFirst ? "pb-[24px]" : "pb-[37.5px] !py-[24px]"} pt-[37.5px] px-[40px]  rounded-[8px] bg-[#FFF]  mb-4 ${isOpenFirst ? 'open' : ''}`}>
-                    <div
-                        className="flex items-center justify-between cursor-pointer"
-                        onClick={toggleFirstAccordion}
-                    >
-                        <div className='flex justify-start items-start flex-col gap-[16px]'>
-                            <div className='flex justify-center gap-[12px] items-center'>
-                                <Image width={24} height={24} src='/images/booking/barglass.svg' alt='user' />
-                                <h2 className={` !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]`}>Event Location</h2>
-                            </div>
-                            {firstSectionComplete && <span className={`${styles.lato_font} text-[#6B6B6B] text-[16px] font-[400] leading-[20.4px] tracking-[-0.32px]`}>11121 York Rd, Cockeysville Maryland, 21030</span>}
+            {/* First accordion section */}
+            <div className={`${isOpenFirst ? "pb-[24px]" : "pb-[37.5px] !py-[24px]"} pt-[37.5px] px-[40px] rounded-[8px] bg-[#FFF] mb-4 ${isOpenFirst ? 'open' : ''}`}>
+                <div className="flex items-center justify-between cursor-pointer" onClick={toggleFirstAccordion}>
+                    <div className='flex justify-start items-start flex-col gap-[16px]'>
+                        <div className='flex justify-center gap-[12px] items-center'>
+                            <Image width={24} height={24} src='/images/booking/barglass.svg' alt='user' />
+                            <h2 className={` !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]`}>Event Location</h2>
                         </div>
-                        {firstSectionComplete && (
-                            <div className="flex items-center justify-center flex-col gap-[16px]">
-                                <Image className='ml-[90px]' layout="intrinsic" src="/images/booking/done.svg" height={15} width={22} alt="tick" />
-                                <span className="text-[#038C11] tracking-[-0.32px] leading-[20.4px] text-[16px] font-[400]">We are available</span>
-                            </div>
-                        )}
+                        {firstSectionComplete && <span className={`${styles.lato_font} text-[#6B6B6B] text-[16px] font-[400] leading-[20.4px] tracking-[-0.32px]`}>11121 York Rd, Cockeysville Maryland, 21030</span>}
                     </div>
-                    {isOpenFirst && (
+                    {firstSectionComplete && (
+                        <div className="flex items-center justify-center flex-col gap-[16px]">
+                            <Image className='ml-[90px]' layout="intrinsic" src="/images/booking/done.svg" height={15} width={22} alt="tick" />
+                            <span className="text-[#038C11] tracking-[-0.32px] leading-[20.4px] text-[16px] font-[400]">We are available</span>
+                        </div>
+                    )}
+                </div>
+                {isOpenFirst && (
+                    <form onSubmit={handleSubmit(onFirstSubmit)}>
                         <div className="accordion-content mt-[22px]">
-                            <div className='space-y-[20px] mb-[32px]'>
+                            <div className='space-y-[30px] mb-[32px]'>
                                 <div className='flex justify-between gap-[20px] items-center'>
-                                    <div className="relative w-full">
-
-                                        <div className="relative w-full" style={{ width: '100%' }}>
-                                            <select
-                                                required
-                                                id="city"
-                                                name='city'
-
-                                                style={selectStyles}
-                                            >
-                                                <option disabled hidden value="" >City*</option>
-                                                {countryOptions.map((option, index) => (
-                                                    <option key={index} value={option.value}>
-                                                        {option.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </div>
-
-
-                                    </div>
-                                    <div className="flex items-center w-full">
-                                        <input
-                                            type="search"
-                                            id="postalcode"
-                                            name='postalcode'
-                                            className={` defaultsearch border-[1px] border-[#EFEFEF] pr-[10px]  py-[14px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200 mt-[12px] rounded-[4px]`}
-                                            placeholder="Postal Code *"
-                                            required
-                                        />
-                                    </div>
-
-                                </div>
-                                <div className="relative w-full">
-
-                                    <div className="relative !w-full" >
-                                        <div className="absolute inset-y-0  ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-                                            <Image width={14} height={14} src='/images/booking/location.svg' alt='step-1' />
-                                        </div>
+                                    <div className="relative w-full flex">
                                         <select
-                                            required
-                                            id="location"
-                                            name='location'
-                                            className='!pl-[50px] !m-0'
-                                            style={selectStyles}
+                                            {...register('city', { required: true })}
+                                            id="city"
+                                            name='city'
+                                            style={ selectStyles}
+                                            className={`${errors.city ? "outline-[red]":"outline-none"}`}
                                         >
-                                            <option disabled hidden value="" >City*</option>
-                                            {locationOptions.map((option, index) => (
+                                            <option disabled hidden value="">City*</option>
+                                            {countryOptions.map((option, index) => (
                                                 <option key={index} value={option.value}>
                                                     {option.label}
                                                 </option>
                                             ))}
                                         </select>
+                                        {errors.city && <span className="error-message absolute  text-red-500 top-[63px]">City is required.</span>}
                                     </div>
-
-
+                                    <div className="relative w-full flex">
+                                        <input
+                                            {...register('postalcode', { required: true })}
+                                            type="search"
+                                            id="postalcode"
+                                            name='postalcode'
+                                            className={`defaultsearch border-[1px] ${errors.postalcode ? "outline-[red]":"outline-none"}  border-[#EFEFEF] pr-[10px] py-[14px] pl-[20px] min-h-[52px] w-full  mt-[12px] rounded-[4px] `}
+                                            placeholder="Postal Code *"
+                                        />
+                                        {errors.postalcode && <span className="error-message absolute text-red-500 top-[63px]">Postal Code is required.</span>}
+                                    </div>
                                 </div>
+                                <div className="relative w-full flex">
+                                    <select
+                                        {...register('location', { required: true })}
+                                        id="location"
+                                        name='location'
+                                        className={`!pl-[50px] !m-0 ${errors.location ? "outline-[red]":"outline-none"}`}
+                                        style={selectStyles}
 
-                                <div className="relative">
-                                    <div className="absolute inset-y-0  ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
-
-                                        <Image width={14} height={14} src='/images/booking/address.svg' alt='step-1' />
-                                    </div>
+                                    >
+                                        <option disabled hidden value="">Choose Event Location *</option>
+                                        {locationOptions.map((option, index) => (
+                                            <option key={index} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    {errors.location && <span className="error-message absolute text-red-500 top-[52px]">Event Location is required.</span>}
+                                </div>
+                                <div className="relative flex">
                                     <input
-                                        required
+                                        {...register('address', { required: true })}
                                         type="search"
                                         id="address"
                                         name='address'
-                                        className={`defaultsearch border-[1px] border-[#EFEFEF] py-[14px] pl-[43px] pr-[10px] min-h-[52px] w-full focus:outline-blue-200 rounded-[4px]`}
+                                        className={`defaultsearch border-[1px] ${errors.address ? "outline-[red]":"outline-none"} border-[#EFEFEF] py-[14px] pl-[43px] pr-[10px] min-h-[52px] w-full  rounded-[4px]`}
                                         placeholder="Enter Address *"
                                     />
-
-
+                                    {errors.address && <span className="error-message absolute text-red-500 top-[52px]">Address is required.</span>}
                                 </div>
                             </div>
                             <div className="text-center">
                                 <button
-                                    type="button"
-                                    className="flex justify-center rounded-[4px]  w-[216px] py-2  text-[16px] font-[400] leading-[26px] tracking-[
--2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
-                                    onClick={handleContinueFirst}
+                                    type="button" // Change to type="button" to prevent form submission
+                                    onClick={handleContinueFirst} // Call your custom continue handler
+                                    className="flex justify-center rounded-[4px] w-[216px] py-2 text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
                                 >
                                     <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px]'>Continue</span>
                                     <span><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
                                 </button>
                             </div>
                         </div>
+                    </form>
+
+                )}
+            </div>
+            {/* Second accordion section */}
+            <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-4  ${isOpenSecond ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenSecond ? 'open' : ''}`}>
+                <div
+                    className="flex items-center justify-between cursor-pointer"
+                >
+                    <div className='flex justify-center gap-[12px] items-center'>
+                        <Image width={23} height={23} src='/images/booking/detailTask.svg' alt='user' />
+                        <h2 className=" !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]">Details about the task</h2>
+                    </div>
+                    {secondSectionComplete && (
+                        <div className="flex items-center justify-center flex-col gap-[16px]">
+                            <Image className='ml-[90px]' layout="intrinsic" src="/images/booking/done.svg" height={17} width={24} alt="tick" />
+                        </div>
                     )}
                 </div>
-
-                {/* Second accordion section */}
-                <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-4  ${isOpenSecond ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenSecond ? 'open' : ''}`}>
-                    <div
-                        className="flex items-center justify-between cursor-pointer"
-                        onClick={toggleSecondAccordion}
-                    >
-                        <div className='flex justify-center gap-[12px] items-center'>
-                            <Image width={23} height={23} src='/images/booking/detailTask.svg' alt='user' />
-                            <h2 className=" !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]">Details about the task</h2>
-                        </div>
-                        {secondSectionComplete && (
-                            <div className="flex items-center justify-center flex-col gap-[16px]">
-                                <Image className='ml-[90px]' layout="intrinsic" src="/images/booking/done.svg" height={17} width={24} alt="tick" />
-                            </div>
-                        )}
-                    </div>
-                    {isOpenSecond && (
+                {isOpenSecond && (
+                    <form onSubmit={handleSubmit(onSecondSubmit)}>
                         <div className="accordion-content mt-[52px]">
                             <div className='flex justify-center items-start !gap-[48px]'>
                                 <div className='space-y-[17px] pb-[28px]  !w-[18%] capitalize ml-[42px]'>
@@ -266,38 +232,41 @@ const AccordionForm = () => {
                                     })}
                                 </div>
 
-                                <div className={`space-y-[24px] !w-[82%] pr-[42px]`}>
+                                <div className={`space-y-[30px] !w-[82%] pr-[42px]`}>
                                     <h2 className={`${styles.lato_font} w-[82% !text-[#000000] text-[16px] tracking-[-2%]  leading-[20.4px] `}>Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later.</h2>
                                     <div className="relative">
-                                        <div className="absolute inset-y-0  start-0 flex items-center ps-[16px] pointer-events-none !pt-[1px]">
+                                        <div>
+                                            <div className="absolute inset-y-0  start-0 flex items-center ps-[16px] pointer-events-none !pt-[1px]">
 
-                                            <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
+                                                <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
+                                            </div>
+                                            <input
+                                                {...register('message1', { required: true })}
+                                                type="search"
+                                                id="message1"
+                                                name='message1'
+                                                className={`border-[1px] ${errors.message1 ? "outline-[red]":"outline-none"} !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message1 ? 'border-red-500 ' : ""}`}
+                                                placeholder="Write down a suitable title fo the Job "
+                                            />
                                         </div>
-                                        <input
-                                            required
-                                            type="search"
-                                            id="message1"
-                                            name='message1'
-                                            className={` border-[1px] !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px]`}
-                                            placeholder="Write down a suitable title fo the Job"
-                                        />
-
-
+                                        {errors.message1 && <span className="error-message absolute text-red-500 top-[49px]">required.</span>}
                                     </div>
                                     <div className="relative">
-                                        <div className="absolute inset-y-0 flox start-0 !mt-[18px] items-center ps-[16px] pointer-events-none !pt-[1px]">
+                                        <div>
+                                            <div className="absolute inset-y-0 flox start-0 !mt-[18px] items-center ps-[16px] pointer-events-none !pt-[1px]">
 
-                                            <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
+                                                <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
+                                            </div>
+                                            <textarea
+                                                {...register('message2', { required: true })}
+                                                id="message2"
+                                                name='message2'
+                                                className={`!h-[112px] border-[1px] ${errors.message2 ? "outline-[red]":"outline-none"}  !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message2 ? 'border-red-500 ' : ""}`}
+                                                placeholder="Hi! Looking for help updating my 650 sq ft apartment. I’m on the 2nd floor up a short flight of stairs. Please bring an electric drill and ring doorbell number 3. Thanks!"
+                                            ></textarea>
                                         </div>
-                                        <textarea
-                                            required
-                                            id="message2"
-                                            name='message2'
-                                            className={`border-[1px] !border-[#EFEFEF] !py-[12px] !h-[180px] mb-[32px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px]`}
-                                            placeholder="Hi! Looking for help updating my 650 sq ft apartment. I’m on the 2nd floor up a short flight of stairs. Please bring an electric drill and ring doorbell number 3. Thanks!"
-                                        ></textarea>
 
-
+                                        {errors.message2 && <span className="error-message absolute text-red-500 top-[112px]"> required.</span>}
 
                                     </div>
                                 </div>
@@ -305,19 +274,20 @@ const AccordionForm = () => {
                             <div className="text-center">
                                 <button
                                     type="button"
-                                    className="flex justify-center rounded-[4px]  w-[216px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
                                     onClick={handleContinueSecond}
+                                    className="flex justify-center rounded-[4px]  w-[216px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
                                 >
                                     <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px]'>Continue</span>
                                     <span><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
                                 </button>
                             </div>
                         </div>
-                    )}
+                    </form>
+                )}
 
-                </div>
-                {/* Third accordion section */}
-                <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-4  ${isOpenThird ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenThird ? 'open' : ''}`}>
+            </div>
+             {/* Third accordion section */}
+             <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-4  ${isOpenThird ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenThird ? 'open' : ''}`}>
                     <div
                         className="flex items-center justify-between cursor-pointer"
                         onClick={toggleThirdAccordion}
@@ -417,10 +387,8 @@ const AccordionForm = () => {
                         </div>
                     }
                 </div>
-            </form>
         </div>
     );
 };
 
 export default AccordionForm;
-
