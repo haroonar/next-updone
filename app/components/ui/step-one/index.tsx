@@ -248,7 +248,7 @@ const AccordionForm = () => {
                     {isOpenSecond && (
                         <div className="accordion-content mt-[52px]">
                             <div className='flex justify-center items-start !gap-[48px]'>
-                                <div className='space-y-[17px] pb-[28px]  w-[20%] capitalize ml-[42px]'>
+                                <div className='space-y-[17px] pb-[28px]  !w-[18%] capitalize ml-[42px]'>
                                     <h3 className='font-[500] text-center leading-[19.93px] tracking-[0.28px] !text-[14.82px] !text-[#000000]'>
                                         Choose Service
                                     </h3>
@@ -266,7 +266,7 @@ const AccordionForm = () => {
                                     })}
                                 </div>
 
-                                <div className={`space-y-[24px] w-[80% pr-[42px]`}>
+                                <div className={`space-y-[24px] !w-[82%] pr-[42px]`}>
                                     <h2 className={`${styles.lato_font} w-[82% !text-[#000000] text-[16px] tracking-[-2%]  leading-[20.4px] `}>Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later.</h2>
                                     <div className="relative">
                                         <div className="absolute inset-y-0  start-0 flex items-center ps-[16px] pointer-events-none !pt-[1px]">

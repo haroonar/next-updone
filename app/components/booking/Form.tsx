@@ -151,17 +151,19 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
     ];
     return (
         <>
-                {/* <FormNav next={next} steps={steps}
+             <div className='w-full bg-[#FFFFFF] relative'>
+             <FormNav next={next} steps={steps}
                     currentStep={currentStep} changeActiveColor={changeActiveColor} setChangeActiveColor={setChangeActiveColor}
-                /> */}
+                />
+             </div>
             <section style={{ maxHeight: changeActiveColor ? "430px" : "" }} className='max-w-[1279px] mx-auto max-h-[1000px]'>
-                <div className={`${styles.tell_us} text-center text-[#000000] flex justify-center items-center gap-[20px] leading-[20.4px] tracking-[-0.32px] !text-[16px] pb-[16.5px] pt-[26.5px] px-[10px] mb-[42px]`}>
+                <div className={`${styles.tell_us} text-center text-[#000000] flex justify-center items-center gap-[20px] leading-[20.4px] tracking-[-0.32px] !text-[16px] pt-[33.5px] px-[10px] mb-[68.5px]`}>
                     <Image width={20} height={20} src='/images/booking/editPancel.svg' alt='step-1' />    Tell us about your task. We use these details to show Taskers in your area who fit your needs.
                 </div>
 
 
                 {/* Form */}
-                <form className='pb-[160px]' onSubmit={handleSubmit(processForm)}>
+                <form className='pb-[100px]' onSubmit={handleSubmit(processForm)}>
                     {currentStep === 0 && (
                         <motion.div
                             initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}

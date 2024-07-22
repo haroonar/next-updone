@@ -1,5 +1,4 @@
 'use client'
-// RootLayout.js
 import React from 'react';
 
 

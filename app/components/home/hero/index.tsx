@@ -219,7 +219,7 @@ const Hero = () => {
                     } */}
                     <div className='flex justify-center items-start gap-[14px] absolute bottom-[40px]'>
                     <Link href='/staff/booking' className='py-[16px] px-[90px] text-[#350ABC] font-[600] leading-[26px] tracking-[-2%] text-[20px]' style={{background:'#f3f0ff'}}>Post job For Free</Link>
-                    <button className='py-[16px] px-[90px] bg-[#774DFD] text-[#F3F0FF] font-[600] leading-[26px] tracking-[-2%] text-[20px]'>Post job For Free</button>
+                    <button className='py-[16px] px-[90px] bg-[#774DFD] text-[#F3F0FF] font-[600] leading-[26px] tracking-[-2%] text-[20px]'>Become a Tasker</button>
                     </div>
                     <Image quality={100} onLoadingComplete={handleImage2Load} height={744} width={1294} src="/images/hero/hero.png" alt="Hero Image" />
                 </div>

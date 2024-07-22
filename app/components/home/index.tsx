@@ -14,6 +14,8 @@ const LazyTestimonials = dynamic(() => import('./testimonials'), { ssr: false })
 const LazyAccordion = dynamic(() => import('./faqs'), { ssr: false });
 import HOME_TESTIMONINAL_CONTENT from './testimonials/constants';
 import { apiRequest } from '@/app/libs/services';
+import { useDispatch } from 'react-redux';
+import { setBookingInactive } from '@/app/libs/store/features/bookingSlice';
 const Home = () => {
   const [data, setData] = useState<any>(null);
   console.log('data', data)
@@ -35,6 +37,11 @@ const Home = () => {
   
     fetchDataIfNeeded(); // Call the function to fetch data
   }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
+  const dispatch=useDispatch()
+  useEffect(() => {
+      // Dispatch setBookingActive action when entering the booking component
+      dispatch(setBookingInactive());
+    }, [dispatch]); // Runs once on component mount and clean up on unmount
   return (
     <>
       <div className='overflow-hidden'>

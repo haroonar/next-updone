@@ -1,14 +1,28 @@
 'use client'
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import FooterList from "../../common/footer-list";
 import { ABOUT_ITEMS, LISTING_ITEMS, SOCIAL_ITEMS } from "@/app/libs/Constants";
+import { useDispatch } from "react-redux";
+import { selectBookingActive, setBookingActive, setBookingInactive } from "@/app/libs/store/features/bookingSlice";
+import { useAppSelector } from "@/app/libs/store/hooks";
 
 const Footer = () => {
-
+    const bookingActive = useAppSelector(selectBookingActive);
+    const dispatch=useDispatch()
+    useEffect(() => {
+        // On component mount, check if bookingActive should be true based on localStorage
+        const storedBookingActive = localStorage.getItem('bookingActive') === 'true';
+        if (storedBookingActive) {
+            dispatch(setBookingActive());
+        } else {
+            dispatch(setBookingInactive());
+        }
+    }, [dispatch]);
     return (
        <>
-        <div className="bg-[#2c2240] relative">
+       {!bookingActive && 
+        <div className={`bg-[#2c2240] ${bookingActive ? "absolute":'relative'}`}>
             <div className='max-w-[1279px] m-auto'>
                 <footer className="relative bg-[#2c2240] text-white pt-[100px] pb-8  footer-image">
                     <div className="max-w-screen-xl mx-auto">
@@ -57,6 +71,7 @@ const Footer = () => {
                 </footer>
             </div>
         </div>
+       }
        </>
     );
 };

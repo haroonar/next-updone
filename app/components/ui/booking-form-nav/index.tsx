@@ -1,5 +1,7 @@
+import { selectBookingActive } from '@/app/libs/store/features/bookingSlice';
 import Image from 'next/image'
 import React from 'react'
+import { useSelector } from 'react-redux';
 interface FormNavProps{
     steps:Array<any>
     currentStep:any;
@@ -8,11 +10,13 @@ interface FormNavProps{
     next:any
 }
 const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}:FormNavProps) => {
+    const bookingActive = useSelector(selectBookingActive);
+
     return (
         <>
             {/* steps */}
             <nav aria-label='Progress' className='relative left-6 z-[1]'>
-                <ol role='list' className='flex space-x-4 justify-center items-center mt-[133px] mx-[224px]'>
+                <ol role='list' className={`flex space-x-4 justify-center items-center ${!bookingActive &&  "mt-[133px]"}  max-w-[822px] m-auto`}>
                     {steps.map((step, index) => (
                         <li key={step.name} className='flex-1 gap-4'>
                             {currentStep > index ? (
