@@ -169,7 +169,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                         >
                             <div className='flex gap-[34px] mx-auto min-h-[638px] mt-[0] mb-[0]'>
 
-                                <AccordionForm />
+                                <AccordionForm next={next}/>
                             </div>
                         </motion.div>
                     )}

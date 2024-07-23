@@ -27,7 +27,7 @@ const TimeAndCalander = ({ isStepOneCalander,highlightedDatesAvailable, highligh
                         />
                     </Suspense>
                 </div>
-                {!isCalander &&
+                {!isCalander || !isStepOneCalander &&
                     <div style={{marginLeft:isStepOneCalander ? "32px":""}} className={`flex justify-start gap-[10px] items-center mt-[18px] ml-[10px] tracking-[-0.2px] leading-[24px] font-[400] text-[#6B6B6B] text-[10px]`}>
                         <h3 className='flex justify-center items-center gap-1'>
                             <span>
