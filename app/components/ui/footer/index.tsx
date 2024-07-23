@@ -10,13 +10,24 @@ import { useAppSelector } from "@/app/libs/store/hooks";
 const Footer = () => {
     const bookingActive = useAppSelector(selectBookingActive);
     const dispatch=useDispatch()
+    // useEffect(() => {
+    //     // On component mount, check if bookingActive should be true based on localStorage
+    //     const storedBookingActive = localStorage?.getItem('bookingActive') === 'true';
+    //     if (storedBookingActive) {
+    //         dispatch(setBookingActive());
+    //     } else {
+    //         dispatch(setBookingInactive());
+    //     }
+    // }, [dispatch]);
     useEffect(() => {
         // On component mount, check if bookingActive should be true based on localStorage
-        const storedBookingActive = localStorage?.getItem('bookingActive') === 'true';
-        if (storedBookingActive) {
-            dispatch(setBookingActive());
-        } else {
-            dispatch(setBookingInactive());
+        if (typeof window !== 'undefined') {
+            const storedBookingActive = localStorage.getItem('bookingActive') === 'true';
+            if (storedBookingActive) {
+                dispatch(setBookingActive());
+            } else {
+                dispatch(setBookingInactive());
+            }
         }
     }, [dispatch]);
     return (

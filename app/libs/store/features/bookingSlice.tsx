@@ -3,8 +3,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-// Function to get initial bookingActive state from localStorage
-const initialBookingActiveState = localStorage?.getItem('bookingActive') === 'true';
+const initialBookingActiveState =
+  typeof window !== 'undefined' &&
+  localStorage.getItem('bookingActive') === 'true';
+
+  // const initialBookingActiveState = localStorage?.getItem('bookingActive') === 'true';
 
 interface BookingState {
   bookingActive: boolean;
