@@ -1,3 +1,4 @@
+"use client"
 import { createSlice } from '@reduxjs/toolkit';
 import { Staff } from '@/app/libs/types'; // Assuming this path is correct and provides the Staff type
 import { RootState } from '../store';

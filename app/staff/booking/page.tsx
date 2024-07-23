@@ -1,11 +1,9 @@
 "use client"
 
-import Loader from "@/app/components/ui/loader";
-import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import BookingForm from '@/app/components/booking/Form';
-import { setBookingActive, setBookingInactive, selectBookingActive } from "@/app/libs/store/features/bookingSlice";
+import { setBookingActive } from "@/app/libs/store/features/bookingSlice";
 import BookingStyles from "@/app/components/booking/booking-styles";
 
 export default function Page() {
