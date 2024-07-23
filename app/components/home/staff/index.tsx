@@ -108,9 +108,9 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
           {data?.records?.length === 0 ? (
             <div className="text-center text-xl  h-screen flex justify-center items-center">No staff found, sorry.</div>
           ) : (
-            data?.records?.map((staff: any) => (
+            data?.records?.map((staff: any,index:number) => (
               <div key={staff.id} className='h-[510px]'>
-                {loading ? <CardSkeleton staff={staff} /> : <StaffMap setModalOpen={setModalOpen} modalOpen={modalOpen} handleStaffClick={handleStaffClick} staff={staff} />}
+                {loading ? <CardSkeleton staff={staff} /> : <StaffMap index={index} setModalOpen={setModalOpen} modalOpen={modalOpen} handleStaffClick={handleStaffClick} staff={staff} />}
               </div>
             ))
           )}

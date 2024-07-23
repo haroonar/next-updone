@@ -20,11 +20,15 @@ type StaffMapProps = {
     staff: any;
     handleStaffClick: (arg: any) => void
     setModalOpen?: (arg: boolean) => void;
-    modalOpen?: boolean
+    modalOpen?: boolean;
+    index: number;
 }
-const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMapProps) => {
+const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: StaffMapProps) => {
+    console.log('index', index)
     console.log('staff in staffMap', staff)
     const [openBreakDown, setOpenCastBreakDown] = useState(false)
+    const [getInviteCount,setGetInviteCount]=useState()
+    console.log('getInviteCount', getInviteCount)
     const [sendInvite, setSendInvite] = useState(false)
 
     const [showAllServices, setShowAllServices] = useState(false);
@@ -39,6 +43,11 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
     }
     const handleCloseCastBreakdown = () => {
         setOpenCastBreakDown(!openBreakDown)
+    }
+    const handleSendInvite=()=>{
+        setSendInvite(!sendInvite)
+        //@ts-ignore
+        setGetInviteCount(prevCount => index+1);
     }
     return (
         <>
@@ -177,7 +186,7 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                     </div>
                     <div className='space-x-[20px] !m-0 flex justify-center items-center px-[10px]'>
                         <button onClick={() => handleStaffClick(staff)} className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md"><div className={`${montserrat} text-[#2C2240] text-[16px] font-[600] tracking-[-1%] leading-[19.5px]`}><span className='!text-[12px] !leading-[14.63px] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
-                        <button onClick={() => setSendInvite(!sendInvite)} type="button" className={`text-[#F3F0FF] ${sendInvite ? "bg-[#774DFD]" : "bg-[#2c2240]"}  rounded-[4px]  text-[14px] font-normal w-[137px]  py-[10px] text-center inline-flex items-center  me-2 `}>
+                        <button onClick={handleSendInvite} type="button" className={`text-[#F3F0FF] ${sendInvite ? "bg-[#774DFD]" : "bg-[#2c2240]"}  rounded-[4px]  text-[14px] font-normal w-[137px]  py-[10px] text-center inline-flex items-center  me-2 `}>
                             <span className={`flex justify-center items-center ${sendInvite ? "ml-[30px]" : "ml-[18px]"}`}>
                                 {sendInvite ? "Sended" : "Send Invite"}
                                 <span className='ml-[9.33px]'>
