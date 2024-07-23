@@ -23,12 +23,12 @@ export const bookingSlice = createSlice({
     setBookingActive: (state) => {
       state.bookingActive = true;
       state.bookingInActive = false;
-      localStorage.setItem('bookingActive', 'true'); // Update localStorage
+      localStorage?.setItem('bookingActive', 'true'); // Update localStorage
     },
     setBookingInactive: (state) => {
       state.bookingActive = false;
       state.bookingInActive = true;
-      localStorage.setItem('bookingActive', 'false'); // Update localStorage
+      localStorage?.setItem('bookingActive', 'false'); // Update localStorage
     },
   },
 });

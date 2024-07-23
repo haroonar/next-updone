@@ -44,7 +44,7 @@ const Header = () => {
     }
     useEffect(() => {
         // On component mount, check if bookingActive should be true based on localStorage
-        const storedBookingActive = localStorage.getItem('bookingActive') === 'true';
+        const storedBookingActive = localStorage?.getItem('bookingActive') === 'true';
         if (storedBookingActive) {
             dispatch(setBookingActive());
         } else {

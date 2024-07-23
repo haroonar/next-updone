@@ -127,7 +127,7 @@ const AccordionForm = () => {
                                             id="city"
                                             name='city'
                                             style={ selectStyles}
-                                            className={`${errors.city ? "outline-[red]":"outline-none"}`}
+                                            className={`${errors.city ? "outline-[red] outline-[.5px]":"outline-none"}`}
                                         >
                                             <option disabled hidden value="">City*</option>
                                             {countryOptions.map((option, index) => (
@@ -136,7 +136,7 @@ const AccordionForm = () => {
                                                 </option>
                                             ))}
                                         </select>
-                                        {errors.city && <span className="error-message absolute  text-red-500 top-[63px]">City is required.</span>}
+                                        {errors.city && <span className="text-[12px] error-message absolute  text-red-500 top-[63px]">City is required.</span>}
                                     </div>
                                     <div className="relative w-full flex">
                                         <input
@@ -144,10 +144,10 @@ const AccordionForm = () => {
                                             type="search"
                                             id="postalcode"
                                             name='postalcode'
-                                            className={`defaultsearch border-[1px] ${errors.postalcode ? "outline-[red]":"outline-none"}  border-[#EFEFEF] pr-[10px] py-[14px] pl-[20px] min-h-[52px] w-full  mt-[12px] rounded-[4px] `}
+                                            className={`defaultsearch border-[1px] ${errors.postalcode ? "outline-[red] outline-[.5px]":"outline-none"}  border-[#EFEFEF] pr-[10px] py-[14px] pl-[20px] min-h-[52px] w-full  mt-[12px] rounded-[4px] `}
                                             placeholder="Postal Code *"
                                         />
-                                        {errors.postalcode && <span className="error-message absolute text-red-500 top-[63px]">Postal Code is required.</span>}
+                                        {errors.postalcode && <span className="text-[12px] error-message absolute text-red-500 top-[63px]">Postal Code is required.</span>}
                                     </div>
                                 </div>
                                 <div className="relative w-full flex">
@@ -155,7 +155,7 @@ const AccordionForm = () => {
                                         {...register('location', { required: true })}
                                         id="location"
                                         name='location'
-                                        className={`!pl-[50px] !m-0 ${errors.location ? "outline-[red]":"outline-none"}`}
+                                        className={`!pl-[50px] !m-0 ${errors.location ? "outline-[red] outline-[.5px]":"outline-none"}`}
                                         style={selectStyles}
 
                                     >
@@ -166,7 +166,7 @@ const AccordionForm = () => {
                                             </option>
                                         ))}
                                     </select>
-                                    {errors.location && <span className="error-message absolute text-red-500 top-[52px]">Event Location is required.</span>}
+                                    {errors.location && <span className="text-[12px] error-message absolute text-red-500 top-[52px]">Event Location is required.</span>}
                                 </div>
                                 <div className="relative flex">
                                     <input
@@ -174,10 +174,10 @@ const AccordionForm = () => {
                                         type="search"
                                         id="address"
                                         name='address'
-                                        className={`defaultsearch border-[1px] ${errors.address ? "outline-[red]":"outline-none"} border-[#EFEFEF] py-[14px] pl-[43px] pr-[10px] min-h-[52px] w-full  rounded-[4px]`}
+                                        className={`defaultsearch border-[1px] ${errors.address ? "outline-[red] outline-[.5px]":"outline-none"} border-[#EFEFEF] py-[14px] pl-[43px] pr-[10px] min-h-[52px] w-full  rounded-[4px]`}
                                         placeholder="Enter Address *"
                                     />
-                                    {errors.address && <span className="error-message absolute text-red-500 top-[52px]">Address is required.</span>}
+                                    {errors.address && <span className="text-[12px] error-message absolute text-red-500 top-[52px]">Address is required.</span>}
                                 </div>
                             </div>
                             <div className="text-center">
@@ -245,11 +245,11 @@ const AccordionForm = () => {
                                                 type="search"
                                                 id="message1"
                                                 name='message1'
-                                                className={`border-[1px] ${errors.message1 ? "outline-[red]":"outline-none"} !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message1 ? 'border-red-500 ' : ""}`}
+                                                className={`border-[1px] ${errors.message1 ? "outline-[red] outline-[.5px]":"outline-none"} !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message1 ? 'border-red-500 ' : ""}`}
                                                 placeholder="Write down a suitable title fo the Job "
                                             />
                                         </div>
-                                        {errors.message1 && <span className="error-message absolute text-red-500 top-[49px]">required.</span>}
+                                        {errors.message1 && <span className="text-[12px] error-message absolute text-red-500 top-[49px]">required.</span>}
                                     </div>
                                     <div className="relative">
                                         <div>
@@ -261,12 +261,12 @@ const AccordionForm = () => {
                                                 {...register('message2', { required: true })}
                                                 id="message2"
                                                 name='message2'
-                                                className={`!h-[112px] border-[1px] ${errors.message2 ? "outline-[red]":"outline-none"}  !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message2 ? 'border-red-500 ' : ""}`}
+                                                className={`!h-[112px] border-[1px] ${errors.message2 ? "outline-[red] outline-[.5px]":"outline-none"}  !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message2 ? 'border-red-500 ' : ""}`}
                                                 placeholder="Hi! Looking for help updating my 650 sq ft apartment. I’m on the 2nd floor up a short flight of stairs. Please bring an electric drill and ring doorbell number 3. Thanks!"
                                             ></textarea>
                                         </div>
 
-                                        {errors.message2 && <span className="error-message absolute text-red-500 top-[112px]"> required.</span>}
+                                        {errors.message2 && <span className="text-[12px] error-message absolute text-red-500 top-[112px]"> required.</span>}
 
                                     </div>
                                 </div>
