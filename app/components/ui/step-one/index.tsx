@@ -8,9 +8,9 @@ import { useBookingContext } from '@/app/libs/context/BookingContext';
 import { highlightedDatesAvailable, highlightedDatesNotAvailable } from '../../home/detail';
 
 const AccordionForm = ({next}:any) => {
-    const [isOpenFirst, setIsOpenFirst] = useState(false);
+    const [isOpenFirst, setIsOpenFirst] = useState(true);
     const [isOpenSecond, setIsOpenSecond] = useState(false);
-    const [isOpenThird, setIsOpenThird] = useState(true);
+    const [isOpenThird, setIsOpenThird] = useState(false);
 
     const [firstSectionComplete, setFirstSectionComplete] = useState(false);
     const [secondSectionComplete, setSecondSectionComplete] = useState(false);
