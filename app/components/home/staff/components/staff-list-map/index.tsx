@@ -10,6 +10,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { highlightedDatesAvailable, highlightedDatesNotAvailable } from '../../../detail';
 import dynamic from 'next/dynamic';
 import Loader from '@/app/components/ui/loader';
+import { montserrat } from '@/app/libs/Fonts';
 
 const CommonModal = dynamic(() => import('@/app/components/common/modal/Modal'), {
     ssr: false, // Do not SSR for this component
@@ -23,6 +24,9 @@ type StaffMapProps = {
 }
 const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMapProps) => {
     console.log('staff in staffMap', staff)
+    const [openBreakDown, setOpenCastBreakDown] = useState(false)
+    const [sendInvite, setSendInvite] = useState(false)
+
     const [showAllServices, setShowAllServices] = useState(false);
     const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss } = useBookingContext();
 
@@ -30,14 +34,19 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
-
+    const handleOpenCastBreakdown = () => {
+        setOpenCastBreakDown(true)
+    }
+    const handleCloseCastBreakdown = () => {
+        setOpenCastBreakDown(!openBreakDown)
+    }
     return (
         <>
             <Image
                 style={{
                     position: "relative",
-                    left: "93px",
-                    top: " 60px",
+                    left: "91px",
+                    top: " 71px",
                     padding: "6px",
                     background: "#f3f0ff"
                 }}
@@ -49,8 +58,12 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                 height={120}
                 alt=''
             />
-            <div key={staff.id} className="p-3 pb-0 h-[430px] max-w-full mx-auto rounded-lg overflow-hidden shadow-whiteeee z-10 bg-white border-[1px] border-[#E9E9E9]">
-                <div className='text-center relative top-[20px] left-[63px] bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] px-[22px]'>
+            <div className='flex justify-end relative top-[30px] right-[11px]'>
+                <Image height={19} width={66} src='/images/booking/verfied.svg' alt='verfied' />
+            </div>
+
+            <div key={staff.id} className="py-3 px-5 pb-0 h-[400px] max-w-full mx-auto rounded-[4px] overflow-hidden shadow-whiteeee z-10 bg-white border-[1px] border-[#E9E9E9]">
+                <div className='text-center relative top-[20px] left-[66px] bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] px-[14px]'>
                     <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_481_590)">
                             <path d="M16.4333 0H0.566667C0.416377 0 0.272243 0.0585317 0.165973 0.162719C0.0597022 0.266905 0 0.408213 0 0.555556L0 9.44444C0 9.59179 0.0597022 9.7331 0.165973 9.83728C0.272243 9.94147 0.416377 10 0.566667 10H16.4333C16.5836 10 16.7278 9.94147 16.834 9.83728C16.9403 9.7331 17 9.59179 17 9.44444V0.555556C17 0.408213 16.9403 0.266905 16.834 0.162719C16.7278 0.0585317 16.5836 0 16.4333 0ZM0.566667 9.44444V0.555556H16.4333V9.44444H0.566667Z" fill="#350ABC" />
@@ -66,14 +79,23 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                             </clipPath>
                         </defs>
                     </svg>
-                    <span className='text-[16px] font-normal '>{staff?.per_hours_rate}$/hr</span>
+                    <span className='text-[14px] font-[400] tracking-[-2%] leading-[26px]'>{staff?.per_hours_rate}$/hr</span>
                 </div>
 
-                <div className='flex flex-col h-[94%] items-start justify-center relative bottom-[22px] mt-[35px]'>
 
-                    <div className="flex flex-col mt-4 items-center w-full">
-                        <div className="text-center flex justify-between w-full items-center font-bold text-lg mb-2">
-                            <h3 style={{ letterSpacing: '-1%' }} className='text-[20px] text-[#2C2240] font-semibold '>{staff.name}</h3>
+                <div className='flex flex-col h-[94%] items-start relative bottom-[18px] mt-[45px]'>
+
+                    <div className="flex flex-col mt-[30px] items-center w-full">
+                        <div className="text-center flex justify-between w-full items-center font-bold text-lg mb-[13px]">
+                            <h3 style={{
+                                letterSpacing: '-1%',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap'
+                            }} className='text-[20px] text-[#2C2240] font-semibold'>
+                                {staff.name.length > 18 ? `${staff.name.slice(0, 18)}...` : staff.name}
+                            </h3>
+
                             <div className="flex items-center justify-center">
                                 <div className='relative bottom-[2px]'>
                                     <svg className="w-4 h-4 text-[#F79809] me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -83,6 +105,15 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                                 <p className="ms-1 text-[14px]  font-normal text-black">{staff?.rating}</p>
                             </div>
                         </div>
+                        <div className="flex justify-start items-center text-start w-full space-x-3 mb-[12px] ">
+                            <span className='relative bottom-[5px] mr-[8px]'>
+                                <Image width={12} height={12} alt='verified' src='/images/staff-listing/phone.svg' />
+                            </span>
+                            <div className='!m-0 tracking-[-2%] relative bottom-[5px] text-[11.2px] font-[400] leading-[19.2px] flex justify-center items-center gap-2 text-[#000000]'>
+                                {`Phone Number`}
+                                <Image width={58} height={12} alt='verified' src='/images/staff-listing/vertified.svg' />
+                            </div>
+                        </div>
                         <div className="text-center flex justify-between w-full items-center font-bold text-lg mb-1">
                             <div className="text-center text-[14px] font-normal  text-[#989898] flex gap-2">
                                 <Image src='/images/gallery/location.svg' alt='location-svg' width={15} height={15} />  {`${staff.city}`}
@@ -90,9 +121,10 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
                             <span className='text-[14px] font-semibold'>{staff?.total_jobs_count} Jobs</span>
                         </div>
                     </div>
-                    <div className="flex justify-center items-center mt-2 w-full">
+
+                    <div className="flex justify-start items-center mt-2 w-full">
                         <div className="flex items-center ">
-                            <p style={{ wordSpacing: '-1px' }} className="leading-[24px] py-[6px] px-[10px] text-[11px] font-normal inline-flex items-center rounded-[100px] bg-[#F6F6F6] whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                            <p style={{ wordSpacing: '-1px' }} className="relative top-[5px] leading-[24px] py-[4px] px-[10px] !text-[11px] font-normal inline-flex items-center rounded-[100px] bg-[#F6F6F6] whitespace-nowrap overflow-hidden text-ellipsis text-sm">
                                 <span className="mr-2 flex-shrink-0">
                                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clipPath="url(#clip0_464_1076)">
@@ -111,78 +143,87 @@ const StaffMap = ({ staff, handleStaffClick, setModalOpen, modalOpen }: StaffMap
 
                         </div>
                     </div>
-                    <div className="flex justify-center items-center mt-[24px] w-full">
-                        <div className="flex items-center text-paragraph">
-                            <svg width="256" height="1" viewBox="0 0 256 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="0.7" x2="256" y2="0.7" stroke="url(#paint0_linear_464_1080)" stroke-width="0.6" />
-                                <defs>
-                                    <linearGradient id="paint0_linear_464_1080" x1="0" y1="1.5" x2="256" y2="1.5" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#CBCBCB" stop-opacity="0" />
-                                        <stop offset="0.505" stop-color="#CBCBCB" />
-                                        <stop offset="1" stop-color="#CBCBCB" stop-opacity="0" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-
+                </div>
+            </div>
+            <div className="flex justify-around items-center flex-col mt-[32px] relative bottom-[135.9px] w-full space-x-2  pt-2 pb-[17px] bg-[#F3F0FF] rounded-bl-[4px] rounded-br-[4px] border-x-[1px] border-[#E9E9E9]">
+                {openBreakDown &&
+                    <div className='!h-[11.5rem] bg-[#fff] pt-1 !pb-4 w-full absolute bottom-[75px] space-y-2 capitalize'>
+                        <div onClick={handleCloseCastBreakdown} className='w-full flex justify-center items-center cursor-pointer'><span className='rotate-180 relative top-[3px]'><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        </span ></div>
+                        <div className='text-[14px] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
+                            <h2>Worder fee per hour</h2><h2 className='font-[500]'>30$</h2>
+                        </div>
+                        <div className='text-[14px] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
+                            <h2>Total Numbers of hours</h2><h2 className='font-[500]'>54$</h2>
+                        </div>
+                        <div className='text-[14px] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
+                            <h2>Worder fee calculation</h2><h2 className='font-[500]'>1000$</h2>
+                        </div>
+                        <div className='text-[14px] px-3 flex justify-between items-center pb-2'>
+                            <h2>Plateform fee</h2><h2 className='font-[500]'>10$</h2>
                         </div>
                     </div>
-                    <div className="flex flex-col items-start mt-2 w-full">
-                        <h2 style={{ letterSpacing: '-2%' }} className="text-left text-[#2C2240] text-[14px] font-semibold w-full py-2">Services</h2>
-                        <div className="flex gap-x-3 flex-wrap text-[#350abc]">
-                            {/* {staff?.services?.slice(0, showAllServices ? staff.services.length : 3).map((service, index) => (
-                                <p key={index} className="text-left text-[14px] font-normal " style={{ margin: '0px' }}> */}
-                                  <div>
-  {staff?.services_provided && staff.services_provided
-    .split(' ')
-    .slice(0, 4)
-    .join(' ')}
-</div>
-
-                                {/* </p>
-                            ))} */}
-                            {/* {staff?.services?.length > 3 && !showAllServices && (
-                                <button style={{ margin: '0px', letterSpacing: '-2%' }} className='font-semibold text-[12px]' onClick={() => setShowAllServices(true)}>
-                                    +{staff.services.length - 3} more
-                                </button>
-                            )} */}
-                        </div>
+                }
+                <div className='!m-0'>
+                    <div onClick={handleOpenCastBreakdown} className='cursor-pointer flex justify-center items-center mb-[16px]'>
+                        <span><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        </span>   <span>Cost Breakdown</span>
                     </div>
-                    <div className="flex justify-around items-center mt-4 w-full space-x-2 border-t pt-4 pb-2 border-[#f3f0ff]">
-                        <button onClick={() => handleStaffClick(staff)} className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md">View Details</button>
-                        <button onClick={openModal} type="button" className="text-[#dfdbec] bg-[#2c2240]  rounded-[4px] text-[14px] font-normal px-[30px] py-[10px] text-center inline-flex items-center  me-2 ">
-                            <span className='mr-2'>
-                                <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="#F3F0FF" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                    <div className='space-x-[20px] !m-0 flex justify-center items-center px-[10px]'>
+                        <button onClick={() => handleStaffClick(staff)} className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md"><div className={`${montserrat} text-[#2C2240] text-[16px] font-[600] tracking-[-1%] leading-[19.5px]`}><span className='!text-[12px] !leading-[14.63px] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
+                        <button onClick={() => setSendInvite(!sendInvite)} type="button" className={`text-[#F3F0FF] ${sendInvite ? "bg-[#774DFD]" : "bg-[#2c2240]"}  rounded-[4px]  text-[14px] font-normal w-[137px]  py-[10px] text-center inline-flex items-center  me-2 `}>
+                            <span className={`flex justify-center items-center ${sendInvite ? "ml-[30px]" : "ml-[18px]"}`}>
+                                {sendInvite ? "Sended" : "Send Invite"}
+                                <span className='ml-[9.33px]'>
+                                    {sendInvite && <Image
+                                        width={13}
+                                        height={13}
+                                        color='#fff'
+                                        className='relative bottom-[.5px]'
+                                        src={'/images/hero/tick.svg'}
+                                        alt='tick'
+                                    />}
+                                    {!sendInvite &&
+                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.1666 1.33337L7.83325 8.66671M15.1666 1.33337L10.4999 14.6667L7.83325 8.66671M15.1666 1.33337L1.83325 6.00004L7.83325 8.66671" stroke="#F3F0FF" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    }
+
+                                </span>
+
                             </span>
-
-                            Book Now
                         </button>
-                        <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading....</p>}>
-                            <CommonModal isOpen={isModalOpen} onClose={closeModal} >
-                                <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
-                                    <BookingCalander
-                                        isStaffListerFilter
-                                        date={date}
-                                        setDate={setDate}
-                                        setSelectedTimeId={setSelectedTimeId}
-                                        scrollRef={scrollRef}
-                                        availableTimesMap={availableTimesMap}
-                                        handleTimeSelection={handleTimeSelection}
-                                        selectedTimeId={selectedTimeId}
-                                        scrollUp={scrollUp}
-                                        scrollDown={scrollDown}
-                                        timessss={timessss}
-                                        handleAddToBooking={handleAddToBooking}
-                                        selectedTimes={selectedTimes}
-                                        highlightedDatesNotAvailable={highlightedDatesNotAvailable}
-                                        highlightedDatesAvailable={highlightedDatesAvailable}
-                                    />
-                                </Suspense>
-                            </CommonModal>
-                        </Suspense>
                     </div>
                 </div>
+                <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading....</p>}>
+                    <CommonModal isOpen={isModalOpen} onClose={closeModal} >
+                        <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
+                            <BookingCalander
+                                isStaffListerFilter
+                                date={date}
+                                setDate={setDate}
+                                setSelectedTimeId={setSelectedTimeId}
+                                scrollRef={scrollRef}
+                                availableTimesMap={availableTimesMap}
+                                handleTimeSelection={handleTimeSelection}
+                                selectedTimeId={selectedTimeId}
+                                scrollUp={scrollUp}
+                                scrollDown={scrollDown}
+                                timessss={timessss}
+                                handleAddToBooking={handleAddToBooking}
+                                selectedTimes={selectedTimes}
+                                highlightedDatesNotAvailable={highlightedDatesNotAvailable}
+                                highlightedDatesAvailable={highlightedDatesAvailable}
+                            />
+                        </Suspense>
+                    </CommonModal>
+                </Suspense>
             </div>
         </>
     )

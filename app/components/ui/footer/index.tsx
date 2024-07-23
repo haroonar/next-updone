@@ -10,26 +10,31 @@ import { useAppSelector } from "@/app/libs/store/hooks";
 const Footer = () => {
     const bookingActive = useAppSelector(selectBookingActive);
     const dispatch=useDispatch()
-    // useEffect(() => {
-    //     // On component mount, check if bookingActive should be true based on localStorage
-    //     const storedBookingActive = localStorage?.getItem('bookingActive') === 'true';
-    //     if (storedBookingActive) {
-    //         dispatch(setBookingActive());
-    //     } else {
-    //         dispatch(setBookingInactive());
-    //     }
-    // }, [dispatch]);
     useEffect(() => {
         // On component mount, check if bookingActive should be true based on localStorage
-        if (typeof window !== 'undefined') {
-            const storedBookingActive = localStorage.getItem('bookingActive') === 'true';
-            if (storedBookingActive) {
-                dispatch(setBookingActive());
-            } else {
-                dispatch(setBookingInactive());
-            }
+        const storedBookingActive = localStorage?.getItem('bookingActive') === 'true';
+        if (storedBookingActive) {
+            dispatch(setBookingActive());
+        } else {
+            dispatch(setBookingInactive());
         }
     }, [dispatch]);
+    // useEffect(() => {
+    //     const setInitialBookingState = () => {
+    //       // Check if localStorage is available (only on the client side)
+    //       if (typeof window !== 'undefined') {
+    //         const storedBookingActive = localStorage.getItem('bookingActive') === 'true';
+    //         if (storedBookingActive) {
+    //           dispatch(setBookingActive());
+    //         } else {
+    //           dispatch(setBookingInactive());
+    //         }
+    //       }
+    //     };
+    
+    //     // Call the function to set initial booking state
+    //     setInitialBookingState();
+    //   }, [dispatch]);
     return (
        <>
        {!bookingActive && 

@@ -11,7 +11,7 @@ import CardSkeleton from '../../ui/card-skeleton';
 import Pagination from '../../ui/pagination';
 import { apiRequest } from '@/app/libs/services';
 
-const StaffListing = () => {
+const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }) => {
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false); //open staff filter modal state
   const dispatch: AppDispatch = useAppDispatch();
@@ -19,7 +19,7 @@ const StaffListing = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   console.log('currentPage', currentPage)
-  const [selectedCount,setSelectedCount]=useState<number>(10)
+  const [selectedCount, setSelectedCount] = useState<number>(10)
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValueString = event.target.value;
     const selectedValueNumber = Number(selectedValueString); // Convert string to number
@@ -97,19 +97,19 @@ const StaffListing = () => {
 
   return (
     <>
-      <div className="fixed z-[-1] left-0" style={svgStyle}>
+      {!isFilterBookingFlow && <div className="fixed z-[-1] left-0" style={svgStyle}>
         <svg width="100vw" height="472" viewBox="0 0 1915 472" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1915 0H-3V472C705.5 136 1709.95 342.138 1915 472V0Z" fill="#F3F0FF" />
         </svg>
-      </div>
+      </div>}
       <div className="max-w-[1279px] mx-auto">
-        <StaffFilters modalOpen={modalOpen} scrollY={scrollY} handleLocationChange={handleLocationChange} handleTimeChange={handleTimeChange} />
-        <div className={data?.records?.length===0 ?``:"relative md:top-20 2xl:top-22 grid gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 justify-center items-center z-10"}>
+        <StaffFilters isFilterBookingFlow={isFilterBookingFlow} modalOpen={modalOpen} scrollY={isFilterBookingFlow ? 0:scrollY} handleLocationChange={handleLocationChange} handleTimeChange={handleTimeChange} />
+        <div className={data?.records?.length === 0 ? `` : `relative ${!isFilterBookingFlow && "md:top-20 2xl:top-22"} grid gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 justify-center items-center z-101`}>
           {data?.records?.length === 0 ? (
             <div className="text-center text-xl  h-screen flex justify-center items-center">No staff found, sorry.</div>
           ) : (
             data?.records?.map((staff: any) => (
-              <div key={staff.id} >
+              <div key={staff.id} className='h-[510px]'>
                 {loading ? <CardSkeleton staff={staff} /> : <StaffMap setModalOpen={setModalOpen} modalOpen={modalOpen} handleStaffClick={handleStaffClick} staff={staff} />}
               </div>
             ))
@@ -124,8 +124,6 @@ const StaffListing = () => {
           handleChange={handleChange}
         />
 
-      </div>
-      <div className='h-[250px] bg-[#f3f0ff] w-[90vw] m-auto pt-[130px]'>
       </div>
     </>
   );

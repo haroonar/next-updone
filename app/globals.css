@@ -136,12 +136,7 @@ color: #6B6B6B;
   scrollbar-width: none !important; /* Firefox */
   -ms-overflow-style: none !important; /* IE and Edge */
 }
-/* styles/ExampleComponent.module.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-:root {
-  --font-family-montserrat: 'Montserrat', sans-serif;
 
-}
 .montserrat-font {
     font-family: 'Montserrat', sans-serif;
 }
@@ -205,4 +200,7 @@ color: #6B6B6B;
   font-family: "Lato", sans-serif !important;
   font-weight: 400 !important;
   font-style: normal !important;
+}
+.show-jobs-shadow{
+  box-shadow: 0px -6px 26px 0px #0000001A;
 }

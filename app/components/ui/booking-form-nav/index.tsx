@@ -35,9 +35,9 @@ const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}
                                     </div>
                                     <div
                                         style={{
-                                            width: changeActiveColor ? "180px" : " 200px",
+                                            width: changeActiveColor ? "176px" : " 190px",
                                             position: "absolute",
-                                            marginLeft: changeActiveColor ? "200px" : step.name === "Describe your task" ? '180px' : "179px"
+                                            marginLeft: changeActiveColor && step.name==="Find your best fit worker" ? "200px" :  step.name === "Describe your task" ? '180px' : "179px"
                                         }}
                                         className='flex w-full flex-row justify-start items-center border-l-[1px] border-[#000000] opacity-[0.3px] py-2 pl-4 md:border-l-0 md:border-t-[1px] md:pb-0 md:pl-0 md:pt-4'
                                         aria-current='step'
@@ -52,7 +52,7 @@ const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}
                                         <span className='relative top-[6px] left-[16px]  text-sm font-medium text-sky-600'>
                                             {
                                                 step.name === "Find your best fit worker" ?
-                                                    <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/stepBlue2.svg' alt='step-1' /> :
+                                                    <Image style={{ maxWidth: "80px" }} width={500} height={500} src='/images/stepBlue2.svg' alt='step-1' /> :
                                                     step.name === "Congratulation!" && !changeActiveColor ? (
                                                         <>
                                                             {setChangeActiveColor(true)}
@@ -74,7 +74,7 @@ const FormNav = ({steps,currentStep,changeActiveColor,setChangeActiveColor,next}
                                         style={{
                                             width: "184px",
                                             position: "absolute",
-                                            marginLeft: step.name === "Find your best fit worker" ? '202px' : '180px'
+                                            marginLeft: step.name === "Find your best fit worker" ? '200px' : '180px'
                                         }}
                                         className={changeActiveColor ? "" : 'flex w-full flex-row justify-start items-center border-l-[1px] border-[#000000] opacity-[0.3px] py-2 pl-4 md:border-l-0 md:border-t-[1px] md:pb-0 md:pl-0 md:pt-4'}
                                         aria-current='step'

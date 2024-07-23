@@ -111,7 +111,7 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex justify-between items-center pb-[312px]'>
       <div className='relative top-[165px]'>
         View Per Page:
         <CommonSelect

@@ -14,6 +14,8 @@ import { useAuthContext } from '@/app/libs/context/AuthContext'
 import { montserrat } from '@/app/libs/Fonts'
 import AccordionForm from '../ui/step-one'
 import FormNav from '../ui/booking-form-nav'
+import FormTitles from './form-titles'
+import StaffListing from '../home/staff'
 
 
 type Inputs = z.infer<typeof FormDataSchema>
@@ -21,10 +23,9 @@ type Inputs = z.infer<typeof FormDataSchema>
 
 
 
-export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
+export default function Form({currentStep, setCurrentStep,setChangeActiveColor, changeActiveColor }: any) {
     const { setShowLoginForm, showLoginForm, setShowRegisterForm, showRegisterForm, setClose, close } = useAuthContext()
     const [previousStep, setPreviousStep] = useState(0)
-    const [currentStep, setCurrentStep] = useState(0)
 
 
     const handleShowRegisterForm = (e: any) => {
@@ -70,6 +71,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
         // if (!output) return
         await handleSubmit(processForm)()
         setPreviousStep(currentStep)
+        //@ts-ignore
         setCurrentStep(step => step + 1)
         // if (currentStep < steps.length - 1) {
         //     await handleSubmit(processForm)()
@@ -83,6 +85,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
     const prev = () => {
         if (currentStep > 0) {
             setPreviousStep(currentStep)
+            //@ts-ignore
             setCurrentStep(step => step - 1)
         }
     }
@@ -94,19 +97,19 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
     const steps = [
         {
             id: 'Task Details',
-            image: <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/stepBlue2.svg' alt='step-1' />,
+            image: <Image style={{ maxWidth: "80px" }} width={300} height={300} src='/images/stepBlue2.svg' alt='step-1' />,
             name: 'Describe your task',
             fields: ['firstName', 'lastName', 'email']
         },
         {
             id: 'Payment detail',
             name: 'Find your best fit worker',
-            image: changeActiveColor ? <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/stepBlue2.svg' alt='step-1' /> : <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/step2.svg' alt='step-1' />,
+            image: changeActiveColor ? <Image style={{ maxWidth: "80px" }} width={300} height={300} src='/images/stepBlue2.svg' alt='step-1' /> : <Image style={{ maxWidth: "80px" }} width={300} height={300} src='/images/step2.svg' alt='step-1' />,
             fields: ['country', 'state', 'city', 'street', 'zip']
         },
         {
             id: 'Thank You', name: 'Congratulation!',
-            image: changeActiveColor ? <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/stepBlue2.svg' alt='step-1' /> : <Image style={{ maxWidth: "90px" }} width={500} height={500} src='/images/step3.svg' alt='step-1' />,
+            image: changeActiveColor ? <Image style={{ maxWidth: "80px" }} width={300} height={300} src='/images/stepBlue2.svg' alt='step-1' /> : <Image style={{ maxWidth: "80px" }} width={300} height={300} src='/images/step3.svg' alt='step-1' />,
 
         }
     ]
@@ -148,19 +151,20 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
     ];
     return (
         <>
-             <div className='w-full bg-[#FFFFFF] relative'>
-             <FormNav next={next} steps={steps}
+
+            <div className='w-full bg-[#FFFFFF] relative'>
+                <FormNav next={next} steps={steps}
                     currentStep={currentStep} changeActiveColor={changeActiveColor} setChangeActiveColor={setChangeActiveColor}
                 />
-             </div>
-            <section style={{ maxHeight: changeActiveColor ? "800px" : "" }} className='max-w-[1279px] mb-[100px] mx-auto max-h-[1000px]'>
-                <div className={`${styles.tell_us} text-center text-[#000000] flex justify-center items-center gap-[20px] leading-[20.4px] tracking-[-0.32px] !text-[16px] pt-[33.5px] px-[10px] mb-[68.5px]`}>
+            </div>
+            <section style={{ maxHeight: changeActiveColor ? "800px" : "" }} className='max-w-[1279px] mx-auto max-h-[1000px]'>
+                {/* <div className={`${styles.tell_us} text-center text-[#000000] flex justify-center items-center gap-[20px] leading-[20.4px] tracking-[-0.32px] !text-[16px] pt-[33.5px] px-[10px] mb-[68.5px]`}>
                     <Image width={20} height={20} src='/images/booking/editPancel.svg' alt='step-1' />    Tell us about your task. We use these details to show Taskers in your area who fit your needs.
-                </div>
-
+                </div> */}
+                <FormTitles styles={styles} currentStep={currentStep} />
 
                 {/* Form */}
-                <form className='pb-[100px]' onSubmit={handleSubmit(processForm)}>
+                <form  onSubmit={handleSubmit(processForm)}>
                     {currentStep === 0 && (
                         <motion.div
                             initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
@@ -169,7 +173,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                         >
                             <div className='flex gap-[34px] mx-auto min-h-[638px] mt-[0] mb-[0]'>
 
-                                <AccordionForm next={next}/>
+                                <AccordionForm next={next} />
                             </div>
                         </motion.div>
                     )}
@@ -180,140 +184,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                            <div className='flex gap-[34px] mx-auto  min-h-[796px] mt-[0] mb-[0] '>
-                                <div className={`${styles.bookingsummary_section} w-[44.5%]`}>
-                                    <div className='flex justify-center flex-col items-center w-full'>
-                                        <h2 className={`${styles.bookingsummary_text} ${montserrat.className}`}>Booking Summary</h2>
-                                        <Image className='w-[117px] h-[107px]' width={120} height={120} quality={100} src='/images/booking/Frame 1410126315 (1).png' alt='step-2' />
-                                        <div className='h-[146px] w-full mt-[36px] flex flex-col justify-start items-center mb-[30px]'>
-                                            <div className='flex justify-between items-center w-full'>
-                                                <h3 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Worker Name</h3>
-                                                <div className="flex items-center justify-center">
-                                                    <div className='relative bottom-[1px]'>
-
-                                                        <Image width={15} height={15} className='me-1' src='/images/booking/5.svg' alt='step-1' />
-                                                    </div>
-                                                    <p><span className={`${montserrat.className} text-[14px] font-[600] leading-normal tracking-[-0.14px] text-[#000000]`}>Sarah Miller</span> <span className="text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#000000] ml-[12px]">5.0/5</span> </p>
-                                                </div>
-                                            </div>
-                                            <span className='my-[18px] w-full'>
-                                                <svg width="438" height="1" viewBox="0 0 438 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <line x1="0.5" y1="0.5" x2="437.5" y2="0.5" stroke="#DEDEDE" stroke-linecap="round" />
-                                                </svg>
-                                            </span>
-
-                                            <div className='flex justify-between items-center w-full'>
-                                                <h3 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Booked Service</h3>
-                                                <div className="flex items-center justify-center">
-                                                    <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>Cocktail Server</p>
-                                                </div>
-                                            </div>
-                                            <span className='my-[18px] w-full'>
-                                                <svg width="438" height="1" viewBox="0 0 438 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <line x1="0.5" y1="0.5" x2="437.5" y2="0.5" stroke="#DEDEDE" stroke-linecap="round" />
-                                                </svg>
-                                            </span>
-
-                                            <div className='flex justify-between items-center w-full'>
-                                                <h3 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Hourly wage</h3>
-                                                <div className="flex items-center justify-center">
-                                                    <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>$30</p>
-                                                </div>
-                                            </div>
-                                            <span className='my-[18px] w-full'>
-                                                <svg className='w-full' width="238" height="1" viewBox="0 0 438 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <line x1="0.5" y1="0.5" x2="437.5" y2="0.5" stroke="#DEDEDE" stroke-linecap="round" />
-                                                </svg>
-                                            </span>
-
-                                            <div className='flex justify-between items-center w-full'>
-                                                <h3 className={`${montserrat.className} text-[12px] font-[500] leading-normal tracking-[-0.12px] text-[#000000]`}>Booking Dates & Time</h3>
-                                                <div className="flex items-center justify-center">
-                                                    <p className={`text-[12px] font-[400] leading-[24px] tracking-[-0.24px] text-[#6B6B6B]`}>June 6th (9:30 - 1:30)</p>
-                                                </div>
-                                            </div>
-                                            <div className='bg-[#F8F7FF] rounded-[4px] w-full min-h-[295px] p-[20px] mt-[32px] overflow-hidden'>
-                                                <span className='flex justify-center items-center '>
-                                                    <svg className='h-[310px] relative bottom-[22px] opacity-[0.5]' xmlns="http://www.w3.org/2000/svg" width="173" height="276" viewBox="0 0 173 276" fill="none">
-                                                        <path d="M172.015 195.522C172.197 170.759 162.408 151.175 142.883 137.345C127.803 126.697 109.502 121.142 91.802 115.804C54.9294 104.626 44.2331 98.7383 44.2331 81.1053C44.2331 61.4641 69.7584 54.4757 91.61 54.4757C107.524 54.4757 125.833 59.4236 137.203 66.7564L159.745 31.8448C144.885 22.2112 124.547 15.6401 104.463 13.6006V-19H62.8799V15.8866C25.9158 24.0181 2.6304 48.1769 2.6304 81.1053C2.6304 104.166 12.2133 122.455 31.0586 135.354C45.3918 145.202 62.8725 150.49 79.7586 155.609C115.926 166.541 130.613 173.203 130.446 195.264L130.445 195.426C130.445 213.943 105.906 220.525 84.8838 220.525C65.0256 220.525 43.4307 211.822 31.1897 198.882L0.980469 227.457C16.4826 243.853 39.0054 255.445 62.879 259.989V294.001H104.463V260.721C145.538 254.841 171.974 230.113 172.015 195.522Z" fill="#F1EEFF" />
-                                                    </svg>
-                                                </span>
-                                                <div className='absolute bottom-0 max-w-[395px] ml-[11px]'>
-                                                    <div>
-                                                        <div className="mx-auto max-w-[415px] rounded-[4px] relative right-[11.5px] bottom-[28px]">
-                                                            <div className="relative overflow-x-auto">
-                                                                <table className="w-full text-left font-medium md:table-fixed">
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td className="whitespace-nowrap py-1">
-                                                                                <div className="flex items-center justify-between gap-4">
-                                                                                    <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
-                                                                                        Worker Fee Per Hour
-                                                                                    </p>
-                                                                                    <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$50</td>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            <td className="whitespace-nowrap py-2 md:w-[384px]">
-                                                                                <div className="flex justify-between items-center gap-4">
-                                                                                    <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
-                                                                                        Number of Hours
-                                                                                    </p>
-                                                                                    <div className='flex justify-center items-center'>
-                                                                                        <span className="text-[#6B6B6B] text-[10px] font-normal leading-[26px] mr-2">4 days x 5 hours</span>
-                                                                                        <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">5 h</td>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            <td className="whitespace-nowrap py-2 md:w-[384px]">
-                                                                                <div className="flex justify-between items-center gap-4">
-                                                                                    <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
-                                                                                        Worker Fee Calculation
-                                                                                    </p>
-                                                                                    <td className="flex justify-between items-center gap-1">
-                                                                                        <span className="text-[#9B9B9B] text-[10px] font-normal leading-[26px] mr-2">5 hours x $50</span>
-                                                                                        <span style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$250</span>
-                                                                                    </td>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td className="whitespace-nowrap py-2 md:w-[384px]">
-                                                                                <div className="flex justify-between items-center gap-4">
-                                                                                    <p style={{ letterSpacing: '-2%' }} className="flex items-center leading-[24px] text-[#6B6B6B] text-[14px] font-normal w-8 h-8 shrink-0">
-                                                                                        Platform Fee
-                                                                                    </p>
-                                                                                    <td style={{ letterSpacing: '-2%' }} className="text-right leading-[24px] text-[#2C2240] text-[14px] font-normal">$10</td>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <div className='border-b-[1px] border-[#ECECEC] w-full h-2 my-4'></div>
-                                                            {/* buttons */}
-                                                            <div className="whitespace-nowrap" style={{ width: '100%' }}>
-                                                                <div className="flex justify-between items-center gap-4">
-                                                                    <h3 style={{ letterSpacing: '-2%' }} className=" text-[#000000] leading-normal text-[20px] montserrat-font font-[600]">
-                                                                        Total
-                                                                    </h3>
-                                                                    <h3 style={{ letterSpacing: '-1%' }} className="text-right leading-normal text-[#000000] text-[32px] font-[600] montserrat-font">$1,000.00</h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={`${styles.checkout_section} w-[58%]`}>
-
-                                </div>
-                            </div>
+                         <StaffListing isFilterBookingFlow/>
                         </motion.div>
                     )}
 
@@ -368,7 +239,7 @@ export default function Form({ setChangeActiveColor, changeActiveColor }: any) {
                                         <div style={{ width: "50%" }} className=' h-[100vh]'>
                                             <div style={{ zIndex: '-1' }} className="absolute top-[-258px] left-[449px] text-black">
                                                 <svg width="608" height="576" viewBox="0 0 608 576" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <g opacity="0.2" filter="url(#filter0_f_944_2074)">
+                                                    <g opacity="0.2" filter="url(#a)">
                                                         <circle cx="304" cy="272" r="104" fill="#FFF172" />
                                                     </g>
                                                     <defs>

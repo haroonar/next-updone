@@ -10,6 +10,7 @@ interface CalendarWithAvailabilityProps {
 
 
 const CalendarWithAvailability = ({highlightedDatesAvailable,highlightedDatesNotAvailable,setSelectedTimeId ,setDate,date}:any) => {
+  console.log('date', date)
 
 
 

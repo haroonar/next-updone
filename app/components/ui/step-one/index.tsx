@@ -102,6 +102,97 @@ const AccordionForm = ({next}:any) => {
     return (
         <div className="w-full">
             {/* First accordion section */}
+            <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-4  ${isOpenSecond ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenSecond ? 'open' : ''}`}>
+                <div
+                    className="flex items-center justify-between cursor-pointer"
+                >
+                    <div className='flex justify-center gap-[12px] items-center'>
+                        <Image width={23} height={23} src='/images/booking/detailTask.svg' alt='user' />
+                        <h2 className=" !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]">Details about the task</h2>
+                    </div>
+                    {secondSectionComplete && (
+                        <div className="flex items-center justify-center flex-col gap-[16px]">
+                            <Image className='ml-[90px]' layout="intrinsic" src="/images/booking/done.svg" height={17} width={24} alt="tick" />
+                        </div>
+                    )}
+                </div>
+                {isOpenSecond && (
+                    <form onSubmit={handleSubmit(onSecondSubmit)}>
+                        <div className="accordion-content mt-[52px]">
+                            <div className='flex justify-center items-start !gap-[48px]'>
+                                <div className='space-y-[17px] pb-[28px]  !w-[18%] capitalize ml-[42px]'>
+                                    <h3 className='font-[500] text-center leading-[19.93px] tracking-[0.28px] !text-[14.82px] !text-[#000000]'>
+                                        Choose Service
+                                    </h3>
+                                    {CHOOSE_SERVICES.map((service) => {
+                                        return (
+                                            <h3
+                                                style={{ background: service.id === 2 ? "#20192e" : "F3F0FF" }}
+                                                key={service.id}
+                                                className={`${service.id === 2 ? "!bg-[#350ABC] !text-[#e0d9f8]" : "opacity-[40%] !m-0 !mt-[24.99px]"} cursor-pointer !text-[12.49px] w-full leading-[21.42px] tracking-[-2%] font-[400] text-center rounded-[29px] !py-[10px] !px-[42px] bg-[#F3F0FF] !text-[#9F9F9F]'
+                                                }`}
+                                            >
+                                                {service.text}
+                                            </h3>
+                                        );
+                                    })}
+                                </div>
+
+                                <div className={`space-y-[30px] !w-[82%] pr-[42px]`}>
+                                    <h2 className={`${styles.lato_font} w-[82% !text-[#000000] text-[16px] tracking-[-2%]  leading-[20.4px] `}>Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later.</h2>
+                                    <div className="relative">
+                                        <div>
+                                            <div className="absolute inset-y-0  start-0 flex items-center ps-[16px] pointer-events-none !pt-[1px]">
+
+                                                <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
+                                            </div>
+                                            <input
+                                                {...register('message1', { required: true })}
+                                                type="search"
+                                                id="message1"
+                                                name='message1'
+                                                className={`border-[1px] ${errors.message1 ? "outline-[red] outline-[.5px]" : "outline-none"} !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message1 ? 'border-red-500 ' : ""}`}
+                                                placeholder="Write down a suitable title fo the Job "
+                                            />
+                                        </div>
+                                        {errors.message1 && <span className="text-[12px] error-message absolute text-red-500 top-[49px]">required.</span>}
+                                    </div>
+                                    <div className="relative">
+                                        <div>
+                                            <div className="absolute inset-y-0 flox start-0 !mt-[18px] items-center ps-[16px] pointer-events-none !pt-[1px]">
+
+                                                <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
+                                            </div>
+                                            <textarea
+                                                {...register('message2', { required: true })}
+                                                id="message2"
+                                                name='message2'
+                                                className={`!h-[112px] border-[1px] ${errors.message2 ? "outline-[red] outline-[.5px]" : "outline-none"}  !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message2 ? 'border-red-500 ' : ""}`}
+                                                placeholder="Hi! Looking for help updating my 650 sq ft apartment. I’m on the 2nd floor up a short flight of stairs. Please bring an electric drill and ring doorbell number 3. Thanks!"
+                                            ></textarea>
+                                        </div>
+
+                                        {errors.message2 && <span className="text-[12px] error-message absolute text-red-500 top-[112px]"> required.</span>}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <button
+                                    type="button"
+                                    onClick={handleContinueSecond}
+                                    className="flex justify-center rounded-[4px]  w-[216px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
+                                >
+                                    <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px]'>Continue</span>
+                                    <span><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                )}
+
+            </div>
+            {/* Second accordion section */}
             <div className={`${isOpenFirst ? "pb-[24px]" : "pb-[37.5px] !py-[24px]"} pt-[37.5px] px-[40px] rounded-[8px] bg-[#FFF] mb-4 ${isOpenFirst ? 'open' : ''}`}>
                 <div className="flex items-center justify-between cursor-pointer" onClick={toggleFirstAccordion}>
                     <div className='flex justify-start items-start flex-col gap-[16px]'>
@@ -197,97 +288,7 @@ const AccordionForm = ({next}:any) => {
 
                 )}
             </div>
-            {/* Second accordion section */}
-            <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-4  ${isOpenSecond ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenSecond ? 'open' : ''}`}>
-                <div
-                    className="flex items-center justify-between cursor-pointer"
-                >
-                    <div className='flex justify-center gap-[12px] items-center'>
-                        <Image width={23} height={23} src='/images/booking/detailTask.svg' alt='user' />
-                        <h2 className=" !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]">Details about the task</h2>
-                    </div>
-                    {secondSectionComplete && (
-                        <div className="flex items-center justify-center flex-col gap-[16px]">
-                            <Image className='ml-[90px]' layout="intrinsic" src="/images/booking/done.svg" height={17} width={24} alt="tick" />
-                        </div>
-                    )}
-                </div>
-                {isOpenSecond && (
-                    <form onSubmit={handleSubmit(onSecondSubmit)}>
-                        <div className="accordion-content mt-[52px]">
-                            <div className='flex justify-center items-start !gap-[48px]'>
-                                <div className='space-y-[17px] pb-[28px]  !w-[18%] capitalize ml-[42px]'>
-                                    <h3 className='font-[500] text-center leading-[19.93px] tracking-[0.28px] !text-[14.82px] !text-[#000000]'>
-                                        Choose Service
-                                    </h3>
-                                    {CHOOSE_SERVICES.map((service) => {
-                                        return (
-                                            <h3
-                                                style={{ background: service.id === 2 ? "#20192e" : "F3F0FF" }}
-                                                key={service.id}
-                                                className={`${service.id === 2 ? "!bg-[#350ABC] !text-[#e0d9f8]" : "opacity-[40%] !m-0 !mt-[24.99px]"} cursor-pointer !text-[12.49px] w-full leading-[21.42px] tracking-[-2%] font-[400] text-center rounded-[29px] !py-[10px] !px-[42px] bg-[#F3F0FF] !text-[#9F9F9F]'
-                                                }`}
-                                            >
-                                                {service.text}
-                                            </h3>
-                                        );
-                                    })}
-                                </div>
 
-                                <div className={`space-y-[30px] !w-[82%] pr-[42px]`}>
-                                    <h2 className={`${styles.lato_font} w-[82% !text-[#000000] text-[16px] tracking-[-2%]  leading-[20.4px] `}>Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later.</h2>
-                                    <div className="relative">
-                                        <div>
-                                            <div className="absolute inset-y-0  start-0 flex items-center ps-[16px] pointer-events-none !pt-[1px]">
-
-                                                <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
-                                            </div>
-                                            <input
-                                                {...register('message1', { required: true })}
-                                                type="search"
-                                                id="message1"
-                                                name='message1'
-                                                className={`border-[1px] ${errors.message1 ? "outline-[red] outline-[.5px]" : "outline-none"} !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message1 ? 'border-red-500 ' : ""}`}
-                                                placeholder="Write down a suitable title fo the Job "
-                                            />
-                                        </div>
-                                        {errors.message1 && <span className="text-[12px] error-message absolute text-red-500 top-[49px]">required.</span>}
-                                    </div>
-                                    <div className="relative">
-                                        <div>
-                                            <div className="absolute inset-y-0 flox start-0 !mt-[18px] items-center ps-[16px] pointer-events-none !pt-[1px]">
-
-                                                <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
-                                            </div>
-                                            <textarea
-                                                {...register('message2', { required: true })}
-                                                id="message2"
-                                                name='message2'
-                                                className={`!h-[112px] border-[1px] ${errors.message2 ? "outline-[red] outline-[.5px]" : "outline-none"}  !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message2 ? 'border-red-500 ' : ""}`}
-                                                placeholder="Hi! Looking for help updating my 650 sq ft apartment. I’m on the 2nd floor up a short flight of stairs. Please bring an electric drill and ring doorbell number 3. Thanks!"
-                                            ></textarea>
-                                        </div>
-
-                                        {errors.message2 && <span className="text-[12px] error-message absolute text-red-500 top-[112px]"> required.</span>}
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <button
-                                    type="button"
-                                    onClick={handleContinueSecond}
-                                    className="flex justify-center rounded-[4px]  w-[216px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
-                                >
-                                    <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px]'>Continue</span>
-                                    <span><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                )}
-
-            </div>
             {/* Third accordion section */}
             <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-4  ${isOpenThird ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenThird ? 'open' : ''}`}>
                 <div

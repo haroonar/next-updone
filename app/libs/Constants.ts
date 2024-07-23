@@ -12,7 +12,8 @@ export const HERO_FILTER_STAFF: { [key: string]: string } = {
   backgroundColor: '#ffffff',
   justifyContent: 'space-evenly',
   border: 'none',
-  padding: '0px 0px 0px 0px'
+  padding: '0px 0px 0px 0px',
+left:'16px'
 };
 export const CHOOSE_SERVICES = [
   { id: 1, text: "Cocktail Server" },
@@ -135,4 +136,23 @@ export const services = [
     imgSrc: '/images/services/eventhelper.jpg',
     alt: 'Event Helper',
   },
+];
+//components/booking/form-titles 
+
+export const STEPS_DATA = [
+  {
+      imageSrc: '/images/booking/editPancel.svg',
+      imageAlt: 'step-1',
+      description: 'Tell us about your task. We use these details to show Taskers in your area who fit your needs.'
+  },
+  {
+      imageSrc: '/images/booking/find-workder-title.svg',
+      imageAlt: 'step-2',
+      description: 'Filter and sort to find your Tasker. Then view their availability to request your date and time.'
+  },
+  {
+      imageSrc: '/images/booking/editPancel.svg', // Default image path
+      imageAlt: 'default-alt-text',
+      description: 'Default description'
+  }
 ];
