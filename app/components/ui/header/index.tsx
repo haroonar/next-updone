@@ -17,9 +17,7 @@ const Header = () => {
     // State to track the clicked link
     const [activeLink, setActiveLink] = useState<string | null>(null); // Initialize activeLink with null or an appropriate initial value
     const { auth: storedData } = useAppSelector(selectAuth);
-    const bookingActive = useAppSelector(selectBookingActive);
 
-    console.log('bookingActive in header', bookingActive)
 
     // State to track the visibility of login and register menu
     const [loginMenuOpen, setLoginMenuOpen] = useState(false);
@@ -42,19 +40,10 @@ const Header = () => {
     const handleLogout = () => {
         dispatch(clearAuth())
     }
-    useEffect(() => {
-        // On component mount, check if bookingActive should be true based on localStorage
-        const storedBookingActive = localStorage?.getItem('bookingActive') === 'true';
-        if (storedBookingActive) {
-            dispatch(setBookingActive());
-        } else {
-            dispatch(setBookingInactive());
-        }
-    }, [dispatch]);
     return (
         <>
-            {bookingActive ? null: <header className={styles.header}>
-                <nav className={`${bookingActive && "absolute"}border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto`}>
+            {  <header className={styles.header}>
+                <nav className={`border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto`}>
                     <div className="flex flex-wrap justify-between items-center" style={{ cursor: 'pointer' }}>
                         <Link href="/" className="flex items-center">
                             <Image src="/logo.svg" alt="header-logo" width={130} height={34} quality={100} objectFit='fill' />

@@ -1,44 +1,14 @@
 'use client'
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import FooterList from "../../common/footer-list";
 import { ABOUT_ITEMS, LISTING_ITEMS, SOCIAL_ITEMS } from "@/app/libs/Constants";
-import { useDispatch } from "react-redux";
-import { selectBookingActive, setBookingActive, setBookingInactive } from "@/app/libs/store/features/bookingSlice";
-import { useAppSelector } from "@/app/libs/store/hooks";
 
 const Footer = () => {
-    const bookingActive = useAppSelector(selectBookingActive);
-    const dispatch=useDispatch()
-    // useEffect(() => {
-    //     // On component mount, check if bookingActive should be true based on localStorage
-    //     const storedBookingActive = localStorage?.getItem('bookingActive') === 'true';
-    //     if (storedBookingActive) {
-    //         dispatch(setBookingActive());
-    //     } else {
-    //         dispatch(setBookingInactive());
-    //     }
-    // }, [dispatch]);
-    useEffect(() => {
-        const setInitialBookingState = () => {
-          // Check if localStorage is available (only on the client side)
-          if (typeof window !== 'undefined') {
-            const storedBookingActive = localStorage.getItem('bookingActive') === 'true';
-            if (storedBookingActive) {
-              dispatch(setBookingActive());
-            } else {
-              dispatch(setBookingInactive());
-            }
-          }
-        };
-    
-        // Call the function to set initial booking state
-        setInitialBookingState();
-      }, [dispatch]);
     return (
        <>
-       {!bookingActive && 
-        <div className={`bg-[#2c2240] ${bookingActive ? "absolute":'relative'}`}>
+       { 
+        <div className={`bg-[#2c2240] relative`}>
             <div className='max-w-[1279px] m-auto'>
                 <footer className="relative bg-[#2c2240] text-white pt-[100px] pb-8  footer-image">
                     <div className="max-w-screen-xl mx-auto">

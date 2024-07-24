@@ -105,7 +105,7 @@ const Hero = () => {
                 />
 
                 {/* Add your content here */}
-                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg  md:max-w-[900px] 2xl:max-w-[1050px] m-auto">
+                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg   md:max-w-[800px] 2xl:max-w-[1000px] m-auto">
 
                     {!allImagesLoaded &&
                     

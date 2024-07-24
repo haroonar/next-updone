@@ -152,12 +152,12 @@ export default function Form({currentStep, setCurrentStep,setChangeActiveColor, 
     return (
         <>
 
-            <div className='w-full bg-[#FFFFFF] relative'>
+            <div className='w-full bg-[#FFFFFF] relative top-[-134px]'>
                 <FormNav next={next} steps={steps}
                     currentStep={currentStep} changeActiveColor={changeActiveColor} setChangeActiveColor={setChangeActiveColor}
                 />
             </div>
-            <section style={{ maxHeight: changeActiveColor ? "800px" : "" }} className='max-w-[1279px] mx-auto max-h-[1000px]'>
+            <section style={{ maxHeight: changeActiveColor ? "800px" : "" }} className='max-w-[1279px] mx-auto max-h-[1000px] relative bottom-[95px]'>
                 {/* <div className={`${styles.tell_us} text-center text-[#000000] flex justify-center items-center gap-[20px] leading-[20.4px] tracking-[-0.32px] !text-[16px] pt-[33.5px] px-[10px] mb-[68.5px]`}>
                     <Image width={20} height={20} src='/images/booking/editPancel.svg' alt='step-1' />    Tell us about your task. We use these details to show Taskers in your area who fit your needs.
                 </div> */}

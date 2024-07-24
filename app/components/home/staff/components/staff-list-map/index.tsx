@@ -27,7 +27,7 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
     console.log('index', index)
     console.log('staff in staffMap', staff)
     const [openBreakDown, setOpenCastBreakDown] = useState(false)
-    const [getInviteCount,setGetInviteCount]=useState()
+    const [getInviteCount, setGetInviteCount] = useState()
     console.log('getInviteCount', getInviteCount)
     const [sendInvite, setSendInvite] = useState(false)
 
@@ -44,10 +44,10 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
     const handleCloseCastBreakdown = () => {
         setOpenCastBreakDown(!openBreakDown)
     }
-    const handleSendInvite=()=>{
+    const handleSendInvite = () => {
         setSendInvite(!sendInvite)
         //@ts-ignore
-        setGetInviteCount(prevCount => index+1);
+        setGetInviteCount(prevCount => index + 1);
     }
     return (
         <>
@@ -56,7 +56,7 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
                     position: "relative",
                     left: "91px",
                     top: " 71px",
-                    padding: "6px",
+                    padding: "4px",
                     background: "#f3f0ff"
                 }}
                 className="w-[115px] h-[115px] rounded-full object-cover "
@@ -156,23 +156,23 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
             </div>
             <div className="flex justify-around items-center flex-col mt-[32px] relative bottom-[135.9px] w-full space-x-2  pt-2 pb-[17px] bg-[#F3F0FF] rounded-bl-[4px] rounded-br-[4px] border-x-[1px] border-[#E9E9E9]">
                 {openBreakDown &&
-                    <div className='!h-[11.5rem] bg-[#fff] pt-1 !pb-4 w-full absolute bottom-[75px] space-y-2 capitalize'>
+                    <div className='!h-[11.5rem] bg-[#fff] text-[#2C2240] pt-1 !pb-4 w-full absolute bottom-[75px] space-y-2 capitalize'>
                         <div onClick={handleCloseCastBreakdown} className='w-full flex justify-center items-center cursor-pointer'><span className='rotate-180 relative top-[3px]'><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         </span ></div>
-                        <div className='text-[14px] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
-                            <h2>Worder fee per hour</h2><h2 className='font-[500]'>30$</h2>
+                        <div className='text-[12px] font-[400] leading-[24px] tracking-[-2%] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
+                            <h2>Worder fee per hour</h2><h2 className='!font-[500] !text-[12px] !leading-[24px] !tracking-[-2%]'>30$</h2>
                         </div>
-                        <div className='text-[14px] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
-                            <h2>Total Numbers of hours</h2><h2 className='font-[500]'>54$</h2>
+                        <div className='text-[12px] font-[400] leading-[24px] tracking-[-2%] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
+                            <h2>Total Numbers of hours</h2><h2 className='!font-[500] !text-[12px] !leading-[24px] !tracking-[-2%]'>54$</h2>
                         </div>
-                        <div className='text-[14px] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
-                            <h2>Worder fee calculation</h2><h2 className='font-[500]'>1000$</h2>
+                        <div className='text-[12px] font-[400] leading-[24px] tracking-[-2%] px-3 flex justify-between items-center pb-2 border-b border-[#F3F0FF]'>
+                            <h2>Worder fee calculation</h2><h2 className='!font-[500] !text-[12px] !leading-[24px] !tracking-[-2%]'>1000$</h2>
                         </div>
-                        <div className='text-[14px] px-3 flex justify-between items-center pb-2'>
-                            <h2>Plateform fee</h2><h2 className='font-[500]'>10$</h2>
+                        <div className='text-[12px] font-[400] leading-[24px] tracking-[-2%] px-3 flex justify-between items-center pb-2'>
+                            <h2>Plateform fee</h2><h2 className='!font-[500] !text-[12px] !leading-[24px] !tracking-[-2%]'>10$</h2>
                         </div>
                     </div>
                 }
@@ -182,13 +182,13 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
                             <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        </span>   <span>Cost Breakdown</span>
+                        </span>   <span className='text-[12px] leading-[18px] tracking-[-1%] font-[400] text-center'>Cost Breakdown</span>
                     </div>
                     <div className='space-x-[20px] !m-0 flex justify-center items-center px-[10px]'>
-                        <button onClick={() => handleStaffClick(staff)} className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md"><div className={`${montserrat} text-[#2C2240] text-[16px] font-[600] tracking-[-1%] leading-[19.5px]`}><span className='!text-[12px] !leading-[14.63px] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
-                        <button onClick={handleSendInvite} type="button" className={`text-[#F3F0FF] ${sendInvite ? "bg-[#774DFD]" : "bg-[#2c2240]"}  rounded-[4px]  text-[14px] font-normal w-[137px]  py-[10px] text-center inline-flex items-center  me-2 `}>
+                        <button onClick={() => handleStaffClick(staff)} className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md"><div className={`${montserrat.className} text-[#2C2240] text-[16px] font-[600] tracking-[-1%] leading-[19.5px]`}><span className='!text-[12px] !leading-[14.63px] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
+                        <button onClick={handleSendInvite} type="button" className={`!text-[#F3F0FF] ${sendInvite ? "bg-[#774DFD]" : "bg-[#2c2240]"}  rounded-[4px]  text-[14px] font-[400] w-[137px]  py-[10px] text-center inline-flex items-center tracking-[-2%] leading-[24px] me-2 `}>
                             <span className={`flex justify-center items-center ${sendInvite ? "ml-[30px]" : "ml-[18px]"}`}>
-                                {sendInvite ? "Sended" : "Send Invite"}
+                                {sendInvite ? "Uninvite" : "Send Invite"}
                                 <span className='ml-[9.33px]'>
                                     {sendInvite && <Image
                                         width={13}

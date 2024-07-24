@@ -18,11 +18,11 @@ const ReduxProvider = ({ children }: RootLayoutProps) => {
         <div className=''>
             <AuthProvider>
                 <Provider store={store}>
-                    <Header />
+                    {/* <Header /> */}
                     <BookingProvider>
                         {children}
                     </BookingProvider>
-                    <Footer />
+                    {/* <Footer /> */}
                 </Provider>
             </AuthProvider>
             <ToastContainer />

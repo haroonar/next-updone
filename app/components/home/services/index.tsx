@@ -67,7 +67,6 @@ const Services = () => {
             </svg>
           </div>
           <div className='relative max-w-[1279px] m-auto'>
-            <FormDecoration position={{ position: 'absolute', top: "-395px", left: "-364px" }} />
             <div className={`-m-1 flex flex-wrap md:gap-y-[105px] 2xl:gap-y-[30px]`}>
               {services.map((service, index) => (
                 <div key={index} className="w-1/3 p-2">
