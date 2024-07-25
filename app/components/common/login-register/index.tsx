@@ -10,7 +10,6 @@ export const loginInputStyles: { [key: string]: string } = {
 }
 const LoginFrom = ({ showLoginForm, close, showRegisterForm, styles, handleClose, setShowLoginForm, handleShowRegisterForm ,isHeaderLogin}: any) => {
   
- console.log('showLoginFormdddd', showRegisterForm)
   return (
     <div>
       {close ? <></> :

@@ -10,11 +10,6 @@ interface CalendarWithAvailabilityProps {
 
 
 const CalendarWithAvailability = ({highlightedDatesAvailable,highlightedDatesNotAvailable,setSelectedTimeId ,setDate,date}:any) => {
-  console.log('date', date)
-
-
-
-
 
   const handleDateChange :any= (value: Date, _event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const formattedDate = value.toISOString().split('T')[0];

@@ -54,11 +54,9 @@ const Hero = () => {
     }
     const handleServiceSelect = (itemName: string) => { //for location
         setSelectedService(itemName === selectedService ? null : itemName); // Toggle selection
-        console.log('Clicked item:', itemName); // Log the clicked item name
     };
     const handleLocationSelect = (itemName: string) => { //for location
         setSelectedLocation(itemName === selectedLocation ? null : itemName); // Toggle selection
-        console.log('Clicked item:', itemName); // Log the clicked item name
     };
 
     const handleCloseDropdown = () => {
@@ -70,7 +68,6 @@ const Hero = () => {
     const [image1Loaded, setImage1Loaded] = useState(false);
     const [image2Loaded, setImage2Loaded] = useState(false);
     const [allImagesLoaded, setAllImagesLoaded] = useState(true); // Initially true
-    console.log('allImagesLoaded', allImagesLoaded)
     useEffect(() => {
         // Check if both images have finished loading
         if (image1Loaded && image2Loaded) {
@@ -94,26 +91,26 @@ const Hero = () => {
                     </div>
                 )}
              
-                <Image
-                style={{width:'100%'}}
-                    onLoadingComplete={handleImage1Load}
-                    layout="intrinsic"
-                    src="./background.svg"
-                    height={580}
-                    width={1950}
-                    alt="Background"
-                />
+             {!allImagesLoaded &&
+             
+             <div className={`${montserrat.className} font-[900] mb-[-7px]  flex flex-col text-[#0B0B0B] justify-center items-center uppercase text-center xl:text-[80px] lg:text-[86px] leading-[80px]`}>
+                 <h2 className='text-[#f5f5f5] lg:text-[180px] xl:text-[210px] relative z-[-1] top-[95px]'>WORKERS</h2>
+                 <h1>Book <span className='text-[#350ABC] relative lg:leading-[70px] '>Event</span> <br /> <span className='text-[#350ABC]'>Staff</span> in a snap!</h1>
+             </div>
+             }
+               <Image
+                onLoadingComplete={handleImage1Load}
+                layout="responsive"
+                className='!h-[63.5%]'
+                src="/background.svg" // Note the leading slash for the public directory
+                height={300}
+                width={1500}
+                alt="Background"
+            />
 
                 {/* Add your content here */}
-                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg   md:max-w-[800px] 2xl:max-w-[1000px] m-auto">
+                <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg   md:max-w-[900px] 2xl:max-w-[1000px] m-auto">
 
-                    {!allImagesLoaded &&
-                    
-                    <div className={`${montserrat.className} font-[900] mb-[18px]  flex flex-col text-[#0B0B0B] justify-center items-center uppercase text-center 2xl:text-[110px] 2xl:leading-[100px] md:leading-[60px] md:text-[60px]`}>
-                        <h2 className='text-[#f5f5f5] 2xl:text-[210px] md:text-[150px] relative z-[-1] top-[56px]'>WORKERS</h2>
-                        <h1>Book <span className='text-[#350ABC]'>Event</span> <br /> <span className='text-[#350ABC]'>Staff</span> in a snap!</h1>
-                    </div>
-                    }
 
                     {/* {!allImagesLoaded &&
                         <div onClick={handleClikedFilter} style={{ ...heroFilters }} className={`${isFilterOpened ? "w-[100%] !transition-all !duration-1000 !rounded-[8px]" : "!w-[79.9%] !transition-all !duration-1000"}  flex space-x-3 p-1 text-black justify-center items-center text-center`}>
@@ -221,7 +218,16 @@ const Hero = () => {
                     <Link href='/staff/booking' className='py-[16px] px-[90px] text-[#350ABC] font-[600] leading-[26px] tracking-[-2%] text-[20px]' style={{background:'#f3f0ff'}}>Post job For Free</Link>
                     <button className='py-[16px] px-[90px] bg-[#774DFD] text-[#F3F0FF] font-[600] leading-[26px] tracking-[-2%] text-[20px]'>Become a Tasker</button>
                     </div>
-                    <Image quality={100} onLoadingComplete={handleImage2Load} height={744} width={1294} src="/images/hero/hero.png" alt="Hero Image" />
+                    <Image
+                quality={100}
+                onLoadingComplete={handleImage2Load}
+                layout="fixed"
+                height={724}
+                width={1294}
+                className='xl:!max-w-[98%] lg:!max-w-[86%]  !h-[60%] 2xl:!max-w-[100%]'
+                src="/images/hero/hero.png"
+                alt="Hero Image"
+            />
                 </div>
             </main>
         </div>

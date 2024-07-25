@@ -1,18 +1,41 @@
 "use client"
 import { montserrat } from '@/app/libs/Fonts'
+import { selectStaff } from '@/app/libs/store/features/staffSlice'
+import { useAppSelector } from '@/app/libs/store/hooks'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoTimeOutline } from 'react-icons/io5'
 import { LuMapPin } from 'react-icons/lu'
 import { PiLineVerticalThin } from 'react-icons/pi'
+import CardSkeleton from '../../ui/card-skeleton'
+import StaffListMap from '../../home/staff/components/staff-list-map'
 
 const OffersTabs = ({ activeTab }: { activeTab: string }) => {
+    const [offeredStaff, setOfferedStaff] = useState([])
+    console.log('offeredStaff in OffersTabs', offeredStaff)
+    useEffect(() => {
+        const storedStaffArray = localStorage.getItem('selectedStaff');
+
+        if (storedStaffArray) {
+            try {
+                const parsedStaffArray = JSON.parse(storedStaffArray);
+                console.log('parsedStaffArray', parsedStaffArray);
+                setOfferedStaff(parsedStaffArray)
+                // Now you can use parsedStaffArray as needed, e.g., set state, etc.
+
+            } catch (error) {
+                console.error('Error parsing storedStaffArray:', error);
+                // Handle parsing error if necessary
+            }
+        }
+    }, []);
+
     return (
         <>
             {/* Tab Content */}
-            <section className="mt-[58px] pr-8">
+            <section className="pr-8 relative bottom-[20px]">
                 {activeTab === 'a' && (
-                    <div className='h-[500px] overflow-auto space-y-[38px] pb-10'>
+                    <div className='h-[500px] overflow-auto space-y-[38px] pb-10 mt-[58px]'>
                         <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
                             <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
                                 <div className='flex justify-center items-center gap-[31px]'>
@@ -63,7 +86,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     </div>
                                     <div>
                                         <button className={`${montserrat.className} !text-[28.527px]  py-[2px] text-[#2C2240] leading-normal font-[600] tracking-[-0.285px]`}><div><span className='!text-[21.395px] !leading-normal tracking-[-0.214px] font-[600] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
-                                        <div className='cursor-pointer flex justify-center items-center mb-[16px]'>
+                                        <div className='cursor-pointer flex justify-center items-center'>
                                             <span className='rotate-180'><svg width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
@@ -93,13 +116,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <IoTimeOutline />  12 minutes ago
                                 </div>
                             </div>
-                            <div className='flex justify-start items-center gap-[4px] py-[14px]'>
-                                <span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                    <path d="M5.625 8.75L2.5 5.625L5.625 2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12.5 12.5V8.125C12.5 7.46196 12.2366 6.82607 11.7678 6.35723C11.2989 5.88839 10.663 5.625 10 5.625H2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></span>
-                                <h3 className='text-[#2C2240] text-[16px] font-[400] tracking-[-0.32px] leading-[24px] opacity-1'>Reply</h3>
-                            </div>
+
                         </div>
                         <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
                             <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
@@ -151,7 +168,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     </div>
                                     <div>
                                         <button className={`${montserrat.className} !text-[28.527px]  py-[2px] text-[#2C2240] leading-normal font-[600] tracking-[-0.285px]`}><div><span className='!text-[21.395px] !leading-normal tracking-[-0.214px] font-[600] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
-                                        <div className='cursor-pointer flex justify-center items-center mb-[16px]'>
+                                        <div className='cursor-pointer flex justify-center items-center'>
                                             <span className='rotate-180'><svg width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
@@ -181,13 +198,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <IoTimeOutline />  12 minutes ago
                                 </div>
                             </div>
-                            <div className='flex justify-start items-center gap-[4px] py-[14px]'>
-                                <span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                    <path d="M5.625 8.75L2.5 5.625L5.625 2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12.5 12.5V8.125C12.5 7.46196 12.2366 6.82607 11.7678 6.35723C11.2989 5.88839 10.663 5.625 10 5.625H2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></span>
-                                <h3 className='text-[#2C2240] text-[16px] font-[400] tracking-[-0.32px] leading-[24px] opacity-1'>Reply</h3>
-                            </div>
+
                         </div>
                         <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
                             <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
@@ -239,7 +250,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     </div>
                                     <div>
                                         <button className={`${montserrat.className} !text-[28.527px]  py-[2px] text-[#2C2240] leading-normal font-[600] tracking-[-0.285px]`}><div><span className='!text-[21.395px] !leading-normal tracking-[-0.214px] font-[600] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
-                                        <div className='cursor-pointer flex justify-center items-center mb-[16px]'>
+                                        <div className='cursor-pointer flex justify-center items-center'>
                                             <span className='rotate-180'><svg width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
@@ -269,13 +280,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <IoTimeOutline />  12 minutes ago
                                 </div>
                             </div>
-                            <div className='flex justify-start items-center gap-[4px] py-[14px]'>
-                                <span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                    <path d="M5.625 8.75L2.5 5.625L5.625 2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12.5 12.5V8.125C12.5 7.46196 12.2366 6.82607 11.7678 6.35723C11.2989 5.88839 10.663 5.625 10 5.625H2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></span>
-                                <h3 className='text-[#2C2240] text-[16px] font-[400] tracking-[-0.32px] leading-[24px] opacity-1'>Reply</h3>
-                            </div>
+
                         </div>
                         <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
                             <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
@@ -327,7 +332,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     </div>
                                     <div>
                                         <button className={`${montserrat.className} !text-[28.527px]  py-[2px] text-[#2C2240] leading-normal font-[600] tracking-[-0.285px]`}><div><span className='!text-[21.395px] !leading-normal tracking-[-0.214px] font-[600] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
-                                        <div className='cursor-pointer flex justify-center items-center mb-[16px]'>
+                                        <div className='cursor-pointer flex justify-center items-center'>
                                             <span className='rotate-180'><svg width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
@@ -357,13 +362,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <IoTimeOutline />  12 minutes ago
                                 </div>
                             </div>
-                            <div className='flex justify-start items-center gap-[4px] py-[14px]'>
-                                <span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                    <path d="M5.625 8.75L2.5 5.625L5.625 2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12.5 12.5V8.125C12.5 7.46196 12.2366 6.82607 11.7678 6.35723C11.2989 5.88839 10.663 5.625 10 5.625H2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></span>
-                                <h3 className='text-[#2C2240] text-[16px] font-[400] tracking-[-0.32px] leading-[24px] opacity-1'>Reply</h3>
-                            </div>
+
                         </div>
                         <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
                             <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
@@ -415,7 +414,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     </div>
                                     <div>
                                         <button className={`${montserrat.className} !text-[28.527px]  py-[2px] text-[#2C2240] leading-normal font-[600] tracking-[-0.285px]`}><div><span className='!text-[21.395px] !leading-normal tracking-[-0.214px] font-[600] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
-                                        <div className='cursor-pointer flex justify-center items-center mb-[16px]'>
+                                        <div className='cursor-pointer flex justify-center items-center'>
                                             <span className='rotate-180'><svg width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
@@ -445,22 +444,34 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <IoTimeOutline />  12 minutes ago
                                 </div>
                             </div>
-                            <div className='flex justify-start items-center gap-[4px] py-[14px]'>
-                                <span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                    <path d="M5.625 8.75L2.5 5.625L5.625 2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12.5 12.5V8.125C12.5 7.46196 12.2366 6.82607 11.7678 6.35723C11.2989 5.88839 10.663 5.625 10 5.625H2.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></span>
-                                <h3 className='text-[#2C2240] text-[16px] font-[400] tracking-[-0.32px] leading-[24px] opacity-1'>Reply</h3>
-                            </div>
+
                         </div>
                     </div>
                 )}
                 {activeTab === 'b' && (
-                    <div className="bg-gray-100 p-4 rounded-md">
-                        <h2 className="text-xl font-bold mb-2">Tab B Content</h2>
-                        <p>This is the content of Tab B.</p>
+                   <>
+                   <div
+  className={`flex flex-wrap gap-[20px] ${
+    offeredStaff?.length > 4 ? 'justify-start content-start' : 'justify-center content-center'
+  }`}
+>
+  {offeredStaff?.map((staff: any, index: number) => (
+    <div key={staff.id} className='h-[510px]'>
+      <StaffListMap index={index} staff={staff} />
+    </div>
+  ))}
+</div>
+
+                      {offeredStaff.length===0 ?<div className='w-full flex justify-center items-center mt-[100px]'>No invites!</div>: 
+                        <div className='w-full flex justify-center items-center mt-[100px]'>
+
+                        <button className='bg-[#2C2240] relative  rounded-[4px] flex justify-center items-center gap-2 py-[14px] px-[32px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <h2>+</h2> Add More Invites</button>
+
                     </div>
+                      }
+                   </>
                 )}
+
             </section>
         </>
     )

@@ -18,17 +18,14 @@ const CommonModal = dynamic(() => import('@/app/components/common/modal/Modal'),
 
 type StaffMapProps = {
     staff: any;
-    handleStaffClick: (arg: any) => void
+    handleStaffClick?: (arg: any) => void
     setModalOpen?: (arg: boolean) => void;
     modalOpen?: boolean;
-    index: number;
+    index?: number;
 }
 const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: StaffMapProps) => {
-    console.log('index', index)
-    console.log('staff in staffMap', staff)
     const [openBreakDown, setOpenCastBreakDown] = useState(false)
     const [getInviteCount, setGetInviteCount] = useState()
-    console.log('getInviteCount', getInviteCount)
     const [sendInvite, setSendInvite] = useState(false)
 
     const [showAllServices, setShowAllServices] = useState(false);
@@ -45,9 +42,9 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
         setOpenCastBreakDown(!openBreakDown)
     }
     const handleSendInvite = () => {
+        handleStaffClick?.(staff)
         setSendInvite(!sendInvite)
         //@ts-ignore
-        setGetInviteCount(prevCount => index + 1);
     }
     return (
         <>
@@ -102,7 +99,7 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
                                 textOverflow: 'ellipsis',
                                 whiteSpace: 'nowrap'
                             }} className='text-[20px] text-[#2C2240] font-semibold'>
-                                {staff.name.length > 18 ? `${staff.name.slice(0, 18)}...` : staff.name}
+                                {staff?.name?.length > 18 ? `${staff?.name?.slice(0, 18)}...` : staff?.name}
                             </h3>
 
                             <div className="flex items-center justify-center">
@@ -154,7 +151,7 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
                     </div>
                 </div>
             </div>
-            <div className="flex justify-around items-center flex-col mt-[32px] relative bottom-[135.9px] w-full space-x-2  pt-2 pb-[17px] bg-[#F3F0FF] rounded-bl-[4px] rounded-br-[4px] border-x-[1px] border-[#E9E9E9]">
+            <div className="flex justify-around items-center flex-col mt-[32px] relative bottom-[142.9px] w-full space-x-2  pt-2 pb-[17px] bg-[#F3F0FF] rounded-bl-[4px] rounded-br-[4px] border-x-[1px] border-[#E9E9E9]">
                 {openBreakDown &&
                     <div className='!h-[11.5rem] bg-[#fff] text-[#2C2240] pt-1 !pb-4 w-full absolute bottom-[75px] space-y-2 capitalize'>
                         <div onClick={handleCloseCastBreakdown} className='w-full flex justify-center items-center cursor-pointer'><span className='rotate-180 relative top-[3px]'><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -185,29 +182,56 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
                         </span>   <span className='text-[12px] leading-[18px] tracking-[-1%] font-[400] text-center'>Cost Breakdown</span>
                     </div>
                     <div className='space-x-[20px] !m-0 flex justify-center items-center px-[10px]'>
-                        <button onClick={() => handleStaffClick(staff)} className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md"><div className={`${montserrat.className} text-[#2C2240] text-[16px] font-[600] tracking-[-1%] leading-[19.5px]`}><span className='!text-[12px] !leading-[14.63px] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
-                        <button onClick={handleSendInvite} type="button" className={`!text-[#F3F0FF] ${sendInvite ? "bg-[#774DFD]" : "bg-[#2c2240]"}  rounded-[4px]  text-[14px] font-[400] w-[137px]  py-[10px] text-center inline-flex items-center tracking-[-2%] leading-[24px] me-2 `}>
-                            <span className={`flex justify-center items-center ${sendInvite ? "ml-[30px]" : "ml-[18px]"}`}>
-                                {sendInvite ? "Uninvite" : "Send Invite"}
-                                <span className='ml-[9.33px]'>
-                                    {sendInvite && <Image
-                                        width={13}
-                                        height={13}
-                                        color='#fff'
-                                        className='relative bottom-[.5px]'
-                                        src={'/images/hero/tick.svg'}
-                                        alt='tick'
-                                    />}
-                                    {!sendInvite &&
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15.1666 1.33337L7.83325 8.66671M15.1666 1.33337L10.4999 14.6667L7.83325 8.66671M15.1666 1.33337L1.83325 6.00004L7.83325 8.66671" stroke="#F3F0FF" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    }
+                        <button className="text-[14px] font-normal py-[2px] text-[#413853] rounded-md"><div className={`${montserrat.className} text-[#2C2240] text-[16px] font-[600] tracking-[-1%] leading-[19.5px]`}><span className='!text-[12px] !leading-[14.63px] !mr-[4px] !text-[#6B6B6B]'>Total.</span>$2,700.00</div></button>
+                       {staff.isOffered &&
+                          <button onClick={handleSendInvite} type="button" className={`!text-[#F3F0FF] ${!sendInvite ? "bg-[#774DFD]" : "bg-[#2c2240]"}  rounded-[4px]  text-[14px] font-[400] w-[137px]  py-[10px] text-center inline-flex items-center tracking-[-2%] leading-[24px] me-2 `}>
+                          <span className={`flex justify-center items-center ${!sendInvite ? "ml-[30px]" : "ml-[18px]"}`}>
+                              {!sendInvite ? "Uninvite" : "Send Invite"}
+                              <span className='ml-[9.33px]'>
+                                  {!sendInvite && <Image
+                                      width={13}
+                                      height={13}
+                                      color='#fff'
+                                      className='relative bottom-[.5px]'
+                                      src={'/images/hero/tick.svg'}
+                                      alt='tick'
+                                  />}
+                                  {sendInvite &&
+                                      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M15.1666 1.33337L7.83325 8.66671M15.1666 1.33337L10.4999 14.6667L7.83325 8.66671M15.1666 1.33337L1.83325 6.00004L7.83325 8.66671" stroke="#F3F0FF" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+                                      </svg>
+                                  }
 
-                                </span>
+                              </span>
+
+                          </span>
+                      </button>
+                       
+                       }
+                    {!staff.isOffered &&
+                        <button onClick={handleSendInvite} type="button" className={`!text-[#F3F0FF] ${sendInvite ? "bg-[#774DFD]" : "bg-[#2c2240]"}  rounded-[4px]  text-[14px] font-[400] w-[137px]  py-[10px] text-center inline-flex items-center tracking-[-2%] leading-[24px] me-2 `}>
+                        <span className={`flex justify-center items-center ${sendInvite ? "ml-[30px]" : "ml-[18px]"}`}>
+                            {sendInvite ? "Uninvite" : "Send Invite"}
+                            <span className='ml-[9.33px]'>
+                                {sendInvite && <Image
+                                    width={13}
+                                    height={13}
+                                    color='#fff'
+                                    className='relative bottom-[.5px]'
+                                    src={'/images/hero/tick.svg'}
+                                    alt='tick'
+                                />}
+                                {!sendInvite &&
+                                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.1666 1.33337L7.83325 8.66671M15.1666 1.33337L10.4999 14.6667L7.83325 8.66671M15.1666 1.33337L1.83325 6.00004L7.83325 8.66671" stroke="#F3F0FF" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                }
 
                             </span>
-                        </button>
+
+                        </span>
+                    </button>
+                    }
                     </div>
                 </div>
                 <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading....</p>}>

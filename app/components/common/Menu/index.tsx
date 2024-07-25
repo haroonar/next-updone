@@ -23,9 +23,7 @@ const CommonDropdown: React.FC<MenuItemProps> = ({
     children,
     isCalander
 }) => {
-    console.log('isOpen', isOpen)
     const dropdownRef = useRef<HTMLDivElement>(null);
-    console.log('dropdownRef', dropdownRef)
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (

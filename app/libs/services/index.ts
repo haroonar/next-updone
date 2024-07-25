@@ -32,7 +32,7 @@ export async function apiRequest<T>(url: string, options: RequestOptions<T>): Pr
 
         if (!response.ok) {
             // If response status is not in the range 200-299, throw an error
-            throw new Error(data.message || 'Failed to fetch data');
+            toast.error(data.message || 'Failed to fetch data')
         }
 
         return data.data; // Return data for successful response

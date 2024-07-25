@@ -193,7 +193,7 @@ const AccordionForm = ({next}:any) => {
 
             </div>
             {/* Second accordion section */}
-            <div className={`${isOpenFirst ? "pb-[24px]" : "pb-[37.5px] !py-[24px]"} pt-[37.5px] px-[40px] rounded-[8px] bg-[#FFF] mb-4 ${isOpenFirst ? 'open' : ''}`}>
+            <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`${isOpenFirst ? "pb-[24px]" : "pb-[37.5px] !py-[24px]"} pt-[37.5px] px-[40px] rounded-[8px] bg-[#FFF] mb-4 ${isOpenFirst ? 'open' : ''}`}>
                 <div className="flex items-center justify-between cursor-pointer" onClick={toggleFirstAccordion}>
                     <div className='flex justify-start items-start flex-col gap-[16px]'>
                         <div className='flex justify-center gap-[12px] items-center'>

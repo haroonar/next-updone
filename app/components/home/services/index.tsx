@@ -31,7 +31,6 @@ const Services = () => {
     });
   };
   const [data, setData] = useState<any>(null);
-  console.log('data', data)
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

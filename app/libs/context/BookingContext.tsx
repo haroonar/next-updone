@@ -25,7 +25,6 @@ export const BookingProvider: React.FC<{ children: ReactNode }> = ({ children })
     const scrollRef = useRef<HTMLDivElement>(null);
     const [selectedTimeId, setSelectedTimeId] = useState<string | null>(null);
     const [timessss, setTimessss] = useState<{ date: string; times: string[] }[]>([]); // Initialize as an empty array
-    console.log('timessss', timessss)
     const [date, setDate] = useState<Date>(new Date());
     // Define the available times for each highlighted date with unique IDs
     [
@@ -78,8 +77,6 @@ export const BookingProvider: React.FC<{ children: ReactNode }> = ({ children })
             const selectedTimeObj = availableTimesMap[selectedDate].find(time => time.id === selectedTimeId);
             if (selectedTimeObj) {
                 const { time, id } = selectedTimeObj;
-                console.log('Selected date:', selectedDate);
-                console.log('Selected time:', time);
 
                 // Check if there is already an entry for the selected date in timessss
                 const existingDateIndex = timessss.findIndex((item) => item.date === selectedDate);

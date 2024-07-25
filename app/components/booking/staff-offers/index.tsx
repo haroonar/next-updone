@@ -1,5 +1,5 @@
 "use client"
-import { montserrat } from '@/app/libs/Fonts';
+import { lato, montserrat } from '@/app/libs/Fonts';
 import Image from 'next/image';
 import React, { Suspense, useState } from 'react'
 import { GoDotFill } from "react-icons/go";
@@ -8,15 +8,21 @@ import { CiMail } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 import { PiLineVerticalThin } from 'react-icons/pi';
 import dynamic from 'next/dynamic';
+const Faqs = dynamic(() => import('../../home/faqs'), {
+  ssr: false, // Do not SSR for this component
+});
 const OffersTabs = dynamic(() => import('../booking-offers-tabs'), {
   ssr: false, // Do not SSR for this component
 });
 const StaffOffers = () => {
+
   const [activeTab, setActiveTab] = useState('a');
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
+
+  
   return (
     <div className='max-w-[1279px] mx-auto'>
       <section className='mt-[130px] rounded-[29px] gap-[90px] border-[1px] bg-[#FFF] flex  border-[#F0F0F0] !pb-[130px] pt-[60px] px-[40px]'>
@@ -90,6 +96,14 @@ const StaffOffers = () => {
       </div>
       <Suspense fallback={<>Loading...</>}>
         <OffersTabs activeTab={activeTab} />
+      </Suspense>
+      <div className='py-[32px] px-[40px] mt-[80px] bg-[#FFF] rounded-[8px] mb-[86px]' style={{boxShadow:"0px 6px 26px 0px rgba(0, 0, 0, 0.07)"}}>
+        <h2 className='text-[#000000] tracking-[-0.96px] leading-[24px] font-[500] text-[48px] mb-[20px]'>Cancellation Policy</h2>
+        <p className='text-[#6B6B6B] tracking-[-0.32px] leading-[30px] font-[400] text-[16px] mb-[24px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sociis natoque penatibus et magnis dis parturient montes. Nibh sed pulvinar proin gravida hendrerit. </p>
+        <h3 className={`${lato.className} text-[#350ABC] tracking-[-0.32px] leading-[30px] font-[700] text-[16px]`}>Learn More</h3>
+      </div>
+      <Suspense fallback={<>Loading...</>}>
+        <Faqs isJobDetailsFaqs/>
       </Suspense>
     </div>
   )

@@ -10,9 +10,8 @@ import { useRegisterForm } from '@/app/libs/utils'
 
 const RegisterForm = () => {
     const [data, setData] = useState<any>(null);
-    console.log('data', data)
     const [loading, setLoading] = useState(true);
-    const { register, handleSubmit, errors } = useRegisterForm({RegisterFormSchema});
+    const { register, handleSubmit, errors } = useRegisterForm({});
 
     const onSubmit = async (data: any) => {
         setLoading(true); // Show loading indicator
@@ -31,10 +30,8 @@ const RegisterForm = () => {
                 body: body
               }); // API call
             setData(newData?.data); // Update state with fetched data
-            console.log('newData', newData)
         } catch (error) {
             toast.error('Failed to login. Please check your credentials.');
-            console.error('Error fetching data:', error);
             // Handle error state or display an error message
         } finally {
             setLoading(false); // Hide loading indicator regardless of success or failure
@@ -43,7 +40,7 @@ const RegisterForm = () => {
     return (
         <div className='login_backgorund rounded-[47%] h-[620px] w-[567px] top-[384px] right-[83px] relative'>
 
-            <div className='relative bottom-[380px] left-[7px] pb-[60px] h-[643px] overflow-scroll'>
+            <div className='relative bottom-[380px] pb-[60px] h-[643px] overflow-scroll'>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex justify-between flex-col gap-[8px] items-center'>
