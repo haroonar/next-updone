@@ -393,13 +393,13 @@ const AccordionForm = ({ next }: any) => {
           )}
         </div>
         {isOpenThird &&
-          <div className="text-center relative bottom-[-81px]">
+          <div className="text-center relative bottom-[-81px]" onClick={next}>
             <button
               type="button"
               className="fixed inline w-[24%] right-[458px] bottom-[115px] pb-[11px] pl-[35px] justify-center rounded-[4px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
               onClick={handleContinueSecond}
             >
-              <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[3px] '>See Taskers and Prices</span>
+              <span  className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[3px] '>See Taskers and Prices</span>
               <span className='relative bottom-[18px]'><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
             </button>
           </div>

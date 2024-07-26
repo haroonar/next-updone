@@ -7,10 +7,10 @@ import { useBookingContext } from '@/app/libs/context/BookingContext';
 import { Staff } from '@/app/libs/types';
 import Image from 'next/image'
 import React, { Suspense, useEffect, useState } from 'react'
-import { highlightedDatesAvailable, highlightedDatesNotAvailable } from '../../../detail';
 import dynamic from 'next/dynamic';
 import Loader from '@/app/components/ui/loader';
 import { montserrat } from '@/app/libs/Fonts';
+import { highlightedDatesAvailable, highlightedDatesNotAvailable } from '../../../detail';
 
 const CommonModal = dynamic(() => import('@/app/components/common/modal/Modal'), {
     ssr: false, // Do not SSR for this component

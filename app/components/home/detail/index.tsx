@@ -28,9 +28,9 @@ import { useBookingContext } from '@/app/libs/context/BookingContext';
 
 
 export const highlightedDatesNotAvailable = [''];
+export const highlightedDatesAvailable = ['2024-07-21', '2024-07-24'];
 const StaffDetail = () => {
     const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss, staff } = useBookingContext();
-     const highlightedDatesAvailable = ['2024-07-21', '2024-07-24'];
     return (
         <div>
             {/* upper section */}
