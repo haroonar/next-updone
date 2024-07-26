@@ -13,9 +13,9 @@
   /* Apply white background to the navigation */
   height: 37px !important;
   margin-bottom: 0 !important;
-padding: 8.304px 4px !important;
+  padding: 8.304px 4px !important;
 
-;
+  ;
 }
 
 .react-calendar__navigation button {
@@ -92,7 +92,7 @@ padding: 8.304px 4px !important;
 
 }
 
-.react-calendar__month-view__weekdays__weekday:first-child abbr { 
+.react-calendar__month-view__weekdays__weekday:first-child abbr {
   color: #F3F0FF !important;
   /* Change the color of 'MON' to the specified color */
   text-align: center !important;
@@ -100,10 +100,10 @@ padding: 8.304px 4px !important;
   font-family: "Poppins", sans-serif;
   font-weight: 500 !important;
   font-style: normal !important;
-line-height: 13.287px;
+  line-height: 13.287px;
 }
 
-.react-calendar__month-view__weekdays__weekday abbr { 
+.react-calendar__month-view__weekdays__weekday abbr {
   text-decoration: none !important;
   word-spacing: 1px !important;
   color: #F3F0FF !important;
@@ -113,7 +113,7 @@ line-height: 13.287px;
   font-family: "Poppins", sans-serif;
   font-weight: 500 !important;
   font-style: normal !important;
-line-height: 13.287px;
+  line-height: 13.287px;
 
 }
 
@@ -145,13 +145,14 @@ line-height: 13.287px;
 
 .react-calendar__month-view__days__day abbr {
   max-width: 71px !important;
-  color:  #2C2240 !important;
+  color: #2C2240 !important;
   text-align: center !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 11.626px !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  line-height: 17.439px !important; /* 150% */
+  line-height: 17.439px !important;
+  /* 150% */
   letter-spacing: -0.266px !important;
 }
 
@@ -178,22 +179,23 @@ line-height: 13.287px;
 }
 
 .react-calendar__tile--active abbr {
-  color:  #F3F0FF !important;
+  color: #F3F0FF !important;
   text-align: center !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 11.626px !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  line-height: 17.439px !important; /* 150% */
+  line-height: 17.439px !important;
+  /* 150% */
   letter-spacing: -0.266px !important;
   background-color: #350ABC !important;
   display: flex !important;
-height: 35.793px !important;
-flex-direction: column !important;
-justify-content: center !important;
-flex: 1 0 0 !important; 
-border-radius: 4px !important;
-padding-right: 0px !important;
+  height: 35.793px !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  flex: 1 0 0 !important;
+  border-radius: 4px !important;
+  padding-right: 0px !important;
 }
 
 .time-border-style {
@@ -227,36 +229,40 @@ padding-right: 0px !important;
   font-style: normal !important;
   left: 6px !important;
 }
+
 .highlight {
   text-align: center !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 11.626px !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  line-height: 17.439px !important; /* 150% */
+  line-height: 17.439px !important;
+  /* 150% */
   letter-spacing: -0.266px !important;
   display: flex !important;
   height: 35px !important;
   justify-content: center !important;
-  background-color: #fff1f1!important;
+  background-color: #fff1f1 !important;
   border-radius: 4px !important;
   color: #ffa0a0 !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 }
-.highlight-avail{
+
+.highlight-avail {
   text-align: center !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 11.626px !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  line-height: 17.439px !important; /* 150% */
+  line-height: 17.439px !important;
+  /* 150% */
   letter-spacing: -0.266px !important;
   display: flex !important;
   height: 35px !important;
   justify-content: center !important;
-  background-color: #e9f3ff!important;
+  background-color: #e9f3ff !important;
   border-radius: 4px !important;
   color: #5082bd !important;
   padding-bottom: 0 !important;
@@ -264,18 +270,109 @@ padding-right: 0px !important;
   justify-content: center !important;
   align-items: center !important;
 }
-.react-calendar__month-view__days__day{
+
+.react-calendar__month-view__days__day {
   padding-left: 0px !important;
   padding-left: 0 !important;
   border-radius: 0 !important;
   padding-right: 0 !important;
   border-radius: 4px !important;
 }
+
 .react-calendar__tile.highlight abbr {
   color: red !important;
   text-transform: uppercase !important;
   text-decoration: line-through !important;
 }
-.react-calendar__month-view__days__day.highlight-avail{
+
+.react-calendar__month-view__days__day.highlight-avail {
   padding-top: 0 !important;
+}
+
+
+
+
+.time-slot {
+  display: flex;
+  padding: 13.664px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 2.733px;
+  border: 1.366px solid #F5F5F5;
+  background: #FFF;
+  height: 37px;
+  color: #2C2240;
+  text-align: center;
+  font-size: 13.664px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32.794px;
+  /* 240% */
+  letter-spacing: -0.273px;
+  cursor: pointer;
+}
+
+.time-slot.selected {
+  border-radius: 2.733px;
+  border: 1.366px solid #350ABC;
+  background: var(--Primary, #350ABC);
+  display: flex;
+  padding: 13.664px;
+  justify-content: center;
+  align-items: center;
+  gap: 13.664px;
+  align-self: stretch;
+  color: #F3F0FF;
+  text-align: center;
+  font-size: 13.664px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32.794px;
+  /* 240% */
+  letter-spacing: -0.273px;
+}
+
+.clear-selection-btn {
+  margin-top: 10px;
+}
+
+
+.time-slot.disabled {
+  border-radius: 2.733px;
+  border: 1.366px solid #FFF;
+  background: #F7FCFF;
+  display: flex;
+  padding: 13.664px;
+  justify-content: center;
+  align-items: center;
+  gap: 13.664px;
+  align-self: stretch;
+  color: #4694C2;
+  text-align: center;
+  font-size: 13.664px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32.794px;
+  /* 240% */
+  letter-spacing: -0.273px;
+}
+
+.save-selection-button {
+  display: flex;
+  width: 172.266px;
+  height: 43.725px;
+  justify-content: center;
+  align-items: center;
+  gap: 5.466px;
+  border-radius: 5.466px;
+  border: 1.366px solid #DED6FF;
+  background: #F3F0FF;
+  color: #350ABC;
+  text-align: center;
+  font-size: 16.397px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32.794px;
+  letter-spacing: -0.328px;
 }

@@ -238,7 +238,7 @@ const LoginFrom = ({ showLoginForm, close, showRegisterForm, styles, handleClose
                         </span>
 
                       </button>
-                      <div className='flex justify-center items-center gap-2'>
+                      <div className='flex justify-center items-center gap-2 mt-[25px]'>
                         <p className='text-[#494848] text-[14px] fonr-[400] leading-[24px] tracking-[-0.28px]'>Already have an account? </p>
                         <h3 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]'>Login</h3>
                       </div>
