@@ -304,7 +304,7 @@ const AccordionForm = ({ next }: any) => {
       </div>
 
       {/* Third accordion section */}
-      <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-20 pb-[100px]  ${isOpenThird ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenThird ? 'open' : ''}`}>
+      <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)',height:isOpenThird ? "630px":"auto" }} className={`rounded-[8px] bg-[#FFF]  mb-20 pb-[100px]  ${isOpenThird ? "pb-[24px] " : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenThird ? 'open' : ''}`}>
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={toggleThirdAccordion}
@@ -396,11 +396,11 @@ const AccordionForm = ({ next }: any) => {
           <div className="text-center relative bottom-[-81px]">
             <button
               type="button"
-              className="flex justify-center rounded-[4px]  w-auto py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
+              className="fixed inline w-[24%] right-[458px] bottom-[115px] pb-[11px] pl-[35px] justify-center rounded-[4px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
               onClick={handleContinueSecond}
             >
-              <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px]'>See Taskers and Prices</span>
-              <span><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
+              <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[3px] '>See Taskers and Prices</span>
+              <span className='relative bottom-[18px]'><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
             </button>
           </div>
         }
