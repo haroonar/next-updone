@@ -83,9 +83,9 @@ console.log('storedData', storedData)
                                         </svg>
                                     </Link>
                                 </li>
-                                {storedData?.data?.user?.name ? (
+                                {storedData?.user?.name ? (
                                     <>
-                                        <li>{storedData?.data?.user?.name}</li>
+                                        <li>{storedData?.user?.name}</li>
                                         <li>   <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo"/></li>
                                         <li> <div onClick={handleLogout} className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
                                             Logout
