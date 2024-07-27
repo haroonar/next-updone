@@ -40,6 +40,10 @@ console.log('storedData', storedData)
     const handleLogout = () => {
         dispatch(clearAuth())
     }
+    const handleRegisterClick=()=>{
+        setLoginMenuOpen(false)
+        setRegisterMenuOpen(true)
+    }
     return (
         <>
             {  <header className={styles.header}>
@@ -100,7 +104,7 @@ console.log('storedData', storedData)
                                             {loginMenuOpen && (
                                                 <div className={styles.menuBox}>
                                                     {/* Your login menu content here */}
-                                                    <LoginForm />
+                                                    <LoginForm handleRegisterClick={handleRegisterClick}/>
                                                 </div>
                                             )}
                                         </li>
@@ -111,7 +115,7 @@ console.log('storedData', storedData)
                                             {registerMenuOpen && (
                                                 <div className={styles.menuBox}>
                                                     {/* Your register menu content here */}
-                                                    <RegisterForm />
+                                                    <RegisterForm setLoginMenuOpen={setLoginMenuOpen} setRegisterMenuOpen={setRegisterMenuOpen}/>
                                                 </div>
                                             )}
                                         </li>

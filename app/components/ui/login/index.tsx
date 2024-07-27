@@ -9,7 +9,7 @@ import { apiRequest } from '@/app/libs/services'
 
 
 
-const LoginForm = () => {
+const LoginForm = ({handleRegisterClick}:any) => {
 
     const [data, setData] = useState<any>(null);
     const dispatch = useDispatch()
@@ -89,7 +89,7 @@ const LoginForm = () => {
                         </button>
                         <div className='flex justify-center items-center gap-2'>
                             <p className='text-[#494848] text-[14px] fonr-[400] leading-[24px] tracking-[-0.28px]'>Does not have an account? </p>
-                            <h3 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]'>Register</h3>
+                            <h3 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]' onClick={handleRegisterClick}>Register</h3>
                         </div>
                     </div>
                 </form>
