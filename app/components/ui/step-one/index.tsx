@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './style.module.css';
 import { CHOOSE_SERVICES, locationOptions } from '@/app/libs/Constants';
@@ -8,34 +8,56 @@ import { useBookingContext } from '@/app/libs/context/BookingContext';
 
 
 const AccordionForm = ({ next }: any) => {
+
+  const [firstFormData, setFirstFormData] = useState<any>()
+
   const [isOpenFirst, setIsOpenFirst] = useState(true);
   const [isOpenSecond, setIsOpenSecond] = useState(false);
   const [isOpenThird, setIsOpenThird] = useState(false);
   const [workingTimes, setWorkingTimes] = useState<any>([]);
   console.log('workingTimes', workingTimes)
   const [firstSectionComplete, setFirstSectionComplete] = useState(false);
+  console.log('firstSectionComplete', firstSectionComplete)
   const [secondSectionComplete, setSecondSectionComplete] = useState(false);
   const [thirdSectionComplete, setThirdSectionComplete] = useState(false);
   const [selectedServiceId, setSelectedServiceId] = useState(1);
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+  const { isStaffListerFilter, setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss, staff } = useBookingContext();
 
   const toggleFirstAccordion = () => {
-    setIsOpenFirst(!isOpenFirst);
+    if (!firstFormData?.message1 && !firstFormData?.message2) {
+      setIsOpenFirst(isOpenFirst);
+    } else {
+      setIsOpenFirst(!isOpenFirst);
+    }
     setIsOpenSecond(false);
     setIsOpenThird(false)
   };
 
   const toggleSecondAccordion = () => {
-    setIsOpenSecond(!isOpenSecond);
+
+    if (firstFormData?.message1 && firstFormData?.message2) {
+      setIsOpenSecond(!isOpenSecond);
+    }
+    if (!firstSectionComplete) {
+      return
+    }
     setIsOpenFirst(false);
     setIsOpenThird(false)
   };
 
   const toggleThirdAccordion = () => {
-    setIsOpenThird(!isOpenThird);
+    // Check if firstFormData is defined and has message1 or message2, and selectedServiceId is present
+    if (firstFormData?.message1 && firstFormData?.message2 ) {
+      // Toggle the third accordion if conditions are met
+      setIsOpenThird(!isOpenThird);
+    }
+    
+    // Close the first and second accordions regardless of the conditions
     setIsOpenFirst(false);
     setIsOpenSecond(false);
   };
+  
 
   const handleContinueFirst = () => {
     toggleSecondAccordion()
@@ -48,20 +70,24 @@ const AccordionForm = ({ next }: any) => {
   };
   const onFirstSubmit = (data: any) => {
     console.log('Form data11:', data);
+    setFirstSectionComplete(true);
+    setFirstFormData(data)
     // Handle further submission logic here
-    if (!errors.city && !errors.postalcode && !errors.location && !errors.address) {
-      setFirstSectionComplete(true);
-      toggleSecondAccordion(); // Close the first accordion
-    }
   };
+  // Use effect to react to the firstSectionComplete change
+  useEffect(() => {
+    if (firstSectionComplete ) {
+      toggleSecondAccordion(); // Toggle the second accordion when firstSectionComplete changes
+    }
+  }, [firstSectionComplete]);
+
+
   const onSecondSubmit = (data: any) => {
     console.log('Form data222:', data);
     // Handle further submission logic here
-    if (!errors.message1 && !errors.message1) {
-      setSecondSectionComplete(true);
-      toggleSecondAccordion(); // Close the second accordion
-      toggleThirdAccordion()
-    }
+    setSecondSectionComplete(true);
+    toggleSecondAccordion(); // Close the second accordion
+    toggleThirdAccordion()
   };
 
   const handleServiceClick = (id: number, text: string) => {
@@ -96,12 +122,11 @@ const AccordionForm = ({ next }: any) => {
 
   const cityOptions = [
     { value: '', label: 'Choose City *', disabled: true },
-    { id:1,value: 'los angeles', label: 'Los Angeles' }
+    { id: 1, value: 'los angeles', label: 'Los Angeles' }
   ];
 
   // const highlightedDatesNotAvailable = ['', '', ''];
   // const highlightedDatesAvailable = ['', ''];
-  const { isStaffListerFilter, setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss, staff } = useBookingContext();
   const highlightedDatesAvailable = ['2024-07-21', '2024-07-26'];
   console.log('timessss', timessss)
   console.log('date', date)
@@ -111,6 +136,7 @@ const AccordionForm = ({ next }: any) => {
       <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`rounded-[8px] bg-[#FFF]  mb-4  ${isOpenFirst ? "pb-[24px]" : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenFirst ? 'open' : ''}`}>
         <div
           className="flex items-center justify-between cursor-pointer"
+          onClick={toggleFirstAccordion}
         >
           <div className='flex justify-center gap-[12px] items-center'>
             <Image width={23} height={23} src='/images/booking/detailTask.svg' alt='user' />
@@ -201,13 +227,13 @@ const AccordionForm = ({ next }: any) => {
       </div>
       {/* Second accordion section */}
       <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)' }} className={`${isOpenSecond ? "pb-[24px]" : "pb-[37.5px] !py-[24px]"} pt-[37.5px] px-[40px] rounded-[8px] bg-[#FFF] mb-4 ${isOpenSecond ? 'open' : ''}`}>
-        <div className="flex items-center justify-between cursor-pointer" onClick={toggleThirdAccordion}>
+        <div className="flex items-center justify-between cursor-pointer" onClick={toggleSecondAccordion}>
           <div className='flex justify-start items-start flex-col gap-[16px]'>
             <div className='flex justify-center gap-[12px] items-center'>
               <Image width={24} height={24} src='/images/booking/barglass.svg' alt='user' />
               <h2 className={` !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]`}>Event Location</h2>
             </div>
-            {isOpenThird && <span className={`${styles.lato_font} text-[#6B6B6B] text-[16px] font-[400] leading-[20.4px] tracking-[-0.32px]`}>11121 York Rd, Cockeysville Maryland, 21030</span>}
+            {firstSectionComplete  && secondSectionComplete && <span className={`${styles.lato_font} text-[#6B6B6B] text-[16px] font-[400] leading-[20.4px] tracking-[-0.32px]`}>11121 York Rd, Cockeysville Maryland, 21030</span>}
           </div>
           {isOpenThird && (
             <div className="flex items-center justify-center flex-col gap-[16px]">
@@ -304,10 +330,14 @@ const AccordionForm = ({ next }: any) => {
       </div>
 
       {/* Third accordion section */}
-      <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)',height:isOpenThird ? "630px":"auto" }} className={`rounded-[8px] bg-[#FFF]  mb-20 pb-[100px]  ${isOpenThird ? "pb-[24px] " : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenThird ? 'open' : ''}`}>
+      <div style={{ boxShadow: '0px 6px 26px 0px rgba(0, 0, 0, 0.07)', height: isOpenThird ? "630px" : "auto" }} className={`rounded-[8px] bg-[#FFF]  mb-20 pb-[100px]  ${isOpenThird ? "pb-[24px] " : "pb-[37.5px] !py-[24px] pt-[37.5px]"} pt-[37.5px] px-[40px] ${isOpenThird ? 'open' : ''}`}>
         <div
           className="flex items-center justify-between cursor-pointer"
-          onClick={toggleThirdAccordion}
+          onClick={() => {
+            if (firstSectionComplete && secondSectionComplete) {
+              toggleThirdAccordion();
+            }
+          }}
         >
           <div className='flex justify-center gap-[12px] items-center'>
             <Image width={24} height={25} src='/images/booking/clock.svg' alt='user' />
@@ -396,11 +426,11 @@ const AccordionForm = ({ next }: any) => {
           <div className="text-center relative bottom-[-81px]" onClick={next}>
             <button
               type="button"
-              className="fixed inline w-[24%] right-[458px] bottom-[115px] pb-[11px] pl-[35px] justify-center rounded-[4px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
+              className="fixed inline w-[22%] right-[482.5px] bottom-[115px] pb-[11px] pl-[35px] justify-center rounded-[4px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
               onClick={handleContinueSecond}
             >
-              <span  className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[3px] '>See Taskers and Prices</span>
-              <span className='relative bottom-[18px]'><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
+              <span className='relative bottom-[-8.5px]'><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
+              <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[-12px] '>See Taskers and Prices</span>
             </button>
           </div>
         }

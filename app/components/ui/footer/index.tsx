@@ -15,9 +15,9 @@ const Footer = () => {
                         <div className="flex text-left lg:text-left">
                             <div className="w-[70%] space-y-4" >
                                 <Image src='/images/footer/footer-updone-logo.svg' alt='footer' width={165} height={48} />
-                                <h5 className="text-subheading-3">
+                                <p className="text-subheading-3">
                                     Our vision is to provide convenience and help increase <br /> your sales business.
-                                </h5>
+                                </p>
                                 <div className="flex relative right-[18px]">
                                     <Image src='/images/footer/footer-facebook-logo.svg' alt='footer' width={70} height={70} />
                                     <Image src='/images/footer/footer-twitter-logo.svg' alt='footer' width={70} height={70} />
@@ -25,11 +25,11 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div className="w-[70%]">
-                                <div className="flex items-top mb-6 gap-x-6 relative left-[75px]">
+                                <section className="flex items-top mb-6 gap-x-6 relative left-[75px]">
                                     <FooterList title="About" items={ABOUT_ITEMS} />
                                     <FooterList title="Listings" items={LISTING_ITEMS} />
                                     <FooterList title="Socials" items={SOCIAL_ITEMS} />
-                                </div>
+                                </section>
                             </div>
                         </div>
                         <div>
@@ -37,10 +37,10 @@ const Footer = () => {
                             <div className="flex flex-wrap items-center md:justify-between justify-center">
                                 <div className="w-full text-center">
                                     <div className="text-paragraph py-1 flex justify-between items-center">
-                                        <div>
+                                        <p>
                                             Copyright © <span id="get-current-year">2021</span>
                                             <a href="https://www.creative-tim.com/product/notus-js" target="_blank"> Updone. All rights reserved.</a>
-                                        </div>
+                                        </p>
                                         <div className="flex items-center justify-center gap-10">
                                             <div>
                                                 <a href="https://www.creative-tim.com/product/notus-js" target="_blank"> Privacy & Policy.</a>
