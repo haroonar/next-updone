@@ -18,7 +18,6 @@ import { useDispatch } from 'react-redux';
 import { setBookingInactive } from '@/app/libs/store/features/bookingSlice';
 const Home = () => {
   const [data, setData] = useState<any>(null);
-  console.log('data', data)
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchDataIfNeeded = async () => {

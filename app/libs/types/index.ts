@@ -18,6 +18,8 @@ type SetSelectedTimeId = React.Dispatch<SetStateAction<string | null>>
 
 export interface BookingCalanderProps {
   date: Date;
+  setWorkingTimes?:any
+  workingTimes?:any
   setDate: SetDateType;
   setSelectedTimeId: SetSelectedTimeId
   scrollRef: ScrollRef

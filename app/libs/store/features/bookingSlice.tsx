@@ -3,9 +3,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-const initialBookingActiveState =
-  typeof window !== 'undefined' &&
-  localStorage.getItem('bookingActive') === 'true';
+  // Check if localStorage is available and get initial booking state
+  const initialBookingActiveState = typeof window !== 'undefined' &&
+    localStorage.getItem('bookingActive') === 'true';
 
   // const initialBookingActiveState = localStorage?.getItem('bookingActive') === 'true';
 

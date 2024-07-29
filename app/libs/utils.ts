@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 export const useRegisterForm = <T extends unknown>(validationsSchema: T) => {
   const { register, handleSubmit, formState: { errors } } = useForm({
       resolver: require('@hookform/resolvers/zod').zodResolver(validationsSchema),
-      mode: 'onChange', // Enable real-time validation on change
+      mode: 'onSubmit', // Enable real-time validation on change
   });
 
   return { register, handleSubmit, errors };

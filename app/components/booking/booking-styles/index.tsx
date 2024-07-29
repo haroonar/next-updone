@@ -6,20 +6,20 @@ const BookingStyle = () => {
     return (
         <>
             {/* Top Left */}
-            <div className='absolute top-[-103px] left-[-67px]'>
+            <div className='absolute z-[-1] top-[-103px] left-[-67px]'>
                 <Image width={878} height={825} src='/images/booking/topLeft.svg' alt='step-1' />
             </div>
             {/* Top Right */}
-            <div className='absolute top-[-262px] right-[-82px]'>
+            <div className='absolute z-[-1] top-[-262px] right-[-82px]'>
                 <Image width={950} height={889} src='/images/booking/topRight.svg' alt='step-1' />
             </div>
             {/* Bottom Left */}
-            <div className='absolute bottom-[-230px] left-[-72px] '>
+            <div className='absolute z-[-1] bottom-[-230px] left-[-72px] '>
                 <Image width={920} height={652} src='/images/booking/bottomLeft.svg' alt='step-1' />
             </div>
 
             {/* Bottom Center */}
-            <div className='absolute bottom-[-72px] left-1/2 transform -translate-x-1/2 '>
+            <div className='absolute z-[-1] bottom-[-72px] left-1/2 transform -translate-x-1/2 '>
                 <Image width={997} height={933} src='/images/booking/bottomCenter.svg' alt='step-1' />
             </div>
         </>

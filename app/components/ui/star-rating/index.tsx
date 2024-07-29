@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 const StarRating = () => {
   const [hoverStars, setHoverStars] = useState(0);
   const [selectedStars, setSelectedStars] = useState(0);
-console.log('hoverStars', hoverStars)
   const handleHover = (numStars:number) => {
     setHoverStars(numStars);
   };

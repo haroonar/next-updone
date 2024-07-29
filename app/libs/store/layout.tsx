@@ -15,14 +15,14 @@ interface RootLayoutProps {
 const ReduxProvider = ({ children }: RootLayoutProps) => {
     
     return (
-        <div className='overflow-hidden'>
+        <div className=''>
             <AuthProvider>
                 <Provider store={store}>
-                    <Header />
+                    {/* <Header /> */}
                     <BookingProvider>
                         {children}
                     </BookingProvider>
-                    <Footer />
+                    {/* <Footer /> */}
                 </Provider>
             </AuthProvider>
             <ToastContainer />

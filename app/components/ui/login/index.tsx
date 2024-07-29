@@ -9,10 +9,9 @@ import { apiRequest } from '@/app/libs/services'
 
 
 
-const LoginForm = () => {
+const LoginForm = ({handleRegisterClick}:any) => {
 
     const [data, setData] = useState<any>(null);
-    console.log('data', data)
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true);
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -20,7 +19,6 @@ const LoginForm = () => {
     });
 
     const onSubmit = async (data: any) => {
-        console.log(data); // Data will only be submitted if validation passes
         const body = {
             email: data?.email,
             password: data?.password
@@ -90,8 +88,8 @@ const LoginForm = () => {
 
                         </button>
                         <div className='flex justify-center items-center gap-2'>
-                            <p className='text-[#494848] text-[14px] fonr-[400] leading-[24px] tracking-[-0.28px]'>Already have an account? </p>
-                            <h3 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]'>Login</h3>
+                            <p className='text-[#494848] text-[14px] fonr-[400] leading-[24px] tracking-[-0.28px]'>Does not have an account? </p>
+                            <h3 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]' onClick={handleRegisterClick}>Register</h3>
                         </div>
                     </div>
                 </form>

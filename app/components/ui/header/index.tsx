@@ -17,9 +17,7 @@ const Header = () => {
     // State to track the clicked link
     const [activeLink, setActiveLink] = useState<string | null>(null); // Initialize activeLink with null or an appropriate initial value
     const { auth: storedData } = useAppSelector(selectAuth);
-    const bookingActive = useAppSelector(selectBookingActive);
-
-    console.log('bookingActive in header', bookingActive)
+console.log('storedData', storedData)
 
     // State to track the visibility of login and register menu
     const [loginMenuOpen, setLoginMenuOpen] = useState(false);
@@ -42,26 +40,21 @@ const Header = () => {
     const handleLogout = () => {
         dispatch(clearAuth())
     }
-    useEffect(() => {
-        // On component mount, check if bookingActive should be true based on localStorage
-        const storedBookingActive = localStorage?.getItem('bookingActive') === 'true';
-        if (storedBookingActive) {
-            dispatch(setBookingActive());
-        } else {
-            dispatch(setBookingInactive());
-        }
-    }, [dispatch]);
+    const handleRegisterClick=()=>{
+        setLoginMenuOpen(false)
+        setRegisterMenuOpen(true)
+    }
     return (
         <>
-            {bookingActive ? null: <header className={styles.header}>
-                <nav className={`${bookingActive && "absolute"}border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto`}>
+            {  <header className={styles.header}>
+                <nav className={`border-gray-200 py-[15px] w-full max-w-[1279px] mx-auto`}>
                     <div className="flex flex-wrap justify-between items-center" style={{ cursor: 'pointer' }}>
                         <Link href="/" className="flex items-center">
                             <Image src="/logo.svg" alt="header-logo" width={130} height={34} quality={100} objectFit='fill' />
                         </Link>
                         <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                             <ul className="flex justify-center items-center flex-col mt-4 text-[#0B0B0B] text-[14px] font-[500] leading-[150%] capitalize lg:flex-row lg:space-x-8 lg:mt-0">
-                                {NAV_LINKS.map((link) => (
+                                {/* {NAV_LINKS.map((link) => (
                                     <li key={link.href}>
                                         <Link href={link.href}>
                                             <div
@@ -73,7 +66,7 @@ const Header = () => {
                                             </div>
                                         </Link>
                                     </li>
-                                ))}
+                                ))} */}
 
                                 <li>
                                     <Link href="#">
@@ -94,9 +87,10 @@ const Header = () => {
                                         </svg>
                                     </Link>
                                 </li>
-                                {storedData?.data?.user?.name ? (
+                                {storedData?.user?.name ? (
                                     <>
-                                        <li>{storedData?.data?.user?.name}</li>
+                                        <li>{storedData?.user?.name}</li>
+                                        <li>   <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo"/></li>
                                         <li> <div onClick={handleLogout} className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
                                             Logout
                                         </div></li>
@@ -110,7 +104,7 @@ const Header = () => {
                                             {loginMenuOpen && (
                                                 <div className={styles.menuBox}>
                                                     {/* Your login menu content here */}
-                                                    <LoginForm />
+                                                    <LoginForm handleRegisterClick={handleRegisterClick}/>
                                                 </div>
                                             )}
                                         </li>
@@ -121,7 +115,7 @@ const Header = () => {
                                             {registerMenuOpen && (
                                                 <div className={styles.menuBox}>
                                                     {/* Your register menu content here */}
-                                                    <RegisterForm />
+                                                    <RegisterForm setLoginMenuOpen={setLoginMenuOpen} setRegisterMenuOpen={setRegisterMenuOpen}/>
                                                 </div>
                                             )}
                                         </li>

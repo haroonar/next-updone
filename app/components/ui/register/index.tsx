@@ -6,13 +6,15 @@ import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
 import { apiRequest } from '@/app/libs/services'
 import { RegisterFormSchema } from '@/app/libs/validations/schema'
-import { useRegisterForm } from '@/app/libs/utils'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-const RegisterForm = () => {
+const RegisterForm = ({setRegisterMenuOpen,setLoginMenuOpen}:any) => {
     const [data, setData] = useState<any>(null);
-    console.log('data', data)
     const [loading, setLoading] = useState(true);
-    const { register, handleSubmit, errors } = useRegisterForm({RegisterFormSchema});
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+        resolver: zodResolver(RegisterFormSchema),
+        mode: 'onBlur', // or 'onChange', 'onSubmit'
+      });
 
     const onSubmit = async (data: any) => {
         setLoading(true); // Show loading indicator
@@ -30,26 +32,32 @@ const RegisterForm = () => {
                 method: 'POST',
                 body: body
               }); // API call
-            setData(newData?.data); // Update state with fetched data
-            console.log('newData', newData)
+              if(newData?.token){
+                  setRegisterMenuOpen(false)
+                  setLoginMenuOpen(true)
+              }
+              setData(newData?.data); // Update state with fetched data
         } catch (error) {
             toast.error('Failed to login. Please check your credentials.');
-            console.error('Error fetching data:', error);
             // Handle error state or display an error message
         } finally {
             setLoading(false); // Hide loading indicator regardless of success or failure
         }
     };
+    const handleLoginClick=()=>{
+        setLoginMenuOpen(true)
+        setRegisterMenuOpen(false)
+    }
     return (
-        <div className='login_backgorund rounded-[47%] h-[620px] w-[567px] top-[384px] right-[83px] relative'>
+        <div className='login_backgorund rounded-[47%] h-[560px] w-[567px] top-[384px] right-[83px] relative'>
 
-            <div className='relative bottom-[380px] left-[7px] pb-[60px] h-[643px] overflow-scroll'>
+            <div className='relative bottom-[420px] pb-[60px] h-[610px] overflow-scroll'>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex justify-between flex-col gap-[8px] items-center'>
-                        <div className="relative w-full" style={{ width: '320px' }}>
+                        <div className="relative w-full top-[21px]" style={{ width: '320px' }}>
 
-                            <div>
+                            <div className='relative top-[20px]'>
                                 <span className='flex justify-center items-center relative top-[21px]'>
                                     <Image width={98} height={98} src='/images/booking/6.svg' alt='step-1' />
                                 </span>
@@ -58,7 +66,11 @@ const RegisterForm = () => {
                                 </h3>
                                 <p className={styles.loginpopup_bodys}>Sign In or Sign up to updone to book pro event staff in a snap</p>
                             </div>
-                            <div className="absolute top-[205px] inset-y-0 mt-3 ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
+                        </div>
+                    </div>
+                    <div className='flex justify-between flex-col gap-[8px] items-center'>
+                        <div className="relative w-full h-[70px]" style={{ width: '320px' }}>
+                        <div className="relative top-[47px] inset-y-0 mt-3 ml-[15px] start-0 flex items-center ps-3 pointer-events-none">
                                 <Image width={14} height={14} src='/images/auth/name.svg' alt='step-1' />
                             </div>
                             <input
@@ -75,8 +87,8 @@ const RegisterForm = () => {
                         </div>
                     </div>
                     <div className='flex justify-between flex-col gap-[8px] items-center'>
-                        <div className="relative w-full" style={{ width: '320px' }}>
-                            <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
+                        <div className="relative w-full h-[70px]" style={{ width: '320px' }}>
+                            <div className="relative top-[47px] inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
                                 <Image width={14} height={15} src='/images/auth/email.svg' alt='step-1' />
                             </div>
                             <input
@@ -93,17 +105,17 @@ const RegisterForm = () => {
                         </div>
                     </div>
                     <div className='flex justify-between flex-col gap-[8px] items-center'>
-                        <div className="relative w-full" style={{ width: '320px' }}>
+                        <div className="relative w-full h-[70px]" style={{ width: '320px' }}>
 
 
-                            <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
+                            <div className="relative top-[47px] inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
                                 <Image width={16} height={16} src='/images/booking/company.svg' alt='step-1' />
                             </div>
                             <input
                                 type="text"
                                 id="default-search"
                                 className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                placeholder="Company Name"
+                                placeholder="Company Name*"
                                 style={loginInputStyles}
                                 {...register('company')}
                             />
@@ -116,14 +128,14 @@ const RegisterForm = () => {
                         <div className="relative w-full" style={{ width: '320px' }}>
 
 
-                            <div className="absolute inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
+                            <div className="relative top-[47px] inset-y-0 mt-3 ml-[12px] start-0 flex items-center ps-3 pointer-events-none">
                                 <Image width={14} height={15} src='/images/auth/contact.svg' alt='step-1' />
                             </div>
                             <input
                                 type="number"
                                 id="default-search"
                                 className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[50px] min-h-[52px] w-full focus:outline-blue-200 `}
-                                placeholder="Contact Number"
+                                placeholder="Contact Number*"
                                 style={loginInputStyles}
                                 {...register('phoneNumber')}
                             />
@@ -134,22 +146,21 @@ const RegisterForm = () => {
                     </div>
                     {/* Dotted Border */}
                     <div style={{ width: '320px', margin: '14px auto 0px' }} className='border border-b border-dashed'></div>
-                    <div className='flex justify-between flex-col gap-[8px] items-center'>
-                        <div className="relative w-full" style={{ width: '320px' }}>
+                   <div>
+                   <div className='flex justify-between flex-col gap-[8px] items-center'>
+                        <div className="relative w-full h-[70px]" style={{ width: '320px' }}>
                             <input
                                 type="password"
                                 id="default-search"
                                 className={`${styles.defaultsearch}  mt-[12px]  pb-[14px] pt-[17px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
-                                placeholder="Password"
+                                placeholder="Password*"
                                 style={loginInputStyles}
                                 {...register('password')}
                             />
                             {errors.password && (
                                 <span className="text-red-500 text-xs italic block">{(errors as any).password.message}</span>
                             )}
-                            <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
-                                <Image width={14} height={15} src='/images/auth/password.svg' alt='step-1' />
-                            </div>
+
                         </div>
 
                     </div>
@@ -159,19 +170,18 @@ const RegisterForm = () => {
                                 type="password"
                                 id="default-search"
                                 className={`${styles.defaultsearch} mt-[12px]  pb-[14px] pt-[17px] pl-[20px] min-h-[52px] w-full focus:outline-blue-200  pr-10`} // Adjusted paddingRight to accommodate the icon
-                                placeholder="Confirm Password"
+                                placeholder="Confirm Password*"
                                 style={loginInputStyles}
                                 {...register('confirmPassword')}
                             />
                             {errors.confirmPassword && (
                                 <span className="text-red-500 text-xs italic block">{(errors as any).confirmPassword.message}</span>
                             )}
-                            <div className="absolute inset-y-0 mt-[12px] right-0 flex items-center pr-3 pointer-events-none"> {/* Adjusted right spacing */}
-                                <Image width={14} height={15} src='/images/auth/password.svg' alt='step-1' />
-                            </div>
+
                         </div>
 
                     </div>
+                   </div>
                     <button type='submit' className={`${styles.login_btn_}  mt-[20px] !w-[58.2%] !my-[21px] !mx-auto !ml-[115px] justify-center bg-[#350ABC] text-[#F3F0FF3] opacity-[0.9] rounded-[4px]  px-[16px] py-[18px] text-center inline-flex items-center`}>
                         Register
                         <span className={`ml-2`}>
@@ -182,7 +192,7 @@ const RegisterForm = () => {
                 </form>
                 <div className='flex justify-center items-center gap-2'>
                     <p className='text-[#494848] text-[14px] fonr-[400] leading-[24px] tracking-[-0.28px]'>Already have an account? </p>
-                    <h3 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]'>Login</h3>
+                    <h3 className='text-[#350ABC] text-[14px] font-[600] leading-[24px] tracking-[-0.28px]' onClick={handleLoginClick}>Login</h3>
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@ import dynamic from 'next/dynamic';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
 
 
-export const highlightedDatesNotAvailable = ['2024-07-08', '2024-07-11', '2024-07-28'];
+export const highlightedDatesNotAvailable = [''];
 export const highlightedDatesAvailable = ['2024-07-21', '2024-07-24'];
 const StaffDetail = () => {
     const { setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss, staff } = useBookingContext();
@@ -57,7 +57,7 @@ const StaffDetail = () => {
                     <div className='w-[84%] flex justify-center items-center gap-[64px] mb-[27px]'>
                         <div className='w-2/5 space-y-4'>
                             <div className="text-center mb-[21px] flex justify-between w-full items-center font-bold text-lg">
-                                <h3 style={{ letterSpacing: '-2%' }} className='text-[44px] text-[#000000] text-start font-semibold '>{staff?.name}</h3>
+                                <h3 style={{ letterSpacing: '-2%' }} className='text-[44px] text-[#000000] text-start font-semibold '>  {staff.name.length > 8 ? `${staff.name.slice(0, 8)}` : staff.name}</h3>
                                 <div className="flex items-center ">
                                     <span className='mb-[4px] mr-1'>
                                         <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">

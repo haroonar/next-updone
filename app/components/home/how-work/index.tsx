@@ -1,7 +1,7 @@
 'use client'
+import { montserrat } from '@/app/libs/Fonts';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import HeroImageWithSkeleton from '../../ui/image-skeleton/HeroImgSkeleton';
 
 function HowWork() {
     const [selectedCard, setSelectedCard] = useState(1); // State to track selected card
@@ -20,7 +20,7 @@ function HowWork() {
     return (
         <div style={{ background: "linear-gradient(90deg, #F3F0FF 0%, #FFFFFF 100%)", maxHeight: '990px' }} className='max-w-[1279px m-auto'>
             <h2 className='text-center text-[60px] uppercase leading-[68px] font-[600] pt-[100px] pb-[25px]'>How to <strong className='text-[#350ABC]'>Hire Professional</strong> <br /> For Your Need?</h2>
-            <div className="relative min-h-screen max-h-screen" >
+            <div className="relative min-h-[120vh] max-h-screen" >
                 {/* Background blur */}
                 <div className="absolute inset-0 blur-5xl"></div>
 
@@ -45,7 +45,7 @@ function HowWork() {
                                     className={`pl-[36px] pt-2 pb-[25px] give-border transition ease-in ${selectedCard === card.id ? 'border-l-[6px]  border-[#350ABC]' : 'border-l-[6px]  border-[#e1dfea]'} ${selectedCard === card.id ? '' : ''}  w-3/4 text-start cursor-pointer`}
                                     onClick={() => handleCardSelect(card.id)}
                                 >
-                                    <h3 className={`pb-1 tracking-[-0.48px] leading-normal font-[500] text-[24px] montserrat-font ${selectedCard === card.id ? 'text-[#3E2392]' : 'text-[#2C2240]'}`}>{card.text}</h3>
+                                    <h3 className={`pb-1 tracking-[-0.48px] leading-normal font-[500] text-[24px] ${montserrat.className} ${selectedCard === card.id ? 'text-[#3E2392]' : 'text-[#2C2240]'}`}>{card.text}</h3>
                                     <p className='text-[16px] leading-[26px] font-[400] translate-[-0.32px] ml-[26px] text-[#6B6B6B] w-[104%%] ' style={{ marginBottom: card.id === 4 ? '0' : "0.5rem" }}>{card.dec}</p>
                                 </div>
                             ))}

@@ -1,29 +1,38 @@
-"use client"
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Staff } from '@/app/libs/types'; // Assuming this path is correct and provides the Staff type
 import { RootState } from '../store';
 
 interface StaffState {
-  staff: Staff | null;
+  staff: any | null;
+  selectedStaffArray: any[];
+  inviteCount:any | null;
 }
 
 const initialState: StaffState = {
   staff: null,
+  selectedStaffArray: [],
+  inviteCount:null
 };
 
 export const staffSlice = createSlice({
   name: 'staff',
   initialState,
   reducers: {
-    setStaff: (state, action) => {
+    setStaff: (state, action: PayloadAction<any>) => {
       state.staff = action.payload;
     },
+    setSelectedStaff: (state, action: PayloadAction<any>) => {
+      state.selectedStaffArray = action.payload;
+    },
+    setInviteCount: (state, action: PayloadAction<any>) => {
+      state.inviteCount = action.payload;
+    }
   },
 });
 
-export const { setStaff } = staffSlice.actions;
+export const { setStaff, setSelectedStaff,setInviteCount } = staffSlice.actions;
 
-// Selectors
+// Selector
 export const selectStaff = (state: RootState) => state.staff; // Adjust as per your state structure
 
 export default staffSlice.reducer;

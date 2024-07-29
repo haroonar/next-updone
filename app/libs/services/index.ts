@@ -31,13 +31,20 @@ export async function apiRequest<T>(url: string, options: RequestOptions<T>): Pr
         const data: ApiResponse<T> = await response.json();
 
         if (!response.ok) {
-            // If response status is not in the range 200-299, throw an error
-            throw new Error(data.message || 'Failed to fetch data');
+            // Check for specific error message and show custom message
+            if (data.message === 'Password mismatch') {
+                toast.error('Password is wrong, please check your password');
+            } else if(data.message){
+                toast.error(data.message || 'Failed to fetch data')
+            }
         }
 
         return data.data; // Return data for successful response
     } catch (error) {
+        // Ensure you only log and show errors here
         console.error('Error fetching data:', (error as Error).message);
+        // Optionally display a general error message if needed
+        toast.error((error as Error).message || 'Failed to fetch data');
         throw error; // Re-throw the error to handle in the component
     }
 }
