@@ -46,6 +46,11 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
         setSendInvite(!sendInvite)
         //@ts-ignore
     }
+      // Ensure that the path starts with a leading slash
+  const imageSrc = staff?.profile_pic?.startsWith('/') 
+  ? staff.profile_pic 
+  : `${staff?.profile_pic || ''}`;
+  console.log('imageSrc', imageSrc)
     return (
         <>
             <Image
@@ -57,7 +62,7 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen }: S
                     background: "#f3f0ff"
                 }}
                 className="w-[115px] h-[115px] rounded-full object-cover "
-                src={staff?.profile_pic}
+                src='/images/testiminial/testi3.jpg'
                 quality={100}
                 objectFit='fill'
                 width={120}

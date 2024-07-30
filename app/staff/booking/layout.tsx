@@ -7,7 +7,7 @@ interface BookingLayoutProps {
 const BookingLayout = ({ children }: BookingLayoutProps) => {
 
     return (
-        <div className={`${"mt-[68px] relative z-10"}`}>
+        <div className={`${"mt-[133px] relative z-10"}`}>
             {children}
         </div>
     )
