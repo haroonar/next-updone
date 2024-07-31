@@ -12,13 +12,25 @@ import { toast } from 'react-toastify';
 const AccordionForm = ({ next }: any) => {
   const [jobData, setData] = useState<any>([])
   const [selectedServiceId, setSelectedServiceId] = useState(() => {
-    const storedId = localStorage.getItem('selectedServiceId');
-    return storedId ? parseInt(storedId, 10) : 1;
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const storedId = localStorage.getItem('selectedServiceId');
+      return storedId ? parseInt(storedId, 10) : 1;
+    } else {
+      console.log('localStorage is not supported or window is not defined.');
+      return 1; // Default value
+    }
   });
+
   const [selectedServiceName, setSelectedServiceName] = useState(() => {
-    const storedName = localStorage.getItem('selectedServiceName');
-    return storedName;
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const storedName = localStorage.getItem('selectedServiceName');
+      return storedName || ''; // Default to empty string if not found
+    } else {
+      console.log('localStorage is not supported or window is not defined.');
+      return ''; // Default value
+    }
   });
+  
   const [timeMessage, setTimeMessage] = useState<string | null>(null);
   console.log('timeMessage', timeMessage)
   const [selectedService, setSelectedService] = useState<any>()
@@ -137,7 +149,7 @@ const AccordionForm = ({ next }: any) => {
   const handleServiceClick = (id: number, text: string) => {
     setSelectedServiceId(id);
     //@ts-ignore
-    localStorage.setItem("post-job-persist-service-id", id)
+    // localStorage.setItem("post-job-persist-service-id", id)
     setSelectedService(text)
   };
 

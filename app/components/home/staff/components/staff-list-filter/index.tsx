@@ -14,13 +14,26 @@ type StaffFiltersProps = {
 
 const StaffFilters = ({ isFilterBookingFlow, handleTimeChange, handleLocationChange, scrollY = 0, modalOpen }: StaffFiltersProps) => {
     const [PostJobselectedServiceId] = useState(() => {
-      const storedId = localStorage.getItem('post-job-persist-service-id');
-      return storedId;
-    });
-    const [selectedServiceId, setSelectedServiceId] = useState(() => {
-        const storedId = localStorage.getItem('selectedServiceId');
-        return storedId ? parseInt(storedId, 10) :PostJobselectedServiceId ?Number(PostJobselectedServiceId):1;
+        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+          const storedId = localStorage.getItem('post-job-persist-service-id');
+          return storedId ? parseInt(storedId, 10) : null; // Default to null if not found
+        } else {
+          console.log('localStorage is not supported or window is not defined.');
+          return null; // Default value
+        }
       });
+      const [selectedServiceId, setSelectedServiceId] = useState(() => {
+        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+          const storedId = localStorage.getItem('selectedServiceId');
+          const postJobId = PostJobselectedServiceId; // Use the previously retrieved value
+          return storedId ? parseInt(storedId, 10) : postJobId ? Number(postJobId) : 1;
+        } else {
+          console.log('localStorage is not supported or window is not defined.');
+          return PostJobselectedServiceId ? Number(PostJobselectedServiceId) : 1;
+        }
+      });
+      
+      
     // State to manage the selected service ID
     // Function to handle service selection
     const handleServiceClick = (id: number) => {

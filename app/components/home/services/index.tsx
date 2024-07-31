@@ -51,8 +51,8 @@ const Services = () => {
     fetchDataIfNeeded(); // Call the function to fetch data
   }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
   const handleHireNowClick = () => {
-    localStorage.removeItem('selectedServiceId');
-    localStorage.removeItem('selectedServiceName');
+    localStorage?.removeItem('selectedServiceId');
+    localStorage?.removeItem('selectedServiceName');
     router.push('/staff/booking');
   };
   return (

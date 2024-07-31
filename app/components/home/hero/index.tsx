@@ -84,8 +84,8 @@ const Hero = () => {
         setImage2Loaded(true);
     };
     const handlePostJobClick = () => {
-        localStorage.removeItem('selectedServiceId');
-        localStorage.removeItem('selectedServiceName');
+        localStorage?.removeItem('selectedServiceId');
+        localStorage?.removeItem('selectedServiceName');
         router.push('/staff/booking')
     }
     return (

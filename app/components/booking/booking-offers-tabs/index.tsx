@@ -12,19 +12,23 @@ import StaffListMap from '../../home/staff/components/staff-list-map'
 const OffersTabs = ({ activeTab }: { activeTab: string }) => {
     const [offeredStaff, setOfferedStaff] = useState([])
     useEffect(() => {
-        const storedStaffArray = localStorage.getItem('selectedStaff');
-
-        if (storedStaffArray) {
-            try {
-                const parsedStaffArray = JSON.parse(storedStaffArray);
-                setOfferedStaff(parsedStaffArray)
-                // Now you can use parsedStaffArray as needed, e.g., set state, etc.
-
-            } catch (error) {
-                // Handle parsing error if necessary
+        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+            const storedStaffArray = localStorage.getItem('selectedStaff');
+    
+            if (storedStaffArray) {
+                try {
+                    const parsedStaffArray = JSON.parse(storedStaffArray);
+                    setOfferedStaff(parsedStaffArray);
+                } catch (error) {
+                    console.error('Error parsing storedStaffArray:', error);
+                    // Handle parsing error if necessary
+                }
             }
+        } else {
+            console.log('localStorage is not supported or window is not defined.');
         }
     }, []);
+    
 
     return (
         <>

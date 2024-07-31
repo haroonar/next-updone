@@ -38,39 +38,57 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
   const handleTimeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
   };
 
-  // Retrieve selected staff from localStorage
   const [selectedStaff, setSelectedStaff] = useState<Staff[]>(() => {
-    const storedSelectedStaff = localStorage.getItem('selectedStaff');
-    return storedSelectedStaff ? JSON.parse(storedSelectedStaff) : [];
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const storedSelectedStaff = localStorage.getItem('selectedStaff');
+      return storedSelectedStaff ? JSON.parse(storedSelectedStaff) : [];
+    } else {
+      console.log('localStorage is not supported or window is not defined.');
+      return []; // Return an empty array if localStorage is not available
+    }
   });
+  
   console.log('selectedStaff', selectedStaff)
   
     const [data, setData] = useState<any>(null);
   console.log('data', data)
   const handleStaffClick = (staff: Staff) => {
-    const existingSelectedStaff = JSON.parse(localStorage.getItem('selectedStaff') as any) || [];
-    const staffIndex = existingSelectedStaff.findIndex((selected: any) => selected.id === staff.id);
-    
-    if (staffIndex !== -1) {
-      // Toggle isOffered property
-      existingSelectedStaff[staffIndex].isOffered = !existingSelectedStaff[staffIndex].isOffered;
-      if (!existingSelectedStaff[staffIndex].isOffered) {
-        // Remove from array if isOffered is false
-        existingSelectedStaff.splice(staffIndex, 1);
+    // Check if localStorage is available
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      // Retrieve and parse existing selected staff from localStorage
+      const storedSelectedStaff = localStorage.getItem('selectedStaff');
+      const existingSelectedStaff = storedSelectedStaff ? JSON.parse(storedSelectedStaff) : [];
+      
+      // Find the index of the staff item
+      const staffIndex = existingSelectedStaff.findIndex((selected: any) => selected.id === staff.id);
+      
+      if (staffIndex !== -1) {
+        // Toggle the isOffered property
+        existingSelectedStaff[staffIndex].isOffered = !existingSelectedStaff[staffIndex].isOffered;
+        
+        if (!existingSelectedStaff[staffIndex].isOffered) {
+          // Remove the staff from the array if isOffered is false
+          existingSelectedStaff.splice(staffIndex, 1);
+        }
+      } else {
+        // Add new staff to the array
+        //@ts-ignore
+        staff.isOffered = true;
+        existingSelectedStaff.push(staff);
       }
+      
+      // Update state and dispatch actions
+      setSelectedStaff(existingSelectedStaff);
+      dispatch(setInviteCount(existingSelectedStaff.length));
+      
+      // Update local storage with the updated staff list
+      localStorage.setItem('selectedStaff', JSON.stringify(existingSelectedStaff));
     } else {
-      // Add new staff to array
-      //@ts-ignore
-      staff.isOffered = true;
-      existingSelectedStaff.push(staff);
+      console.log('localStorage is not supported or window is not defined.');
+      // Handle the case where localStorage is not available (optional)
     }
-
-    setSelectedStaff(existingSelectedStaff);
-    dispatch(setInviteCount(existingSelectedStaff.length));
-
-    // Update local storage with the updated staff list
-    localStorage.setItem('selectedStaff', JSON.stringify(existingSelectedStaff));
   };
+  
 
   const [scrollY, setScrollY] = useState(0);
 
@@ -126,16 +144,27 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
 
   const [offeredStaff, setOfferedStaff] = useState([]);
   useEffect(() => {
-    const storedStaffArray = localStorage.getItem('selectedStaff');
-
-    if (storedStaffArray) {
-      try {
-        const parsedStaffArray = JSON.parse(storedStaffArray);
-        setOfferedStaff(parsedStaffArray);
-      } catch (error) {
+    // Check if localStorage and window are available
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      // Retrieve stored staff array from localStorage
+      const storedStaffArray = localStorage.getItem('selectedStaff');
+  
+      if (storedStaffArray) {
+        try {
+          // Parse the JSON data
+          const parsedStaffArray = JSON.parse(storedStaffArray);
+          // Update the state with the parsed data
+          setOfferedStaff(parsedStaffArray);
+        } catch (error) {
+          // Handle JSON parsing errors
+          console.error('Error parsing stored staff array:', error);
+        }
       }
+    } else {
+      console.log('localStorage is not supported or window is not defined.');
     }
   }, []);
+  
 
   if (!data) {
     return (
