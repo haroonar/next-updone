@@ -12,7 +12,7 @@ export default function Page() {
   const [changeActiveColor, setChangeActiveColor] = useState(false)
   const [currentStep, setCurrentStep] = useState<any>(0)
   const { inviteCount } = useAppSelector(selectStaff);
-
+  console.log('inviteCount', inviteCount)
   return (
     <div style={{ overflowX: 'clip' }} className='relative h-screen'>
       {currentStep === 1 &&

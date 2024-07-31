@@ -7,24 +7,20 @@ import React, { useEffect, useState } from 'react'
 import { IoTimeOutline } from 'react-icons/io5'
 import { LuMapPin } from 'react-icons/lu'
 import { PiLineVerticalThin } from 'react-icons/pi'
-import CardSkeleton from '../../ui/card-skeleton'
 import StaffListMap from '../../home/staff/components/staff-list-map'
 
 const OffersTabs = ({ activeTab }: { activeTab: string }) => {
     const [offeredStaff, setOfferedStaff] = useState([])
-    console.log('offeredStaff in OffersTabs', offeredStaff)
     useEffect(() => {
         const storedStaffArray = localStorage.getItem('selectedStaff');
 
         if (storedStaffArray) {
             try {
                 const parsedStaffArray = JSON.parse(storedStaffArray);
-                console.log('parsedStaffArray', parsedStaffArray);
                 setOfferedStaff(parsedStaffArray)
                 // Now you can use parsedStaffArray as needed, e.g., set state, etc.
 
             } catch (error) {
-                console.error('Error parsing storedStaffArray:', error);
                 // Handle parsing error if necessary
             }
         }
@@ -80,7 +76,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
-                                                <span className='text-[14px] font-[400] tracking-[-2%] leading-[26px]'>30$/hr</span>
+                                                <span className='text-[14px] font-[400] tracking-[-2%] leading-[26px]'>$30/hr</span>
                                             </div>
                                         </div>
                                     </div>

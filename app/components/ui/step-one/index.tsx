@@ -2,25 +2,36 @@ import { useForm } from 'react-hook-form';
 import { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './style.module.css';
-import { CHOOSE_SERVICES, locationOptions } from '@/app/libs/Constants';
+import { CHOOSE_SERVICES, locationOptions, services } from '@/app/libs/Constants';
 import TimeAndCalander from '../booking-calander/calander-time';
 import { useBookingContext } from '@/app/libs/context/BookingContext';
-
+import './AccordionForm.css'
+import { apiRequest } from '@/app/libs/services';
+import { toast } from 'react-toastify';
 
 const AccordionForm = ({ next }: any) => {
-
+  const [jobData, setData] = useState<any>([])
+  const [selectedServiceId, setSelectedServiceId] = useState(() => {
+    const storedId = localStorage.getItem('selectedServiceId');
+    return storedId ? parseInt(storedId, 10) : 1;
+  });
+  const [selectedServiceName, setSelectedServiceName] = useState(() => {
+    const storedName = localStorage.getItem('selectedServiceName');
+    return storedName;
+  });
+  const [timeMessage, setTimeMessage] = useState<string | null>(null);
+  console.log('timeMessage', timeMessage)
+  const [selectedService, setSelectedService] = useState<any>()
+  const [secondFormData, setSecondFormData] = useState<any>()
+  console.log('secondFormData', secondFormData)
   const [firstFormData, setFirstFormData] = useState<any>()
-
   const [isOpenFirst, setIsOpenFirst] = useState(true);
   const [isOpenSecond, setIsOpenSecond] = useState(false);
   const [isOpenThird, setIsOpenThird] = useState(false);
   const [workingTimes, setWorkingTimes] = useState<any>([]);
-  console.log('workingTimes', workingTimes)
   const [firstSectionComplete, setFirstSectionComplete] = useState(false);
-  console.log('firstSectionComplete', firstSectionComplete)
   const [secondSectionComplete, setSecondSectionComplete] = useState(false);
   const [thirdSectionComplete, setThirdSectionComplete] = useState(false);
-  const [selectedServiceId, setSelectedServiceId] = useState(1);
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const { isStaffListerFilter, setSelectedTimeId, selectedTimeId, scrollRef, selectedTimes, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, availableTimesMap, setDate, date, timessss, staff } = useBookingContext();
 
@@ -48,16 +59,16 @@ const AccordionForm = ({ next }: any) => {
 
   const toggleThirdAccordion = () => {
     // Check if firstFormData is defined and has message1 or message2, and selectedServiceId is present
-    if (firstFormData?.message1 && firstFormData?.message2 ) {
+    if (firstFormData?.message1 && firstFormData?.message2) {
       // Toggle the third accordion if conditions are met
       setIsOpenThird(!isOpenThird);
     }
-    
+
     // Close the first and second accordions regardless of the conditions
     setIsOpenFirst(false);
     setIsOpenSecond(false);
   };
-  
+
 
   const handleContinueFirst = () => {
     toggleSecondAccordion()
@@ -69,30 +80,65 @@ const AccordionForm = ({ next }: any) => {
     handleSubmit(onSecondSubmit)(); // Trigger form submission
   };
   const onFirstSubmit = (data: any) => {
-    console.log('Form data11:', data);
     setFirstSectionComplete(true);
     setFirstFormData(data)
     // Handle further submission logic here
   };
   // Use effect to react to the firstSectionComplete change
   useEffect(() => {
-    if (firstSectionComplete ) {
+    if (firstSectionComplete) {
       toggleSecondAccordion(); // Toggle the second accordion when firstSectionComplete changes
     }
   }, [firstSectionComplete]);
 
 
+
   const onSecondSubmit = (data: any) => {
-    console.log('Form data222:', data);
+    setSecondFormData(data)
     // Handle further submission logic here
     setSecondSectionComplete(true);
     toggleSecondAccordion(); // Close the second accordion
     toggleThirdAccordion()
   };
+  const onThirdSubmit = async () => {
+    const body = {
+      city_id: 1,
+      postal_code: "1234",
+      event_location: "Lahore",
+      address: "Punjab Lahore 123",
+      service_id: 4,
+      title: "Corporate event",
+      description: "this is corporate event",
+      working_times: [],
+      invited_workers: [34, 35, 42]
+
+    };
+
+    try {
+      const newData = await apiRequest('/job', {
+        method: 'POST',
+        body: body
+      }); // API call
+      setData(newData?.data); // Update state with fetched data
+    } catch (error) {
+      toast.error('Failed to login. Please check your credentials.');
+      // Handle error state or display an error message
+    } finally {
+    }
+    // Check if workingTimes exists and is not an empty array
+    if (workingTimes && workingTimes.length > 0) {
+      next(); // Call the next function if the array is not empty
+    } else {
+      setTimeMessage("Please add start & end time")
+    }
+  };
+
 
   const handleServiceClick = (id: number, text: string) => {
     setSelectedServiceId(id);
-    console.log(`Selected Service: ${text}`);
+    //@ts-ignore
+    localStorage.setItem("post-job-persist-service-id", id)
+    setSelectedService(text)
   };
 
 
@@ -107,7 +153,7 @@ const AccordionForm = ({ next }: any) => {
     width: '100%',
     borderRadius: '4px',
     fontSize: '14px',
-    color: '#9F9F9F',
+    color: '#000000',
     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%239D9D9D' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'right 25px top 50%',
@@ -115,21 +161,14 @@ const AccordionForm = ({ next }: any) => {
     appearance: 'none',
   };
 
-  const errorStyles = {
-    border: '1px solid red',
-    outline: 'red',
-  };
 
   const cityOptions = [
     { value: '', label: 'Choose City *', disabled: true },
     { id: 1, value: 'los angeles', label: 'Los Angeles' }
   ];
 
-  // const highlightedDatesNotAvailable = ['', '', ''];
-  // const highlightedDatesAvailable = ['', ''];
+
   const highlightedDatesAvailable = ['2024-07-21', '2024-07-26'];
-  console.log('timessss', timessss)
-  console.log('date', date)
   return (
     <div className="w-full">
       {/* First accordion section */}
@@ -139,8 +178,13 @@ const AccordionForm = ({ next }: any) => {
           onClick={toggleFirstAccordion}
         >
           <div className='flex justify-center gap-[12px] items-center'>
-            <Image width={23} height={23} src='/images/booking/detailTask.svg' alt='user' />
-            <h2 className=" !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]">Details about the task</h2>
+            <div className='flex flex-col gap-[18px]'>
+              <div className='flex gap-[6px]'>
+                <Image width={23} height={23} src='/images/booking/detailTask.svg' alt='user' />
+                <h2 className=" !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]">Details about the task</h2>
+              </div>
+              {firstSectionComplete && <div className='bg-[#F3F0FF] rounded-[25.878px] py-[8px] px-[15px]  text-center text-[#2C2240] min-w-[160px] max-w-[200px] tracking-[-0.25px] leading-[21.416px] font-[400] text-[12.493px] capitalize'>{selectedServiceName ? selectedServiceName : selectedService ? selectedService : "Bartenders"}</div>}
+            </div>
           </div>
           {firstSectionComplete && (
             <div className="flex items-center justify-center flex-col gap-[16px]">
@@ -156,18 +200,18 @@ const AccordionForm = ({ next }: any) => {
                   <h3 className='font-[500] text-center leading-[19.93px] tracking-[0.28px] !text-[14.82px] !text-[#000000]'>
                     Choose Service
                   </h3>
-                  {CHOOSE_SERVICES.map((service) => (
+                  {services.map((service) => (
                     <h3
                       key={service.id}
-                      onClick={() => handleServiceClick(service.id, service.text)}
+                      onClick={() => handleServiceClick(service.id, service.name)}
                       style={{
                         background: service.id === selectedServiceId ? "#20192e" : "#F3F0FF",
                         color: service.id === selectedServiceId ? "#e0d9f8" : "#2C2240",
-                        opacity: service.id === selectedServiceId ? 1 : 0.4
+                        opacity: service.id === selectedServiceId ? 1 : .9
                       }}
                       className='cursor-pointer  !text-[12.49px] w-full leading-[21.42px] tracking-[-2%] font-[400] text-center rounded-[29px] !py-[10px] !px-[42px]'
                     >
-                      {service.text}
+                      {service.name}
                     </h3>
                   ))}
                 </div>
@@ -175,21 +219,31 @@ const AccordionForm = ({ next }: any) => {
                   <h2 className={`${styles.lato_font} w-[82% !text-[#000000] text-[16px] tracking-[-2%]  leading-[20.4px] `}>Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later.</h2>
                   <div className="relative">
                     <div>
-                      <div className="absolute inset-y-0  start-0 flex items-center ps-[16px] pointer-events-none !pt-[1px]">
-
+                      <div className="absolute inset-y-0 start-0 flex items-center ps-[16px] pointer-events-none !pt-[1px]">
                         <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
                       </div>
                       <input
-                        {...register('message1', { required: true })}
+                        {...register('message1', {
+                          required: "Title is required.",
+                          minLength: {
+                            value: 20,
+                            message: "Title must be at least 20 characters."
+                          },
+                          maxLength: {
+                            value: 100,
+                            message: "Title must not exceed 100 characters."
+                          }
+                        })}
                         type="search"
                         id="message1"
                         name='message1'
-                        className={`border-[1px] text-[#9F9F9F]  ${errors.message1 ? "outline-[red] outline-[.5px]" : "outline-none"} !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message1 ? 'border-red-500 ' : ""}`}
-                        placeholder="Write down a suitable title fo the Job "
+                        className={`border-[1px] text-[#000000] ${errors.message1 ? "outline-[red] outline-[.5px]" : "outline-none"} !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message1 ? 'border-red-500 ' : ""} defaultsearch`}
+                        placeholder="Write down a suitable title for the Job"
                       />
                     </div>
-                    {errors.message1 && <span className="text-[12px] error-message absolute text-red-500 top-[49px]">required.</span>}
+                    {errors.message1 && <span className="text-[12px] error-message absolute text-red-500 top-[50px]">{(errors as any).message1.message}</span>}
                   </div>
+
                   <div className="relative">
                     <div>
                       <div className="absolute inset-y-0 flox start-0 !mt-[18px] items-center ps-[16px] pointer-events-none !pt-[1px]">
@@ -197,15 +251,25 @@ const AccordionForm = ({ next }: any) => {
                         <Image width={15} height={15} src='/images/booking/message.svg' alt='step-1' />
                       </div>
                       <textarea
-                        {...register('message2', { required: true })}
+                        {...register('message2', {
+                          required: "Description is required.",
+                          minLength: {
+                            value: 20,
+                            message: "Description must be at least 20 characters."
+                          },
+                          maxLength: {
+                            value: 400, // Example maximum length; adjust as needed
+                            message: "Description must not exceed 400 characters."
+                          }
+                        })}
                         id="message2"
                         name='message2'
-                        className={`!h-[112px] border-[1px] text-[#9F9F9F] ${errors.message2 ? "outline-[red] outline-[.5px]" : "outline-none"}  !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message2 ? 'border-red-500 ' : ""}`}
+                        className={`!h-[210px] border-[1px] text-[#000000] ${errors.message2 ? "outline-[red] outline-[.5px]" : "outline-none"} !border-[#EFEFEF] !py-[12px] !text-[14px] leading-[24px] tracking-[-2%] !font-[400] pl-[38px] pr-[10px] w-full rounded-[4px] ${errors.message2 ? 'border-red-500 ' : ""} defaultsearch`}
                         placeholder="Hi! Looking for help updating my 650 sq ft apartment. I’m on the 2nd floor up a short flight of stairs. Please bring an electric drill and ring doorbell number 3. Thanks!"
                       ></textarea>
                     </div>
 
-                    {errors.message2 && <span className="text-[12px] error-message absolute text-red-500 top-[112px]"> required.</span>}
+                    {errors.message2 && <span className="text-[12px] error-message absolute text-red-500 top-[210px]">{(errors as any).message2.message}</span>}
 
                   </div>
                 </div>
@@ -233,7 +297,7 @@ const AccordionForm = ({ next }: any) => {
               <Image width={24} height={24} src='/images/booking/barglass.svg' alt='user' />
               <h2 className={` !text-[#000000] text-[18px] font-[500] leading-[24px] tracking-[-0.36px]`}>Event Location</h2>
             </div>
-            {firstSectionComplete  && secondSectionComplete && <span className={`${styles.lato_font} text-[#6B6B6B] text-[16px] font-[400] leading-[20.4px] tracking-[-0.32px]`}>11121 York Rd, Cockeysville Maryland, 21030</span>}
+            {firstSectionComplete && secondSectionComplete && <span className={`${styles.lato_font} text-[#6B6B6B] text-[16px] font-[400] leading-[20.4px] tracking-[-0.32px]`}>{secondFormData?.city === "1" ? " Los anglos " : ""}, {secondFormData?.location}</span>}
           </div>
           {isOpenThird && (
             <div className="flex items-center justify-center flex-col gap-[16px]">
@@ -252,7 +316,7 @@ const AccordionForm = ({ next }: any) => {
                       id="city"
                       name='city'
                       style={selectStyles}
-                      className={`${errors.city ? "outline-[red] outline-[.5px]" : "outline-none"} text-[#9F9F9F] `}
+                      className={`${errors.city ? "outline-[red] outline-[.5px]" : "outline-none"} text-[#000000] `}
                     >
                       <option disabled hidden value="">City*</option>
                       {cityOptions.map((option, index) => (
@@ -269,7 +333,7 @@ const AccordionForm = ({ next }: any) => {
                       type="number"
                       id="postalcode"
                       name='postalcode'
-                      className={`defaultsearch border-[1px] text-[#9F9F9F]  ${errors.postalcode ? "outline-[red] outline-[.5px]" : "outline-none"}  border-[#EFEFEF] pr-[10px] py-[14px] pl-[20px] min-h-[52px] w-full  mt-[12px] rounded-[4px] `}
+                      className={`defaultsearch border-[1px] text-[#000000]  ${errors.postalcode ? "outline-[red] outline-[.5px]" : "outline-none"}  border-[#EFEFEF] pr-[10px] py-[14px] pl-[20px] min-h-[52px] w-full  mt-[12px] rounded-[4px] `}
                       placeholder="Postal Code *"
                     />
                     {errors.postalcode && <span className="text-[12px] error-message absolute text-red-500 top-[63px]">Postal Code is required.</span>}
@@ -284,7 +348,7 @@ const AccordionForm = ({ next }: any) => {
                     {...register('location', { required: true })}
                     id="location"
                     name='location'
-                    className={`!pl-[50px] !m-0 ${errors.location ? "outline-[red] outline-[.5px]" : "outline-none"} text-[#9F9F9F] `}
+                    className={`!pl-[50px] !m-0 ${errors.location ? "outline-[red] outline-[.5px]" : "outline-none"} text-[#000000] `}
                     style={selectStyles}
 
                   >
@@ -307,7 +371,7 @@ const AccordionForm = ({ next }: any) => {
                     type="search"
                     id="address"
                     name='address'
-                    className={`defaultsearch border-[1px] text-[#9F9F9F]  ${errors.address ? "outline-[red] outline-[.5px]" : "outline-none"} border-[#EFEFEF] py-[14px] pl-[50px] pr-[10px] min-h-[52px] w-full  rounded-[4px]`}
+                    className={`defaultsearch border-[1px] text-[#000000]  ${errors.address ? "outline-[red] outline-[.5px]" : "outline-none"} border-[#EFEFEF] py-[14px] pl-[50px] pr-[10px] min-h-[52px] w-full  rounded-[4px]`}
                     placeholder="Enter Address *"
                   />
                   {errors.address && <span className="text-[12px] error-message absolute text-red-500 top-[52px]">Address is required.</span>}
@@ -350,6 +414,7 @@ const AccordionForm = ({ next }: any) => {
             <div className="accordion-content mt-[22px] flex justify-start items-start gap-[33px]">
               <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
                 <TimeAndCalander
+                  setTimeMessage={setTimeMessage}
                   setWorkingTimes={setWorkingTimes}
                   isStepOneCalander
                   date={date}
@@ -423,14 +488,17 @@ const AccordionForm = ({ next }: any) => {
           )}
         </div>
         {isOpenThird &&
-          <div className="text-center relative bottom-[-81px]" onClick={next}>
+          <div className="text-center relative bottom-[-81px]" >
+            <div className='relative top-[-96px] text-[red] z-[999] right-[38px]'>
+              {timeMessage}
+            </div>
             <button
               type="button"
-              className="fixed inline w-[22%] right-[482.5px] bottom-[115px] pb-[11px] pl-[35px] justify-center rounded-[4px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
-              onClick={handleContinueSecond}
+              className="fixed inline w-[22%] right-[482.5px] bottom-[108px] pb-[11px] pl-[35px] justify-center rounded-[4px] py-2  text-[16px] font-[400] leading-[26px] tracking-[-2%] items-center m-auto gap-[12px] px-[20px] bg-[#350ABC] h-[48px]"
+
             >
               <span className='relative bottom-[-8.5px]'><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
-              <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[-12px] '>See Taskers and Prices</span>
+              <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[-12px]' onClick={onThirdSubmit}>See Taskers and Prices</span>
             </button>
           </div>
         }

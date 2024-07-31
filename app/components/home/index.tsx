@@ -27,7 +27,6 @@ const Home = () => {
         }); // API call
         setData(newData?.data); // Update state with fetched data
       } catch (error) {
-        console.error('Error fetching data:', error);
         // Handle error state or display an error message
       } finally {
         setLoading(false); // Hide loading indicator regardless of success or failure

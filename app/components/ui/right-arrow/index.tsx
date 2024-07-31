@@ -2,7 +2,7 @@ import React from 'react'
 
 const LeftArrow = () => {
   return (
-    <div className='absolute bottom-[449px] left-[406px] z-10'>
+    <div className='absolute bottom-[490px] left-[406px] z-10'>
     <svg height="40" width='260' viewBox="0 0 148 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="260" height="70" transform="matrix(1 0 0 -1 0 40)" fill="url(#paint0_linear_483_1294)" />
       <rect width="260" height="70" transform="matrix(1 0 0 -1 0 40)" fill="url(#paint1_linear_483_1294)" />

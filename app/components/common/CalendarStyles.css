@@ -376,3 +376,8 @@
   line-height: 32.794px;
   letter-spacing: -0.328px;
 }
+.react-calendar__tile:disabled{
+  background-color: transparent !important;
+  color: gray !important;
+  opacity: .5;
+}

@@ -63,7 +63,16 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, content, avatar
           <div className="relative z-10 max-w-[calc(100%-2rem)] mx-auto">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <img className="w-12 h-12 rounded-full" src={avatarSrc} alt="Neil image" />
+
+                <Image
+                  src={avatarSrc}
+                  className="w-14 h-14 object-center object-cover rounded-full"
+                  alt="Neil image"
+                  width={300} // Example width, equivalent to 14 units in Tailwind
+                  height={300} // Example height, equivalent to 14 units in Tailwind
+                  quality={100} // Ensures the highest quality
+                />
+
               </div>
               <div className="flex-1 min-w-0 ms-4 text-left">
                 <p className="text-[20px] leading-[24px] tracking-[-0.4px] mb-[8px] font-[500] text-[#2C2240]  ">

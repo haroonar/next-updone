@@ -11,7 +11,6 @@ const CalendarWithAvailability = dynamic(() => import('@/app/components/common/C
 const TimeAndCalander = ({
     isStepOneCalander,
     highlightedDatesAvailable,
-    highlightedDatesNotAvailable,
     isCalander,
     date,
     setDate,
@@ -22,7 +21,7 @@ const TimeAndCalander = ({
     selectedTimeId,
     scrollUp,
     scrollDown,
-    handleAddToBooking,
+    setTimeMessage,
     isStaffListerFilter,
     setWorkingTimes,
     workingTimes
@@ -38,6 +37,7 @@ const TimeAndCalander = ({
                 }}>
                     <Suspense fallback={<p className='w-full flex justify-center items-center'>Loading...</p>}>
                         <CalendarWithAvailability
+                        setTimeMessage={setTimeMessage}
                         setWorkingTimes={setWorkingTimes}
                             setSelectedTimeId={setSelectedTimeId}
                             setDate={setDate}

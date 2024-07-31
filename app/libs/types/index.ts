@@ -17,6 +17,7 @@ type ScrollRef = RefObject<HTMLDivElement>
 type SetSelectedTimeId = React.Dispatch<SetStateAction<string | null>>
 
 export interface BookingCalanderProps {
+  setTimeMessage?:any
   date: Date;
   setWorkingTimes?:any
   workingTimes?:any

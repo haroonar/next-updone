@@ -6,13 +6,14 @@ import Link from 'next/link';
 import ServicesContent from './components/ServicesContent';
 import { services } from '@/app/libs/Constants';
 import { apiRequest } from '@/app/libs/services';
+import { useRouter } from 'next/navigation';
 
 
 
 const Services = () => {
   const [imageLoaded, setImageLoaded] = useState(Array(services.length).fill(false));
   const [allImagesLoaded, setAllImagesLoaded] = useState(true);
-
+  const router = useRouter()
 
   useEffect(() => {
     // Check if all images have loaded
@@ -34,22 +35,26 @@ const Services = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      const fetchDataIfNeeded = async () => {
-        try {
-          const newData = await apiRequest('/services', {
-            method: 'GET',
-          }); // API call
-          setData(newData?.data); // Update state with fetched data
-        } catch (error) {
-          console.error('Error fetching data:', error);
-          // Handle error state or display an error message
-        } finally {
-          setLoading(false); // Hide loading indicator regardless of success or failure
-        }
-      };
-  
-      fetchDataIfNeeded(); // Call the function to fetch data
-    }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
+    const fetchDataIfNeeded = async () => {
+      try {
+        const newData = await apiRequest('/services', {
+          method: 'GET',
+        }); // API call
+        setData(newData?.data); // Update state with fetched data
+      } catch (error) {
+        // Handle error state or display an error message
+      } finally {
+        setLoading(false); // Hide loading indicator regardless of success or failure
+      }
+    };
+
+    fetchDataIfNeeded(); // Call the function to fetch data
+  }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
+  const handleHireNowClick = () => {
+    localStorage.removeItem('selectedServiceId');
+    localStorage.removeItem('selectedServiceName');
+    router.push('/staff/booking');
+  };
   return (
     <>
       <div className='py-[100px] bg-[FFFFFF]'>
@@ -88,6 +93,7 @@ const Services = () => {
                         name={service.name}
                         description={service.description}
                         serviceSrc={service.serviceSrc}
+                        id={service.id}
                       />
 
                     )}
@@ -99,9 +105,9 @@ const Services = () => {
         </div>
       </div>
       <div className='w-full text-center relative z-50 md:mt-[40px] 2xl:mt-[-40px] mb-[26px] cursor-pointer'>
-        <Link href={'/staff'} className="text-[#F3F0FF] justify-center bg-[#2C2240] rounded-[4px] text-[16px] font-normal px-[50px] py-[18px] text-center inline-flex items-center me-2">
+        <button onClick={handleHireNowClick} className="text-[#F3F0FF] justify-center bg-[#2C2240] rounded-[4px] text-[16px] font-normal px-[50px] py-[18px] text-center inline-flex items-center me-2">
           Hire Required Staff Now!
-        </Link>
+        </button>
       </div>
     </>
   );

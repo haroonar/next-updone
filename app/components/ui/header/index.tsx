@@ -1,24 +1,19 @@
 "use client"
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './header.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import LoginForm from '../login';
 import RegisterForm from '../register';
-import Cookies from 'js-cookie';
 import { useAppSelector } from '@/app/libs/store/hooks';
 import { clearAuth, selectAuth } from '@/app/libs/store/features/authSlice';
 import { useDispatch } from 'react-redux';
-import { persistor } from '@/app/libs/store/store';
-import { NAV_LINKS } from '@/app/libs/Constants';
-import { selectBookingActive, setBookingActive, setBookingInactive } from '@/app/libs/store/features/bookingSlice';
 import { lato } from '@/app/libs/Fonts';
 
 const Header = () => {
     // State to track the clicked link
     const [activeLink, setActiveLink] = useState<string | null>(null); // Initialize activeLink with null or an appropriate initial value
     const { auth: storedData } = useAppSelector(selectAuth);
-    console.log('storedData', storedData)
 
     // State to track the visibility of login and register menu
     const [loginMenuOpen, setLoginMenuOpen] = useState(false);
@@ -68,14 +63,6 @@ const Header = () => {
                                         </Link>
                                     </li>
                                 ))} */}
-
-                                <li>
-                                    <Link href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                                            <path d="M20.6703 20.0004L16.6203 15.9504M16.6203 15.9504C17.2703 15.3003 17.786 14.5286 18.1378 13.6793C18.4896 12.83 18.6706 11.9197 18.6706 11.0004C18.6706 10.0811 18.4896 9.17076 18.1378 8.32144C17.786 7.47211 17.2703 6.7004 16.6203 6.05036C15.9702 5.40031 15.1985 4.88467 14.3492 4.53287C13.4999 4.18107 12.5896 4 11.6703 4C10.751 4 9.84068 4.18107 8.99136 4.53287C8.14204 4.88467 7.37032 5.40031 6.72028 6.05036C5.40746 7.36318 4.66992 9.14375 4.66992 11.0004C4.66992 12.857 5.40746 14.6375 6.72028 15.9504C8.0331 17.2632 9.81367 18.0007 11.6703 18.0007C13.5269 18.0007 15.3075 17.2632 16.6203 15.9504Z" stroke="#0B0B0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </Link>
-                                </li>
                                 {storedData?.user?.name ? (
                                     <>
                                         <li className={`${lato.className} !ml-[22px] px-[10px] pb-[1px] text-[#0B0B0B] border-b-[1px] border-[#2C2240] text-[14px] font-[600] leading-[150%] capitalize`}>{storedData?.user?.name}</li>
@@ -98,7 +85,7 @@ const Header = () => {
                                             )}
                                         </li>
                                         <li>
-                                            <div onClick={toggleRegisterMenu} className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
+                                            <div onClick={toggleRegisterMenu} className={`${lato.className} bg-[#0b0b0b] text-[#F3F0FF] text-[14px] font-[400] px-6 py-2 rounded-md`}>
                                                 Register
                                             </div>
                                             {registerMenuOpen && (

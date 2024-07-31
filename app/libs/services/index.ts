@@ -42,7 +42,6 @@ export async function apiRequest<T>(url: string, options: RequestOptions<T>): Pr
         return data.data; // Return data for successful response
     } catch (error) {
         // Ensure you only log and show errors here
-        console.error('Error fetching data:', (error as Error).message);
         // Optionally display a general error message if needed
         toast.error((error as Error).message || 'Failed to fetch data');
         throw error; // Re-throw the error to handle in the component

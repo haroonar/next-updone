@@ -107,7 +107,6 @@ export const BookingProvider: React.FC<{ children: ReactNode }> = ({ children })
                 setSelectedTimeId(null);
             }
         } else {
-            console.log('No time selected.');
         }
     };
 

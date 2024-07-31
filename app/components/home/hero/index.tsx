@@ -10,9 +10,10 @@ import StarRating from '../../ui/star-rating';
 import { montserrat } from '@/app/libs/Fonts';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
-const itemLocationNames: string[] = [`Los Angeles`];
+export const itemLocationNames: string[] = [`Los Angeles`];
 const itemServiceNames: string[] = ['Bartender', 'Waiters', 'Cocktails', 'Barbacks', 'Promo Models', 'Event Servers'];
 const Hero = () => {
     const { setSelectedTimeId, selectedTimeId, scrollRef, scrollDown, scrollUp, handleAddToBooking, handleTimeSelection, handleServiceClick, availableTimesMap, setDate, date, staff, selectedServiceId } = useBookingContext();
@@ -27,7 +28,7 @@ const Hero = () => {
     const [dateOpen, setDateOpen] = useState(false) //to open service 
     const [isFilterOpened, setIsFilterOpened] = useState(false) //to open service 
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null); //to get selected service
-
+    const router = useRouter()
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedText = event.target.options[event.target.selectedIndex].text;
         setSelectedValue(selectedText)
@@ -82,6 +83,11 @@ const Hero = () => {
     const handleImage2Load = () => {
         setImage2Loaded(true);
     };
+    const handlePostJobClick = () => {
+        localStorage.removeItem('selectedServiceId');
+        localStorage.removeItem('selectedServiceName');
+        router.push('/staff/booking')
+    }
     return (
         <div>
             <main className="h-screen flex flex-col justify-end items-center relative">
@@ -90,29 +96,29 @@ const Hero = () => {
                         <div className="loader_hero"></div>
                     </div>
                 )}
-             
-             {!allImagesLoaded &&
-             
-             <div className={`${montserrat.className} font-[900] mb-[-7px]  flex flex-col text-[#0B0B0B] justify-center items-center uppercase text-center xl:text-[80px] lg:text-[86px] leading-[80px]`}>
-                 <h2 className='text-[#f5f5f5] lg:text-[180px] xl:text-[210px] relative z-[-1] top-[95px]'>WORKERS</h2>
-                 <h1>Book <span className='text-[#350ABC] relative lg:leading-[70px] '>Event</span> <br /> <span className='text-[#350ABC]'>Staff</span> in a snap!</h1>
-             </div>
-             }
-               <Image
-                onLoadingComplete={handleImage1Load}
-                layout="responsive"
-                className='!h-[63.5%]'
-                src="/background.svg" // Note the leading slash for the public directory
-                height={300}
-                width={1500}
-                alt="Background"
-            />
+
+                {!allImagesLoaded &&
+
+                    <div className={`${montserrat.className} font-[900] mb-[-7px]  flex flex-col text-[#0B0B0B] justify-center items-center uppercase text-center xl:text-[80px] lg:text-[86px] leading-[80px]`}>
+                        <h2 className='text-[#f5f5f5] lg:text-[180px] xl:text-[210px] relative z-[-1] top-[95px]'>WORKERS</h2>
+                        <h1>Book <span className='text-[#350ABC] relative lg:leading-[70px] '>Event</span> <br /> <span className='text-[#350ABC]'>Staff</span> in a snap!</h1>
+                    </div>
+                }
+                <Image
+                    onLoadingComplete={handleImage1Load}
+                    layout="responsive"
+                    className='!h-[63.5%]'
+                    src="/background.svg" // Note the leading slash for the public directory
+                    height={300}
+                    width={1500}
+                    alt="Background"
+                />
 
                 {/* Add your content here */}
                 <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg   md:max-w-[900px] 2xl:max-w-[1000px] m-auto">
 
 
-                    {/* {!allImagesLoaded &&
+                    {!allImagesLoaded &&
                         <div onClick={handleClikedFilter} style={{ ...heroFilters }} className={`${isFilterOpened ? "w-[100%] !transition-all !duration-1000 !rounded-[8px]" : "!w-[79.9%] !transition-all !duration-1000"}  flex space-x-3 p-1 text-black justify-center items-center text-center`}>
                             <div style={{ width: '18%' }} className=" text-start space-y-1.5 !transition-all !duration-1000">
                                 <div className="relative inline-block border-none shadow-none">
@@ -213,21 +219,20 @@ const Hero = () => {
                             ) : null}
 
                         </div>
-                    } */}
+                    }
                     <div className='flex justify-center items-start gap-[14px] absolute bottom-[40px]'>
-                    <Link href='/staff/booking' className='py-[16px] px-[90px] text-[#350ABC] font-[600] leading-[26px] tracking-[-2%] text-[20px]' style={{background:'#f3f0ff'}}>Post job For Free</Link>
-                    <button className='py-[16px] px-[90px] bg-[#774DFD] text-[#F3F0FF] font-[600] leading-[26px] tracking-[-2%] text-[20px]'>Become a Tasker</button>
+                        <button onClick={handlePostJobClick} className='lg:py-[16px] 2xl:py-[20px] px-[90px]  text-[#350ABC] font-[600] leading-[26px] tracking-[-0.4px] text-[20px] bg-[#F3F0FF] rounded-[8px] border-[1px] border-[#774DFD]'>Post job For Free</button>
                     </div>
                     <Image
-                quality={100}
-                onLoadingComplete={handleImage2Load}
-                layout="fixed"
-                height={724}
-                width={1294}
-                className='xl:!max-w-[98%] lg:!max-w-[86%]  !h-[60%] 2xl:!max-w-[100%]'
-                src="/images/hero/hero.png"
-                alt="Hero Image"
-            />
+                        quality={100}
+                        onLoadingComplete={handleImage2Load}
+                        layout="fixed"
+                        height={724}
+                        width={1294}
+                        className='xl:!max-w-[98%] lg:!max-w-[86%]  !h-[60%] 2xl:!max-w-[100%]'
+                        src="/images/hero/hero.png"
+                        alt="Hero Image"
+                    />
                 </div>
             </main>
         </div>
