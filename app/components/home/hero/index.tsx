@@ -118,7 +118,7 @@ const Hero = () => {
                 <div className="absolute z-50 flex flex-col items-center justify-center text-white text-lg   md:max-w-[900px] 2xl:max-w-[1000px] m-auto">
 
 
-                    {!allImagesLoaded &&
+                    {/* {!allImagesLoaded &&
                         <div onClick={handleClikedFilter} style={{ ...heroFilters }} className={`${isFilterOpened ? "w-[100%] !transition-all !duration-1000 !rounded-[8px]" : "!w-[79.9%] !transition-all !duration-1000"}  flex space-x-3 p-1 text-black justify-center items-center text-center`}>
                             <div style={{ width: '18%' }} className=" text-start space-y-1.5 !transition-all !duration-1000">
                                 <div className="relative inline-block border-none shadow-none">
@@ -219,7 +219,7 @@ const Hero = () => {
                             ) : null}
 
                         </div>
-                    }
+                    } */}
                     <div className='flex justify-center items-start gap-[14px] absolute bottom-[40px]'>
                         <button onClick={handlePostJobClick} className='lg:py-[16px] 2xl:py-[20px] px-[90px]  text-[#350ABC] font-[600] leading-[26px] tracking-[-0.4px] text-[20px] bg-[#F3F0FF] rounded-[8px] border-[1px] border-[#774DFD]'>Post job For Free</button>
                     </div>

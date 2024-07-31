@@ -149,7 +149,7 @@ const AccordionForm = ({ next }: any) => {
   const handleServiceClick = (id: number, text: string) => {
     setSelectedServiceId(id);
     //@ts-ignore
-    // localStorage.setItem("post-job-persist-service-id", id)
+    localStorage.setItem("post-job-persist-service-id", id)
     setSelectedService(text)
   };
 
