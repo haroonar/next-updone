@@ -17,7 +17,7 @@ export async function apiRequest<T>(url: string, options: RequestOptions<T>): Pr
     const defaultHeaders = {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        ...options.headers // Merge additional headers if provided
+        ...options.headers, // Merge additional headers if provided
     };
 
     try {

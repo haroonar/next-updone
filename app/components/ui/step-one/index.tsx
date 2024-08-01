@@ -8,18 +8,14 @@ import { useBookingContext } from '@/app/libs/context/BookingContext';
 import './AccordionForm.css'
 import { apiRequest } from '@/app/libs/services';
 import { toast } from 'react-toastify';
+import { useAppSelector } from '@/app/libs/store/hooks';
+import { selectAuth } from '@/app/libs/store/features/authSlice';
+import { useDispatch } from 'react-redux';
+import { setJobData } from '@/app/libs/store/features/staffSlice';
 
-const AccordionForm = ({ next }: any) => {
+const AccordionForm = ({workingTimes,setWorkingTimes,selectedServiceId,setSelectedServiceId,secondFormData,setSecondFormData, next,onThirdSubmit }: any) => {
   const [jobData, setData] = useState<any>([])
-  const [selectedServiceId, setSelectedServiceId] = useState(() => {
-    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-      const storedId = localStorage.getItem('selectedServiceId');
-      return storedId ? parseInt(storedId, 10) : 1;
-    } else {
-      console.log('localStorage is not supported or window is not defined.');
-      return 1; // Default value
-    }
-  });
+  console.log('jobData', jobData)
 
   const [selectedServiceName, setSelectedServiceName] = useState(() => {
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
@@ -34,13 +30,12 @@ const AccordionForm = ({ next }: any) => {
   const [timeMessage, setTimeMessage] = useState<string | null>(null);
   console.log('timeMessage', timeMessage)
   const [selectedService, setSelectedService] = useState<any>()
-  const [secondFormData, setSecondFormData] = useState<any>()
-  console.log('secondFormData', secondFormData)
   const [firstFormData, setFirstFormData] = useState<any>()
+  console.log('firstFormData', firstFormData)
   const [isOpenFirst, setIsOpenFirst] = useState(true);
   const [isOpenSecond, setIsOpenSecond] = useState(false);
   const [isOpenThird, setIsOpenThird] = useState(false);
-  const [workingTimes, setWorkingTimes] = useState<any>([]);
+
   const [firstSectionComplete, setFirstSectionComplete] = useState(false);
   const [secondSectionComplete, setSecondSectionComplete] = useState(false);
   const [thirdSectionComplete, setThirdSectionComplete] = useState(false);
@@ -112,38 +107,7 @@ const AccordionForm = ({ next }: any) => {
     toggleSecondAccordion(); // Close the second accordion
     toggleThirdAccordion()
   };
-  const onThirdSubmit = async () => {
-    const body = {
-      city_id: 1,
-      postal_code: "1234",
-      event_location: "Lahore",
-      address: "Punjab Lahore 123",
-      service_id: 4,
-      title: "Corporate event",
-      description: "this is corporate event",
-      working_times: [],
-      invited_workers: [34, 35, 42]
 
-    };
-
-    try {
-      const newData = await apiRequest('/job', {
-        method: 'POST',
-        body: body
-      }); // API call
-      setData(newData?.data); // Update state with fetched data
-    } catch (error) {
-      toast.error('Failed to login. Please check your credentials.');
-      // Handle error state or display an error message
-    } finally {
-    }
-    // Check if workingTimes exists and is not an empty array
-    if (workingTimes && workingTimes.length > 0) {
-      next(); // Call the next function if the array is not empty
-    } else {
-      setTimeMessage("Please add start & end time")
-    }
-  };
 
 
   const handleServiceClick = (id: number, text: string) => {
@@ -510,7 +474,7 @@ const AccordionForm = ({ next }: any) => {
 
             >
               <span className='relative bottom-[-8.5px]'><Image width={16} height={16} src='/images/booking/arrowleft.svg' alt='step-1' /></span>
-              <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[-12px]' onClick={onThirdSubmit}>See Taskers and Prices</span>
+              <span className='opacity-[90%] text-[#F3F0FF] !text-[16px] leading-[26px] relative top-[-12px]' onClick={next}>See Taskers and Prices</span>
             </button>
           </div>
         }

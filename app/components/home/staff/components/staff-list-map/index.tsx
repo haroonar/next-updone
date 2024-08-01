@@ -96,8 +96,8 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen, sel
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                                 whiteSpace: 'nowrap'
-                            }} className='text-[20px] text-[#2C2240] font-semibold'>
-                                {staff?.name?.length > 18 ? `${staff?.name?.slice(0, 18)}...` : staff?.name}
+                            }} className='text-[20px] text-[#2C2240] relative bottom-[1px] font-semibold'>
+                                {staff?.full_name?.length > 18 ? `${staff?.full_name?.slice(0, 18)}...` : staff?.full_name}
                             </h3>
 
                             <div className="flex items-center justify-center">
@@ -120,7 +120,7 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen, sel
                         </div>
                         <div className="text-center flex justify-between w-full items-center font-bold text-lg mb-1">
                             <div className="text-center text-[14px] font-normal  text-[#989898] flex gap-2">
-                                <Image src='/images/gallery/location.svg' alt='location-svg' width={15} height={15} />  {`${staff.city}`}
+                                <Image src='/images/gallery/location.svg' alt='location-svg' width={15} height={15} />  <span className='flex justify-start items-center text-[14px]'>{staff.locality.length > 8 ? `${staff.locality.slice(0, 8)}...` : staff.locality}</span>
                             </div>
                             <span className='text-[14px] font-semibold'>{staff?.total_jobs_count} Jobs</span>
                         </div>
@@ -151,7 +151,7 @@ const StaffMap = ({ index, staff, handleStaffClick, setModalOpen, modalOpen, sel
             </div>
             <div className="flex justify-around items-center flex-col mt-[32px] relative bottom-[142.9px] w-full space-x-2  pt-2 pb-[17px] bg-[#F3F0FF] rounded-bl-[4px] rounded-br-[4px] border-x-[1px] border-[#E9E9E9]">
                 {openBreakDown &&
-                    <div className='!h-[11.5rem] bg-[#fff] text-[#2C2240] pt-1 !pb-4 w-full absolute bottom-[75px] space-y-2 capitalize'>
+                    <div className='!h-[11.5rem] bg-[#fff] text-[#2C2240] !pb-4 w-full absolute bottom-[75px] space-y-2 capitalize'>
                         <div onClick={handleCloseCastBreakdown} className='w-full flex justify-center items-center cursor-pointer'><span className='rotate-180 relative top-[3px]'><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17 11.5L12 6.5L7 11.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M17 18.5L12 13.5L7 18.5" stroke="#2C2240" stroke-linecap="round" stroke-linejoin="round" />

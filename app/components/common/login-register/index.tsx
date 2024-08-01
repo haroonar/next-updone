@@ -254,4 +254,4 @@ const LoginFrom = ({ showLoginForm, close, showRegisterForm, styles, handleClose
   )
 }
 
-export default React.memo(LoginFrom)
+export default LoginFrom

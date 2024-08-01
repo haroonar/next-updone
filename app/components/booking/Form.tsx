@@ -16,6 +16,7 @@ import AccordionForm from '../ui/step-one'
 import FormNav from '../ui/booking-form-nav'
 import FormTitles from './form-titles'
 import StaffListing from '../home/staff'
+import LoginFrom from '../common/login-register'
 
 
 type Inputs = z.infer<typeof FormDataSchema>
@@ -23,7 +24,7 @@ type Inputs = z.infer<typeof FormDataSchema>
 
 
 
-export default function Form({currentStep, setCurrentStep,setChangeActiveColor, changeActiveColor }: any) {
+export default function Form({workingTimes,setWorkingTimes,selectedServiceId,setSelectedServiceId,secondFormData,setSecondFormData,onThirdSubmit,currentStep, setCurrentStep,setChangeActiveColor, changeActiveColor }: any) {
     const { setShowLoginForm, showLoginForm, setShowRegisterForm, showRegisterForm, setClose, close } = useAuthContext()
     const [previousStep, setPreviousStep] = useState(0)
 
@@ -61,38 +62,14 @@ export default function Form({currentStep, setCurrentStep,setChangeActiveColor, 
         reset()
     }
 
-    type FieldName = keyof Inputs
 
     const next = async () => {
-        // const fields = steps[currentStep].fields
-        // const output = await trigger(fields as FieldName[], { shouldFocus: true })
-
-        // if (!output) return
         await handleSubmit(processForm)()
         setPreviousStep(currentStep)
         //@ts-ignore
         setCurrentStep(step => step + 1)
-        // if (currentStep < steps.length - 1) {
-        //     await handleSubmit(processForm)()
-        //     if (currentStep === steps.length - 2) {
-        //     }
-        //     setPreviousStep(currentStep)
-        //     setCurrentStep(step => step + 1)
-        // }
     }
 
-    const prev = () => {
-        if (currentStep > 0) {
-            setPreviousStep(currentStep)
-            //@ts-ignore
-            setCurrentStep(step => step - 1)
-        }
-    }
-    const [selectedCountry, setSelectedCountry] = useState('');
-
-    const handleCountryChange = (e: any) => {
-        setSelectedCountry(e.target.value);
-    };
     const steps = [
         {
             id: 'Task Details',
@@ -172,7 +149,7 @@ export default function Form({currentStep, setCurrentStep,setChangeActiveColor, 
                         >
                             <div className='flex gap-[34px] mx-auto min-h-[638px] mt-[0] mb-[0]'>
 
-                                <AccordionForm next={next} />
+                                <AccordionForm workingTimes={workingTimes}  setWorkingTimes={setWorkingTimes} selectedServiceId={selectedServiceId} setSelectedServiceId={setSelectedServiceId} setSecondFormData={setSecondFormData} secondFormData={secondFormData} onThirdSubmit={onThirdSubmit} next={next} />
                             </div>
                         </motion.div>
                     )}
@@ -183,7 +160,7 @@ export default function Form({currentStep, setCurrentStep,setChangeActiveColor, 
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                         <StaffListing isFilterBookingFlow/>
+                         <StaffListing selectedServiceId={selectedServiceId} isFilterBookingFlow/>
                         </motion.div>
                     )}
 
@@ -217,6 +194,7 @@ export default function Form({currentStep, setCurrentStep,setChangeActiveColor, 
                                                 <div>
                                                     <Image layout="intrinsic" src="/images/thankyou/tick.svg" height={100} width={100} alt="tick" />
                                                 </div>
+                                                <LoginFrom/>
                                                 <div>
                                                     <h2 className={`${montserrat.className} font-[700] text-[54px] leading-[65.83px] translate-[-2%] text-[#000000] text-start mt-[16px]`}>Booking Confirmed Successfully!</h2>
                                                     <p className={`font-[400] text-[20px] leading-[36px] translate-[-2%] text-[#6B6B6B] text-start mt-[32px]`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum sed arcu non odio. Posuere soll.</p>

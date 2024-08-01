@@ -7,10 +7,10 @@ function HowWork() {
     const [selectedCard, setSelectedCard] = useState(1); // State to track selected card
 
     const cards = [
-        { id: 1, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: `1.  Pick a service`, image: '/step1.png' },
-        { id: 2, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '2.  Choose a worker', image: '/step2.png' },
-        { id: 3, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '3.  Check availability', image: '/step3.png' },
-        { id: 4, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '4.  Book for an event', image: '/step4.png' },
+        { id: 1, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: `1.  Pick a service`, image: '/Frame 1410126545.webp' },
+        { id: 2, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '2.  Choose a worker', image: '/Frame 1410126546.webp' },
+        { id: 3, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '3.  Check availability', image: '/Frame 1410126849.webp' },
+        { id: 4, dec: `Updone caters to a variety of staffing needs, from last-minute replacements to long-term engagements.`, text: '4.  Book for an event', image: '/Frame 1410126496.webp' },
     ];
 
     const handleCardSelect = (cardId: number) => {

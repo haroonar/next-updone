@@ -39,9 +39,9 @@ const CalendarWithAvailability = ({
   setTimeMessage
 }: CalendarWithAvailabilityProps) => {
   const [availableTimes] = useState<string[]>([
-    "12:00 am", "01:00 am", "02:00 am", "03:00 am", "04:00 am", "05:00 am", "06:00 am", "07:00 am", "08:00 am", "09:00 am",
-    "10:00 am", "11:00 am", "12:00 pm", "01:00 pm", "02:00 pm", "03:00 pm", "04:00 pm", "05:00 pm", "06:00 pm", "07:00 pm",
-    "08:00 pm", "09:00 pm", "10:00 pm", "11:00 pm"
+    "12:00 AM", "1:00 AM", "2:00 AM", "3:00 AM", "4:00 AM", "5:00 AM", "6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM",
+    "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM",
+    "8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM"
   ]);
 
   const [selectedRanges, setSelectedRanges] = useState<TimeRange[]>([]);
@@ -142,7 +142,7 @@ const CalendarWithAvailability = ({
   useEffect(() => {
     if (scrollContainerRef.current) {
       // Scroll to the "03:00 pm" time slot initially
-      const startTime = "03:00 pm";
+      const startTime = "03:00 PM";
       const index = availableTimes.indexOf(startTime);
       if (index !== -1) {
         const itemHeight = 24; // Adjust according to the height of each list item

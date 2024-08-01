@@ -8,13 +8,20 @@ import { IoTimeOutline } from 'react-icons/io5'
 import { LuMapPin } from 'react-icons/lu'
 import { PiLineVerticalThin } from 'react-icons/pi'
 import StaffListMap from '../../home/staff/components/staff-list-map'
+import { apiRequest } from '@/app/libs/services'
+import { selectAuth } from '@/app/libs/store/features/authSlice'
 
 const OffersTabs = ({ activeTab }: { activeTab: string }) => {
+    
+    const [data, setData] = useState<any>(null);
+    console.log('data in OffersTabs', data)
+    const [loading, setLoading] = useState(true);
     const [offeredStaff, setOfferedStaff] = useState([])
+    const { auth: storedData } = useAppSelector(selectAuth);
     useEffect(() => {
         if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
             const storedStaffArray = localStorage.getItem('selectedStaff');
-    
+
             if (storedStaffArray) {
                 try {
                     const parsedStaffArray = JSON.parse(storedStaffArray);
@@ -28,20 +35,39 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
             console.log('localStorage is not supported or window is not defined.');
         }
     }, []);
-    
 
+    useEffect(() => {
+      const fetchDataIfNeeded = async () => {
+        try {
+          const newData = await apiRequest('/job/65/invites', {
+            method: 'GET',
+            headers:{
+                ...(storedData && { 'Authorization': `Bearer ${storedData.token}` })
+              }
+          }); // API call
+          console.log('newData fetchDataIfNeeded', newData)
+          setData(newData); // Update state with fetched data
+        } catch (error) {
+          // Handle error state or display an error message
+        } finally {
+          setLoading(false); // Hide loading indicator regardless of success or failure
+        }
+      };
+    
+      fetchDataIfNeeded(); // Call the function to fetch data
+    }, []); // Dependency array ensures useEffect runs when currentPage or selectedCount changes
     return (
         <>
             {/* Tab Content */}
-            <section className="pr-8 relative bottom-[20px]">
+            <section className="relative bottom-[20px]">
                 {activeTab === 'a' && (
                     <div className='h-[500px] overflow-auto space-y-[38px] pb-10 mt-[58px]'>
-                        <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
-                            <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
-                                <div className='flex justify-center items-center gap-[31px]'>
+                        <div className="border border-[#E9E9E9] rounded-[4px] pl-[32px] mx-[32px]">
+                            <div className='flex  justify-between items-start h-[137px]'>
+                                <div className='flex justify-center items-center gap-[88px]'>
                                     <div className='flex gap-[20px]'>
                                         <img className='h-[110px] w-[106px] object-cover rounded-[50%] mt-[12px] border-2 border-[#F3F0FF]' src='/images/testiminial/testi5.png' alt='user' />
-                                        <div>
+                                        <div className='relative top-[8px]'>
                                             <div className='flex justify-between w-full gap-[136px] items-center mb-1'>
                                                 <h2 className={`${montserrat.className} leading-[24px] text-[#000000] font-[600] tracking-[-0.16px] !text-[16px]`}>Cooper, Kristin</h2>
                                                 <h3 className='flex justify-center items-center gap-1'> <span className='mb-[4px] mr-1  leading-[24px] text-[#2C2240] font-[600] tracking-[-0.28px] text-[16px]'>
@@ -54,7 +80,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <h2 className={`flex justify-center items-center gap-2 leading-[24px] font-[400] tracking-[ -0.24px] !text-[12px] text-[#00000080] `}><LuMapPin className='text-[#000000]' />Atlanta</h2>
                                                 <h3 className='flex justify-center items-center gap-1 text-[#2C2240] leading-[24px] tracking-[-0.24px] text-[12px] font-[600]'>120 Jobs</h3>
                                             </div>
-                                            <div className="flex justify-start items-center text-start w-full space-x-1 mb-2 mt-2 ">
+                                            <div className="flex justify-start items-center text-start w-full space-x-1">
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
                                                 <span><PiLineVerticalThin /></span>
 
@@ -64,7 +90,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
 
                                             </div>
-                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] pb-[3px] px-[30px] mt-1'>
+                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 !py-[3px] px-[20px] mt-1.5'>
                                                 <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(#clip0_481_590)">
                                                         <path d="M16.4333 0H0.566667C0.416377 0 0.272243 0.0585317 0.165973 0.162719C0.0597022 0.266905 0 0.408213 0 0.555556L0 9.44444C0 9.59179 0.0597022 9.7331 0.165973 9.83728C0.272243 9.94147 0.416377 10 0.566667 10H16.4333C16.5836 10 16.7278 9.94147 16.834 9.83728C16.9403 9.7331 17 9.59179 17 9.44444V0.555556C17 0.408213 16.9403 0.266905 16.834 0.162719C16.7278 0.0585317 16.5836 0 16.4333 0ZM0.566667 9.44444V0.555556H16.4333V9.44444H0.566667Z" fill="#350ABC" />
@@ -99,7 +125,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="340" height="137" viewBox="0 0 323 132" fill="none">
                                         <path d="M0 -2H323V134H29.5565L0 -2Z" fill="#F3F0FF" />
                                     </svg>
-                                    <button className='bg-[#2C2240] relative bottom-[92px] right-[-87px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
+                                    <button className='bg-[#2C2240] relative bottom-[94px] right-[-108px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
                                         width={12}
                                         height={12}
                                         src={'/images/hero/tick.svg'}
@@ -108,22 +134,13 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
 
                                 </div>
                             </div>
-                            <div className='flex justify-center items-center mt-[32px]'>
-                                <h2 className='tracking-[-0.28px] leading-[30px] w-[89%] text-[14px] text-[#6B6B6B]'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sociis natoque penatibus et magnis dis parturient montes. Nibh sed pulvinar proin gravida hendrerit.
-                                </h2>
-                                <div className='text-[#00000080] tracking-[-0.24px] w-[11%] leading-[24px] flex justify-end gap-1 items-center text-[12px]'>
-                                    <IoTimeOutline />  12 minutes ago
-                                </div>
-                            </div>
-
                         </div>
-                        <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
-                            <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
-                                <div className='flex justify-center items-center gap-[31px]'>
+                        <div className="border border-[#E9E9E9] rounded-[4px] pl-[32px] mx-[32px]">
+                            <div className='flex  justify-between items-start h-[137px]'>
+                                <div className='flex justify-center items-center gap-[88px]'>
                                     <div className='flex gap-[20px]'>
                                         <img className='h-[110px] w-[106px] object-cover rounded-[50%] mt-[12px] border-2 border-[#F3F0FF]' src='/images/testiminial/testi5.png' alt='user' />
-                                        <div>
+                                        <div className='relative top-[8px]'>
                                             <div className='flex justify-between w-full gap-[136px] items-center mb-1'>
                                                 <h2 className={`${montserrat.className} leading-[24px] text-[#000000] font-[600] tracking-[-0.16px] !text-[16px]`}>Cooper, Kristin</h2>
                                                 <h3 className='flex justify-center items-center gap-1'> <span className='mb-[4px] mr-1  leading-[24px] text-[#2C2240] font-[600] tracking-[-0.28px] text-[16px]'>
@@ -136,7 +153,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <h2 className={`flex justify-center items-center gap-2 leading-[24px] font-[400] tracking-[ -0.24px] !text-[12px] text-[#00000080] `}><LuMapPin className='text-[#000000]' />Atlanta</h2>
                                                 <h3 className='flex justify-center items-center gap-1 text-[#2C2240] leading-[24px] tracking-[-0.24px] text-[12px] font-[600]'>120 Jobs</h3>
                                             </div>
-                                            <div className="flex justify-start items-center text-start w-full space-x-1 mb-2 mt-2 ">
+                                            <div className="flex justify-start items-center text-start w-full space-x-1">
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
                                                 <span><PiLineVerticalThin /></span>
 
@@ -146,7 +163,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
 
                                             </div>
-                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] pb-[3px] px-[30px] mt-1'>
+                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 !py-[3px] px-[20px] mt-1.5'>
                                                 <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(#clip0_481_590)">
                                                         <path d="M16.4333 0H0.566667C0.416377 0 0.272243 0.0585317 0.165973 0.162719C0.0597022 0.266905 0 0.408213 0 0.555556L0 9.44444C0 9.59179 0.0597022 9.7331 0.165973 9.83728C0.272243 9.94147 0.416377 10 0.566667 10H16.4333C16.5836 10 16.7278 9.94147 16.834 9.83728C16.9403 9.7331 17 9.59179 17 9.44444V0.555556C17 0.408213 16.9403 0.266905 16.834 0.162719C16.7278 0.0585317 16.5836 0 16.4333 0ZM0.566667 9.44444V0.555556H16.4333V9.44444H0.566667Z" fill="#350ABC" />
@@ -181,7 +198,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="340" height="137" viewBox="0 0 323 132" fill="none">
                                         <path d="M0 -2H323V134H29.5565L0 -2Z" fill="#F3F0FF" />
                                     </svg>
-                                    <button className='bg-[#2C2240] relative bottom-[92px] right-[-87px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
+                                    <button className='bg-[#2C2240] relative bottom-[94px] right-[-108px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
                                         width={12}
                                         height={12}
                                         src={'/images/hero/tick.svg'}
@@ -190,22 +207,14 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
 
                                 </div>
                             </div>
-                            <div className='flex justify-center items-center mt-[32px]'>
-                                <h2 className='tracking-[-0.28px] leading-[30px] w-[89%] text-[14px] text-[#6B6B6B]'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sociis natoque penatibus et magnis dis parturient montes. Nibh sed pulvinar proin gravida hendrerit.
-                                </h2>
-                                <div className='text-[#00000080] tracking-[-0.24px] w-[11%] leading-[24px] flex justify-end gap-1 items-center text-[12px]'>
-                                    <IoTimeOutline />  12 minutes ago
-                                </div>
-                            </div>
 
                         </div>
-                        <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
-                            <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
-                                <div className='flex justify-center items-center gap-[31px]'>
+                        <div className="border border-[#E9E9E9] rounded-[4px] pl-[32px] mx-[32px]">
+                            <div className='flex  justify-between items-start h-[137px]'>
+                                <div className='flex justify-center items-center gap-[88px]'>
                                     <div className='flex gap-[20px]'>
                                         <img className='h-[110px] w-[106px] object-cover rounded-[50%] mt-[12px] border-2 border-[#F3F0FF]' src='/images/testiminial/testi5.png' alt='user' />
-                                        <div>
+                                        <div className='relative top-[8px]'>
                                             <div className='flex justify-between w-full gap-[136px] items-center mb-1'>
                                                 <h2 className={`${montserrat.className} leading-[24px] text-[#000000] font-[600] tracking-[-0.16px] !text-[16px]`}>Cooper, Kristin</h2>
                                                 <h3 className='flex justify-center items-center gap-1'> <span className='mb-[4px] mr-1  leading-[24px] text-[#2C2240] font-[600] tracking-[-0.28px] text-[16px]'>
@@ -218,7 +227,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <h2 className={`flex justify-center items-center gap-2 leading-[24px] font-[400] tracking-[ -0.24px] !text-[12px] text-[#00000080] `}><LuMapPin className='text-[#000000]' />Atlanta</h2>
                                                 <h3 className='flex justify-center items-center gap-1 text-[#2C2240] leading-[24px] tracking-[-0.24px] text-[12px] font-[600]'>120 Jobs</h3>
                                             </div>
-                                            <div className="flex justify-start items-center text-start w-full space-x-1 mb-2 mt-2 ">
+                                            <div className="flex justify-start items-center text-start w-full space-x-1">
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
                                                 <span><PiLineVerticalThin /></span>
 
@@ -228,7 +237,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
 
                                             </div>
-                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] pb-[3px] px-[30px] mt-1'>
+                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 !py-[3px] px-[20px] mt-1.5'>
                                                 <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(#clip0_481_590)">
                                                         <path d="M16.4333 0H0.566667C0.416377 0 0.272243 0.0585317 0.165973 0.162719C0.0597022 0.266905 0 0.408213 0 0.555556L0 9.44444C0 9.59179 0.0597022 9.7331 0.165973 9.83728C0.272243 9.94147 0.416377 10 0.566667 10H16.4333C16.5836 10 16.7278 9.94147 16.834 9.83728C16.9403 9.7331 17 9.59179 17 9.44444V0.555556C17 0.408213 16.9403 0.266905 16.834 0.162719C16.7278 0.0585317 16.5836 0 16.4333 0ZM0.566667 9.44444V0.555556H16.4333V9.44444H0.566667Z" fill="#350ABC" />
@@ -263,7 +272,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="340" height="137" viewBox="0 0 323 132" fill="none">
                                         <path d="M0 -2H323V134H29.5565L0 -2Z" fill="#F3F0FF" />
                                     </svg>
-                                    <button className='bg-[#2C2240] relative bottom-[92px] right-[-87px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
+                                    <button className='bg-[#2C2240] relative bottom-[94px] right-[-108px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
                                         width={12}
                                         height={12}
                                         src={'/images/hero/tick.svg'}
@@ -272,22 +281,14 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
 
                                 </div>
                             </div>
-                            <div className='flex justify-center items-center mt-[32px]'>
-                                <h2 className='tracking-[-0.28px] leading-[30px] w-[89%] text-[14px] text-[#6B6B6B]'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sociis natoque penatibus et magnis dis parturient montes. Nibh sed pulvinar proin gravida hendrerit.
-                                </h2>
-                                <div className='text-[#00000080] tracking-[-0.24px] w-[11%] leading-[24px] flex justify-end gap-1 items-center text-[12px]'>
-                                    <IoTimeOutline />  12 minutes ago
-                                </div>
-                            </div>
 
                         </div>
-                        <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
-                            <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
-                                <div className='flex justify-center items-center gap-[31px]'>
+                        <div className="border border-[#E9E9E9] rounded-[4px] pl-[32px] mx-[32px]">
+                            <div className='flex  justify-between items-start h-[137px]'>
+                                <div className='flex justify-center items-center gap-[88px]'>
                                     <div className='flex gap-[20px]'>
                                         <img className='h-[110px] w-[106px] object-cover rounded-[50%] mt-[12px] border-2 border-[#F3F0FF]' src='/images/testiminial/testi5.png' alt='user' />
-                                        <div>
+                                        <div className='relative top-[8px]'>
                                             <div className='flex justify-between w-full gap-[136px] items-center mb-1'>
                                                 <h2 className={`${montserrat.className} leading-[24px] text-[#000000] font-[600] tracking-[-0.16px] !text-[16px]`}>Cooper, Kristin</h2>
                                                 <h3 className='flex justify-center items-center gap-1'> <span className='mb-[4px] mr-1  leading-[24px] text-[#2C2240] font-[600] tracking-[-0.28px] text-[16px]'>
@@ -300,7 +301,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <h2 className={`flex justify-center items-center gap-2 leading-[24px] font-[400] tracking-[ -0.24px] !text-[12px] text-[#00000080] `}><LuMapPin className='text-[#000000]' />Atlanta</h2>
                                                 <h3 className='flex justify-center items-center gap-1 text-[#2C2240] leading-[24px] tracking-[-0.24px] text-[12px] font-[600]'>120 Jobs</h3>
                                             </div>
-                                            <div className="flex justify-start items-center text-start w-full space-x-1 mb-2 mt-2 ">
+                                            <div className="flex justify-start items-center text-start w-full space-x-1">
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
                                                 <span><PiLineVerticalThin /></span>
 
@@ -310,7 +311,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
 
                                             </div>
-                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] pb-[3px] px-[30px] mt-1'>
+                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 !py-[3px] px-[20px] mt-1.5'>
                                                 <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(#clip0_481_590)">
                                                         <path d="M16.4333 0H0.566667C0.416377 0 0.272243 0.0585317 0.165973 0.162719C0.0597022 0.266905 0 0.408213 0 0.555556L0 9.44444C0 9.59179 0.0597022 9.7331 0.165973 9.83728C0.272243 9.94147 0.416377 10 0.566667 10H16.4333C16.5836 10 16.7278 9.94147 16.834 9.83728C16.9403 9.7331 17 9.59179 17 9.44444V0.555556C17 0.408213 16.9403 0.266905 16.834 0.162719C16.7278 0.0585317 16.5836 0 16.4333 0ZM0.566667 9.44444V0.555556H16.4333V9.44444H0.566667Z" fill="#350ABC" />
@@ -345,7 +346,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="340" height="137" viewBox="0 0 323 132" fill="none">
                                         <path d="M0 -2H323V134H29.5565L0 -2Z" fill="#F3F0FF" />
                                     </svg>
-                                    <button className='bg-[#2C2240] relative bottom-[92px] right-[-87px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
+                                    <button className='bg-[#2C2240] relative bottom-[94px] right-[-108px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
                                         width={12}
                                         height={12}
                                         src={'/images/hero/tick.svg'}
@@ -354,22 +355,14 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
 
                                 </div>
                             </div>
-                            <div className='flex justify-center items-center mt-[32px]'>
-                                <h2 className='tracking-[-0.28px] leading-[30px] w-[89%] text-[14px] text-[#6B6B6B]'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sociis natoque penatibus et magnis dis parturient montes. Nibh sed pulvinar proin gravida hendrerit.
-                                </h2>
-                                <div className='text-[#00000080] tracking-[-0.24px] w-[11%] leading-[24px] flex justify-end gap-1 items-center text-[12px]'>
-                                    <IoTimeOutline />  12 minutes ago
-                                </div>
-                            </div>
 
                         </div>
-                        <div className="border border-[#E9E9E9] rounded-[4px] py-[12px] px-[32px] mx-[44px]">
-                            <div className='flex  justify-between items-start border-b border-[#0000000] h-[137px]'>
-                                <div className='flex justify-center items-center gap-[31px]'>
+                        <div className="border border-[#E9E9E9] rounded-[4px] pl-[32px] mx-[32px]">
+                            <div className='flex  justify-between items-start h-[137px]'>
+                                <div className='flex justify-center items-center gap-[88px]'>
                                     <div className='flex gap-[20px]'>
                                         <img className='h-[110px] w-[106px] object-cover rounded-[50%] mt-[12px] border-2 border-[#F3F0FF]' src='/images/testiminial/testi5.png' alt='user' />
-                                        <div>
+                                        <div className='relative top-[8px]'>
                                             <div className='flex justify-between w-full gap-[136px] items-center mb-1'>
                                                 <h2 className={`${montserrat.className} leading-[24px] text-[#000000] font-[600] tracking-[-0.16px] !text-[16px]`}>Cooper, Kristin</h2>
                                                 <h3 className='flex justify-center items-center gap-1'> <span className='mb-[4px] mr-1  leading-[24px] text-[#2C2240] font-[600] tracking-[-0.28px] text-[16px]'>
@@ -382,7 +375,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <h2 className={`flex justify-center items-center gap-2 leading-[24px] font-[400] tracking-[ -0.24px] !text-[12px] text-[#00000080] `}><LuMapPin className='text-[#000000]' />Atlanta</h2>
                                                 <h3 className='flex justify-center items-center gap-1 text-[#2C2240] leading-[24px] tracking-[-0.24px] text-[12px] font-[600]'>120 Jobs</h3>
                                             </div>
-                                            <div className="flex justify-start items-center text-start w-full space-x-1 mb-2 mt-2 ">
+                                            <div className="flex justify-start items-center text-start w-full space-x-1">
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
                                                 <span><PiLineVerticalThin /></span>
 
@@ -392,7 +385,7 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                                 <p className='text-[14px] font-[400] text-[#6B6B6B] leading-[24px] tracking-[ -0.28px]'>Cocktail Server</p>
 
                                             </div>
-                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 py-[6px] pb-[3px] px-[30px] mt-1'>
+                                            <div className='text-center relative bg-[#e6e0fa] text-[#350abc] rounded-md inline-flex gap-2 !py-[3px] px-[20px] mt-1.5'>
                                                 <svg width="24" height="24" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(#clip0_481_590)">
                                                         <path d="M16.4333 0H0.566667C0.416377 0 0.272243 0.0585317 0.165973 0.162719C0.0597022 0.266905 0 0.408213 0 0.555556L0 9.44444C0 9.59179 0.0597022 9.7331 0.165973 9.83728C0.272243 9.94147 0.416377 10 0.566667 10H16.4333C16.5836 10 16.7278 9.94147 16.834 9.83728C16.9403 9.7331 17 9.59179 17 9.44444V0.555556C17 0.408213 16.9403 0.266905 16.834 0.162719C16.7278 0.0585317 16.5836 0 16.4333 0ZM0.566667 9.44444V0.555556H16.4333V9.44444H0.566667Z" fill="#350ABC" />
@@ -427,21 +420,13 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="340" height="137" viewBox="0 0 323 132" fill="none">
                                         <path d="M0 -2H323V134H29.5565L0 -2Z" fill="#F3F0FF" />
                                     </svg>
-                                    <button className='bg-[#2C2240] relative bottom-[92px] right-[-87px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
+                                    <button className='bg-[#2C2240] relative bottom-[94px] right-[-108px] rounded-[4px] flex justify-center items-center gap-2 py-[14px] w-[162px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <Image
                                         width={12}
                                         height={12}
                                         src={'/images/hero/tick.svg'}
                                         alt='tick'
                                     />hire now</button>
 
-                                </div>
-                            </div>
-                            <div className='flex justify-center items-center mt-[32px]'>
-                                <h2 className='tracking-[-0.28px] leading-[30px] w-[89%] text-[14px] text-[#6B6B6B]'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sociis natoque penatibus et magnis dis parturient montes. Nibh sed pulvinar proin gravida hendrerit.
-                                </h2>
-                                <div className='text-[#00000080] tracking-[-0.24px] w-[11%] leading-[24px] flex justify-end gap-1 items-center text-[12px]'>
-                                    <IoTimeOutline />  12 minutes ago
                                 </div>
                             </div>
 
@@ -449,27 +434,26 @@ const OffersTabs = ({ activeTab }: { activeTab: string }) => {
                     </div>
                 )}
                 {activeTab === 'b' && (
-                   <>
-                   <div
-  className={`flex flex-wrap gap-[20px] ${
-    offeredStaff?.length > 4 ? 'justify-start content-start' : 'justify-center content-center'
-  }`}
->
-  {offeredStaff?.map((staff: any, index: number) => (
-    <div key={staff.id} className='h-[510px]'>
-      <StaffListMap index={index} staff={staff} />
-    </div>
-  ))}
-</div>
+                    <>
+                        <div
+                            className={`flex flex-wrap gap-[20px] ${data?.length > 4 ? 'justify-start content-start' : 'justify-start content-center'
+                                }`}
+                        >
+                            {data?.map((staff: any, index: number) => (
+                                <div key={staff.id} className='h-[510px]'>
+                                    <StaffListMap index={index} staff={staff.worker} />
+                                </div>
+                            ))}
+                        </div>
 
-                      {offeredStaff.length===0 ?<div className='w-full flex justify-center items-center mt-[100px]'>No invites!</div>: 
-                        <div className='w-full flex justify-center items-center mt-[100px]'>
+                        {data?.length === 0 ? <div className='w-full flex justify-center items-center mt-[100px]'>No invites!</div> :
+                            <div className='w-full flex justify-center items-center mt-[100px]'>
 
-                        <button className='bg-[#2C2240] relative  rounded-[4px] flex justify-center items-center gap-2 py-[14px] px-[32px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <h2>+</h2> Add More Invites</button>
+                                <button className='bg-[#2C2240] relative  rounded-[4px] flex justify-center items-center gap-2 py-[14px] px-[32px] text-[#dfdbec] text-[14px] font-[400] leading-[24px] tracking-[-0.28px] capitalize'> <h2>+</h2> Add More Invites</button>
 
-                    </div>
-                      }
-                   </>
+                            </div>
+                        }
+                    </>
                 )}
 
             </section>

@@ -4,30 +4,31 @@ import { useRouter } from 'next/navigation';
 import StaffFilters from './components/staff-list-filter';
 import StaffMap from './components/staff-list-map';
 import { Staff } from '@/app/libs/types';
-import { useAppDispatch } from '@/app/libs/store/hooks';
-import { setInviteCount, setSelectedStaff, setStaff } from '@/app/libs/store/features/staffSlice';
+import { useAppDispatch, useAppSelector } from '@/app/libs/store/hooks';
+import { selectStaff, setInviteCount, setSelectedStaff, setStaff } from '@/app/libs/store/features/staffSlice';
 import { AppDispatch } from '@/app/libs/store/store';
 import CardSkeleton from '../../ui/card-skeleton';
 import Pagination from '../../ui/pagination';
 import { apiRequest } from '@/app/libs/services';
 import Loader from '../../ui/loader';
+import { selectAuth } from '@/app/libs/store/features/authSlice';
 
-const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }) => {
-
+const StaffListing = ({selectedServiceId, isFilterBookingFlow }: any) => {
+  const { auth: storedData } = useAppSelector(selectAuth);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false); //open staff filter modal state
   const dispatch: AppDispatch = useAppDispatch();
-  const navigate = useRouter();
-
+  const { jobData } = useAppSelector(selectStaff);
+  console.log('jobData yes its pewrsisted', jobData)
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCount, setSelectedCount] = useState<number>(10);
-  
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValueString = event.target.value;
     const selectedValueNumber = Number(selectedValueString); // Convert string to number
     setSelectedCount(selectedValueNumber);
   };
-  
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -47,10 +48,10 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
       return []; // Return an empty array if localStorage is not available
     }
   });
-  
+
   console.log('selectedStaff', selectedStaff)
-  
-    const [data, setData] = useState<any>(null);
+
+  const [data, setData] = useState<any>(null);
   console.log('data', data)
   const handleStaffClick = (staff: Staff) => {
     // Check if localStorage is available
@@ -58,14 +59,14 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
       // Retrieve and parse existing selected staff from localStorage
       const storedSelectedStaff = localStorage.getItem('selectedStaff');
       const existingSelectedStaff = storedSelectedStaff ? JSON.parse(storedSelectedStaff) : [];
-      
+
       // Find the index of the staff item
       const staffIndex = existingSelectedStaff.findIndex((selected: any) => selected.id === staff.id);
-      
+
       if (staffIndex !== -1) {
         // Toggle the isOffered property
         existingSelectedStaff[staffIndex].isOffered = !existingSelectedStaff[staffIndex].isOffered;
-        
+
         if (!existingSelectedStaff[staffIndex].isOffered) {
           // Remove the staff from the array if isOffered is false
           existingSelectedStaff.splice(staffIndex, 1);
@@ -76,11 +77,11 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
         staff.isOffered = true;
         existingSelectedStaff.push(staff);
       }
-      
+
       // Update state and dispatch actions
       setSelectedStaff(existingSelectedStaff);
       dispatch(setInviteCount(existingSelectedStaff.length));
-      
+
       // Update local storage with the updated staff list
       localStorage.setItem('selectedStaff', JSON.stringify(existingSelectedStaff));
     } else {
@@ -88,7 +89,7 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
       // Handle the case where localStorage is not available (optional)
     }
   };
-  
+
 
   const [scrollY, setScrollY] = useState(0);
 
@@ -108,32 +109,58 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
     transition: 'top 0.3s ease-out',
     transform: "rotate(0.3deg)"
   };
+  // useEffect(() => {
+  //   const fetchDataIfNeeded = async () => {
+  //     setLoading(true);
+  //     const body = {
+  //       sort_by: "id",
+  //       page_number: currentPage,
+  //       page_size: selectedCount,
+  //       order: "ASC"
+  //     };
+
+  //     try {
+  //       const newData = await apiRequest('/listings/paginated', {
+  //         method: 'POST',
+  //         body: body
+  //       });
+  //       const updatedData = newData.records.map((item: any) => {
+  //         const matchedStaff = selectedStaff.find((staff) => staff.id === item.id);
+  //         if (matchedStaff) {
+  //           return {
+  //             ...item,
+  //             isOffered: true
+  //           };
+  //         }
+  //         return item;
+  //       });
+  //       setData(updatedData);
+  //       setLoading(false);
+  //     } catch (error) {
+  //     }
+  //   };
+
+  //   fetchDataIfNeeded();
+  // }, [currentPage, selectedCount]);
   useEffect(() => {
     const fetchDataIfNeeded = async () => {
       setLoading(true);
       const body = {
-        sort_by: "id",
-        page_number: currentPage,
-        page_size: selectedCount,
-        order: "ASC"
+        city_id: 1,
+        service_id: selectedServiceId
       };
 
       try {
-        const newData = await apiRequest('/listings/paginated', {
+        const newData = await apiRequest('/job/recommended-workers', {
           method: 'POST',
-          body: body
-        });
-        const updatedData = newData.records.map((item: any) => {
-          const matchedStaff = selectedStaff.find((staff) => staff.id === item.id);
-          if (matchedStaff) {
-            return {
-              ...item,
-              isOffered: true
-            };
+          body: body,
+          headers:{
+            ...(storedData && { 'Authorization': `Bearer ${storedData.token}` })
           }
-          return item;
         });
-        setData(updatedData);
+
+        console.log('newData for get recomended jobs', newData)
+        setData(newData);
         setLoading(false);
       } catch (error) {
       }
@@ -148,7 +175,7 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
       // Retrieve stored staff array from localStorage
       const storedStaffArray = localStorage.getItem('selectedStaff');
-  
+
       if (storedStaffArray) {
         try {
           // Parse the JSON data
@@ -164,7 +191,7 @@ const StaffListing = ({ isFilterBookingFlow }: { isFilterBookingFlow?: boolean }
       console.log('localStorage is not supported or window is not defined.');
     }
   }, []);
-  
+
 
   if (!data) {
     return (
