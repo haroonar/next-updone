@@ -56,7 +56,6 @@ console.log('selectedServiceId i want to see', selectedServiceId)
           ...(storedData && { 'Authorization': `Bearer ${storedData.token}` })
         }
         
-        
       }); // API call
       console.log('newData', newData)
       dispatch(setJobData(newData));

@@ -1,5 +1,5 @@
 "use client"
-import React, { Suspense, useEffect } from 'react'
+import React, { Suspense } from 'react'
 import dynamic from 'next/dynamic';
 import Loading from './loading';
 import Loader from '../components/ui/loader';

@@ -1,10 +1,8 @@
 "use client"
 import { montserrat } from '@/app/libs/Fonts'
-import { selectStaff } from '@/app/libs/store/features/staffSlice'
 import { useAppSelector } from '@/app/libs/store/hooks'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import { IoTimeOutline } from 'react-icons/io5'
 import { LuMapPin } from 'react-icons/lu'
 import { PiLineVerticalThin } from 'react-icons/pi'
 import StaffListMap from '../../home/staff/components/staff-list-map'

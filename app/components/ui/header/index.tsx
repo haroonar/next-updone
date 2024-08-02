@@ -8,7 +8,6 @@ import RegisterForm from '../register';
 import { useAppSelector } from '@/app/libs/store/hooks';
 import { clearAuth, selectAuth } from '@/app/libs/store/features/authSlice';
 import { useDispatch } from 'react-redux';
-import { lato } from '@/app/libs/Fonts';
 
 const Header = () => {
     // State to track the clicked link
@@ -19,9 +18,7 @@ const Header = () => {
     const [loginMenuOpen, setLoginMenuOpen] = useState(false);
     const [registerMenuOpen, setRegisterMenuOpen] = useState(false);
     const dispatch = useDispatch()
-    const handleSetActiveLink = (href: string) => {
-        setActiveLink(href);
-    };
+
     // Function to toggle login menu visibility
     const toggleLoginMenu = () => {
         setLoginMenuOpen(!loginMenuOpen);
@@ -65,7 +62,7 @@ const Header = () => {
                                 ))} */}
                                 {storedData?.user?.name ? (
                                     <>
-                                        <li className={`${lato.className} !ml-[22px] px-[10px] pb-[1px] text-[#0B0B0B] border-b-[1px] border-[#2C2240] text-[14px] font-[600] leading-[150%] capitalize`}>{storedData?.user?.name}</li>
+                                        <li className={`!ml-[22px] px-[10px] pb-[1px] text-[#0B0B0B] border-b-[1px] border-[#2C2240] text-[14px] font-[600] leading-[150%] capitalize`}>{storedData?.user?.name}</li>
                                         <li>   <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo" /></li>
                                         <li> <div onClick={handleLogout} className="bg-[#0b0b0b] text-[#dcd9e7] px-6 py-2 rounded-md">
                                             Logout
@@ -74,7 +71,7 @@ const Header = () => {
                                 ) : (
                                     <>
                                         <li>
-                                            <div onClick={toggleLoginMenu} className={`${lato.className} text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize`}>
+                                            <div onClick={toggleLoginMenu} className={`text-[#0B0B0B] text-[14px] font-[400] leading-[150%] capitalize`}>
                                                 Login
                                             </div>
                                             {loginMenuOpen && (
@@ -85,7 +82,7 @@ const Header = () => {
                                             )}
                                         </li>
                                         <li>
-                                            <div onClick={toggleRegisterMenu} className={`${lato.className} bg-[#0b0b0b] text-[#F3F0FF] text-[14px] font-[400] px-6 py-2 rounded-md`}>
+                                            <div onClick={toggleRegisterMenu} className={` bg-[#0b0b0b] text-[#F3F0FF] text-[14px] font-[400] px-6 py-2 rounded-md`}>
                                                 Register
                                             </div>
                                             {registerMenuOpen && (
